@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import { Providers } from '@/app/providers'
 import Footer from '@/app/components/footer/Footer'
 import Navigation from '@/app/components/navigation/Navigation'
 
@@ -26,9 +27,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             className={`${geistSans.variable} ${geistMono.variable} h-full antialiased flex justify-center`}
         >
             <body className="min-h-full flex flex-col bg-zinc-700 text-zinc-100 w-full items-center">
-                <Navigation />
-                {children}
-                <Footer />
+                <Providers>
+                    <Navigation />
+                    {children}
+                    <Footer />
+                </Providers>
             </body>
         </html>
     )
