@@ -59,6 +59,15 @@ export type useErrorUserNameProps = {
     userName: string
 }
 
+export type useLoadLoggedInStorageValueProps = {
+    setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
+}
+
+export type useLoadLoginStorageValuesProps = {
+    setIsSigningUp: (value: React.SetStateAction<boolean>) => void
+    setUserName: (value: React.SetStateAction<string>) => void
+}
+
 export type useLoginSubmitDisabledProps = {
     confirmPassword: string
     isSigningUp: boolean
