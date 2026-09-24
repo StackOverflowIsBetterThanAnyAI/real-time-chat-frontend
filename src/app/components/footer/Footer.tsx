@@ -10,7 +10,7 @@ const Footer = () => {
             </span>
             <span className="sr-only">{`Copyright ${year} Michael Münzenhofer. All Rights Reserved.`}</span>
             <a
-                href="https://github.com/StackOverflowIsBetterThanAnyAI/real-time-chat"
+                href="https://github.com/StackOverflowIsBetterThanAnyAI/real-time-chat-frontend"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Repository (opens in new tab)"
