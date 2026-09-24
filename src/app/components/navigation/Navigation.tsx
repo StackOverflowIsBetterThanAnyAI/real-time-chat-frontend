@@ -54,7 +54,7 @@ const Navigation = () => {
                 </div>
             </nav>
             {isSettingsExpanded && isLoggedIn && (
-                <aside className="absolute w-96 top-16 right-0 bottom-4 bg-zinc-700 p-2 border-2 border-zinc-800 rounded-b-xl">
+                <aside className="absolute max-w-96 w-full top-16 right-0 bottom-4 bg-zinc-700 p-2 border-2 border-zinc-800 rounded-b-xl">
                     Hello World!
                 </aside>
             )}
