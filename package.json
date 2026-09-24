@@ -26,7 +26,7 @@
         "eslint-config-next": "16.3.6",
         "prettier-es5": "^0.0.4",
         "tailwindcss": "^4",
-        "typescript": "^5"
+        "typescript": "^7"
     },
     "allowScripts": {
         "unrs-resolver@1.12.2": true
