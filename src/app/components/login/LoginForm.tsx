@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import LoginFormError from './LoginFormError'
 import LoginFormHeader from './LoginFormHeader'
 import LoginFormInput from './LoginFormInput'
 import LoginFormPassword from './LoginFormPassword'
 import LoginFormSubmit from './LoginFormSubmit'
 import LoginFormSwitch from './LoginFormSwitch'
+import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { useErrorConfirmPassword } from '@/hooks/useErrorConfirmPassword'
 import { useLoadLoginStorageValues } from '@/hooks/useLoadLoginStorageValues'
 import { useLoginSubmitDisabled } from '@/hooks/useLoginSubmitDisabled'
@@ -13,6 +14,14 @@ import { useErrorPassword } from '@/hooks/useErrorPassword'
 import { setItemInStorage } from '@/utils/setItemInStorage'
 
 const LoginForm = () => {
+    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
+    if (!contextIsLoggedIn) {
+        throw new Error(
+            'LoginForm must be used within a ContextIsLoggedIn.Provider'
+        )
+    }
+    const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
+
     const [apiError, setApiError] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
     const [confirmPasswordDisabled, setConfirmPasswordDisabled] =
@@ -44,7 +53,11 @@ const LoginForm = () => {
     }
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && !isSubmitDisabled) {
-            console.log('asdasd')
+            setIsLoggedIn(() => {
+                const nextVal = !isLoggedIn
+                setItemInStorage('isloggedin', nextVal)
+                return nextVal
+            })
         }
     }
     const handleSwitchLogin = () => {
@@ -148,7 +161,13 @@ const LoginForm = () => {
                     </>
                 )}
                 <LoginFormSubmit
-                    handleClick={() => {}}
+                    handleClick={() => {
+                        setIsLoggedIn(() => {
+                            const nextVal = !isLoggedIn
+                            setItemInStorage('isloggedin', nextVal)
+                            return nextVal
+                        })
+                    }}
                     isDisabled={isSubmitDisabled}
                     isLoading={isLoading}
                     value={isSigningUp ? 'Signup' : 'Login'}
