@@ -1,6 +1,6 @@
 'use client'
 
-import LoginForm from './LoginForm'
+import LoginForm from '@/app/components/login/LoginForm'
 
 const Login = () => {
     return (
