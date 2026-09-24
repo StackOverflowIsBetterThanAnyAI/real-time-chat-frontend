@@ -42,6 +42,10 @@ export type LoginFormSwitchProps = {
     handleClick: () => void
 }
 
+export type NavigationSettingsProps = {
+    setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
+}
+
 export type useErrorConfirmPasswordProps = {
     confirmPassword: string
     password: string
