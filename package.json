@@ -22,7 +22,7 @@
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
-        "eslint": "^9",
+        "eslint": "^10",
         "eslint-config-next": "16.3.6",
         "prettier-es5": "^0.0.4",
         "tailwindcss": "^4",
