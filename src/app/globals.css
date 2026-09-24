@@ -1,26 +1,60 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+*:disabled {
+    @apply cursor-not-allowed;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+a {
+    @apply w-fit flex items-center gap-1 px-2 py-1 rounded-sm mx-2 underline hover:bg-zinc-800 active:bg-zinc-800/50;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    @apply outline-2 outline-zinc-800;
+}
+
+a,
+button,
+input[type='button']:not(:disabled),
+input[type='checkbox']:not(:disabled) {
+    @apply hover:cursor-pointer;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    @apply text-pretty p-0 m-0 border-0;
+}
+
+html {
+    @apply scrollbar-gutter-both;
+}
+
+input[type='checkbox'] {
+    @apply appearance-none grid place-content-center w-4 h-4 bg-zinc-100 rounded-sm;
+}
+input[type='checkbox']:hover {
+    @apply bg-blue-100;
+}
+input[type='checkbox']:disabled {
+    @apply bg-zinc-400/50;
+}
+input[type='checkbox']::before {
+    @apply w-4 h-4 opacity-100 bg-blue-500/80 transition-opacity duration-250 ease-in-out rounded-sm;
+    content: '';
+}
+input[type='checkbox']:disabled::before {
+    @apply opacity-30;
+}
+input[type='checkbox']:not(:checked)::before {
+    @apply opacity-0;
+}
+
+.text-small {
+    @apply text-xs sm:text-sm;
+}
+.text-normal {
+    @apply text-sm sm:text-base lg:text-lg;
+}
+.text-large {
+    @apply text-base sm:text-lg lg:text-xl;
 }
