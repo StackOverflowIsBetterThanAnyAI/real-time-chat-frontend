@@ -5,16 +5,21 @@ import { IoMdClose } from 'react-icons/io'
 import { MdModeEdit } from 'react-icons/md'
 import { MdDeleteForever } from 'react-icons/md'
 import { MdLogout } from 'react-icons/md'
+import NavigationSettingsButton from '@/app/components/navigation/NavigationSettingsButton'
 import profile_picure from '@/assets/profile_picture.jpg'
+import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
 import { NavigationSettingsProps } from '@/types/types'
 
 const NavigationSettings = ({ setIsLoggedIn }: NavigationSettingsProps) => {
+    useFocusTrapNavigationSettings()
+
     return (
-        <aside className="settings-menu flex flex-col gap-2 absolute max-w-96 w-full top-16 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
-            <button className="text-normal flex gap-2 items-center px-4 py-2 hover:bg-zinc-800/50 rounded-xl">
-                <IoMdClose />
-                <span>Close</span>
-            </button>
+        <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-16 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
+            <NavigationSettingsButton
+                handleClick={() => {}}
+                label="Close"
+                icon={<IoMdClose />}
+            />
             <div className="flex flex-col justify-center items-center mx-auto">
                 <Image
                     alt="profile picture"
@@ -30,33 +35,37 @@ const NavigationSettings = ({ setIsLoggedIn }: NavigationSettingsProps) => {
             <hr className="my-2 border-zinc-100" />
             <div className="flex flex-col gap-2 justify-between h-full">
                 <div className="flex flex-col gap-2">
-                    <button className="text-normal flex gap-2 items-center px-4 py-2 hover:bg-zinc-800/50 rounded-xl">
-                        <MdModeEdit />
-                        <span>Edit Status</span>
-                    </button>
-                    <button className="text-normal flex gap-2 items-center px-4 py-2 hover:bg-zinc-800/50 rounded-xl">
-                        <FaUserFriends />
-                        <span>Friends</span>
-                    </button>
-                    <button className="text-normal flex gap-2 items-center px-4 py-2 hover:bg-zinc-800/50 rounded-xl">
-                        <IoStatsChart />
-                        <span>Statistics</span>
-                    </button>
+                    <NavigationSettingsButton
+                        handleClick={() => {}}
+                        label="Edit Status"
+                        icon={<MdModeEdit />}
+                    />
+                    <NavigationSettingsButton
+                        handleClick={() => {}}
+                        label="Friends"
+                        icon={<FaUserFriends />}
+                    />
+                    <NavigationSettingsButton
+                        handleClick={() => {}}
+                        label="Statistics"
+                        icon={<IoStatsChart />}
+                    />
                 </div>
                 <div className="flex flex-col gap-4">
-                    <button
-                        className="text-normal flex gap-2 items-center px-4 py-2 hover:bg-zinc-800/50 outline-2 outline-red-800 rounded-xl"
-                        onClick={() => {
+                    <NavigationSettingsButton
+                        handleClick={() => {
                             setIsLoggedIn(false)
                         }}
-                    >
-                        <MdLogout />
-                        <span>Logout</span>
-                    </button>
-                    <button className="text-normal flex gap-2 items-center px-4 py-2 hover:bg-zinc-800/50 outline-2 outline-red-800 rounded-xl">
-                        <MdDeleteForever />
-                        <span>Delete Account</span>
-                    </button>
+                        label="Logout"
+                        icon={<MdLogout />}
+                        isDelete
+                    />
+                    <NavigationSettingsButton
+                        handleClick={() => {}}
+                        label="Delete Account"
+                        icon={<MdDeleteForever />}
+                        isDelete
+                    />
                 </div>
             </div>
         </aside>

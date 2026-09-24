@@ -42,6 +42,13 @@ export type LoginFormSwitchProps = {
     handleClick: () => void
 }
 
+export type NavigationSettingsButtonProps = {
+    icon: React.ReactNode
+    handleClick: () => void
+    isDelete?: boolean
+    label: string
+}
+
 export type NavigationSettingsProps = {
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
 }
