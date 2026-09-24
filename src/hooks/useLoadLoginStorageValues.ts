@@ -2,13 +2,9 @@
 
 import { useEffect } from 'react'
 import { USER_NAME_PATTERN } from '@/constants/constants'
+import { useLoadLoginStorageValuesProps } from '@/types/types'
 import { getStoredData } from '@/utils/getStoredData'
 import { setItemInStorage } from '@/utils/setItemInStorage'
-
-export type useLoadLoginStorageValuesProps = {
-    setIsSigningUp: (value: React.SetStateAction<boolean>) => void
-    setUserName: (value: React.SetStateAction<string>) => void
-}
 
 export const useLoadLoginStorageValues = ({
     setIsSigningUp,
@@ -18,7 +14,7 @@ export const useLoadLoginStorageValues = ({
         const parsedStorageData = getStoredData()
 
         if (parsedStorageData) {
-            const savedUsername = parsedStorageData.username
+            const savedUsername = parsedStorageData?.username
             if (
                 typeof savedUsername === 'string' &&
                 USER_NAME_PATTERN.test(savedUsername)
@@ -28,7 +24,7 @@ export const useLoadLoginStorageValues = ({
                 setItemInStorage('username', '')
             }
 
-            const savedIsSigningUp = parsedStorageData.issigningup
+            const savedIsSigningUp = parsedStorageData?.issigningup
             if (typeof savedIsSigningUp === 'boolean') {
                 setIsSigningUp(savedIsSigningUp)
             } else {
