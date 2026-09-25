@@ -9,9 +9,8 @@ a {
 }
 
 a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-    @apply outline-2 outline-zinc-800;
+button:focus-visible {
+    @apply outline-2 outline-zinc-100;
 }
 
 a,
@@ -47,6 +46,9 @@ input[type='checkbox']:disabled::before {
 }
 input[type='checkbox']:not(:checked)::before {
     @apply opacity-0;
+}
+input:focus-visible {
+    @apply outline-2 outline-zinc-800;
 }
 
 .text-small {

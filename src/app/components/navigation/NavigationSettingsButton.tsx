@@ -9,7 +9,7 @@ const NavigationSettingsButton = ({
     return (
         <button
             className={`settings-menu-button text-normal flex gap-2 items-center px-4 py-2 hover:bg-zinc-800/50 rounded-xl
-            ${isDelete ? ' outline-2 outline-red-800' : ''} focus-visible:outline-zinc-100!`}
+            ${isDelete ? ' outline-2 outline-red-800' : ''}`}
             onClick={handleClick}
         >
             {icon}
