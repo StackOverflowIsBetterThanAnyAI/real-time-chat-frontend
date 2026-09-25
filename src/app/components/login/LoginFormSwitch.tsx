@@ -18,7 +18,7 @@ const LoginFormSwitch = ({
         <div className="flex justify-center text-normal py-2">
             <button
                 aria-pressed={isSigningUp}
-                className="flex outline-zinc-100 outline-2 rounded-lg"
+                className="flex outline-zinc-100 outline-2 rounded-lg focus-visible:outline-zinc-800!"
                 onClick={handleClick}
                 type="button"
             >
