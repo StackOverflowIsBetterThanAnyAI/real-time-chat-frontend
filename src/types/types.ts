@@ -49,9 +49,13 @@ export type NavigationSettingsButtonProps = {
     label: string
 }
 
-export type NavigationSettingsProps = {
-    setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
+export type handleLogoutProps = {
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
 }
+
 
 export type useErrorConfirmPasswordProps = {
     confirmPassword: string
@@ -61,28 +65,28 @@ export type useErrorConfirmPasswordProps = {
 
 export type useErrorPasswordProps = {
     password: string
-    setConfirmPasswordDisabled: (value: React.SetStateAction<boolean>) => void
-    setErrorPassword: (value: React.SetStateAction<string>) => void
+    setConfirmPasswordDisabled: React.Dispatch<React.SetStateAction<boolean>>
+    setErrorPassword: React.Dispatch<React.SetStateAction<string>>
 }
 
 export type useErrorUserNameProps = {
-    setErrorUserName: (value: React.SetStateAction<string>) => void
+    setErrorUserName: React.Dispatch<React.SetStateAction<string>>
     userName: string
 }
 
 export type useLoadLoggedInStorageValueProps = {
-    setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
 }
 
 export type useLoadLoginStorageValuesProps = {
-    setIsSigningUp: (value: React.SetStateAction<boolean>) => void
-    setUserName: (value: React.SetStateAction<string>) => void
+    setIsSigningUp: React.Dispatch<React.SetStateAction<boolean>>
+    setUserName: React.Dispatch<React.SetStateAction<string>>
 }
 
 export type useLoginSubmitDisabledProps = {
     confirmPassword: string
     isSigningUp: boolean
     password: string
-    setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
+    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     userName: string
 }
