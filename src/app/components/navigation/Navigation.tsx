@@ -5,6 +5,7 @@ import { useContext, useState } from 'react'
 import NavigationSettings from '@/app/components/navigation/NavigationSettings'
 import profile_picure from '@/assets/profile_picture.jpg'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
+import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { getStoredSessionData } from '@/utils/getStoredSessionData'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
@@ -19,16 +20,16 @@ const Navigation = () => {
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 
-    const [isSettingsExpanded, setIsSettingsExpanded] = useState<boolean>(
-        () => {
-            const data = parsedSessionData?.issettingsexpanded
-            if (data && typeof data === 'boolean') {
-                return data
-            }
-            setItemInSessionStorage('issettingsexpanded', false)
-            return false
+    const [isSettingsExpanded, setIsSettingsExpanded] = useState<
+        boolean | undefined
+    >(() => {
+        const data = parsedSessionData?.issettingsexpanded
+        if (data && typeof data === 'boolean') {
+            return data
         }
-    )
+        setItemInSessionStorage('issettingsexpanded', false)
+        return false
+    })
 
     const handleClick = () => {
         setIsSettingsExpanded(() => {
@@ -44,19 +45,24 @@ const Navigation = () => {
                 <div className="flex justify-between items-center gap-2 md:gap-4 w-full">
                     <h1 className="text-large">Dieter-Chat</h1>
                     {isLoggedIn && (
-                        <button onClick={handleClick}>
+                        <button
+                            onClick={handleClick}
+                            className="w-12 h-12 rounded-full"
+                        >
                             <Image
                                 alt="profile picture"
                                 src={profile_picure}
-                                className="w-12 h-12 rounded-full outline-2 outline-zinc-100"
+                                className="w-12 h-12 rounded-full"
                             />
                         </button>
                     )}
                 </div>
             </nav>
-            {isSettingsExpanded && isLoggedIn && (
-                <NavigationSettings setIsLoggedIn={setIsLoggedIn} />
-            )}
+            <ContextIsSettingsExpanded.Provider
+                value={[isSettingsExpanded, setIsSettingsExpanded]}
+            >
+                {isSettingsExpanded && isLoggedIn && <NavigationSettings />}
+            </ContextIsSettingsExpanded.Provider>
         </>
     )
 }
