@@ -57,11 +57,11 @@ const NavigationSettings = () => {
                     className="w-32 h-32 rounded-full outline-2 outline-zinc-100 m-2"
                 />
                 <h2 className="text-center text-large">
-                    @{userMockData.username}
+                    @{userMockData[0].username}
                 </h2>
                 <div className="triangle mx-auto h-0 w-0"></div>
                 <h3 className="text-normal bg-zinc-800 w-fit px-4 py-1 rounded-xl mx-auto">
-                    {userMockData.status}
+                    {userMockData[0].status}
                 </h3>
             </div>
             <hr className="my-2 border-zinc-100" />

@@ -1,6 +1,26 @@
-{
-    "username": "Münzendieter",
-    "status": "Hey there, I am using WhatsApp",
-    "friends": [],
-    "statistics": []
-}
+[
+    {
+        "username": "Münzendieter",
+        "status": "Hey there, I am using WhatsApp",
+        "friends": [{ "username": "Dieter" }, { "username": "Michael" }],
+        "statistics": [],
+        "profile_picture": "",
+        "chats": [{ "username": "Dieter" }, { "username": "Michael" }]
+    },
+    {
+        "username": "Dieter",
+        "status": "Sleeping",
+        "friends": [{ "username": "Michael" }, { "username": "Münzendieter" }],
+        "statistics": [],
+        "profile_picture": "",
+        "chats": [{ "username": "Michael" }, { "username": "Münzendieter" }]
+    },
+    {
+        "username": "Michael",
+        "status": "Hello",
+        "friends": [{ "username": "Münzendieter" }, { "username": "Dieter" }],
+        "statistics": [],
+        "profile_picture": "",
+        "chats": [{ "username": "Münzendieter" }, { "username": "Dieter" }]
+    }
+]
