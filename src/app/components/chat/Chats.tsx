@@ -5,7 +5,7 @@ const Chats = () => {
     return (
         <div className="flex flex-col gap-4 bg-zinc-800/80 p-2">
             <button
-                className="text-normal flex gap-2 items-center px-4 py-2 rounded-xl  bg-blue-600 hover:bg-blue-600/85 active:bg-blue-600/75"
+                className="regular-button bg-blue-600 hover:bg-blue-600/85 active:bg-blue-600/75"
                 onClick={() => {}}
             >
                 <RiChatNewFill />
@@ -23,21 +23,21 @@ const Chats = () => {
                 />
             </div>
             <button
-                className="text-normal flex gap-2 items-center px-4 py-2 rounded-xl hover:bg-zinc-900/60 active:bg-zinc-900/60"
+                className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
                 onClick={() => {}}
             >
                 <RiChatNewFill />
                 <span>New Chat</span>
             </button>
             <button
-                className="text-normal flex gap-2 items-center px-4 py-2 rounded-xl hover:bg-zinc-900/60 active:bg-zinc-900/60"
+                className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
                 onClick={() => {}}
             >
                 <RiChatNewFill />
                 <span>New Chat</span>
             </button>
             <button
-                className="text-normal flex gap-2 items-center px-4 py-2 rounded-xl hover:bg-zinc-900/60 active:bg-zinc-900/60"
+                className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
                 onClick={() => {}}
             >
                 <RiChatNewFill />
