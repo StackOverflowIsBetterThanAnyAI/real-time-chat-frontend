@@ -6,10 +6,10 @@ const LoginFormSwitch = ({
 }: LoginFormSwitchProps) => {
     const loginStyle = isSigningUp
         ? 'bg-zinc-500/30 hover:bg-zinc-400/40 active:bg-zinc-300'
-        : 'bg-zinc-800/80 text-zinc-100 hover:bg-zinc-800/75 active:bg-zinc-800/65'
+        : 'bg-blue-800/80 text-zinc-100 hover:bg-blue-800/75 active:bg-blue-800/65'
 
     const signupStyle = isSigningUp
-        ? 'bg-zinc-800/80 text-zinc-100 hover:bg-zinc-800/75 active:bg-zinc-800/65'
+        ? 'bg-blue-800/80 text-zinc-100 hover:bg-blue-800/75 active:bg-blue-800/65'
         : 'bg-zinc-500/30 hover:bg-zinc-400/40 active:bg-zinc-300'
 
     const switchStyle = 'w-18 md:w-20 transition duration-500 ease-in-out py-1'
