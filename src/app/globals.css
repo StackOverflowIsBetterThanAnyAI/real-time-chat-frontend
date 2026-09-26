@@ -48,7 +48,7 @@ input[type='checkbox']:not(:checked)::before {
     @apply opacity-0;
 }
 input:focus-visible {
-    @apply outline-2 outline-zinc-800;
+    @apply outline-2 outline-blue-600;
 }
 
 .regular-button {

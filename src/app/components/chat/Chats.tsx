@@ -16,7 +16,8 @@ const Chats = () => {
                     <MdOutlineSearch className="w-8 h-8" />
                 </label>
                 <input
-                    className="bg-zinc-100 outline outline-zinc-500 text-zinc-950 text-normal rounded px-2 py-1 hover:bg-zinc-200 flex-1 min-w-32"
+                    className="bg-zinc-100 outline outline-zinc-500 text-zinc-950 text-normal rounded px-2 py-1
+                    hover:bg-zinc-200 flex-1 min-w-32"
                     id="search"
                     type="search"
                     placeholder="JohnDoe1337"
