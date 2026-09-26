@@ -56,7 +56,6 @@ export type handleLogoutProps = {
     >
 }
 
-
 export type useErrorConfirmPasswordProps = {
     confirmPassword: string
     password: string
@@ -72,6 +71,12 @@ export type useErrorPasswordProps = {
 export type useErrorUserNameProps = {
     setErrorUserName: React.Dispatch<React.SetStateAction<string>>
     userName: string
+}
+
+export type useEscapeFocusTrapNavigationSettingsProps = {
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
 }
 
 export type useLoadLoggedInStorageValueProps = {

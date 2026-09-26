@@ -10,6 +10,7 @@ import NavigationSettingsButton from '@/app/components/navigation/NavigationSett
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import profile_picure from '@/assets/profile_picture.jpg'
+import { useEscapeFocusTrapNavigationSettings } from '@/hooks/useEscapeFocusTrapNavigationSettings'
 import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
 import userMockData from '@/mock/userMockData.json'
 import { handleLogout } from '@/utils/handleLogout'
@@ -33,6 +34,7 @@ const NavigationSettings = () => {
     const [isSettingsExpanded, setIsSettingsExpanded] =
         contextIsSettingsExpanded
 
+    useEscapeFocusTrapNavigationSettings({ setIsSettingsExpanded })
     useFocusTrapNavigationSettings()
 
     const handleToggleIsSettingsExpanded = () => {
