@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, ReactNode } from 'react'
+import { useState } from 'react'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { useLoadLoggedInStorageValue } from '@/hooks/useLoadLoggedInStorageValue'
 
-export function Providers({ children }: { children: ReactNode }) {
+export function Providers({ children }: { children: React.ReactNode }) {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(false)
 
     useLoadLoggedInStorageValue({ setIsLoggedIn })
