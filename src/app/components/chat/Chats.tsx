@@ -1,5 +1,7 @@
 import { MdOutlineSearch } from 'react-icons/md'
 import { RiChatNewFill } from 'react-icons/ri'
+import ChatsButton from '@/app/components/chat/ChatsButton'
+import userMockData from '@/mock/userMockData.json'
 
 const Chats = () => {
     return (
@@ -23,27 +25,17 @@ const Chats = () => {
                     placeholder="JohnDoe1337"
                 />
             </div>
-            <button
-                className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
-                onClick={() => {}}
-            >
-                <RiChatNewFill />
-                <span>New Chat</span>
-            </button>
-            <button
-                className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
-                onClick={() => {}}
-            >
-                <RiChatNewFill />
-                <span>New Chat</span>
-            </button>
-            <button
-                className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
-                onClick={() => {}}
-            >
-                <RiChatNewFill />
-                <span>New Chat</span>
-            </button>
+            {userMockData[0].chats.map((item, index) => {
+                const key = item.chat_history.at(-1) || ''
+                const text = Object.values(key)[0]
+                return (
+                    <ChatsButton
+                        friend={item.username}
+                        text={text}
+                        key={index}
+                    />
+                )
+            })}
         </div>
     )
 }

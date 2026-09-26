@@ -1,3 +1,8 @@
+export type ChatsButtonProps = {
+    friend: string
+    text: string
+}
+
 export type LoginFormErrorProps = {
     error: string
 }

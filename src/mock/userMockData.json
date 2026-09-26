@@ -5,7 +5,21 @@
         "friends": [{ "username": "Dieter" }, { "username": "Michael" }],
         "statistics": [],
         "profile_picture": "",
-        "chats": [{ "username": "Dieter" }, { "username": "Michael" }]
+        "chats": [
+            {
+                "username": "Dieter",
+                "chat_history": [
+                    { "sent": "Hello, what's good, my G?" },
+                    { "received": "Hi" },
+                    { "sent": "How are you?" },
+                    { "received": "Good" }
+                ]
+            },
+            {
+                "username": "Michael",
+                "chat_history": []
+            }
+        ]
     },
     {
         "username": "Dieter",
@@ -13,7 +27,21 @@
         "friends": [{ "username": "Michael" }, { "username": "Münzendieter" }],
         "statistics": [],
         "profile_picture": "",
-        "chats": [{ "username": "Michael" }, { "username": "Münzendieter" }]
+        "chats": [
+            {
+                "username": "Michael",
+                "chat_history": [
+                    { "sent": "Hello, what's good, my G?" },
+                    { "received": "Hi" },
+                    { "sent": "How are you?" },
+                    { "received": "Good" }
+                ]
+            },
+            {
+                "username": "Münzendieter",
+                "chat_history": []
+            }
+        ]
     },
     {
         "username": "Michael",
@@ -21,6 +49,20 @@
         "friends": [{ "username": "Münzendieter" }, { "username": "Dieter" }],
         "statistics": [],
         "profile_picture": "",
-        "chats": [{ "username": "Münzendieter" }, { "username": "Dieter" }]
+        "chats": [
+            {
+                "username": "Münzendieter",
+                "chat_history": [
+                    { "sent": "Hello, what's good, my G?" },
+                    { "received": "Hi" },
+                    { "sent": "How are you?" },
+                    { "received": "Good" }
+                ]
+            },
+            {
+                "username": "Dieter",
+                "chat_history": []
+            }
+        ]
     }
 ]
