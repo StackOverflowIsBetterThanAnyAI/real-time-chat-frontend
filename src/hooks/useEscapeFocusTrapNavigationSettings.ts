@@ -22,5 +22,5 @@ export const useEscapeFocusTrapNavigationSettings = ({
         return () => {
             document.removeEventListener('keydown', escapeFocusTrap)
         }
-    }, [])
+    }, [setIsSettingsExpanded])
 }
