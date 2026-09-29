@@ -10,7 +10,7 @@ export const useErrorUserName = ({
 }: useErrorUserNameProps) => {
     useEffect(() => {
         if (!USER_NAME_PATTERN.test(userName) && userName.length) {
-            if (userName.length < 4) {
+            if (userName.length < 5) {
                 setErrorUserName(
                     'The user name must contain at least 5 characters.'
                 )
