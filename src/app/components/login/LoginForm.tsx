@@ -93,7 +93,7 @@ const LoginForm = () => {
             />
             <form
                 className="flex flex-col"
-                autoComplete="on"
+                autoComplete="off"
                 aria-label={isSigningUp ? 'Signup' : 'Login'}
                 name={isSigningUp ? 'signup' : 'login'}
                 method="post"
@@ -114,7 +114,6 @@ const LoginForm = () => {
                 />
                 <LoginFormError error={errorUserName} />
                 <LoginFormPassword
-                    autoComplete={`${isSigningUp ? 'new' : 'current'}-password`}
                     error={(!isSigningUp && apiError) || errorPassword}
                     id={`${isSigningUp ? 'signup' : 'login'}Password`}
                     isPasswordHidden={isPasswordHidden}
@@ -137,7 +136,6 @@ const LoginForm = () => {
                 {isSigningUp && (
                     <>
                         <LoginFormPassword
-                            autoComplete="new-password"
                             error={apiError || errorConfirmPassword}
                             id="signupConfirmPassword"
                             isDisabled={confirmPasswordDisabled}
