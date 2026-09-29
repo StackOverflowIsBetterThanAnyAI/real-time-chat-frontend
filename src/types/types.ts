@@ -54,6 +54,13 @@ export type NavigationSettingsButtonProps = {
     label: string
 }
 
+export type handleLoginApiProps = {
+    password: string
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    userName: string
+}
+
 export type handleLogoutProps = {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<

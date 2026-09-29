@@ -5,6 +5,7 @@ import LoginFormInput from '@/app/components/login/LoginFormInput'
 import LoginFormPassword from '@/app/components/login/LoginFormPassword'
 import LoginFormSubmit from '@/app/components/login/LoginFormSubmit'
 import LoginFormSwitch from '@/app/components/login/LoginFormSwitch'
+import { handleLoginApi } from '@/api/handleLoginApi'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { useErrorConfirmPassword } from '@/hooks/useErrorConfirmPassword'
 import { useLoadLoginStorageValues } from '@/hooks/useLoadLoginStorageValues'
@@ -51,13 +52,12 @@ const LoginForm = () => {
     ) => {
         setConfirmPassword(e.currentTarget.value)
     }
+    const handleLogin = async () => {
+        handleLoginApi({ password, setIsLoading, setIsLoggedIn, userName })
+    }
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && !isSubmitDisabled) {
-            setIsLoggedIn(() => {
-                const nextVal = !isLoggedIn
-                setItemInStorage('isloggedin', nextVal)
-                return nextVal
-            })
+            handleLogin()
         }
     }
     const handleSwitchLogin = () => {
@@ -161,13 +161,7 @@ const LoginForm = () => {
                     </>
                 )}
                 <LoginFormSubmit
-                    handleClick={() => {
-                        setIsLoggedIn(() => {
-                            const nextVal = !isLoggedIn
-                            setItemInStorage('isloggedin', nextVal)
-                            return nextVal
-                        })
-                    }}
+                    handleClick={handleLogin}
                     isDisabled={isSubmitDisabled}
                     isLoading={isLoading}
                     value={isSigningUp ? 'Signup' : 'Login'}
