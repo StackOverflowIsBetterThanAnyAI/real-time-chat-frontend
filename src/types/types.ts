@@ -53,6 +53,17 @@ export type NavigationSettingsButtonProps = {
     label: string
 }
 
+export type UserDataProps = {
+    profilePicture: string
+    status: string
+    userName: string
+}
+
+export type handleFetchUserApiProps = {
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+}
+
 export type handleLoginApiProps = {
     password: string
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>

@@ -9,6 +9,7 @@ import { MdLogout } from 'react-icons/md'
 import NavigationSettingsButton from '@/app/components/navigation/NavigationSettingsButton'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
+import { ContextUserData } from '@/context/ContextUserData'
 import profile_picure from '@/assets/profile_picture.jpg'
 import { useEscapeFocusTrapNavigationSettings } from '@/hooks/useEscapeFocusTrapNavigationSettings'
 import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
@@ -34,6 +35,14 @@ const NavigationSettings = () => {
     const [isSettingsExpanded, setIsSettingsExpanded] =
         contextIsSettingsExpanded
 
+    const contextUserData = useContext(ContextUserData)
+    if (!contextUserData) {
+        throw new Error(
+            'NavigationSettings must be used within a ContextUserData.Provider'
+        )
+    }
+    const [userData] = contextUserData
+
     useEscapeFocusTrapNavigationSettings({ setIsSettingsExpanded })
     useFocusTrapNavigationSettings()
 
@@ -46,7 +55,7 @@ const NavigationSettings = () => {
     }
 
     return (
-        <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-16 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
+        <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
             <NavigationSettingsButton
                 handleClick={handleToggleIsSettingsExpanded}
                 label="Close"
@@ -55,15 +64,15 @@ const NavigationSettings = () => {
             <div className="flex flex-col justify-center items-center mx-auto">
                 <Image
                     alt="profile picture"
-                    src={profile_picure}
+                    src={userData?.profilePicture || profile_picure}
                     className="w-32 h-32 rounded-full outline-2 outline-zinc-100 m-2"
                 />
                 <h2 className="text-center text-large">
-                    @{userMockData[0].username}
+                    @{userData?.userName || userMockData[0].userName}
                 </h2>
                 <div className="triangle mx-auto h-0 w-0"></div>
                 <h3 className="text-normal bg-zinc-800 w-fit px-4 py-1 rounded-xl mx-auto">
-                    {userMockData[0].status}
+                    {userData?.status || userMockData[0].status}
                 </h3>
             </div>
             <hr className="my-2 border-zinc-100" />
