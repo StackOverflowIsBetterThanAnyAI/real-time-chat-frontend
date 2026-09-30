@@ -21,14 +21,21 @@ export const handleRegisterApi = async ({
         if (!response.ok) {
             setIsLoggedIn(false)
             setItemInStorage('isloggedin', false)
-            console.log('error')
-            throw new Error('error')
+            console.log(
+                'An unexpected error occurred while trying to sign up',
+                response.status,
+                response.statusText
+            )
+            return
         }
 
         setIsLoggedIn(true)
         setItemInStorage('isloggedin', true)
     } catch (error) {
-        console.error(error)
+        console.error(
+            'An unexpected error occurred while trying to sign up',
+            error
+        )
     } finally {
         setIsLoading(false)
     }
