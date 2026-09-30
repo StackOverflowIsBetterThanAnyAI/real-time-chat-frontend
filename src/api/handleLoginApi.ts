@@ -32,6 +32,8 @@ export const handleLoginApi = async ({
         setIsLoggedIn(true)
         setItemInStorage('isloggedin', true)
     } catch (error) {
+        setIsLoggedIn(false)
+        setItemInStorage('isloggedin', false)
         console.error(
             'An unexpected error occurred while trying to login',
             error
