@@ -22,7 +22,6 @@ export type LoginFormInputProps = {
 }
 
 export type LoginFormPasswordProps = {
-    autoComplete: React.HTMLInputAutoCompleteAttribute
     error: string | boolean
     id: string
     isDisabled?: boolean

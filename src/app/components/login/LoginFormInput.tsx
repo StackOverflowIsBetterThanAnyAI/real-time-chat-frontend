@@ -20,7 +20,6 @@ const LoginFormInput = ({
                 id={id}
                 className={`bg-zinc-100 outline outline-zinc-500 text-normal w-full
                 ${marginBottom} rounded px-2 py-1 enabled:hover:bg-zinc-200`}
-                autoComplete="username"
                 maxLength={20}
                 minLength={5}
                 name={label.replace(/\s/g, '').toLowerCase()}

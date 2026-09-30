@@ -1,7 +1,6 @@
 import { LoginFormPasswordProps } from '@/types/types'
 
 const LoginFormPassword = ({
-    autoComplete,
     error,
     id,
     isDisabled = false,
@@ -28,7 +27,6 @@ const LoginFormPassword = ({
                     id={id}
                     className={`bg-zinc-100 disabled:bg-zinc-200 text-normal w-full px-1 rounded
                     enabled:hover:bg-zinc-200`}
-                    autoComplete={autoComplete}
                     disabled={isDisabled}
                     maxLength={25}
                     minLength={8}
