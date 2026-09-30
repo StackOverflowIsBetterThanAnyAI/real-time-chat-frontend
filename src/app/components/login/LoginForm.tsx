@@ -59,9 +59,16 @@ const LoginForm = () => {
     const handleRegister = async () => {
         handleRegisterApi({ password, setIsLoading, setIsLoggedIn, userName })
     }
+    const handleLoginOrRegister = () => {
+        if (isSigningUp) {
+            handleRegister()
+        } else {
+            handleLogin()
+        }
+    }
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && !isSubmitDisabled) {
-            isSigningUp ? handleRegister() : handleLogin()
+            handleLoginOrRegister()
         }
     }
     const handleSwitchLogin = () => {
@@ -163,9 +170,7 @@ const LoginForm = () => {
                     </>
                 )}
                 <LoginFormSubmit
-                    handleClick={() => {
-                        isSigningUp ? handleRegister() : handleLogin()
-                    }}
+                    handleClick={handleLoginOrRegister}
                     isDisabled={isSubmitDisabled}
                     isLoading={isLoading}
                     value={isSigningUp ? 'Signup' : 'Login'}
