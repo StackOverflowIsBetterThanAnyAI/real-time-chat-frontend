@@ -14,8 +14,9 @@ const Chats = () => {
                 <span>New Chat</span>
             </button>
             <div className="flex flex-wrap gap-2 items-center">
-                <label htmlFor="search" aria-label="Search">
-                    <MdOutlineSearch className="w-8 h-8" />
+                <label htmlFor="search">
+                    <span className="sr-only">Search</span>
+                    <MdOutlineSearch className="w-8 h-8" aria-hidden="true" />
                 </label>
                 <input
                     className="bg-zinc-100 outline outline-zinc-500 text-zinc-950 text-normal rounded px-2 py-1
