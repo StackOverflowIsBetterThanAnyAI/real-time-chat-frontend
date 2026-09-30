@@ -14,12 +14,12 @@ export const useLoadLoginStorageValues = ({
         const parsedStorageData = getStoredData()
 
         if (parsedStorageData) {
-            const savedUsername = parsedStorageData?.username
+            const savedUserName = parsedStorageData?.username
             if (
-                typeof savedUsername === 'string' &&
-                USER_NAME_PATTERN.test(savedUsername)
+                typeof savedUserName === 'string' &&
+                USER_NAME_PATTERN.test(savedUserName)
             ) {
-                setUserName(savedUsername)
+                setUserName(savedUserName)
             } else {
                 setItemInStorage('username', '')
             }

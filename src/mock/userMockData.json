@@ -1,13 +1,13 @@
 [
     {
-        "username": "Münzendieter",
+        "userName": "Münzendieter",
         "status": "Hey there, I am using WhatsApp",
-        "friends": [{ "username": "Dieter" }, { "username": "Michael" }],
+        "friends": [{ "userName": "Dieter" }, { "userName": "Michael" }],
         "statistics": [],
         "profile_picture": "",
         "chats": [
             {
-                "username": "Dieter",
+                "userName": "Dieter",
                 "chat_history": [
                     { "sent": "Hello, what's good, my G?" },
                     { "received": "Hi" },
@@ -16,20 +16,20 @@
                 ]
             },
             {
-                "username": "Michael",
+                "userName": "Michael",
                 "chat_history": []
             }
         ]
     },
     {
-        "username": "Dieter",
+        "userName": "Dieter",
         "status": "Sleeping",
-        "friends": [{ "username": "Michael" }, { "username": "Münzendieter" }],
+        "friends": [{ "userName": "Michael" }, { "userName": "Münzendieter" }],
         "statistics": [],
         "profile_picture": "",
         "chats": [
             {
-                "username": "Michael",
+                "userName": "Michael",
                 "chat_history": [
                     { "sent": "Hello, what's good, my G?" },
                     { "received": "Hi" },
@@ -38,20 +38,20 @@
                 ]
             },
             {
-                "username": "Münzendieter",
+                "userName": "Münzendieter",
                 "chat_history": []
             }
         ]
     },
     {
-        "username": "Michael",
+        "userName": "Michael",
         "status": "Hello",
-        "friends": [{ "username": "Münzendieter" }, { "username": "Dieter" }],
+        "friends": [{ "userName": "Münzendieter" }, { "userName": "Dieter" }],
         "statistics": [],
         "profile_picture": "",
         "chats": [
             {
-                "username": "Münzendieter",
+                "userName": "Münzendieter",
                 "chat_history": [
                     { "sent": "Hello, what's good, my G?" },
                     { "received": "Hi" },
@@ -60,7 +60,7 @@
                 ]
             },
             {
-                "username": "Dieter",
+                "userName": "Dieter",
                 "chat_history": []
             }
         ]

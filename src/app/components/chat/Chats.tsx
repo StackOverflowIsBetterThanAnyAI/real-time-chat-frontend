@@ -31,7 +31,7 @@ const Chats = () => {
                 const text = Object.values(key)[0]
                 return (
                     <ChatsButton
-                        friend={item.username}
+                        friend={item.userName}
                         text={text}
                         key={index}
                     />

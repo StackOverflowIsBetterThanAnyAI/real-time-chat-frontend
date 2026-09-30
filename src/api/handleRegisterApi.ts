@@ -14,7 +14,7 @@ export const handleRegisterApi = async ({
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username: userName, password }),
+            body: JSON.stringify({ userName, password }),
             credentials: 'include',
         })
 
