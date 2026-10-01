@@ -3,6 +3,7 @@ import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
 export const handleUpdateStatusApi = async ({
     currentStatus,
+    setIsEditingStatus,
     setIsLoadingStatus,
     setStatus,
     setUserData,
@@ -33,6 +34,8 @@ export const handleUpdateStatusApi = async ({
 
         setUserData({ ...userData!, status })
         setItemInSessionStorage('status', status)
+        setStatus(status)
+        setIsEditingStatus(false)
     } catch (error) {
         setStatus(currentStatus)
         setItemInSessionStorage('status', currentStatus)

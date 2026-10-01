@@ -30,12 +30,12 @@ const NavigationSettingsStatus = ({
         setItemInSessionStorage('status', newValue)
     }
     const handleConfirmStatus = () => {
-        setIsEditingStatus(false)
         if (status.length && status.length <= 255 && status !== currentStatus) {
             handleUpdateStatus()
         } else {
             setStatus(currentStatus)
             setItemInSessionStorage('status', currentStatus)
+            setIsEditingStatus(false)
         }
     }
     const handleKeyDownStatus = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -46,6 +46,7 @@ const NavigationSettingsStatus = ({
     const handleUpdateStatus = () => {
         handleUpdateStatusApi({
             currentStatus,
+            setIsEditingStatus,
             setIsLoadingStatus,
             setStatus,
             setUserData,
@@ -54,7 +55,11 @@ const NavigationSettingsStatus = ({
         })
     }
 
-    return isEditingStatus ? (
+    return isLoadingStatus ? (
+        <div className="bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
+            <FetchLoading theme="#f4f4f5" />
+        </div>
+    ) : isEditingStatus ? (
         <>
             <input
                 className="text-normal bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
@@ -89,10 +94,6 @@ const NavigationSettingsStatus = ({
                 </button>
             </div>
         </>
-    ) : isLoadingStatus ? (
-        <div className="bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
-            <FetchLoading theme="#f4f4f5" />
-        </div>
     ) : (
         <h3
             className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"

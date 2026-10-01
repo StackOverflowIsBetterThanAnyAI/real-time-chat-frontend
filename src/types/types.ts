@@ -91,6 +91,7 @@ export type handleLogoutProps = {
 
 export type handleUpdateStatusAPiProps = {
     currentStatus: string
+    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setStatus: React.Dispatch<React.SetStateAction<string>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
