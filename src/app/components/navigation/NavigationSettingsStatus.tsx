@@ -6,24 +6,23 @@ import { NavigationSettingsStatusProps } from '@/types/types'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
 const NavigationSettingsStatus = ({
+    currentStatus,
+    handleIsEditingStatus,
     isEditingStatus,
     setIsEditingStatus,
     setStatus,
     setUserData,
     status,
     userData,
-    userMockData,
 }: NavigationSettingsStatusProps) => {
     const [isLoadingStatus, setIsLoadingStatus] = useState<boolean>(false)
-
-    const fallbackValue = userData?.status || userMockData.status
 
     useEscapeFocusTrapEditingStatus({ setIsEditingStatus })
 
     const handleCancelStatus = () => {
         setIsEditingStatus(false)
-        setStatus(fallbackValue)
-        setItemInSessionStorage('status', fallbackValue)
+        setStatus(currentStatus)
+        setItemInSessionStorage('status', currentStatus)
     }
     const handleChangeStatus = (e: React.InputEvent<HTMLInputElement>) => {
         const newValue = e.currentTarget.value
@@ -32,15 +31,11 @@ const NavigationSettingsStatus = ({
     }
     const handleConfirmStatus = () => {
         setIsEditingStatus(false)
-        if (
-            status.length &&
-            status.length <= 255 &&
-            status !== userData?.status
-        ) {
+        if (status.length && status.length <= 255 && status !== currentStatus) {
             handleUpdateStatus()
         } else {
-            setStatus(fallbackValue)
-            setItemInSessionStorage('status', fallbackValue)
+            setStatus(currentStatus)
+            setItemInSessionStorage('status', currentStatus)
         }
     }
     const handleKeyDownStatus = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -50,7 +45,7 @@ const NavigationSettingsStatus = ({
     }
     const handleUpdateStatus = () => {
         handleUpdateStatusApi({
-            fallbackValue,
+            currentStatus,
             setIsLoadingStatus,
             setStatus,
             setUserData,
@@ -101,9 +96,9 @@ const NavigationSettingsStatus = ({
     ) : (
         <h3
             className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
-            onDoubleClick={() => setIsEditingStatus(true)}
+            onDoubleClick={handleIsEditingStatus}
         >
-            {fallbackValue}
+            {currentStatus}
         </h3>
     )
 }

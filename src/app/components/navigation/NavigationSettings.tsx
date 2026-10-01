@@ -46,6 +46,8 @@ const NavigationSettings = () => {
     const [status, setStatus] = useState<string>('')
     const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
 
+    const currentStatus = userData?.status || userMockData.status
+
     useEscapeFocusTrapNavigationSettings({
         isEditingStatus,
         setIsSettingsExpanded,
@@ -53,7 +55,8 @@ const NavigationSettings = () => {
     useFocusTrapNavigationSettings()
 
     const handleIsEditingStatus = () => {
-        setIsEditingStatus((prev) => !prev)
+        setIsEditingStatus(true)
+        setStatus(currentStatus)
     }
     const handleToggleIsSettingsExpanded = () => {
         setIsSettingsExpanded(() => {
@@ -94,13 +97,14 @@ const NavigationSettings = () => {
                 </h2>
                 <div className="triangle mx-auto h-0 w-0"></div>
                 <NavigationSettingsStatus
+                    currentStatus={currentStatus}
+                    handleIsEditingStatus={handleIsEditingStatus}
                     isEditingStatus={isEditingStatus}
                     setIsEditingStatus={setIsEditingStatus}
                     setStatus={setStatus}
                     setUserData={setUserData}
                     status={status}
                     userData={userData}
-                    userMockData={userMockData}
                 />
             </div>
             <hr className="my-2 border-zinc-100" />

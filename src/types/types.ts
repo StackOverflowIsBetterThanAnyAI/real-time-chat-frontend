@@ -54,13 +54,14 @@ export type NavigationSettingsButtonProps = {
 }
 
 export type NavigationSettingsStatusProps = {
+    currentStatus: string
+    handleIsEditingStatus: () => void
     isEditingStatus: boolean
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setStatus: React.Dispatch<React.SetStateAction<string>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     status: string
     userData: UserDataProps | undefined
-    userMockData: UserDataProps
 }
 
 export type UserDataProps = {
@@ -89,7 +90,7 @@ export type handleLogoutProps = {
 }
 
 export type handleUpdateStatusAPiProps = {
-    fallbackValue: string
+    currentStatus: string
     setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setStatus: React.Dispatch<React.SetStateAction<string>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
