@@ -63,12 +63,14 @@ const NavigationSettingsStatus = ({
         <>
             <input
                 className="text-normal bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
-                value={status || userData?.status || userMockData.status}
+                value={status || fallbackValue}
                 onInput={handleChangeStatus}
                 onKeyDown={handleKeyDownStatus}
                 id="status"
                 maxLength={255}
                 minLength={1}
+                title="The updated status must contain between 1 and 255 characters."
+                type="text"
             />
             <label htmlFor="status" className="sr-only">
                 Status
@@ -93,10 +95,12 @@ const NavigationSettingsStatus = ({
             </div>
         </>
     ) : isLoadingStatus ? (
-        <FetchLoading />
+        <div className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
+            <FetchLoading theme="#f4f4f5" />
+        </div>
     ) : (
         <h3 className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
-            {userData?.status || userMockData.status}
+            {fallbackValue}
         </h3>
     )
 }
