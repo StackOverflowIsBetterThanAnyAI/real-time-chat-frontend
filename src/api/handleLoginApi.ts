@@ -3,11 +3,13 @@ import { setItemInStorage } from '@/utils/setItemInStorage'
 
 export const handleLoginApi = async ({
     password,
+    setApiError,
     setIsLoading,
     setIsLoggedIn,
     userName,
 }: handleLoginApiProps) => {
     setIsLoading(true)
+    setApiError('')
     try {
         const response = await fetch(`http://localhost:8000/api/login`, {
             method: 'POST',
@@ -26,11 +28,18 @@ export const handleLoginApi = async ({
                 response.status,
                 response.statusText
             )
+            const error = await response.json()
+            if (response.status >= 400 && response.status < 500) {
+                setApiError(`Could not login user. ${error.error}`)
+            } else if (response.status >= 500) {
+                setApiError('Could not login user. Please try again.')
+            }
             return
         }
 
         setIsLoggedIn(true)
         setItemInStorage('isloggedin', true)
+        setApiError('')
     } catch (error) {
         setIsLoggedIn(false)
         setItemInStorage('isloggedin', false)
@@ -38,6 +47,7 @@ export const handleLoginApi = async ({
             'An unexpected error occurred while trying to login',
             error
         )
+        setApiError('Could not login user. Please try again.')
     } finally {
         setIsLoading(false)
     }

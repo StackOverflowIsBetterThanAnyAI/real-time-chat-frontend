@@ -77,6 +77,7 @@ export type handleFetchUserApiProps = {
 
 export type handleLoginApiProps = {
     password: string
+    setApiError: React.Dispatch<React.SetStateAction<string>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     userName: string

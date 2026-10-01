@@ -42,22 +42,37 @@ const LoginForm = () => {
         const input = e.currentTarget.value
         setUserName(input)
         setItemInStorage('username', input)
+        setApiError('')
     }
     const handleInputPassword = (e: React.InputEvent<HTMLInputElement>) => {
         setPassword(e.currentTarget.value)
         setConfirmPasswordDisabled(true)
         setConfirmPassword('')
+        setApiError('')
     }
     const handleInputConfirmPassword = (
         e: React.InputEvent<HTMLInputElement>
     ) => {
         setConfirmPassword(e.currentTarget.value)
+        setApiError('')
     }
     const handleLogin = async () => {
-        handleLoginApi({ password, setIsLoading, setIsLoggedIn, userName })
+        handleLoginApi({
+            password,
+            setApiError,
+            setIsLoading,
+            setIsLoggedIn,
+            userName,
+        })
     }
     const handleRegister = async () => {
-        handleRegisterApi({ password, setIsLoading, setIsLoggedIn, userName })
+        handleRegisterApi({
+            password,
+            setApiError,
+            setIsLoading,
+            setIsLoggedIn,
+            userName,
+        })
     }
     const handleLoginOrRegister = () => {
         if (isSigningUp) {

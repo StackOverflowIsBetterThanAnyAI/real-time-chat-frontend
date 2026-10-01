@@ -3,11 +3,13 @@ import { setItemInStorage } from '@/utils/setItemInStorage'
 
 export const handleRegisterApi = async ({
     password,
+    setApiError,
     setIsLoading,
     setIsLoggedIn,
     userName,
 }: handleLoginApiProps) => {
     setIsLoading(true)
+    setApiError('')
     try {
         const response = await fetch(`http://localhost:8000/api/register`, {
             method: 'POST',
@@ -26,11 +28,18 @@ export const handleRegisterApi = async ({
                 response.status,
                 response.statusText
             )
+            const error = await response.json()
+            if (response.status >= 400 && response.status < 500) {
+                setApiError(`Could not create user. ${error.error}`)
+            } else if (response.status >= 500) {
+                setApiError('Could not create user. Please try again.')
+            }
             return
         }
 
         setIsLoggedIn(true)
         setItemInStorage('isloggedin', true)
+        setApiError('')
     } catch (error) {
         setIsLoggedIn(false)
         setItemInStorage('isloggedin', false)
@@ -38,6 +47,7 @@ export const handleRegisterApi = async ({
             'An unexpected error occurred while trying to sign up',
             error
         )
+        setApiError('Could not create user. Please try again.')
     } finally {
         setIsLoading(false)
     }
