@@ -56,11 +56,11 @@ export type NavigationSettingsButtonProps = {
 export type NavigationSettingsStatusProps = {
     currentStatus: string
     handleIsEditingStatus: () => void
+    internalStatus: string
     isEditingStatus: boolean
+    setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
-    setStatus: React.Dispatch<React.SetStateAction<string>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
-    status: string
     userData: UserDataProps | undefined
 }
 
@@ -91,11 +91,11 @@ export type handleLogoutProps = {
 
 export type handleUpdateStatusAPiProps = {
     currentStatus: string
+    internalStatus: string
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
-    setStatus: React.Dispatch<React.SetStateAction<string>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
-    status: string
     userData: UserDataProps | undefined
 }
 

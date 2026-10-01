@@ -43,7 +43,7 @@ const NavigationSettings = () => {
     }
     const [userData, setUserData] = contextUserData
 
-    const [status, setStatus] = useState<string>('')
+    const [internalStatus, setInternalStatus] = useState<string>('')
     const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
 
     const currentStatus = userData?.status || userMockData.status
@@ -56,7 +56,7 @@ const NavigationSettings = () => {
 
     const handleIsEditingStatus = () => {
         setIsEditingStatus(true)
-        setStatus(currentStatus)
+        setInternalStatus(currentStatus)
     }
     const handleToggleIsSettingsExpanded = () => {
         setIsSettingsExpanded(() => {
@@ -99,11 +99,11 @@ const NavigationSettings = () => {
                 <NavigationSettingsStatus
                     currentStatus={currentStatus}
                     handleIsEditingStatus={handleIsEditingStatus}
+                    internalStatus={internalStatus}
                     isEditingStatus={isEditingStatus}
+                    setInternalStatus={setInternalStatus}
                     setIsEditingStatus={setIsEditingStatus}
-                    setStatus={setStatus}
                     setUserData={setUserData}
-                    status={status}
                     userData={userData}
                 />
             </div>

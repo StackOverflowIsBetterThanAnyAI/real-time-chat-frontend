@@ -8,11 +8,11 @@ import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 const NavigationSettingsStatus = ({
     currentStatus,
     handleIsEditingStatus,
+    internalStatus,
     isEditingStatus,
+    setInternalStatus,
     setIsEditingStatus,
-    setStatus,
     setUserData,
-    status,
     userData,
 }: NavigationSettingsStatusProps) => {
     const [isLoadingStatus, setIsLoadingStatus] = useState<boolean>(false)
@@ -21,19 +21,23 @@ const NavigationSettingsStatus = ({
 
     const handleCancelStatus = () => {
         setIsEditingStatus(false)
-        setStatus(currentStatus)
+        setInternalStatus(currentStatus)
         setItemInSessionStorage('status', currentStatus)
     }
     const handleChangeStatus = (e: React.InputEvent<HTMLInputElement>) => {
         const newValue = e.currentTarget.value
-        setStatus(newValue)
+        setInternalStatus(newValue)
         setItemInSessionStorage('status', newValue)
     }
     const handleConfirmStatus = () => {
-        if (status.length && status.length <= 255 && status !== currentStatus) {
+        if (
+            internalStatus.length &&
+            internalStatus.length <= 255 &&
+            internalStatus !== currentStatus
+        ) {
             handleUpdateStatus()
         } else {
-            setStatus(currentStatus)
+            setInternalStatus(currentStatus)
             setItemInSessionStorage('status', currentStatus)
             setIsEditingStatus(false)
         }
@@ -46,11 +50,11 @@ const NavigationSettingsStatus = ({
     const handleUpdateStatus = () => {
         handleUpdateStatusApi({
             currentStatus,
+            internalStatus,
             setIsEditingStatus,
+            setInternalStatus,
             setIsLoadingStatus,
-            setStatus,
             setUserData,
-            status,
             userData,
         })
     }
@@ -63,7 +67,7 @@ const NavigationSettingsStatus = ({
         <>
             <input
                 className="text-normal bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
-                value={status}
+                value={internalStatus}
                 onInput={handleChangeStatus}
                 onKeyDown={handleKeyDownStatus}
                 id="status"

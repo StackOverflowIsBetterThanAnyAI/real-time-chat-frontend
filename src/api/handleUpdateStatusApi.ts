@@ -3,11 +3,11 @@ import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
 export const handleUpdateStatusApi = async ({
     currentStatus,
+    internalStatus,
     setIsEditingStatus,
+    setInternalStatus,
     setIsLoadingStatus,
-    setStatus,
     setUserData,
-    status,
     userData,
 }: handleUpdateStatusAPiProps) => {
     try {
@@ -17,12 +17,12 @@ export const handleUpdateStatusApi = async ({
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ status }),
+            body: JSON.stringify({ status: internalStatus }),
             credentials: 'include',
         })
 
         if (!response.ok) {
-            setStatus(currentStatus)
+            setInternalStatus(currentStatus)
             setItemInSessionStorage('status', currentStatus)
             console.log(
                 'An unexpected error occurred while trying to update the status',
@@ -32,12 +32,12 @@ export const handleUpdateStatusApi = async ({
             return
         }
 
-        setUserData({ ...userData!, status })
-        setItemInSessionStorage('status', status)
-        setStatus(status)
+        setUserData({ ...userData!, status: internalStatus })
+        setItemInSessionStorage('status', internalStatus)
+        setInternalStatus(internalStatus)
         setIsEditingStatus(false)
     } catch (error) {
-        setStatus(currentStatus)
+        setInternalStatus(currentStatus)
         setItemInSessionStorage('status', currentStatus)
         console.error(
             'An unexpected error occurred while trying to update the status',
