@@ -26,7 +26,7 @@ const Chats = () => {
                     placeholder="JohnDoe1337"
                 />
             </div>
-            {userMockData[0].chats.map((item, index) => {
+            {/* {userMockData[0].chats.map((item, index) => {
                 const key = item.chat_history.at(-1) || ''
                 const text = Object.values(key)[0]
                 return (
@@ -36,7 +36,7 @@ const Chats = () => {
                         key={index}
                     />
                 )
-            })}
+            })} */}
         </div>
     )
 }
