@@ -63,7 +63,7 @@ const NavigationSettingsStatus = ({
         <>
             <input
                 className="text-normal bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
-                value={status || fallbackValue}
+                value={status}
                 onInput={handleChangeStatus}
                 onKeyDown={handleKeyDownStatus}
                 id="status"
@@ -78,16 +78,16 @@ const NavigationSettingsStatus = ({
             <div className="flex gap-4 text-normal pt-2">
                 <button
                     onClick={handleCancelStatus}
-                    className="settings-menu-button outline-2 outline-red-800 regular-button w-24 flex justify-center
-                            hover:bg-zinc-800/50 active:bg-zinc-800/50"
+                    className="settings-menu-button not-disabled:outline-2 outline-red-800 regular-button w-24 flex justify-center
+                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
                     disabled={isLoadingStatus}
                 >
                     Cancel
                 </button>
                 <button
                     onClick={handleConfirmStatus}
-                    className="settings-menu-button outline-2 outline-blue-600 regular-button w-24 flex justify-center
-                            hover:bg-zinc-800/50 active:bg-zinc-800/50"
+                    className="settings-menu-button not-disabled:outline-2 outline-blue-600 regular-button w-24 flex justify-center
+                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
                     disabled={isLoadingStatus}
                 >
                     Confirm
@@ -95,11 +95,14 @@ const NavigationSettingsStatus = ({
             </div>
         </>
     ) : isLoadingStatus ? (
-        <div className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
+        <div className="bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
             <FetchLoading theme="#f4f4f5" />
         </div>
     ) : (
-        <h3 className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
+        <h3
+            className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
+            onDoubleClick={() => setIsEditingStatus(true)}
+        >
             {fallbackValue}
         </h3>
     )
