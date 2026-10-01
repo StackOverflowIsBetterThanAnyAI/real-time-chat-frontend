@@ -5,11 +5,12 @@ import { useEscapeFocusTrapNavigationSettingsProps } from '@/types/types'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
 export const useEscapeFocusTrapNavigationSettings = ({
+    isEditingStatus,
     setIsSettingsExpanded,
 }: useEscapeFocusTrapNavigationSettingsProps) => {
     useEffect(() => {
         const escapeFocusTrap = (e: KeyboardEvent) => {
-            if (e.key !== 'Escape') {
+            if (e.key !== 'Escape' || isEditingStatus) {
                 return
             }
 
@@ -22,5 +23,5 @@ export const useEscapeFocusTrapNavigationSettings = ({
         return () => {
             document.removeEventListener('keydown', escapeFocusTrap)
         }
-    }, [setIsSettingsExpanded])
+    }, [isEditingStatus, setIsSettingsExpanded])
 }
