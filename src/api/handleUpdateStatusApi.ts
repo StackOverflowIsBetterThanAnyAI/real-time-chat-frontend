@@ -8,7 +8,6 @@ export const handleUpdateStatusApi = async ({
     setUserData,
     status,
     userData,
-    userMockData,
 }: handleUpdateStatusAPiProps) => {
     try {
         setIsLoadingStatus(true)

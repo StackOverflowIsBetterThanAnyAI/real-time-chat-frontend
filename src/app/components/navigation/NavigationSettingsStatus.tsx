@@ -56,7 +56,6 @@ const NavigationSettingsStatus = ({
             setUserData,
             status,
             userData,
-            userMockData,
         })
     }
 

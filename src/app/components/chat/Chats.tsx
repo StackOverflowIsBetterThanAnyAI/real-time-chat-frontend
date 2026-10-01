@@ -1,7 +1,5 @@
 import { MdOutlineSearch } from 'react-icons/md'
 import { RiChatNewFill } from 'react-icons/ri'
-import ChatsButton from '@/app/components/chat/ChatsButton'
-import userMockData from '@/mock/userMockData.json'
 
 const Chats = () => {
     return (

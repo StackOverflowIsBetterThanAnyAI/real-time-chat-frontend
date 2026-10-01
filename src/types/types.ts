@@ -95,7 +95,6 @@ export type handleUpdateStatusAPiProps = {
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     status: string
     userData: UserDataProps | undefined
-    userMockData: UserDataProps
 }
 
 export type useErrorConfirmPasswordProps = {
