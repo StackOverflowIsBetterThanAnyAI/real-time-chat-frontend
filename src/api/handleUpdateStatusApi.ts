@@ -2,7 +2,7 @@ import { handleUpdateStatusAPiProps } from '@/types/types'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
 export const handleUpdateStatusApi = async ({
-    fallbackValue,
+    currentStatus,
     setIsLoadingStatus,
     setStatus,
     setUserData,
@@ -21,8 +21,8 @@ export const handleUpdateStatusApi = async ({
         })
 
         if (!response.ok) {
-            setStatus(fallbackValue)
-            setItemInSessionStorage('status', fallbackValue)
+            setStatus(currentStatus)
+            setItemInSessionStorage('status', currentStatus)
             console.log(
                 'An unexpected error occurred while trying to update the status',
                 response.status,
@@ -34,8 +34,8 @@ export const handleUpdateStatusApi = async ({
         setUserData({ ...userData!, status })
         setItemInSessionStorage('status', status)
     } catch (error) {
-        setStatus(fallbackValue)
-        setItemInSessionStorage('status', fallbackValue)
+        setStatus(currentStatus)
+        setItemInSessionStorage('status', currentStatus)
         console.error(
             'An unexpected error occurred while trying to update the status',
             error
