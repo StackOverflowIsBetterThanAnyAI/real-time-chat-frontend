@@ -106,7 +106,6 @@ const LoginForm = () => {
                 className="flex flex-col"
                 autoComplete="off"
                 aria-label={isSigningUp ? 'Signup' : 'Login'}
-                name={isSigningUp ? 'signup' : 'login'}
                 method="post"
                 target="_self"
             >

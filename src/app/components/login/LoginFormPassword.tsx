@@ -30,7 +30,6 @@ const LoginFormPassword = ({
                     disabled={isDisabled}
                     maxLength={25}
                     minLength={8}
-                    name={label.replace(/\s/g, '').toLowerCase()}
                     onInput={onInput}
                     onKeyDown={onKeyDown}
                     placeholder="password"

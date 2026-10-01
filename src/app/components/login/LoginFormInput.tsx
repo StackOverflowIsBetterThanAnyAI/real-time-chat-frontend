@@ -22,7 +22,6 @@ const LoginFormInput = ({
                 ${marginBottom} rounded px-2 py-1 enabled:hover:bg-zinc-200`}
                 maxLength={20}
                 minLength={5}
-                name={label.replace(/\s/g, '').toLowerCase()}
                 onInput={onInput}
                 onKeyDown={onKeyDown}
                 placeholder="JohnDoe1337"
