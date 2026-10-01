@@ -6,8 +6,8 @@ export const handleFetchUserApi = async ({
     setIsLoading,
     setUserData,
 }: handleFetchUserApiProps) => {
+    setIsLoading(true)
     try {
-        setIsLoading(true)
         const response = await fetch(`http://localhost:8000/api/me`, {
             method: 'GET',
             headers: {
