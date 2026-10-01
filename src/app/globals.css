@@ -14,7 +14,7 @@ button:focus-visible {
 }
 
 a,
-button,
+button:not(:disabled),
 input[type='button']:not(:disabled),
 input[type='checkbox']:not(:disabled) {
     @apply hover:cursor-pointer;
