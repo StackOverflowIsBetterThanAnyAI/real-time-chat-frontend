@@ -53,6 +53,16 @@ export type NavigationSettingsButtonProps = {
     label: string
 }
 
+export type NavigationSettingsStatusProps = {
+    isEditingStatus: boolean
+    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setStatus: React.Dispatch<React.SetStateAction<string>>
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    status: string
+    userData: UserDataProps | undefined
+    userMockData: UserDataProps
+}
+
 export type UserDataProps = {
     profilePicture: string
     status: string
@@ -78,6 +88,16 @@ export type handleLogoutProps = {
     >
 }
 
+export type handleUpdateStatusAPiProps = {
+    fallbackValue: string
+    setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setStatus: React.Dispatch<React.SetStateAction<string>>
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    status: string
+    userData: UserDataProps | undefined
+    userMockData: UserDataProps
+}
+
 export type useErrorConfirmPasswordProps = {
     confirmPassword: string
     password: string
@@ -96,9 +116,14 @@ export type useErrorUserNameProps = {
 }
 
 export type useEscapeFocusTrapNavigationSettingsProps = {
+    isEditingStatus: boolean
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+}
+
+export type useEscapeFocusTrapEditingStatusProps = {
+    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type useLoadLoggedInStorageValueProps = {

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdClose } from 'react-icons/io'
@@ -7,10 +7,10 @@ import { MdModeEdit } from 'react-icons/md'
 import { MdDeleteForever } from 'react-icons/md'
 import { MdLogout } from 'react-icons/md'
 import NavigationSettingsButton from '@/app/components/navigation/NavigationSettingsButton'
+import NavigationSettingsStatus from '@/app/components/navigation/NavigationSettingsStatus'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { ContextUserData } from '@/context/ContextUserData'
-import profile_picure from '@/assets/profile_picture.jpg'
 import { useEscapeFocusTrapNavigationSettings } from '@/hooks/useEscapeFocusTrapNavigationSettings'
 import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
 import userMockData from '@/mock/userMockData.json'
@@ -41,11 +41,20 @@ const NavigationSettings = () => {
             'NavigationSettings must be used within a ContextUserData.Provider'
         )
     }
-    const [userData] = contextUserData
+    const [userData, setUserData] = contextUserData
 
-    useEscapeFocusTrapNavigationSettings({ setIsSettingsExpanded })
+    const [status, setStatus] = useState<string>('')
+    const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
+
+    useEscapeFocusTrapNavigationSettings({
+        isEditingStatus,
+        setIsSettingsExpanded,
+    })
     useFocusTrapNavigationSettings()
 
+    const handleIsEditingStatus = () => {
+        setIsEditingStatus((prev) => !prev)
+    }
     const handleToggleIsSettingsExpanded = () => {
         setIsSettingsExpanded(() => {
             const nextVal = !isSettingsExpanded
@@ -62,24 +71,43 @@ const NavigationSettings = () => {
                 icon={<IoMdClose />}
             />
             <div className="flex flex-col justify-center items-center mx-auto">
-                <Image
-                    alt="profile picture"
-                    src={userData?.profilePicture || profile_picure}
-                    className="w-32 h-32 rounded-full outline-2 outline-zinc-100 m-2"
-                />
+                {userData?.profilePicture ? (
+                    <Image
+                        alt="profile picture"
+                        src={userData.profilePicture}
+                        className="w-32 h-32 rounded-full outline-2 outline-zinc-100 m-2"
+                    />
+                ) : (
+                    <span className="w-32 h-32 rounded-full outline-2 outline-zinc-100 bg-linear-180 from-blue-500 to-blue-700 m-2 overflow-hidden relative">
+                        <span
+                            className="w-18 h-18 bg-blue-200 rounded-full outline-2 outline-zinc-100
+                            absolute left-1/2 -bottom-4.5 -translate-x-1/2"
+                        ></span>
+                        <span
+                            className="w-13 h-13 bg-blue-200 rounded-full outline-2 outline-zinc-100
+                            absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/4"
+                        ></span>
+                    </span>
+                )}
                 <h2 className="text-center text-large">
-                    @{userData?.userName || userMockData[0].userName}
+                    @{userData?.userName || userMockData.userName}
                 </h2>
                 <div className="triangle mx-auto h-0 w-0"></div>
-                <h3 className="text-normal bg-zinc-800 w-fit px-4 py-1 rounded-xl mx-auto">
-                    {userData?.status || userMockData[0].status}
-                </h3>
+                <NavigationSettingsStatus
+                    isEditingStatus={isEditingStatus}
+                    setIsEditingStatus={setIsEditingStatus}
+                    setStatus={setStatus}
+                    setUserData={setUserData}
+                    status={status}
+                    userData={userData}
+                    userMockData={userMockData}
+                />
             </div>
             <hr className="my-2 border-zinc-100" />
             <div className="flex flex-col gap-2 justify-between h-full">
                 <div className="flex flex-col gap-2">
                     <NavigationSettingsButton
-                        handleClick={() => {}}
+                        handleClick={handleIsEditingStatus}
                         label="Edit Status"
                         icon={<MdModeEdit />}
                     />
