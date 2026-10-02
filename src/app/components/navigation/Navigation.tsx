@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react'
 import NavigationSettings from '@/app/components/navigation/NavigationSettings'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
+import { ContextUserData } from '@/context/ContextUserData'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { getStoredSessionData } from '@/utils/getStoredSessionData'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
@@ -18,6 +19,14 @@ const Navigation = () => {
         )
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
+
+    const contextUserData = useContext(ContextUserData)
+    if (!contextUserData) {
+        throw new Error(
+            'Navigation must be used within a ContextUserData.Provider'
+        )
+    }
+    const [userData] = contextUserData
 
     const [isSettingsExpanded, setIsSettingsExpanded] = useState<
         boolean | undefined
@@ -49,7 +58,7 @@ const Navigation = () => {
                             className="w-12 h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden"
                         >
                             <NavigationProfilePicture
-                                profilePicture={undefined}
+                                profilePicture={userData?.profilePicture}
                                 size="small"
                             />
                         </button>
