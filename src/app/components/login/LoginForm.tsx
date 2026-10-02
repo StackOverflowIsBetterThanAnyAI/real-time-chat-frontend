@@ -87,6 +87,7 @@ const LoginForm = () => {
         }
     }
     const handleSwitchLogin = () => {
+        setApiError('')
         setIsSigningUp((prev) => {
             const nextVal = !prev
             setItemInStorage('issigningup', nextVal)
