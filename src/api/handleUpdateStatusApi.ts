@@ -4,14 +4,16 @@ import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 export const handleUpdateStatusApi = async ({
     currentStatus,
     internalStatus,
+    setApiError,
     setIsEditingStatus,
     setInternalStatus,
     setIsLoadingStatus,
     setUserData,
     userData,
 }: handleUpdateStatusAPiProps) => {
+    setIsLoadingStatus(true)
+    setApiError('')
     try {
-        setIsLoadingStatus(true)
         const response = await fetch(`http://localhost:8000/api/status`, {
             method: 'PATCH',
             headers: {
@@ -29,6 +31,12 @@ export const handleUpdateStatusApi = async ({
                 response.status,
                 response.statusText
             )
+            const error = await response.json()
+            if (response.status >= 400 && response.status < 500) {
+                setApiError(`Could not update status. ${error.error}`)
+            } else if (response.status >= 500) {
+                setApiError('Could not update status. Please try again.')
+            }
             return
         }
 
@@ -36,6 +44,7 @@ export const handleUpdateStatusApi = async ({
         setItemInSessionStorage('status', internalStatus)
         setInternalStatus(internalStatus)
         setIsEditingStatus(false)
+        setApiError('')
     } catch (error) {
         setInternalStatus(currentStatus)
         setItemInSessionStorage('status', currentStatus)
@@ -43,6 +52,7 @@ export const handleUpdateStatusApi = async ({
             'An unexpected error occurred while trying to update the status',
             error
         )
+        setApiError('Could not update status. Please try again.')
     } finally {
         setIsLoadingStatus(false)
     }

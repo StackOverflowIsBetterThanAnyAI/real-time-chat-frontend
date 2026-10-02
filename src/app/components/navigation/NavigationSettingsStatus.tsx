@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
+import ErrorField from '@/app/components/error/ErrorField'
 import { handleUpdateStatusApi } from '@/api/handleUpdateStatusApi'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks/useEscapeFocusTrapEditingStatus'
 import { NavigationSettingsStatusProps } from '@/types/types'
@@ -15,6 +16,7 @@ const NavigationSettingsStatus = ({
     setUserData,
     userData,
 }: NavigationSettingsStatusProps) => {
+    const [apiError, setApiError] = useState<string>('')
     const [isLoadingStatus, setIsLoadingStatus] = useState<boolean>(false)
 
     useEscapeFocusTrapEditingStatus({ setIsEditingStatus })
@@ -23,13 +25,22 @@ const NavigationSettingsStatus = ({
         setIsEditingStatus(false)
         setInternalStatus(currentStatus)
         setItemInSessionStorage('status', currentStatus)
+        if (apiError) {
+            setApiError('')
+        }
     }
     const handleChangeStatus = (e: React.InputEvent<HTMLInputElement>) => {
         const newValue = e.currentTarget.value
         setInternalStatus(newValue)
         setItemInSessionStorage('status', newValue)
+        if (apiError) {
+            setApiError('')
+        }
     }
     const handleConfirmStatus = () => {
+        if (apiError) {
+            setApiError('')
+        }
         if (
             internalStatus.length &&
             internalStatus.length <= 255 &&
@@ -51,6 +62,7 @@ const NavigationSettingsStatus = ({
         handleUpdateStatusApi({
             currentStatus,
             internalStatus,
+            setApiError,
             setIsEditingStatus,
             setInternalStatus,
             setIsLoadingStatus,
@@ -66,7 +78,7 @@ const NavigationSettingsStatus = ({
     ) : isEditingStatus ? (
         <>
             <input
-                className="text-normal bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
+                className="text-normal bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto mb-1"
                 value={internalStatus}
                 onInput={handleChangeStatus}
                 onKeyDown={handleKeyDownStatus}
@@ -79,6 +91,7 @@ const NavigationSettingsStatus = ({
             <label htmlFor="status" className="sr-only">
                 Status
             </label>
+            <ErrorField error={apiError} />
             <div className="flex gap-4 text-normal pt-2">
                 <button
                     onClick={handleCancelStatus}

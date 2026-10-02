@@ -42,19 +42,25 @@ const LoginForm = () => {
         const input = e.currentTarget.value
         setUserName(input)
         setItemInStorage('username', input)
-        setApiError('')
+        if (apiError) {
+            setApiError('')
+        }
     }
     const handleInputPassword = (e: React.InputEvent<HTMLInputElement>) => {
         setPassword(e.currentTarget.value)
         setConfirmPasswordDisabled(true)
         setConfirmPassword('')
-        setApiError('')
+        if (apiError) {
+            setApiError('')
+        }
     }
     const handleInputConfirmPassword = (
         e: React.InputEvent<HTMLInputElement>
     ) => {
         setConfirmPassword(e.currentTarget.value)
-        setApiError('')
+        if (apiError) {
+            setApiError('')
+        }
     }
     const handleLogin = async () => {
         handleLoginApi({
@@ -87,7 +93,9 @@ const LoginForm = () => {
         }
     }
     const handleSwitchLogin = () => {
-        setApiError('')
+        if (apiError) {
+            setApiError('')
+        }
         setIsSigningUp((prev) => {
             const nextVal = !prev
             setItemInStorage('issigningup', nextVal)

@@ -49,6 +49,8 @@ export type LoginFormSwitchProps = {
 export type NavigationSettingsButtonProps = {
     icon: React.ReactNode
     handleClick: () => void
+    isClicked?: boolean
+    isClickedLabel?: string
     isDelete?: boolean
     label: string
 }
@@ -93,6 +95,7 @@ export type handleLogoutProps = {
 export type handleUpdateStatusAPiProps = {
     currentStatus: string
     internalStatus: string
+    setApiError: React.Dispatch<React.SetStateAction<string>>
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
