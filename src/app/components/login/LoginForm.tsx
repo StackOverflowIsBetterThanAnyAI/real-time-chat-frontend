@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import LoginFormError from '@/app/components/login/LoginFormError'
+import ErrorField from '@/app/components/error/ErrorField'
 import LoginFormHeader from '@/app/components/login/LoginFormHeader'
 import LoginFormInput from '@/app/components/login/LoginFormInput'
 import LoginFormPassword from '@/app/components/login/LoginFormPassword'
@@ -138,7 +138,7 @@ const LoginForm = () => {
                     }
                     value={userName}
                 />
-                <LoginFormError error={errorUserName} />
+                <ErrorField error={errorUserName} />
                 <LoginFormPassword
                     error={(!isSigningUp && apiError) || errorPassword}
                     id={`${isSigningUp ? 'signup' : 'login'}Password`}
@@ -155,9 +155,9 @@ const LoginForm = () => {
                     value={password}
                 />
                 {!isSigningUp && apiError ? (
-                    <LoginFormError error={apiError} />
+                    <ErrorField error={apiError} />
                 ) : (
-                    <LoginFormError error={errorPassword} />
+                    <ErrorField error={errorPassword} />
                 )}
                 {isSigningUp && (
                     <>
@@ -178,9 +178,9 @@ const LoginForm = () => {
                             value={confirmPassword}
                         />
                         {apiError ? (
-                            <LoginFormError error={apiError} />
+                            <ErrorField error={apiError} />
                         ) : (
-                            <LoginFormError error={errorConfirmPassword} />
+                            <ErrorField error={errorConfirmPassword} />
                         )}
                     </>
                 )}

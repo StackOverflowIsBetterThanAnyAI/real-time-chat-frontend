@@ -1,6 +1,6 @@
-import { LoginFormErrorProps } from '@/types/types'
+import { ErrorFieldProps } from '@/types/types'
 
-const LoginFormError = ({ error }: LoginFormErrorProps) => {
+const ErrorField = ({ error }: ErrorFieldProps) => {
     return (
         <>
             {error ? (
@@ -12,4 +12,4 @@ const LoginFormError = ({ error }: LoginFormErrorProps) => {
     )
 }
 
-export default LoginFormError
+export default ErrorField

@@ -3,7 +3,7 @@ export type ChatsButtonProps = {
     text: string
 }
 
-export type LoginFormErrorProps = {
+export type ErrorFieldProps = {
     error: string
 }
 
