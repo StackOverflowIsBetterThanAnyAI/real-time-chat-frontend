@@ -1,13 +1,12 @@
 'use client'
 
-import Image from 'next/image'
 import { useContext, useState } from 'react'
 import NavigationSettings from '@/app/components/navigation/NavigationSettings'
-import profile_picure from '@/assets/profile_picture.jpg'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { getStoredSessionData } from '@/utils/getStoredSessionData'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
+import NavigationProfilePicture from './NavigationProfilePicture'
 
 const Navigation = () => {
     const parsedSessionData = getStoredSessionData()
@@ -47,12 +46,11 @@ const Navigation = () => {
                     {isLoggedIn && (
                         <button
                             onClick={handleClick}
-                            className="w-12 h-12 rounded-full"
+                            className="w-12 h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden"
                         >
-                            <Image
-                                alt="profile picture"
-                                src={profile_picure}
-                                className="w-12 h-12 rounded-full"
+                            <NavigationProfilePicture
+                                profilePicture={undefined}
+                                size="small"
                             />
                         </button>
                     )}

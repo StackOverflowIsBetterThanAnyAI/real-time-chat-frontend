@@ -6,6 +6,7 @@ import { IoMdClose } from 'react-icons/io'
 import { MdModeEdit } from 'react-icons/md'
 import { MdDeleteForever } from 'react-icons/md'
 import { MdLogout } from 'react-icons/md'
+import NavigationProfilePicture from '@/app/components/navigation/NavigationProfilePicture'
 import NavigationSettingsButton from '@/app/components/navigation/NavigationSettingsButton'
 import NavigationSettingsStatus from '@/app/components/navigation/NavigationSettingsStatus'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
@@ -74,24 +75,11 @@ const NavigationSettings = () => {
                 icon={<IoMdClose />}
             />
             <div className="flex flex-col justify-center items-center mx-auto">
-                {userData?.profilePicture ? (
-                    <Image
-                        alt="profile picture"
-                        src={userData.profilePicture}
-                        className="w-32 h-32 rounded-full outline-2 outline-zinc-100 m-2"
-                    />
-                ) : (
-                    <span className="w-32 h-32 rounded-full outline-2 outline-zinc-100 bg-linear-180 from-blue-500 to-blue-700 m-2 overflow-hidden relative">
-                        <span
-                            className="w-18 h-18 bg-blue-200 rounded-full outline-2 outline-zinc-100
-                            absolute left-1/2 -bottom-4.5 -translate-x-1/2"
-                        ></span>
-                        <span
-                            className="w-13 h-13 bg-blue-200 rounded-full outline-2 outline-zinc-100
-                            absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/4"
-                        ></span>
-                    </span>
-                )}
+                <NavigationProfilePicture
+                    profilePicture={userData?.profilePicture}
+                    size="large"
+                />
+
                 <h2 className="text-center text-large">
                     @{userData?.userName || userMockData.userName}
                 </h2>
