@@ -9,6 +9,7 @@ import { MdLogout } from 'react-icons/md'
 import NavigationProfilePicture from '@/app/components/navigation/NavigationProfilePicture'
 import NavigationSettingsButton from '@/app/components/navigation/NavigationSettingsButton'
 import NavigationSettingsStatus from '@/app/components/navigation/NavigationSettingsStatus'
+import { handleUploadProfilePictureApi } from '@/api/handleUploadProfilePictureApi'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { ContextUserData } from '@/context/ContextUserData'
@@ -67,6 +68,17 @@ const NavigationSettings = () => {
         })
     }
 
+    const [apiError, setApiError] = useState<string>('')
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        handleUploadProfilePictureApi({
+            e,
+            setApiError,
+            setIsLoading,
+            setUserData,
+        })
+    }
+
     return (
         <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
             <NavigationSettingsButton
@@ -85,7 +97,7 @@ const NavigationSettings = () => {
                         type="file"
                         id="uploadProfilePicture"
                         accept="image/png, image/jpeg, image/webp"
-                        onChange={() => {}}
+                        onChange={handleFileChange}
                         className="settings-menu-button w-full h-full sr-only"
                     />
                     <NavigationProfilePicture
