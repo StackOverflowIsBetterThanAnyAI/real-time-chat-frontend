@@ -14,6 +14,8 @@ const NavigationProfilePicture = ({
             <Image
                 alt="profile picture"
                 src={profilePicture}
+                height={128}
+                width={128}
                 className="w-32 h-32 rounded-full outline-2 outline-zinc-100 m-2"
             />
         ) : (
@@ -32,6 +34,8 @@ const NavigationProfilePicture = ({
         <Image
             alt="profile picture"
             src={profilePicture}
+            height={48}
+            width={48}
             className="w-12 h-12 rounded-full outline-2"
         />
     ) : (
