@@ -1,5 +1,5 @@
 import { handleUpdateStatusAPiProps } from '@/types/types'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
+import { setItemInStorage } from '@/utils/setItemInStorage'
 
 export const handleUpdateStatusApi = async ({
     currentStatus,
@@ -25,7 +25,7 @@ export const handleUpdateStatusApi = async ({
 
         if (!response.ok) {
             setInternalStatus(currentStatus)
-            setItemInSessionStorage('status', currentStatus)
+            setItemInStorage('status', currentStatus)
             console.log(
                 'An unexpected error occurred while trying to update the status',
                 response.status,
@@ -41,13 +41,13 @@ export const handleUpdateStatusApi = async ({
         }
 
         setUserData({ ...userData!, status: internalStatus })
-        setItemInSessionStorage('status', internalStatus)
+        setItemInStorage('status', internalStatus)
         setInternalStatus(internalStatus)
         setIsEditingStatus(false)
         setApiError('')
     } catch (error) {
         setInternalStatus(currentStatus)
-        setItemInSessionStorage('status', currentStatus)
+        setItemInStorage('status', currentStatus)
         console.error(
             'An unexpected error occurred while trying to update the status',
             error

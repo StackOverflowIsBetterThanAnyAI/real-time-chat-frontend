@@ -1,5 +1,4 @@
 import { handleFetchUserApiProps, UserDataProps } from '@/types/types'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 import { setItemInStorage } from '@/utils/setItemInStorage'
 
 export const handleFetchUserApi = async ({
@@ -31,8 +30,8 @@ export const handleFetchUserApi = async ({
             status: data.status,
             userName: data.userName,
         })
-        setItemInSessionStorage('profilepicture', data.profilePicture)
-        setItemInSessionStorage('status', data.status)
+        setItemInStorage('profilepicture', data.profilePicture)
+        setItemInStorage('status', data.status)
         setItemInStorage('username', data.userName)
     } catch (error) {
         console.error(
