@@ -108,6 +108,13 @@ export type handleUpdateStatusAPiProps = {
     userData: UserDataProps | undefined
 }
 
+export type handleUploadProfilePictureApiProps = {
+    e: React.ChangeEvent<HTMLInputElement>
+    setApiError: React.Dispatch<React.SetStateAction<string>>
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+}
+
 export type useErrorConfirmPasswordProps = {
     confirmPassword: string
     password: string
