@@ -11,7 +11,7 @@ const NavigationProfilePicture = ({
                 src={`http://localhost:8000${profilePicture}`}
                 height={128}
                 width={128}
-                className="w-32 h-32 rounded-full outline-2 outline-zinc-100 m-2"
+                className="w-32 h-32 rounded-full outline-2 outline-zinc-100 object-cover"
             />
         ) : (
             <>
@@ -31,7 +31,7 @@ const NavigationProfilePicture = ({
             src={`http://localhost:8000${profilePicture}`}
             height={48}
             width={48}
-            className="w-12 h-12 rounded-full outline-2"
+            className="w-12 h-12 rounded-full outline-2 object-cover"
         />
     ) : (
         <>
