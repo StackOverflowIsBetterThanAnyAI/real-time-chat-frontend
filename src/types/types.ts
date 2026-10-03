@@ -46,6 +46,11 @@ export type LoginFormSwitchProps = {
     handleClick: () => void
 }
 
+export type NavigationProfilePictureProps = {
+    profilePicture: string | undefined
+    size: 'small' | 'large'
+}
+
 export type NavigationSettingsButtonProps = {
     icon: React.ReactNode
     handleClick: () => void
