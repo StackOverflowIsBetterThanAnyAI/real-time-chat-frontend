@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
-import ErrorField from '@/app/components/error/ErrorField'
+import { ErrorField } from '@/app/components/error'
 import { handleUpdateStatusApi } from '@/api/handleUpdateStatusApi'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks/useEscapeFocusTrapEditingStatus'
 import { NavigationSettingsStatusProps } from '@/types/types'

@@ -1,8 +1,7 @@
 'use client'
 
 import { useCallback, useContext, useEffect, useState } from 'react'
-import Chats from '@/app/components/chat/Chats'
-import ChatWindow from '@/app/components/chat/ChatWindow'
+import { Chats, ChatWindow } from '@/app/components/chat'
 import { ContextUserData } from '@/context/ContextUserData'
 import { handleFetchUserApi } from '@/api/handleFetchUserApi'
 

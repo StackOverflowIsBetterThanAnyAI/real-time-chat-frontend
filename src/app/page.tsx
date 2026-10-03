@@ -1,8 +1,8 @@
 'use client'
 
 import { useContext } from 'react'
-import Chat from '@/app/components/chat/Chat'
-import Login from '@/app/components/login/Login'
+import { Chat } from '@/app/components/chat'
+import { Login } from '@/app/components/login'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 
 export default function Home() {

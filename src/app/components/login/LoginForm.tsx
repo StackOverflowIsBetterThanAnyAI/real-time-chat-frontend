@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react'
-import ErrorField from '@/app/components/error/ErrorField'
-import LoginFormHeader from '@/app/components/login/LoginFormHeader'
-import LoginFormInput from '@/app/components/login/LoginFormInput'
-import LoginFormPassword from '@/app/components/login/LoginFormPassword'
-import LoginFormSubmit from '@/app/components/login/LoginFormSubmit'
-import LoginFormSwitch from '@/app/components/login/LoginFormSwitch'
+import { ErrorField } from '@/app/components/error'
+import {
+    LoginFormHeader,
+    LoginFormInput,
+    LoginFormPassword,
+    LoginFormSubmit,
+    LoginFormSwitch,
+} from '@/app/components/login'
 import { handleLoginApi } from '@/api/handleLoginApi'
 import { handleRegisterApi } from '@/api/handleRegisterApi'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
