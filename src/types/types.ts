@@ -1,3 +1,8 @@
+export type ContextToastType = {
+    showToast: (props: ToastProps) => void
+    hideToast: () => void
+}
+
 export type ChatsButtonProps = {
     friend: string
     text: string
@@ -70,6 +75,8 @@ export type NavigationSettingsStatusProps = {
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 
+export type ToastProps = { label: string }
+
 export type UserDataProps = {
     profilePicture: string
     status: string
@@ -108,9 +115,9 @@ export type handleUpdateStatusAPiProps = {
 
 export type handleUploadProfilePictureApiProps = {
     e: React.ChangeEvent<HTMLInputElement>
-    setApiError: React.Dispatch<React.SetStateAction<string>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
 }
 
 export type useErrorConfirmPasswordProps = {

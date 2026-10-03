@@ -3,12 +3,11 @@ import { setItemInStorage } from '@/utils/setItemInStorage'
 
 export const handleUploadProfilePictureApi = async ({
     e,
-    setApiError,
     setIsLoading,
     setUserData,
+    showToast,
 }: handleUploadProfilePictureApiProps) => {
     setIsLoading(true)
-    setApiError('')
     try {
         const file = e.target.files?.[0]
         if (!file) {
@@ -17,20 +16,24 @@ export const handleUploadProfilePictureApi = async ({
 
         const validExtensionRegex = /\.(jpg|jpeg|png|webp)$/i
         if (!validExtensionRegex.test(file.name)) {
-            setApiError(
-                'Invalid file extension. Only .jpg, .jpeg, .png, and .webp are allowed.'
-            )
+            showToast({
+                label: 'Invalid file extension. Only .jpg, .jpeg, .png, and .webp are allowed.',
+            })
             return
         }
 
         if (file.name.length > 192) {
-            setApiError('File name is too long.')
+            showToast({
+                label: 'File name is too long.',
+            })
             return
         }
 
         const maxSizeInBytes = 2 * 1024 * 1024
         if (file.size > maxSizeInBytes) {
-            setApiError('File is too large. Maximum size is 2MB.')
+            showToast({
+                label: 'File is too large. Maximum size is 2MB.',
+            })
             return
         }
 
@@ -54,11 +57,13 @@ export const handleUploadProfilePictureApi = async ({
             )
             const error = await response.json()
             if (response.status >= 400 && response.status < 500) {
-                setApiError(`Could not upload profile pciture. ${error.error}`)
+                showToast({
+                    label: `Could not upload profile pciture. ${error.error}`,
+                })
             } else if (response.status >= 500) {
-                setApiError(
-                    'Could not upload profile picture. Please try again.'
-                )
+                showToast({
+                    label: 'Could not upload profile picture. Please try again.',
+                })
             }
             return
         }
@@ -68,13 +73,14 @@ export const handleUploadProfilePictureApi = async ({
         setUserData((prev) =>
             prev ? { ...prev, profilePicture: data.profilePicture } : undefined
         )
-        setApiError('')
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to fetch personal user data',
             error
         )
-        setApiError('Could not upload profile picture. Please try again.')
+        showToast({
+            label: 'Could not upload profile picture. Please try again.',
+        })
     } finally {
         setIsLoading(false)
     }

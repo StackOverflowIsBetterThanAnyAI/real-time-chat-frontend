@@ -12,6 +12,7 @@ import NavigationSettingsStatus from '@/app/components/navigation/NavigationSett
 import { handleUploadProfilePictureApi } from '@/api/handleUploadProfilePictureApi'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
+import { useToast } from '@/context/ContextToast'
 import { ContextUserData } from '@/context/ContextUserData'
 import { useEscapeFocusTrapNavigationSettings } from '@/hooks/useEscapeFocusTrapNavigationSettings'
 import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
@@ -45,6 +46,8 @@ const NavigationSettings = () => {
     }
     const [userData, setUserData] = contextUserData
 
+    const { showToast } = useToast()
+
     const [internalStatus, setInternalStatus] = useState<string>('')
     const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
 
@@ -68,14 +71,13 @@ const NavigationSettings = () => {
         })
     }
 
-    const [apiError, setApiError] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         handleUploadProfilePictureApi({
             e,
-            setApiError,
             setIsLoading,
             setUserData,
+            showToast,
         })
     }
 
