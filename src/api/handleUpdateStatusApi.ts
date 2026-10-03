@@ -40,7 +40,9 @@ export const handleUpdateStatusApi = async ({
             return
         }
 
-        setUserData({ ...userData!, status: internalStatus })
+        setUserData((prev) =>
+            prev ? { ...prev, status: internalStatus } : undefined
+        )
         setItemInStorage('status', internalStatus)
         setInternalStatus(internalStatus)
         setIsEditingStatus(false)
