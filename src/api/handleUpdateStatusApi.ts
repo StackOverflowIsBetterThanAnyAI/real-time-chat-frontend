@@ -9,7 +9,6 @@ export const handleUpdateStatusApi = async ({
     setInternalStatus,
     setIsLoadingStatus,
     setUserData,
-    userData,
 }: handleUpdateStatusAPiProps) => {
     setIsLoadingStatus(true)
     setApiError('')

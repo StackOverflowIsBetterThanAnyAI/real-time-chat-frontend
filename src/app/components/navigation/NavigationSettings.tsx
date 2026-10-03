@@ -123,7 +123,6 @@ const NavigationSettings = () => {
                     setInternalStatus={setInternalStatus}
                     setIsEditingStatus={setIsEditingStatus}
                     setUserData={setUserData}
-                    userData={userData}
                 />
             </div>
             <hr className="my-2 border-zinc-100" />

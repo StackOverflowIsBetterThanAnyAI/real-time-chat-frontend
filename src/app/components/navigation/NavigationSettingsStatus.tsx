@@ -14,7 +14,6 @@ const NavigationSettingsStatus = ({
     setInternalStatus,
     setIsEditingStatus,
     setUserData,
-    userData,
 }: NavigationSettingsStatusProps) => {
     const [apiError, setApiError] = useState<string>('')
     const [isLoadingStatus, setIsLoadingStatus] = useState<boolean>(false)
@@ -67,7 +66,6 @@ const NavigationSettingsStatus = ({
             setInternalStatus,
             setIsLoadingStatus,
             setUserData,
-            userData,
         })
     }
 

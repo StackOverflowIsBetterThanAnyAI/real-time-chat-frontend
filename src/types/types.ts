@@ -68,7 +68,6 @@ export type NavigationSettingsStatusProps = {
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
-    userData: UserDataProps | undefined
 }
 
 export type UserDataProps = {
@@ -105,7 +104,6 @@ export type handleUpdateStatusAPiProps = {
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
-    userData: UserDataProps | undefined
 }
 
 export type handleUploadProfilePictureApiProps = {
