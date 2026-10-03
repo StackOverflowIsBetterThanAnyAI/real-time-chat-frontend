@@ -77,6 +77,7 @@ const NavigationSettings = () => {
             <div className="flex flex-col justify-center items-center mx-auto">
                 <label
                     htmlFor="uploadProfilePicture"
+                    title="Upload a new profile picture"
                     className="w-32 h-32 rounded-full outline-2 outline-zinc-100 bg-linear-180 from-blue-500 to-blue-700
                         relative overflow-hidden m-2 focus-within:outline-4"
                 >
@@ -86,7 +87,6 @@ const NavigationSettings = () => {
                         accept="image/png, image/jpeg, image/webp"
                         onChange={() => {}}
                         className="settings-menu-button w-full h-full sr-only"
-                        title="Upload a new profile picture"
                     />
                     <NavigationProfilePicture
                         profilePicture={userData?.profilePicture}
