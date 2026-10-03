@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { FetchLoading } from 'fetch-loading'
 import { useContext, useState } from 'react'
 import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
@@ -91,7 +91,7 @@ const NavigationSettings = () => {
                     htmlFor="uploadProfilePicture"
                     title="Upload a new profile picture"
                     className="w-32 h-32 rounded-full outline-2 outline-zinc-100 bg-linear-180 from-blue-500 to-blue-700
-                        relative overflow-hidden m-2 focus-within:outline-4"
+                        relative overflow-hidden focus-within:outline-4 hover:cursor-pointer"
                 >
                     <input
                         type="file"
@@ -100,10 +100,16 @@ const NavigationSettings = () => {
                         onChange={handleFileChange}
                         className="settings-menu-button w-full h-full sr-only"
                     />
-                    <NavigationProfilePicture
-                        profilePicture={userData?.profilePicture}
-                        size="large"
-                    />
+                    {isLoading ? (
+                        <span className="flex justify-center items-center h-full">
+                            <FetchLoading theme="#f4f4f5" />
+                        </span>
+                    ) : (
+                        <NavigationProfilePicture
+                            profilePicture={userData?.profilePicture}
+                            size="large"
+                        />
+                    )}
                 </label>
                 <h2 className="text-center text-large">
                     @{userData?.userName || userMockData.userName}
