@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { NavigationProfilePictureProps } from '@/types/types'
 
 const NavigationProfilePicture = ({
@@ -6,11 +7,12 @@ const NavigationProfilePicture = ({
 }: NavigationProfilePictureProps) => {
     return size === 'large' ? (
         profilePicture ? (
-            <img
+            <Image
                 alt="profile picture"
                 src={`http://localhost:8000${profilePicture}`}
                 height={128}
                 width={128}
+                unoptimized={true}
                 className="w-32 h-32 rounded-full outline-2 outline-zinc-100 object-cover"
             />
         ) : (
@@ -26,11 +28,12 @@ const NavigationProfilePicture = ({
             </>
         )
     ) : profilePicture ? (
-        <img
+        <Image
             alt="profile picture"
             src={`http://localhost:8000${profilePicture}`}
             height={48}
             width={48}
+            unoptimized={true}
             className="w-12 h-12 rounded-full outline-2 object-cover"
         />
     ) : (
