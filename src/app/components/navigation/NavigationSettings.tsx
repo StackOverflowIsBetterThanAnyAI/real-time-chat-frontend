@@ -1,3 +1,5 @@
+'use client'
+
 import { FetchLoading } from 'fetch-loading'
 import { useContext, useState } from 'react'
 import { FaUserFriends } from 'react-icons/fa'

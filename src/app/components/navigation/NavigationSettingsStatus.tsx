@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import ErrorField from '@/app/components/error/ErrorField'
