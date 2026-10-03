@@ -75,11 +75,24 @@ const NavigationSettings = () => {
                 icon={<IoMdClose />}
             />
             <div className="flex flex-col justify-center items-center mx-auto">
-                <NavigationProfilePicture
-                    profilePicture={userData?.profilePicture}
-                    size="large"
-                />
-
+                <label
+                    htmlFor="uploadProfilePicture"
+                    className="w-32 h-32 rounded-full outline-2 outline-zinc-100 bg-linear-180 from-blue-500 to-blue-700
+                        relative overflow-hidden m-2 focus-within:outline-4"
+                >
+                    <input
+                        type="file"
+                        id="uploadProfilePicture"
+                        accept="image/png, image/jpeg, image/webp"
+                        onChange={() => {}}
+                        className="settings-menu-button w-full h-full sr-only"
+                        title="Upload a new profile picture"
+                    />
+                    <NavigationProfilePicture
+                        profilePicture={userData?.profilePicture}
+                        size="large"
+                    />
+                </label>
                 <h2 className="text-center text-large">
                     @{userData?.userName || userMockData.userName}
                 </h2>
