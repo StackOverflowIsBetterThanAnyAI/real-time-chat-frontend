@@ -33,7 +33,7 @@ const Toast = ({ label }: ToastProps) => {
             <button
                 className="flex items-center justify-center rounded-full outline-1 outline-stone-900 text-xs h-6 w-6 bg-zinc-50/80 text-stone-950"
                 onClick={handleCloseToast}
-                aria-label="Nachricht schließen"
+                aria-label="Close Notification"
             >
                 <span aria-hidden="true">🗙</span>
             </button>
