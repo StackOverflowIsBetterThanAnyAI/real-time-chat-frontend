@@ -1,13 +1,15 @@
 'use client'
 
 import { useContext, useState } from 'react'
-import NavigationSettings from '@/app/components/navigation/NavigationSettings'
+import {
+    NavigationProfilePicture,
+    NavigationSettings,
+} from '@/app/components/navigation'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextUserData } from '@/context/ContextUserData'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { getStoredSessionData } from '@/utils/getStoredSessionData'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
-import NavigationProfilePicture from './NavigationProfilePicture'
 
 const Navigation = () => {
     const parsedSessionData = getStoredSessionData()

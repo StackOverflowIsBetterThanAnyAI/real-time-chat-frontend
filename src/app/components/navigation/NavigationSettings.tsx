@@ -6,9 +6,11 @@ import { IoMdClose } from 'react-icons/io'
 import { MdModeEdit } from 'react-icons/md'
 import { MdDeleteForever } from 'react-icons/md'
 import { MdLogout } from 'react-icons/md'
-import NavigationProfilePicture from '@/app/components/navigation/NavigationProfilePicture'
-import NavigationSettingsButton from '@/app/components/navigation/NavigationSettingsButton'
-import NavigationSettingsStatus from '@/app/components/navigation/NavigationSettingsStatus'
+import {
+    NavigationProfilePicture,
+    NavigationSettingsButton,
+    NavigationSettingsStatus,
+} from '@/app/components/navigation'
 import { handleUploadProfilePictureApi } from '@/api/handleUploadProfilePictureApi'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
