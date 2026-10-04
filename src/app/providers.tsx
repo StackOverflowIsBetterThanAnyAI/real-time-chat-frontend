@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
-import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
-import { ToastProvider } from '@/context/ContextToast'
-import { ContextUserData } from '@/context/ContextUserData'
+import {
+    ContextIsLoggedIn,
+    ContextIsSettingsExpanded,
+    ContextUserData,
+    ToastProvider,
+} from '@/context'
 import { useLoadLoggedInStorageValue } from '@/hooks/useLoadLoggedInStorageValue'
 import { UserDataProps } from '@/types/types'
 

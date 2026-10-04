@@ -1,10 +1,12 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { ProfilePicture, Settings } from '@/app/components/navigation'
-import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
-import { ContextUserData } from '@/context/ContextUserData'
-import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
+import {
+    ContextIsLoggedIn,
+    ContextUserData,
+    ContextIsSettingsExpanded,
+} from '@/context'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
 const Navigation = () => {

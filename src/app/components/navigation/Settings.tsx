@@ -14,10 +14,12 @@ import {
     SettingsStatus,
 } from '@/app/components/navigation'
 import { handleUploadProfilePictureApi } from '@/api/handleUploadProfilePictureApi'
-import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
-import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
-import { useToast } from '@/context/ContextToast'
-import { ContextUserData } from '@/context/ContextUserData'
+import {
+    ContextIsLoggedIn,
+    ContextIsSettingsExpanded,
+    ContextUserData,
+    useToast,
+} from '@/context'
 import { useEscapeFocusTrapNavigationSettings } from '@/hooks/useEscapeFocusTrapNavigationSettings'
 import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
 import userMockData from '@/mock/userMockData.json'

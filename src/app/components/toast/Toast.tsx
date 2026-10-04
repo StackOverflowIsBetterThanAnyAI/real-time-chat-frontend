@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { ToastProps } from '@/types/types'
-import { useToast } from '@/context/ContextToast'
+import { useToast } from '@/context'
 
 const Toast = ({ label }: ToastProps) => {
     const { hideToast } = useToast()

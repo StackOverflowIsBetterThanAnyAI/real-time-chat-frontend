@@ -3,7 +3,7 @@
 import { useContext } from 'react'
 import { Chat } from '@/app/components/chat'
 import { Login } from '@/app/components/login'
-import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
+import { ContextIsLoggedIn } from '@/context'
 
 export default function Home() {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
