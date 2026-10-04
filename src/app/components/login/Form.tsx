@@ -23,7 +23,7 @@ const Form = () => {
     if (!contextIsLoggedIn) {
         throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
     }
-    const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
+    const [, setIsLoggedIn] = contextIsLoggedIn
 
     const [apiError, setApiError] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')

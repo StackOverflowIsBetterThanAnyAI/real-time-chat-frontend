@@ -16,7 +16,7 @@ const Navigation = () => {
             'Navigation must be used within a ContextIsLoggedIn.Provider'
         )
     }
-    const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
+    const [isLoggedIn] = contextIsLoggedIn
 
     const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
     if (!contextIsSettingsExpanded) {

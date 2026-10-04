@@ -32,7 +32,7 @@ const Settings = () => {
             'Settings must be used within a ContextIsLoggedIn.Provider'
         )
     }
-    const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
+    const [, setIsLoggedIn] = contextIsLoggedIn
 
     const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
     if (!contextIsSettingsExpanded) {

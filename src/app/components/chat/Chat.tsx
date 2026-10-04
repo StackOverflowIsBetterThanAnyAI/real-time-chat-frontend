@@ -29,7 +29,7 @@ const Chat = () => {
     if (!contextUserData) {
         throw new Error('Chat must be used within a ContextUserData.Provider')
     }
-    const [userData, setUserData] = contextUserData
+    const [, setUserData] = contextUserData
 
     const { showToast } = useToast()
 
