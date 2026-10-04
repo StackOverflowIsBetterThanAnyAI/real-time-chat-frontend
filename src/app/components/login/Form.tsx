@@ -10,6 +10,7 @@ import {
 import { handleLoginApi } from '@/api/handleLoginApi'
 import { handleRegisterApi } from '@/api/handleRegisterApi'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
+import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { useErrorConfirmPassword } from '@/hooks/useErrorConfirmPassword'
 import { useLoadLoginStorageValues } from '@/hooks/useLoadLoginStorageValues'
 import { useLoginSubmitDisabled } from '@/hooks/useLoginSubmitDisabled'
@@ -23,6 +24,15 @@ const Form = () => {
         throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
+
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'Form must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [_isSettingsExpanded, setIsSettingsExpanded] =
+        contextIsSettingsExpanded
 
     const [apiError, setApiError] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
@@ -68,6 +78,7 @@ const Form = () => {
             setApiError,
             setIsLoading,
             setIsLoggedIn,
+            setIsSettingsExpanded,
             userName,
         })
     }
