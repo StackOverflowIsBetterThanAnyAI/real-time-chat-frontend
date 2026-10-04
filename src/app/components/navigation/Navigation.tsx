@@ -1,10 +1,7 @@
 'use client'
 
 import { useContext, useState } from 'react'
-import {
-    NavigationProfilePicture,
-    NavigationSettings,
-} from '@/app/components/navigation'
+import { ProfilePicture, Settings } from '@/app/components/navigation'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextUserData } from '@/context/ContextUserData'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
@@ -59,7 +56,7 @@ const Navigation = () => {
                             onClick={handleClick}
                             className="w-12 h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden"
                         >
-                            <NavigationProfilePicture
+                            <ProfilePicture
                                 profilePicture={userData?.profilePicture}
                                 size="small"
                             />
@@ -70,7 +67,7 @@ const Navigation = () => {
             <ContextIsSettingsExpanded.Provider
                 value={[isSettingsExpanded, setIsSettingsExpanded]}
             >
-                {isSettingsExpanded && isLoggedIn && <NavigationSettings />}
+                {isSettingsExpanded && isLoggedIn && <Settings />}
             </ContextIsSettingsExpanded.Provider>
         </>
     )

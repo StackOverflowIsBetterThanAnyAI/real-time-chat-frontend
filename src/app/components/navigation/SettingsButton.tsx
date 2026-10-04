@@ -1,6 +1,6 @@
 import { NavigationSettingsButtonProps } from '@/types/types'
 
-const NavigationSettingsButton = ({
+const SettingsButton = ({
     icon,
     isClicked = false,
     isClickedLabel = '',
@@ -25,4 +25,4 @@ const NavigationSettingsButton = ({
     )
 }
 
-export default NavigationSettingsButton
+export default SettingsButton

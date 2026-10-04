@@ -9,9 +9,9 @@ import { MdModeEdit } from 'react-icons/md'
 import { MdDeleteForever } from 'react-icons/md'
 import { MdLogout } from 'react-icons/md'
 import {
-    NavigationProfilePicture,
-    NavigationSettingsButton,
-    NavigationSettingsStatus,
+    ProfilePicture,
+    SettingsButton,
+    SettingsStatus,
 } from '@/app/components/navigation'
 import { handleUploadProfilePictureApi } from '@/api/handleUploadProfilePictureApi'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
@@ -24,7 +24,7 @@ import userMockData from '@/mock/userMockData.json'
 import { handleLogout } from '@/utils/handleLogout'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
-const NavigationSettings = () => {
+const Settings = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -87,7 +87,7 @@ const NavigationSettings = () => {
 
     return (
         <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
-            <NavigationSettingsButton
+            <SettingsButton
                 handleClick={handleToggleIsSettingsExpanded}
                 label="Close"
                 icon={<IoMdClose />}
@@ -111,7 +111,7 @@ const NavigationSettings = () => {
                             <FetchLoading theme="#f4f4f5" />
                         </span>
                     ) : (
-                        <NavigationProfilePicture
+                        <ProfilePicture
                             profilePicture={userData?.profilePicture}
                             size="large"
                         />
@@ -121,7 +121,7 @@ const NavigationSettings = () => {
                     @{userData?.userName || userMockData.userName}
                 </h2>
                 <div className="triangle mx-auto h-0 w-0"></div>
-                <NavigationSettingsStatus
+                <SettingsStatus
                     currentStatus={currentStatus}
                     handleIsEditingStatus={handleIsEditingStatus}
                     internalStatus={internalStatus}
@@ -134,26 +134,26 @@ const NavigationSettings = () => {
             <hr className="my-2 border-zinc-100" />
             <div className="flex flex-col gap-2 justify-between h-full">
                 <div className="flex flex-col gap-2">
-                    <NavigationSettingsButton
+                    <SettingsButton
                         handleClick={handleIsEditingStatus}
                         isClicked={isEditingStatus}
                         isClickedLabel="Editing Status"
                         label="Edit Status"
                         icon={<MdModeEdit />}
                     />
-                    <NavigationSettingsButton
+                    <SettingsButton
                         handleClick={() => {}}
                         label="Friends"
                         icon={<FaUserFriends />}
                     />
-                    <NavigationSettingsButton
+                    <SettingsButton
                         handleClick={() => {}}
                         label="Statistics"
                         icon={<IoStatsChart />}
                     />
                 </div>
                 <div className="flex flex-col gap-4">
-                    <NavigationSettingsButton
+                    <SettingsButton
                         handleClick={() =>
                             handleLogout({
                                 setIsLoggedIn,
@@ -164,7 +164,7 @@ const NavigationSettings = () => {
                         icon={<MdLogout />}
                         isDelete
                     />
-                    <NavigationSettingsButton
+                    <SettingsButton
                         handleClick={() => {}}
                         label="Delete Account"
                         icon={<MdDeleteForever />}
@@ -176,4 +176,4 @@ const NavigationSettings = () => {
     )
 }
 
-export default NavigationSettings
+export default Settings

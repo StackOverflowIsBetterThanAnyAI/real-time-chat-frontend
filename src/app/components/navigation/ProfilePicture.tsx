@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { NavigationProfilePictureProps } from '@/types/types'
 
-const NavigationProfilePicture = ({
+const ProfilePicture = ({
     profilePicture,
     size,
 }: NavigationProfilePictureProps) => {
@@ -50,4 +50,4 @@ const NavigationProfilePicture = ({
     )
 }
 
-export default NavigationProfilePicture
+export default ProfilePicture

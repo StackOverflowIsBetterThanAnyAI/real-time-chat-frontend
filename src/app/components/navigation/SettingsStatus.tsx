@@ -8,7 +8,7 @@ import { useEscapeFocusTrapEditingStatus } from '@/hooks/useEscapeFocusTrapEditi
 import { NavigationSettingsStatusProps } from '@/types/types'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
-const NavigationSettingsStatus = ({
+const SettingsStatus = ({
     currentStatus,
     handleIsEditingStatus,
     internalStatus,
@@ -121,4 +121,4 @@ const NavigationSettingsStatus = ({
     )
 }
 
-export default NavigationSettingsStatus
+export default SettingsStatus
