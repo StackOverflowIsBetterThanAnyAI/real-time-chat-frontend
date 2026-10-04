@@ -1,4 +1,4 @@
-import { handleRegisterApiProps } from '@/types'
+import { handleLoginApiProps } from '@/types'
 import { setItemInStorage } from '@/utils'
 
 export const handleRegisterApi = async ({
@@ -7,7 +7,7 @@ export const handleRegisterApi = async ({
     setIsLoading,
     setIsLoggedIn,
     userName,
-}: handleRegisterApiProps) => {
+}: handleLoginApiProps) => {
     setIsLoading(true)
     setApiError('')
     try {

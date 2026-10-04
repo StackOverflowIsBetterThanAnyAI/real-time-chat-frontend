@@ -8,7 +8,7 @@ import {
     FormSwitch,
 } from '@/app/components/login'
 import { handleLoginApi, handleRegisterApi } from '@/api'
-import { ContextIsLoggedIn, ContextIsSettingsExpanded } from '@/context'
+import { ContextIsLoggedIn } from '@/context'
 import {
     useErrorConfirmPassword,
     useLoadLoginStorageValues,
@@ -24,14 +24,6 @@ const Form = () => {
         throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'Form must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
     const [apiError, setApiError] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
@@ -77,7 +69,6 @@ const Form = () => {
             setApiError,
             setIsLoading,
             setIsLoggedIn,
-            setIsSettingsExpanded,
             userName,
         })
     }

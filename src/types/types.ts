@@ -93,17 +93,6 @@ export type handleLoginApiProps = {
     setApiError: React.Dispatch<React.SetStateAction<string>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    userName: string
-}
-
-export type handleRegisterApiProps = {
-    password: string
-    setApiError: React.Dispatch<React.SetStateAction<string>>
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     userName: string
 }
 
