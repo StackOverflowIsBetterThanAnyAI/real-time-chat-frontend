@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
-import { ErrorField } from '@/app/components/error'
+import { Message } from '@/app/components/error'
 import { handleUpdateStatusApi } from '@/api/handleUpdateStatusApi'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks/useEscapeFocusTrapEditingStatus'
 import { NavigationSettingsStatusProps } from '@/types/types'
@@ -91,7 +91,7 @@ const NavigationSettingsStatus = ({
             <label htmlFor="status" className="sr-only">
                 Status
             </label>
-            <ErrorField error={apiError} />
+            <Message error={apiError} />
             <div className="flex gap-4 text-normal pt-2">
                 <button
                     onClick={handleCancelStatus}

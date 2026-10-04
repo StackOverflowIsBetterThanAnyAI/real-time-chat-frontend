@@ -8,7 +8,7 @@ export type ChatButtonProps = {
     text: string
 }
 
-export type ErrorFieldProps = {
+export type ErrorMessageProps = {
     error: string
 }
 

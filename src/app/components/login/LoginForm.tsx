@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { ErrorField } from '@/app/components/error'
+import { Message } from '@/app/components/error'
 import {
     LoginFormHeader,
     LoginFormInput,
@@ -148,7 +148,7 @@ const LoginForm = () => {
                     }
                     value={userName}
                 />
-                <ErrorField error={errorUserName} />
+                <Message error={errorUserName} />
                 <LoginFormPassword
                     error={(!isSigningUp && apiError) || errorPassword}
                     id={`${isSigningUp ? 'signup' : 'login'}Password`}
@@ -165,9 +165,9 @@ const LoginForm = () => {
                     value={password}
                 />
                 {!isSigningUp && apiError ? (
-                    <ErrorField error={apiError} />
+                    <Message error={apiError} />
                 ) : (
-                    <ErrorField error={errorPassword} />
+                    <Message error={errorPassword} />
                 )}
                 {isSigningUp && (
                     <>
@@ -188,9 +188,9 @@ const LoginForm = () => {
                             value={confirmPassword}
                         />
                         {apiError ? (
-                            <ErrorField error={apiError} />
+                            <Message error={apiError} />
                         ) : (
-                            <ErrorField error={errorConfirmPassword} />
+                            <Message error={errorConfirmPassword} />
                         )}
                     </>
                 )}

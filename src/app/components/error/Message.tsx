@@ -1,6 +1,6 @@
-import { ErrorFieldProps } from '@/types/types'
+import { ErrorMessageProps } from '@/types/types'
 
-const ErrorField = ({ error }: ErrorFieldProps) => {
+const Message = ({ error }: ErrorMessageProps) => {
     return (
         <>
             {error ? (
@@ -12,4 +12,4 @@ const ErrorField = ({ error }: ErrorFieldProps) => {
     )
 }
 
-export default ErrorField
+export default Message
