@@ -52,6 +52,7 @@ const Navigation = () => {
                         <button
                             onClick={handleClick}
                             className="w-12 h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden"
+                            title={`${isSettingsExpanded ? 'Close' : 'Open'} Settings`}
                         >
                             <ProfilePicture
                                 profilePicture={userData?.profilePicture}
