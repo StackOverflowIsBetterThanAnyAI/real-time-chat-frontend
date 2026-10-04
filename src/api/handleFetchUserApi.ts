@@ -1,5 +1,5 @@
 import { handleFetchUserApiProps, UserDataProps } from '@/types/types'
-import { setItemInStorage } from '@/utils/setItemInStorage'
+import { setItemInStorage } from '@/utils'
 
 export const handleFetchUserApi = async ({
     setIsLoading,

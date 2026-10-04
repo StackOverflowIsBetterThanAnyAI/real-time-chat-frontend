@@ -1,6 +1,5 @@
 import { handleUpdateStatusAPiProps } from '@/types/types'
-import { handleLogout } from '@/utils/handleLogout'
-import { setItemInStorage } from '@/utils/setItemInStorage'
+import { handleLogout, setItemInStorage } from '@/utils'
 
 export const handleUpdateStatusApi = async ({
     currentStatus,

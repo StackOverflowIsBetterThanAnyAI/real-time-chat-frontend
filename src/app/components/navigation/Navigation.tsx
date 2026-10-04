@@ -7,7 +7,7 @@ import {
     ContextUserData,
     ContextIsSettingsExpanded,
 } from '@/context'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
+import { setItemInSessionStorage } from '@/utils'
 
 const Navigation = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)

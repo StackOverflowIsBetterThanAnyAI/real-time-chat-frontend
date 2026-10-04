@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useEscapeFocusTrapNavigationSettingsProps } from '@/types/types'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
+import { setItemInSessionStorage } from '@/utils'
 
 export const useEscapeFocusTrapNavigationSettings = ({
     isEditingStatus,

@@ -1,8 +1,10 @@
 import { handleLogoutProps } from '@/types/types'
-import { getStoredData } from '@/utils/getStoredData'
-import { getStoredSessionData } from '@/utils/getStoredSessionData'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
-import { setItemInStorage } from '@/utils/setItemInStorage'
+import {
+    getStoredData,
+    getStoredSessionData,
+    setItemInSessionStorage,
+    setItemInStorage,
+} from '@/utils'
 
 export const handleLogout = ({
     setIsLoggedIn,

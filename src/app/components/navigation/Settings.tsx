@@ -23,8 +23,7 @@ import {
 import { useEscapeFocusTrapNavigationSettings } from '@/hooks/useEscapeFocusTrapNavigationSettings'
 import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
 import userMockData from '@/mock/userMockData.json'
-import { handleLogout } from '@/utils/handleLogout'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
+import { handleLogout, setItemInSessionStorage } from '@/utils'
 
 const Settings = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)

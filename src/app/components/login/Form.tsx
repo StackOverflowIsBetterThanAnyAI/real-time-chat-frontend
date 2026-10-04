@@ -15,7 +15,7 @@ import { useLoadLoginStorageValues } from '@/hooks/useLoadLoginStorageValues'
 import { useLoginSubmitDisabled } from '@/hooks/useLoginSubmitDisabled'
 import { useErrorUserName } from '@/hooks/useErrorUserName'
 import { useErrorPassword } from '@/hooks/useErrorPassword'
-import { setItemInStorage } from '@/utils/setItemInStorage'
+import { setItemInStorage } from '@/utils'
 
 const Form = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)

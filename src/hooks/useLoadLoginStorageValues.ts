@@ -3,8 +3,7 @@
 import { useEffect } from 'react'
 import { USER_NAME_PATTERN } from '@/constants/constants'
 import { useLoadLoginStorageValuesProps } from '@/types/types'
-import { getStoredData } from '@/utils/getStoredData'
-import { setItemInStorage } from '@/utils/setItemInStorage'
+import { getStoredData, setItemInStorage } from '@/utils'
 
 export const useLoadLoginStorageValues = ({
     setIsSigningUp,

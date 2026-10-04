@@ -7,7 +7,7 @@ import { handleUpdateStatusApi } from '@/api/handleUpdateStatusApi'
 import { ContextIsLoggedIn, ContextIsSettingsExpanded } from '@/context'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks/useEscapeFocusTrapEditingStatus'
 import { NavigationSettingsStatusProps } from '@/types/types'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
+import { setItemInSessionStorage } from '@/utils'
 
 const SettingsStatus = ({
     currentStatus,

@@ -1,5 +1,5 @@
 import { handleRegisterApiProps } from '@/types/types'
-import { setItemInStorage } from '@/utils/setItemInStorage'
+import { setItemInStorage } from '@/utils'
 
 export const handleRegisterApi = async ({
     password,

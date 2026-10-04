@@ -2,10 +2,12 @@
 
 import { useEffect } from 'react'
 import { useLoadLoggedInStorageValueProps } from '@/types/types'
-import { getStoredData } from '@/utils/getStoredData'
-import { getStoredSessionData } from '@/utils/getStoredSessionData'
-import { setItemInStorage } from '@/utils/setItemInStorage'
-import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
+import {
+    getStoredData,
+    getStoredSessionData,
+    setItemInStorage,
+    setItemInSessionStorage,
+} from '@/utils'
 
 export const useLoadLoggedInStorageValue = ({
     setIsLoggedIn,
