@@ -5,12 +5,9 @@ import { ProfilePicture, Settings } from '@/app/components/navigation'
 import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
 import { ContextUserData } from '@/context/ContextUserData'
 import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
-import { getStoredSessionData } from '@/utils/getStoredSessionData'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
 
 const Navigation = () => {
-    const parsedSessionData = getStoredSessionData()
-
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -19,6 +16,15 @@ const Navigation = () => {
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'Navigation must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [isSettingsExpanded, setIsSettingsExpanded] =
+        contextIsSettingsExpanded
+
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
         throw new Error(
@@ -26,17 +32,6 @@ const Navigation = () => {
         )
     }
     const [userData] = contextUserData
-
-    const [isSettingsExpanded, setIsSettingsExpanded] = useState<
-        boolean | undefined
-    >(() => {
-        const data = parsedSessionData?.issettingsexpanded
-        if (data && typeof data === 'boolean') {
-            return data
-        }
-        setItemInSessionStorage('issettingsexpanded', false)
-        return false
-    })
 
     const handleClick = () => {
         setIsSettingsExpanded(() => {
@@ -64,11 +59,7 @@ const Navigation = () => {
                     )}
                 </div>
             </nav>
-            <ContextIsSettingsExpanded.Provider
-                value={[isSettingsExpanded, setIsSettingsExpanded]}
-            >
-                {isSettingsExpanded && isLoggedIn && <Settings />}
-            </ContextIsSettingsExpanded.Provider>
+            {isSettingsExpanded && isLoggedIn && <Settings />}
         </>
     )
 }

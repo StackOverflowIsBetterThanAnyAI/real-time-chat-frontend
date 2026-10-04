@@ -169,6 +169,9 @@ export type useEscapeFocusTrapEditingStatusProps = {
 
 export type useLoadLoggedInStorageValueProps = {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
 }
 
 export type useLoadLoginStorageValuesProps = {
