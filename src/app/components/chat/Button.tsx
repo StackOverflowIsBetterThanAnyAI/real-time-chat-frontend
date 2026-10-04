@@ -1,6 +1,6 @@
-import { ChatsButtonProps } from '@/types/types'
+import { ChatButtonProps } from '@/types/types'
 
-const ChatsButton = ({ friend, text }: ChatsButtonProps) => {
+const Button = ({ friend, text }: ChatButtonProps) => {
     return (
         <button
             className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
@@ -19,4 +19,4 @@ const ChatsButton = ({ friend, text }: ChatsButtonProps) => {
     )
 }
 
-export default ChatsButton
+export default Button

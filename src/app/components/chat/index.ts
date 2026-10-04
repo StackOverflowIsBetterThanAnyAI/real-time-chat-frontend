@@ -1,4 +1,4 @@
 export { default as Chat } from './Chat'
-export { default as Chats } from './Chats'
-export { default as ChatsButton } from './ChatsButton'
-export { default as ChatWindow } from './ChatWindow'
+export { default as Sidebar } from './Sidebar'
+export { default as Button } from './Button'
+export { default as EmptyWindow } from './EmptyWindow'

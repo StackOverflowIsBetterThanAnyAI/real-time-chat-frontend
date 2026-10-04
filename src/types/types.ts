@@ -3,7 +3,7 @@ export type ContextToastType = {
     hideToast: () => void
 }
 
-export type ChatsButtonProps = {
+export type ChatButtonProps = {
     friend: string
     text: string
 }

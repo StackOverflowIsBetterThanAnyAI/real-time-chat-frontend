@@ -1,7 +1,7 @@
 import { MdOutlineSearch } from 'react-icons/md'
 import { RiChatNewFill } from 'react-icons/ri'
 
-const Chats = () => {
+const Sidebar = () => {
     return (
         <div className="flex flex-col gap-4 bg-zinc-800/80 p-2">
             <button
@@ -28,7 +28,7 @@ const Chats = () => {
                 const key = item.chat_history.at(-1) || ''
                 const text = Object.values(key)[0]
                 return (
-                    <ChatsButton
+                    <Button
                         friend={item.userName}
                         text={text}
                         key={index}
@@ -39,4 +39,4 @@ const Chats = () => {
     )
 }
 
-export default Chats
+export default Sidebar

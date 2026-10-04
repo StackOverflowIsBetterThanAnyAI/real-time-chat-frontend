@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useContext, useEffect, useState } from 'react'
-import { Chats, ChatWindow } from '@/app/components/chat'
+import { EmptyWindow, Sidebar } from '@/app/components/chat'
 import { ContextUserData } from '@/context/ContextUserData'
 import { handleFetchUserApi } from '@/api/handleFetchUserApi'
 
@@ -28,8 +28,8 @@ const Chat = () => {
                 <div>Hello World!</div>
             ) : (
                 <>
-                    <Chats />
-                    <ChatWindow />
+                    <Sidebar />
+                    <EmptyWindow />
                 </>
             )}
         </main>
