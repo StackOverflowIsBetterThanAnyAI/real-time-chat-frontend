@@ -75,6 +75,15 @@ export type NavigationSettingsStatusProps = {
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 
+export type NavigationProfileProps = {
+    handleFileChange: (
+        e: React.ChangeEvent<HTMLInputElement, Element>
+    ) => Promise<void>
+    isLoading: boolean
+    profilePicture: string | undefined
+    userName: string
+}
+
 export type ToastProps = { label: string }
 
 export type UserDataProps = {
