@@ -5,9 +5,7 @@ import { useContext, useState } from 'react'
 import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdClose } from 'react-icons/io'
-import { MdModeEdit } from 'react-icons/md'
-import { MdDeleteForever } from 'react-icons/md'
-import { MdLogout } from 'react-icons/md'
+import { MdModeEdit, MdDeleteForever, MdLogout } from 'react-icons/md'
 import {
     ProfilePicture,
     SettingsButton,
