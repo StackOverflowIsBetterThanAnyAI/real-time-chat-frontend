@@ -20,9 +20,7 @@ import { setItemInStorage } from '@/utils/setItemInStorage'
 const Form = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
-        throw new Error(
-            'LoginForm must be used within a ContextIsLoggedIn.Provider'
-        )
+        throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 

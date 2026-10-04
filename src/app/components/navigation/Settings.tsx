@@ -28,7 +28,7 @@ const Settings = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
-            'NavigationSettings must be used within a ContextIsLoggedIn.Provider'
+            'Settings must be used within a ContextIsLoggedIn.Provider'
         )
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
@@ -36,7 +36,7 @@ const Settings = () => {
     const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
     if (!contextIsSettingsExpanded) {
         throw new Error(
-            'NavigationSettings must be used within a ContextIsSettingsExpanded.Provider'
+            'Settings must be used within a ContextIsSettingsExpanded.Provider'
         )
     }
     const [isSettingsExpanded, setIsSettingsExpanded] =
@@ -45,7 +45,7 @@ const Settings = () => {
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
         throw new Error(
-            'NavigationSettings must be used within a ContextUserData.Provider'
+            'Settings must be used within a ContextUserData.Provider'
         )
     }
     const [userData, setUserData] = contextUserData
