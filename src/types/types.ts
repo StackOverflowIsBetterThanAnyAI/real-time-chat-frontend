@@ -131,6 +131,10 @@ export type handleUpdateStatusAPiProps = {
 export type handleUploadProfilePictureApiProps = {
     e: React.ChangeEvent<HTMLInputElement>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }

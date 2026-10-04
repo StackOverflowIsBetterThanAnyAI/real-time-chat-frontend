@@ -1,9 +1,12 @@
 import { handleUploadProfilePictureApiProps } from '@/types/types'
+import { handleLogout } from '@/utils/handleLogout'
 import { setItemInStorage } from '@/utils/setItemInStorage'
 
 export const handleUploadProfilePictureApi = async ({
     e,
     setIsLoading,
+    setIsLoggedIn,
+    setIsSettingsExpanded,
     setUserData,
     showToast,
 }: handleUploadProfilePictureApiProps) => {
@@ -56,7 +59,9 @@ export const handleUploadProfilePictureApi = async ({
                 response.statusText
             )
             const error = await response.json()
-            if (response.status >= 400 && response.status < 500) {
+            if (response.status === 401) {
+                handleLogout({ setIsLoggedIn, setIsSettingsExpanded })
+            } else if (response.status >= 400 && response.status < 500) {
                 showToast({
                     label: `Could not upload profile pciture. ${error.error}`,
                 })

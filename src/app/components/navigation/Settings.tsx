@@ -80,6 +80,8 @@ const Settings = () => {
         handleUploadProfilePictureApi({
             e,
             setIsLoading,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
             setUserData,
             showToast,
         })
