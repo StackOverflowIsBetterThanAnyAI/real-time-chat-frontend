@@ -121,6 +121,10 @@ export type handleUpdateStatusAPiProps = {
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 

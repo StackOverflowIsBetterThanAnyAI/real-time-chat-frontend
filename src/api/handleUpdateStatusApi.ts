@@ -1,4 +1,5 @@
 import { handleUpdateStatusAPiProps } from '@/types/types'
+import { handleLogout } from '@/utils/handleLogout'
 import { setItemInStorage } from '@/utils/setItemInStorage'
 
 export const handleUpdateStatusApi = async ({
@@ -8,6 +9,8 @@ export const handleUpdateStatusApi = async ({
     setIsEditingStatus,
     setInternalStatus,
     setIsLoadingStatus,
+    setIsLoggedIn,
+    setIsSettingsExpanded,
     setUserData,
 }: handleUpdateStatusAPiProps) => {
     setIsLoadingStatus(true)
@@ -31,7 +34,9 @@ export const handleUpdateStatusApi = async ({
                 response.statusText
             )
             const error = await response.json()
-            if (response.status >= 400 && response.status < 500) {
+            if (response.status === 401) {
+                handleLogout({ setIsLoggedIn, setIsSettingsExpanded })
+            } else if (response.status >= 400 && response.status < 500) {
                 setApiError(`Could not update status. ${error.error}`)
             } else if (response.status >= 500) {
                 setApiError('Could not update status. Please try again.')

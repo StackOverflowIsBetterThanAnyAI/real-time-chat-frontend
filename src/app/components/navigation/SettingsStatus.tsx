@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import { Message } from '@/app/components/error'
 import { handleUpdateStatusApi } from '@/api/handleUpdateStatusApi'
+import { ContextIsLoggedIn } from '@/context/ContexIsLoggedIn'
+import { ContextIsSettingsExpanded } from '@/context/ContextIsSettingsExpanded'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks/useEscapeFocusTrapEditingStatus'
 import { NavigationSettingsStatusProps } from '@/types/types'
 import { setItemInSessionStorage } from '@/utils/setItemInSessionStorage'
@@ -17,6 +19,20 @@ const SettingsStatus = ({
     setIsEditingStatus,
     setUserData,
 }: NavigationSettingsStatusProps) => {
+    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
+    if (!contextIsLoggedIn) {
+        throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
+    }
+    const [, setIsLoggedIn] = contextIsLoggedIn
+
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'Form must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
+
     const [apiError, setApiError] = useState<string>('')
     const [isLoadingStatus, setIsLoadingStatus] = useState<boolean>(false)
 
@@ -67,6 +83,8 @@ const SettingsStatus = ({
             setIsEditingStatus,
             setInternalStatus,
             setIsLoadingStatus,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
             setUserData,
         })
     }
