@@ -1,9 +1,6 @@
 import { LoginFormSwitchProps } from '@/types/types'
 
-const LoginFormSwitch = ({
-    isSigningUp,
-    handleClick,
-}: LoginFormSwitchProps) => {
+const FormSwitch = ({ isSigningUp, handleClick }: LoginFormSwitchProps) => {
     const loginStyle = isSigningUp
         ? 'bg-zinc-500/30 hover:bg-zinc-400/40 active:bg-zinc-300'
         : 'bg-blue-800/80 text-zinc-100 hover:bg-blue-800/75 active:bg-blue-800/65'
@@ -37,4 +34,4 @@ const LoginFormSwitch = ({
     )
 }
 
-export default LoginFormSwitch
+export default FormSwitch

@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
 import { Message } from '@/app/components/error'
 import {
-    LoginFormHeader,
-    LoginFormInput,
-    LoginFormPassword,
-    LoginFormSubmit,
-    LoginFormSwitch,
+    FormHeader,
+    FormInput,
+    FormPassword,
+    FormSubmit,
+    FormSwitch,
 } from '@/app/components/login'
 import { handleLoginApi } from '@/api/handleLoginApi'
 import { handleRegisterApi } from '@/api/handleRegisterApi'
@@ -17,7 +17,7 @@ import { useErrorUserName } from '@/hooks/useErrorUserName'
 import { useErrorPassword } from '@/hooks/useErrorPassword'
 import { setItemInStorage } from '@/utils/setItemInStorage'
 
-const LoginForm = () => {
+const Form = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -123,8 +123,8 @@ const LoginForm = () => {
 
     return (
         <>
-            <LoginFormHeader isSigningUp={isSigningUp} />
-            <LoginFormSwitch
+            <FormHeader isSigningUp={isSigningUp} />
+            <FormSwitch
                 isSigningUp={isSigningUp}
                 handleClick={handleSwitchLogin}
             />
@@ -135,7 +135,7 @@ const LoginForm = () => {
                 method="post"
                 target="_self"
             >
-                <LoginFormInput
+                <FormInput
                     error={errorUserName}
                     id={`${isSigningUp ? 'signup' : 'login'}User`}
                     label="User Name"
@@ -149,7 +149,7 @@ const LoginForm = () => {
                     value={userName}
                 />
                 <Message error={errorUserName} />
-                <LoginFormPassword
+                <FormPassword
                     error={(!isSigningUp && apiError) || errorPassword}
                     id={`${isSigningUp ? 'signup' : 'login'}Password`}
                     isPasswordHidden={isPasswordHidden}
@@ -171,7 +171,7 @@ const LoginForm = () => {
                 )}
                 {isSigningUp && (
                     <>
-                        <LoginFormPassword
+                        <FormPassword
                             error={apiError || errorConfirmPassword}
                             id="signupConfirmPassword"
                             isDisabled={confirmPasswordDisabled}
@@ -194,7 +194,7 @@ const LoginForm = () => {
                         )}
                     </>
                 )}
-                <LoginFormSubmit
+                <FormSubmit
                     handleClick={handleLoginOrRegister}
                     isDisabled={isSubmitDisabled}
                     isLoading={isLoading}
@@ -205,4 +205,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default Form

@@ -1,7 +1,7 @@
 import { FetchLoading } from 'fetch-loading'
 import { LoginFormSubmitProps } from '@/types/types'
 
-const LoginFormSubmit = ({
+const FormSubmit = ({
     handleClick,
     isDisabled,
     isLoading,
@@ -32,4 +32,4 @@ const LoginFormSubmit = ({
     )
 }
 
-export default LoginFormSubmit
+export default FormSubmit

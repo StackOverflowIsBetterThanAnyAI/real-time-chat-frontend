@@ -1,6 +1,6 @@
 import { LoginFormPasswordProps } from '@/types/types'
 
-const LoginFormPassword = ({
+const FormPassword = ({
     error,
     id,
     isDisabled = false,
@@ -60,4 +60,4 @@ const LoginFormPassword = ({
     )
 }
 
-export default LoginFormPassword
+export default FormPassword

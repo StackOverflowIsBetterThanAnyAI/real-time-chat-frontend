@@ -1,6 +1,6 @@
 import { LoginFormInputProps } from '@/types/types'
 
-const LoginFormInput = ({
+const FormInput = ({
     error,
     id,
     label,
@@ -34,4 +34,4 @@ const LoginFormInput = ({
     )
 }
 
-export default LoginFormInput
+export default FormInput
