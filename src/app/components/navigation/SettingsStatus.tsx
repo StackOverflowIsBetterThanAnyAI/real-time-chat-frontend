@@ -21,14 +21,16 @@ const SettingsStatus = ({
 }: NavigationSettingsStatusProps) => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
-        throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
+        throw new Error(
+            'SettingsStatus must be used within a ContextIsLoggedIn.Provider'
+        )
     }
     const [, setIsLoggedIn] = contextIsLoggedIn
 
     const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
     if (!contextIsSettingsExpanded) {
         throw new Error(
-            'Form must be used within a ContextIsSettingsExpanded.Provider'
+            'SettingsStatus must be used within a ContextIsSettingsExpanded.Provider'
         )
     }
     const [, setIsSettingsExpanded] = contextIsSettingsExpanded
