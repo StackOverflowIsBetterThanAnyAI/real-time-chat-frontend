@@ -8,7 +8,7 @@ import {
     useCallback,
     type ReactNode,
 } from 'react'
-import Toast from '@/app/components/toast/Toast'
+import { Toast } from '@/app/components/toast'
 import type { ContextToastType, ToastProps } from '@//types/types'
 
 const ContextToast = createContext<ContextToastType | undefined>(undefined)
