@@ -2,21 +2,48 @@
 
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { EmptyWindow, Sidebar } from '@/app/components/chat'
-import { ContextUserData } from '@/context'
+import {
+    ContextIsLoggedIn,
+    ContextIsSettingsExpanded,
+    ContextUserData,
+    useToast,
+} from '@/context'
 import { handleFetchUserApi } from '@/api'
 
 const Chat = () => {
+    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
+    if (!contextIsLoggedIn) {
+        throw new Error('Chat must be used within a ContextIsLoggedIn.Provider')
+    }
+    const [, setIsLoggedIn] = contextIsLoggedIn
+
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'Chat must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
+
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
         throw new Error('Chat must be used within a ContextUserData.Provider')
     }
     const [userData, setUserData] = contextUserData
 
+    const { showToast } = useToast()
+
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const fetchUser = useCallback(() => {
-        handleFetchUserApi({ setIsLoading, setUserData })
-    }, [setUserData])
+        handleFetchUserApi({
+            setIsLoading,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            setUserData,
+            showToast,
+        })
+    }, [setIsLoggedIn, setIsSettingsExpanded, setUserData, showToast])
 
     useEffect(() => {
         fetchUser()

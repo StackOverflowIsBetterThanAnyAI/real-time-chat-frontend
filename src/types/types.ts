@@ -85,7 +85,12 @@ export type UserDataProps = {
 
 export type handleFetchUserApiProps = {
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
 }
 
 export type handleLoginApiProps = {

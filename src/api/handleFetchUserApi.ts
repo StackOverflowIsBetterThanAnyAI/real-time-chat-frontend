@@ -1,9 +1,12 @@
 import { handleFetchUserApiProps, UserDataProps } from '@/types'
-import { setItemInStorage } from '@/utils'
+import { handleLogout, setItemInStorage } from '@/utils'
 
 export const handleFetchUserApi = async ({
     setIsLoading,
+    setIsLoggedIn,
+    setIsSettingsExpanded,
     setUserData,
+    showToast,
 }: handleFetchUserApiProps) => {
     setIsLoading(true)
     try {
@@ -17,10 +20,19 @@ export const handleFetchUserApi = async ({
 
         if (!response.ok) {
             console.log(
-                'An unexpected error occurred while trying to fetch personal user data',
+                'An unexpected error occurred while trying to fetch user data',
                 response.status,
                 response.statusText
             )
+            const error = await response.json()
+            if (response.status === 401) {
+                handleLogout({ setIsLoggedIn, setIsSettingsExpanded })
+                showToast({ label: 'Session expired. Logging user out.' })
+            } else if (response.status >= 400) {
+                showToast({
+                    label: `Could not fetch user data. ${error.error}`,
+                })
+            }
             return
         }
 
@@ -35,7 +47,7 @@ export const handleFetchUserApi = async ({
         setItemInStorage('username', data.userName)
     } catch (error) {
         console.error(
-            'An unexpected error occurred while trying to fetch personal user data',
+            'An unexpected error occurred while trying to fetch user data',
             error
         )
     } finally {
