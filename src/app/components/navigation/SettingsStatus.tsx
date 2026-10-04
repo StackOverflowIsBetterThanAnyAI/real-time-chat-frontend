@@ -3,7 +3,7 @@
 import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import { Message } from '@/app/components/error'
-import { handleUpdateStatusApi } from '@/api/handleUpdateStatusApi'
+import { handleUpdateStatusApi } from '@/api'
 import { ContextIsLoggedIn, ContextIsSettingsExpanded } from '@/context'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks/useEscapeFocusTrapEditingStatus'
 import { NavigationSettingsStatusProps } from '@/types/types'

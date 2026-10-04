@@ -3,7 +3,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { EmptyWindow, Sidebar } from '@/app/components/chat'
 import { ContextUserData } from '@/context'
-import { handleFetchUserApi } from '@/api/handleFetchUserApi'
+import { handleFetchUserApi } from '@/api'
 
 const Chat = () => {
     const contextUserData = useContext(ContextUserData)

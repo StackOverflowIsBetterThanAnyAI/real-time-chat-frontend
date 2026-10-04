@@ -13,7 +13,7 @@ import {
     SettingsButton,
     SettingsStatus,
 } from '@/app/components/navigation'
-import { handleUploadProfilePictureApi } from '@/api/handleUploadProfilePictureApi'
+import { handleUploadProfilePictureApi } from '@/api'
 import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,

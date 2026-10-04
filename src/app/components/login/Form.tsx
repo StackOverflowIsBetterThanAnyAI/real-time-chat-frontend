@@ -7,8 +7,7 @@ import {
     FormSubmit,
     FormSwitch,
 } from '@/app/components/login'
-import { handleLoginApi } from '@/api/handleLoginApi'
-import { handleRegisterApi } from '@/api/handleRegisterApi'
+import { handleLoginApi, handleRegisterApi } from '@/api'
 import { ContextIsLoggedIn, ContextIsSettingsExpanded } from '@/context'
 import { useErrorConfirmPassword } from '@/hooks/useErrorConfirmPassword'
 import { useLoadLoginStorageValues } from '@/hooks/useLoadLoginStorageValues'
