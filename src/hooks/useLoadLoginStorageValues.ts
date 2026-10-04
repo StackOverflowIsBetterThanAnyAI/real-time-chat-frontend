@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { USER_NAME_PATTERN } from '@/constants/constants'
+import { USER_NAME_PATTERN } from '@/constants'
 import { useLoadLoginStorageValuesProps } from '@/types/types'
 import { getStoredData, setItemInStorage } from '@/utils'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { PASSWORD_PATTERN } from '@/constants/constants'
+import { PASSWORD_PATTERN } from '@/constants'
 import { useErrorPasswordProps } from '@/types/types'
 
 export const useErrorPassword = ({

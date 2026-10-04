@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { USER_NAME_PATTERN } from '@/constants/constants'
+import { USER_NAME_PATTERN } from '@/constants'
 import { useErrorUserNameProps } from '@/types/types'
 
 export const useErrorUserName = ({

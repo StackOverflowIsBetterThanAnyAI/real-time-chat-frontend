@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { USER_NAME_PATTERN, PASSWORD_PATTERN } from '@/constants/constants'
+import { USER_NAME_PATTERN, PASSWORD_PATTERN } from '@/constants'
 import { useLoginSubmitDisabledProps } from '@/types/types'
 
 export const useLoginSubmitDisabled = ({
