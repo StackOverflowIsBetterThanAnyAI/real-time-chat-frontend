@@ -31,8 +31,7 @@ const Form = () => {
             'Form must be used within a ContextIsSettingsExpanded.Provider'
         )
     }
-    const [_isSettingsExpanded, setIsSettingsExpanded] =
-        contextIsSettingsExpanded
+    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
     const [apiError, setApiError] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
