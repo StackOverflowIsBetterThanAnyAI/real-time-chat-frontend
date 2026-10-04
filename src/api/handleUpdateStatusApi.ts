@@ -11,6 +11,7 @@ export const handleUpdateStatusApi = async ({
     setIsLoggedIn,
     setIsSettingsExpanded,
     setUserData,
+    showToast,
 }: handleUpdateStatusAPiProps) => {
     setIsLoadingStatus(true)
     setApiError('')
@@ -35,6 +36,7 @@ export const handleUpdateStatusApi = async ({
             const error = await response.json()
             if (response.status === 401) {
                 handleLogout({ setIsLoggedIn, setIsSettingsExpanded })
+                showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 setApiError(`Could not update status. ${error.error}`)
             } else if (response.status >= 500) {

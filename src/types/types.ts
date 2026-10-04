@@ -115,6 +115,7 @@ export type handleUpdateStatusAPiProps = {
         React.SetStateAction<boolean | undefined>
     >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
 }
 
 export type handleUploadProfilePictureApiProps = {

@@ -4,7 +4,11 @@ import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import { Message } from '@/app/components/error'
 import { handleUpdateStatusApi } from '@/api'
-import { ContextIsLoggedIn, ContextIsSettingsExpanded } from '@/context'
+import {
+    ContextIsLoggedIn,
+    ContextIsSettingsExpanded,
+    useToast,
+} from '@/context'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks'
 import { NavigationSettingsStatusProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
@@ -33,6 +37,8 @@ const SettingsStatus = ({
         )
     }
     const [, setIsSettingsExpanded] = contextIsSettingsExpanded
+
+    const { showToast } = useToast()
 
     const [apiError, setApiError] = useState<string>('')
     const [isLoadingStatus, setIsLoadingStatus] = useState<boolean>(false)
@@ -87,6 +93,7 @@ const SettingsStatus = ({
             setIsLoggedIn,
             setIsSettingsExpanded,
             setUserData,
+            showToast,
         })
     }
 
