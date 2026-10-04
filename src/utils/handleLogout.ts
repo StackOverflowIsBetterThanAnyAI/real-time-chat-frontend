@@ -1,4 +1,4 @@
-import { handleLogoutProps } from '@/types/types'
+import { handleLogoutProps } from '@/types'
 import {
     getStoredData,
     getStoredSessionData,

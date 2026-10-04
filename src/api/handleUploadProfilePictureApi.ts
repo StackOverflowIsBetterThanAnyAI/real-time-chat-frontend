@@ -1,4 +1,4 @@
-import { handleUploadProfilePictureApiProps } from '@/types/types'
+import { handleUploadProfilePictureApiProps } from '@/types'
 import { handleLogout, setItemInStorage } from '@/utils'
 
 export const handleUploadProfilePictureApi = async ({

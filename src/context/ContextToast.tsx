@@ -9,7 +9,7 @@ import {
     type ReactNode,
 } from 'react'
 import { Toast } from '@/app/components/toast'
-import type { ContextToastType, ToastProps } from '@//types/types'
+import type { ContextToastType, ToastProps } from '@//types'
 
 const ContextToast = createContext<ContextToastType | undefined>(undefined)
 

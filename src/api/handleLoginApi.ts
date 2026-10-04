@@ -1,4 +1,4 @@
-import { handleLoginApiProps } from '@/types/types'
+import { handleLoginApiProps } from '@/types'
 import { handleLogout, setItemInStorage } from '@/utils'
 
 export const handleLoginApi = async ({

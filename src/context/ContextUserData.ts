@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext } from 'react'
-import { UserDataProps } from '@/types/types'
+import { UserDataProps } from '@/types'
 
 export const ContextUserData = createContext<
     | [

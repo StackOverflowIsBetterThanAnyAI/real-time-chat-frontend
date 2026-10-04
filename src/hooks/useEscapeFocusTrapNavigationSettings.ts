@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useEscapeFocusTrapNavigationSettingsProps } from '@/types/types'
+import { useEscapeFocusTrapNavigationSettingsProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
 export const useEscapeFocusTrapNavigationSettings = ({

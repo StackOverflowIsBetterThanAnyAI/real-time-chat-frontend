@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { PASSWORD_PATTERN } from '@/constants'
-import { useErrorPasswordProps } from '@/types/types'
+import { useErrorPasswordProps } from '@/types'
 
 export const useErrorPassword = ({
     password,

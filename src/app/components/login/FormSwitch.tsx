@@ -1,4 +1,4 @@
-import { LoginFormSwitchProps } from '@/types/types'
+import { LoginFormSwitchProps } from '@/types'
 
 const FormSwitch = ({ isSigningUp, handleClick }: LoginFormSwitchProps) => {
     const loginStyle = isSigningUp

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { USER_NAME_PATTERN } from '@/constants'
-import { useErrorUserNameProps } from '@/types/types'
+import { useErrorUserNameProps } from '@/types'
 
 export const useErrorUserName = ({
     setErrorUserName,

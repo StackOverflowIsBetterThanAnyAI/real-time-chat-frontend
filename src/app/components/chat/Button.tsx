@@ -1,4 +1,4 @@
-import { ChatButtonProps } from '@/types/types'
+import { ChatButtonProps } from '@/types'
 
 const Button = ({ friend, text }: ChatButtonProps) => {
     return (

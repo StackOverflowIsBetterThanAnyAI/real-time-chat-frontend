@@ -8,7 +8,7 @@ import {
     ToastProvider,
 } from '@/context'
 import { useLoadLoggedInStorageValue } from '@/hooks'
-import { UserDataProps } from '@/types/types'
+import { UserDataProps } from '@/types'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(false)

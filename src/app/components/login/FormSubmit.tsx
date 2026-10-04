@@ -1,5 +1,5 @@
 import { FetchLoading } from 'fetch-loading'
-import { LoginFormSubmitProps } from '@/types/types'
+import { LoginFormSubmitProps } from '@/types'
 
 const FormSubmit = ({
     handleClick,

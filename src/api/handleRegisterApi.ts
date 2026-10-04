@@ -1,4 +1,4 @@
-import { handleRegisterApiProps } from '@/types/types'
+import { handleRegisterApiProps } from '@/types'
 import { setItemInStorage } from '@/utils'
 
 export const handleRegisterApi = async ({

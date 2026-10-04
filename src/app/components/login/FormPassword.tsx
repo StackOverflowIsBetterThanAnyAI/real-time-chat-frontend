@@ -1,4 +1,4 @@
-import { LoginFormPasswordProps } from '@/types/types'
+import { LoginFormPasswordProps } from '@/types'
 
 const FormPassword = ({
     error,

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useEscapeFocusTrapEditingStatusProps } from '@/types/types'
+import { useEscapeFocusTrapEditingStatusProps } from '@/types'
 
 export const useEscapeFocusTrapEditingStatus = ({
     setIsEditingStatus,

@@ -1,4 +1,4 @@
-import { handleUpdateStatusAPiProps } from '@/types/types'
+import { handleUpdateStatusAPiProps } from '@/types'
 import { handleLogout, setItemInStorage } from '@/utils'
 
 export const handleUpdateStatusApi = async ({

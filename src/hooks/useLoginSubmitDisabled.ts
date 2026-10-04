@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { USER_NAME_PATTERN, PASSWORD_PATTERN } from '@/constants'
-import { useLoginSubmitDisabledProps } from '@/types/types'
+import { useLoginSubmitDisabledProps } from '@/types'
 
 export const useLoginSubmitDisabled = ({
     confirmPassword,

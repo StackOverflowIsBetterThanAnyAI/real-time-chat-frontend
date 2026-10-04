@@ -1,4 +1,4 @@
-import { LoginFormHeaderProps } from '@/types/types'
+import { LoginFormHeaderProps } from '@/types'
 
 const FormHeader = ({ isSigningUp }: LoginFormHeaderProps) => {
     return (

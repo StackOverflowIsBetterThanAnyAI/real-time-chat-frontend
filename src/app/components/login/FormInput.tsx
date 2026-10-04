@@ -1,4 +1,4 @@
-import { LoginFormInputProps } from '@/types/types'
+import { LoginFormInputProps } from '@/types'
 
 const FormInput = ({
     error,

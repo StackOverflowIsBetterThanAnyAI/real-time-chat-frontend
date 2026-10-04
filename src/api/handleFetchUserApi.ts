@@ -1,4 +1,4 @@
-import { handleFetchUserApiProps, UserDataProps } from '@/types/types'
+import { handleFetchUserApiProps, UserDataProps } from '@/types'
 import { setItemInStorage } from '@/utils'
 
 export const handleFetchUserApi = async ({

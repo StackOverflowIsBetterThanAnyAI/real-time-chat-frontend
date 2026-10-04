@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useLoadLoggedInStorageValueProps } from '@/types/types'
+import { useLoadLoggedInStorageValueProps } from '@/types'
 import {
     getStoredData,
     getStoredSessionData,

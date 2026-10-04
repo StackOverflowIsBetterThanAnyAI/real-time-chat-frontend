@@ -1,4 +1,4 @@
-import { NavigationSettingsButtonProps } from '@/types/types'
+import { NavigationSettingsButtonProps } from '@/types'
 
 const SettingsButton = ({
     icon,

@@ -6,7 +6,7 @@ import { Message } from '@/app/components/error'
 import { handleUpdateStatusApi } from '@/api'
 import { ContextIsLoggedIn, ContextIsSettingsExpanded } from '@/context'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks'
-import { NavigationSettingsStatusProps } from '@/types/types'
+import { NavigationSettingsStatusProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
 const SettingsStatus = ({

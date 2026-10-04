@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { NavigationProfilePictureProps } from '@/types/types'
+import { NavigationProfilePictureProps } from '@/types'
 
 const ProfilePicture = ({
     profilePicture,

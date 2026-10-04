@@ -1,4 +1,4 @@
-import { ErrorMessageProps } from '@/types/types'
+import { ErrorMessageProps } from '@/types'
 
 const Message = ({ error }: ErrorMessageProps) => {
     return (

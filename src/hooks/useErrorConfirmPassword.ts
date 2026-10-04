@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useErrorConfirmPasswordProps } from '@/types/types'
+import { useErrorConfirmPasswordProps } from '@/types'
 
 export const useErrorConfirmPassword = ({
     confirmPassword,

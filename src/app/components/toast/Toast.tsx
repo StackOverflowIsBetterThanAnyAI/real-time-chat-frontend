@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { ToastProps } from '@/types/types'
+import type { ToastProps } from '@/types'
 import { useToast } from '@/context'
 
 const Toast = ({ label }: ToastProps) => {
