@@ -20,8 +20,10 @@ import {
     ContextUserData,
     useToast,
 } from '@/context'
-import { useEscapeFocusTrapNavigationSettings } from '@/hooks/useEscapeFocusTrapNavigationSettings'
-import { useFocusTrapNavigationSettings } from '@/hooks/useFocusTrapNavigationSettings'
+import {
+    useEscapeFocusTrapNavigationSettings,
+    useFocusTrapNavigationSettings,
+} from '@/hooks'
 import userMockData from '@/mock/userMockData.json'
 import { handleLogout, setItemInSessionStorage } from '@/utils'
 

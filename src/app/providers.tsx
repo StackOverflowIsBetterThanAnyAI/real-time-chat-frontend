@@ -7,7 +7,7 @@ import {
     ContextUserData,
     ToastProvider,
 } from '@/context'
-import { useLoadLoggedInStorageValue } from '@/hooks/useLoadLoggedInStorageValue'
+import { useLoadLoggedInStorageValue } from '@/hooks'
 import { UserDataProps } from '@/types/types'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {

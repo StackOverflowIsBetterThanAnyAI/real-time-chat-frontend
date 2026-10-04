@@ -9,11 +9,13 @@ import {
 } from '@/app/components/login'
 import { handleLoginApi, handleRegisterApi } from '@/api'
 import { ContextIsLoggedIn, ContextIsSettingsExpanded } from '@/context'
-import { useErrorConfirmPassword } from '@/hooks/useErrorConfirmPassword'
-import { useLoadLoginStorageValues } from '@/hooks/useLoadLoginStorageValues'
-import { useLoginSubmitDisabled } from '@/hooks/useLoginSubmitDisabled'
-import { useErrorUserName } from '@/hooks/useErrorUserName'
-import { useErrorPassword } from '@/hooks/useErrorPassword'
+import {
+    useErrorConfirmPassword,
+    useLoadLoginStorageValues,
+    useLoginSubmitDisabled,
+    useErrorUserName,
+    useErrorPassword,
+} from '@/hooks'
 import { setItemInStorage } from '@/utils'
 
 const Form = () => {
