@@ -54,6 +54,7 @@ const Settings = () => {
     const [internalStatus, setInternalStatus] = useState<string>('')
     const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
     const [isFriendsExpanded, setIsFriendsExpanded] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const currentStatus = userData?.status || userMockData.status
 
@@ -82,8 +83,6 @@ const Settings = () => {
             return nextVal
         })
     }
-
-    const [isLoading, setIsLoading] = useState<boolean>(false)
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         handleUploadProfilePictureApi({
             e,
