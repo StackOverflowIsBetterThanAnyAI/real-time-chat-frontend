@@ -72,8 +72,17 @@ export type SettingsButtonProps = {
 }
 
 export type SettingsFriendsDetailsProps = {
-    fallback: string
+    content: React.ReactNode
     summary: string
+}
+
+export type SettingsFriendsFallbackProps = {
+    fallback: string
+}
+
+export type SettingsFriendsOverviewProps = {
+    friends: FriendType[]
+    isLoading: boolean
 }
 
 export type SettingsHeaderProps = {
@@ -110,6 +119,18 @@ export type UserDataProps = {
     profilePicture: string
     status: string
     userName: string
+}
+
+export type handleFetchFriendsApiProps = {
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    showToast: (props: ToastProps) => void
 }
 
 export type handleFetchUserApiProps = {

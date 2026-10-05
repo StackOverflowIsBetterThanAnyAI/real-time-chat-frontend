@@ -1,19 +1,73 @@
-import { FriendsDetails } from '@/app/components/settings'
+'use client'
+
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { handleFetchFriendsApi } from '@/api'
+import {
+    FriendsDetails,
+    FriendsOverview,
+    PendingFriends,
+} from '@/app/components/settings'
+import {
+    ContextFriends,
+    ContextIsLoggedIn,
+    ContextIsSettingsExpanded,
+    useToast,
+} from '@/context'
 
 const Friends = () => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error('Friends must be used within a ContextFriends.Provider')
+    }
+    const [friendsData, setFriendsData] = contextFriends
+
+    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
+    if (!contextIsLoggedIn) {
+        throw new Error(
+            'Friends must be used within a ContextIsLoggedIn.Provider'
+        )
+    }
+    const [, setIsLoggedIn] = contextIsLoggedIn
+
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'Friends must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
+
+    const { showToast } = useToast()
+
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    const fetchFriends = useCallback(() => {
+        handleFetchFriendsApi({
+            setFriendsData,
+            setIsLoading,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            showToast,
+        })
+    }, [setIsLoggedIn, setIsSettingsExpanded, showToast])
+
+    useEffect(() => {
+        fetchFriends()
+    }, [fetchFriends])
+
+    const friends =
+        friendsData?.filter((item) => item.status === 'accepted') || []
+
+    const pendingFriends =
+        friendsData?.filter((item) => item.status === 'pending') || []
+
     return (
         <>
-            <FriendsDetails
-                fallback="Currently, you don&#39;t have any friends."
-                summary="Friends"
-            />
-            <FriendsDetails
-                fallback="Currently, there aren&#39;t any other users to add as friends."
-                summary="Add Friend"
-            />
-            <FriendsDetails
-                fallback="Currently, there aren&#39;t any pending friend requests."
-                summary="Pending Friend Requests"
+            <FriendsOverview friends={friends} isLoading={isLoading} />
+            <FriendsDetails content={undefined} summary="Add Friend" />
+            <PendingFriends
+                isLoading={isLoading}
+                pendingFriends={pendingFriends}
             />
         </>
     )

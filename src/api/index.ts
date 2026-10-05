@@ -1,3 +1,4 @@
+export { handleFetchFriendsApi } from './handleFetchFriendsApi'
 export { handleFetchUserApi } from './handleFetchUserApi'
 export { handleLoginApi } from './handleLoginApi'
 export { handleRegisterApi } from './handleRegisterApi'
