@@ -20,7 +20,7 @@ export type FriendType = {
         profilePicture: string
     }
     id: number
-    status: 'pedning' | 'accepted'
+    status: 'pending' | 'accepted'
 }
 
 export type LoginFormHeaderProps = {
