@@ -1,13 +1,13 @@
 import { FetchLoading } from 'fetch-loading'
-import { ProfilePicture } from '@/app/components/navigation'
-import { NavigationProfileProps } from '@/types'
+import { ProfilePicture } from '@/app/components/settings'
+import { SettingsProfileProps } from '@/types'
 
 const Profile = ({
     handleFileChange,
     isLoading,
     profilePicture,
     userName,
-}: NavigationProfileProps) => {
+}: SettingsProfileProps) => {
     return (
         <>
             <label

@@ -1,0 +1,8 @@
+export { default as Button } from './Button'
+export { default as Friends } from './Friends'
+export { default as FriendsDetails } from './FriendsDetails'
+export { default as Header } from './Header'
+export { default as Profile } from './Profile'
+export { default as ProfilePicture } from './ProfilePicture'
+export { default as Settings } from './Settings'
+export { default as Status } from './Status'

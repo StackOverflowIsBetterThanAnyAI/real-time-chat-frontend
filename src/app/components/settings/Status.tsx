@@ -10,10 +10,10 @@ import {
     useToast,
 } from '@/context'
 import { useEscapeFocusTrapEditingStatus } from '@/hooks'
-import { NavigationSettingsStatusProps } from '@/types'
+import { SettingsStatusProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
-const SettingsStatus = ({
+const Status = ({
     currentStatus,
     handleIsEditingStatus,
     internalStatus,
@@ -21,11 +21,11 @@ const SettingsStatus = ({
     setInternalStatus,
     setIsEditingStatus,
     setUserData,
-}: NavigationSettingsStatusProps) => {
+}: SettingsStatusProps) => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
-            'SettingsStatus must be used within a ContextIsLoggedIn.Provider'
+            'Status must be used within a ContextIsLoggedIn.Provider'
         )
     }
     const [, setIsLoggedIn] = contextIsLoggedIn
@@ -33,7 +33,7 @@ const SettingsStatus = ({
     const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
     if (!contextIsSettingsExpanded) {
         throw new Error(
-            'SettingsStatus must be used within a ContextIsSettingsExpanded.Provider'
+            'Status must be used within a ContextIsSettingsExpanded.Provider'
         )
     }
     const [, setIsSettingsExpanded] = contextIsSettingsExpanded
@@ -152,4 +152,4 @@ const SettingsStatus = ({
     )
 }
 
-export default SettingsStatus
+export default Status

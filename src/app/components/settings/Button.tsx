@@ -1,13 +1,13 @@
-import { NavigationSettingsButtonProps } from '@/types'
+import { SettingsButtonProps } from '@/types'
 
-const SettingsButton = ({
+const Button = ({
     icon,
     isClicked = false,
     isClickedLabel = '',
     handleClick,
     isDelete = false,
     label,
-}: NavigationSettingsButtonProps) => {
+}: SettingsButtonProps) => {
     return isClicked ? (
         <div className="regular-button">
             {icon}
@@ -25,4 +25,4 @@ const SettingsButton = ({
     )
 }
 
-export default SettingsButton
+export default Button

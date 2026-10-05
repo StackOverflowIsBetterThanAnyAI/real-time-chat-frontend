@@ -1,6 +1,1 @@
 export { default as Navigation } from './Navigation'
-export { default as Profile } from './Profile'
-export { default as ProfilePicture } from './ProfilePicture'
-export { default as Settings } from './Settings'
-export { default as SettingsButton } from './SettingsButton'
-export { default as SettingsStatus } from './SettingsStatus'

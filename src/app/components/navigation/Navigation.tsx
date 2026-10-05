@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-import { ProfilePicture, Settings } from '@/app/components/navigation'
+import { ProfilePicture, Settings } from '@/app/components/settings'
 import {
     ContextIsLoggedIn,
     ContextUserData,

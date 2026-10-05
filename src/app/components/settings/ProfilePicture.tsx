@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import { NavigationProfilePictureProps } from '@/types'
+import { SettingsProfilePictureProps } from '@/types'
 
 const ProfilePicture = ({
     profilePicture,
     size,
-}: NavigationProfilePictureProps) => {
+}: SettingsProfilePictureProps) => {
     return size === 'large' ? (
         profilePicture ? (
             <Image

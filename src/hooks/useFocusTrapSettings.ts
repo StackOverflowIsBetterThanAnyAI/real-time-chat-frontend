@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 
-export const useFocusTrapNavigationSettings = () => {
+export const useFocusTrapSettings = () => {
     return useEffect(() => {
         const focusTrap = (e: KeyboardEvent) => {
             if (e.key !== 'Tab') {

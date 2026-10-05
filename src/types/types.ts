@@ -51,12 +51,7 @@ export type LoginFormSwitchProps = {
     handleClick: () => void
 }
 
-export type NavigationProfilePictureProps = {
-    profilePicture: string | undefined
-    size: 'small' | 'large'
-}
-
-export type NavigationSettingsButtonProps = {
+export type SettingsButtonProps = {
     icon: React.ReactNode
     handleClick: () => void
     isClicked?: boolean
@@ -65,7 +60,30 @@ export type NavigationSettingsButtonProps = {
     label: string
 }
 
-export type NavigationSettingsStatusProps = {
+export type SettingsFriendsDetailsProps = {
+    fallback: string
+    summary: string
+}
+
+export type SettingsHeaderProps = {
+    header: string
+}
+
+export type SettingsProfilePictureProps = {
+    profilePicture: string | undefined
+    size: 'small' | 'large'
+}
+
+export type SettingsProfileProps = {
+    handleFileChange: (
+        e: React.ChangeEvent<HTMLInputElement, Element>
+    ) => Promise<void>
+    isLoading: boolean
+    profilePicture: string | undefined
+    userName: string
+}
+
+export type SettingsStatusProps = {
     currentStatus: string
     handleIsEditingStatus: () => void
     internalStatus: string
@@ -73,15 +91,6 @@ export type NavigationSettingsStatusProps = {
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
-}
-
-export type NavigationProfileProps = {
-    handleFileChange: (
-        e: React.ChangeEvent<HTMLInputElement, Element>
-    ) => Promise<void>
-    isLoading: boolean
-    profilePicture: string | undefined
-    userName: string
 }
 
 export type ToastProps = { label: string }
@@ -160,15 +169,16 @@ export type useErrorUserNameProps = {
     userName: string
 }
 
-export type useEscapeFocusTrapNavigationSettingsProps = {
+export type useEscapeFocusTrapEditingStatusProps = {
+    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type useEscapeFocusTrapSettingsProps = {
     isEditingStatus: boolean
+    isFriendsExpanded: boolean
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
-}
-
-export type useEscapeFocusTrapEditingStatusProps = {
-    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type useLoadLoggedInStorageValueProps = {

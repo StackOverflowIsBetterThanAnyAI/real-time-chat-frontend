@@ -1,16 +1,17 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useEscapeFocusTrapNavigationSettingsProps } from '@/types'
+import { useEscapeFocusTrapSettingsProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
-export const useEscapeFocusTrapNavigationSettings = ({
+export const useEscapeFocusTrapSettings = ({
     isEditingStatus,
+    isFriendsExpanded,
     setIsSettingsExpanded,
-}: useEscapeFocusTrapNavigationSettingsProps) => {
+}: useEscapeFocusTrapSettingsProps) => {
     useEffect(() => {
         const escapeFocusTrap = (e: KeyboardEvent) => {
-            if (e.key !== 'Escape' || isEditingStatus) {
+            if (e.key !== 'Escape' || isEditingStatus || isFriendsExpanded) {
                 return
             }
 
@@ -23,5 +24,5 @@ export const useEscapeFocusTrapNavigationSettings = ({
         return () => {
             document.removeEventListener('keydown', escapeFocusTrap)
         }
-    }, [isEditingStatus, setIsSettingsExpanded])
+    }, [isEditingStatus, isFriendsExpanded, setIsSettingsExpanded])
 }
