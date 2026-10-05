@@ -12,6 +12,17 @@ export type ErrorMessageProps = {
     error: string
 }
 
+export type FriendType = {
+    direction: 'sent' | 'received'
+    friend: {
+        userName: string
+        status: string
+        profilePicture: string
+    }
+    id: number
+    status: 'pedning' | 'accepted'
+}
+
 export type LoginFormHeaderProps = {
     isSigningUp: boolean
 }
@@ -132,7 +143,7 @@ export type handleUpdateStatusAPiProps = {
     setApiError: React.Dispatch<React.SetStateAction<string>>
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
-    setIsLoadingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
