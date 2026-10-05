@@ -9,14 +9,16 @@ a {
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+summary:focus-visible {
     @apply outline-2 outline-zinc-100;
 }
 
 a,
 button:not(:disabled),
 input[type='button']:not(:disabled),
-input[type='checkbox']:not(:disabled) {
+input[type='checkbox']:not(:disabled),
+summary {
     @apply hover:cursor-pointer;
 }
 
