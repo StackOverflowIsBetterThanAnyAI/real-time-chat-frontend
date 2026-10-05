@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { useEscapeFocusTrapFriendsProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const useEscapeFocusTrapFriends = ({
     setIsFriendsExpanded,
@@ -13,6 +14,7 @@ export const useEscapeFocusTrapFriends = ({
             }
 
             setIsFriendsExpanded(false)
+            setItemInSessionStorage('isfriendsexpanded', false)
         }
 
         document.addEventListener('keydown', escapeFocusTrap)
