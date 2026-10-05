@@ -169,6 +169,10 @@ export type useErrorUserNameProps = {
     userName: string
 }
 
+export type useEscapeFocusTrapFriendsProps = {
+    setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 export type useEscapeFocusTrapEditingStatusProps = {
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
 }

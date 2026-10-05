@@ -19,7 +19,11 @@ import {
     ContextUserData,
     useToast,
 } from '@/context'
-import { useEscapeFocusTrapSettings, useFocusTrapSettings } from '@/hooks'
+import {
+    useEscapeFocusTrapFriends,
+    useEscapeFocusTrapSettings,
+    useFocusTrapSettings,
+} from '@/hooks'
 import userMockData from '@/mock/userMockData.json'
 import { handleLogout, setItemInSessionStorage } from '@/utils'
 
@@ -58,6 +62,7 @@ const Settings = () => {
 
     const currentStatus = userData?.status || userMockData.status
 
+    useEscapeFocusTrapFriends({ setIsFriendsExpanded })
     useEscapeFocusTrapSettings({
         isEditingStatus,
         isFriendsExpanded,
