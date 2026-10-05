@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import {
     FriendsDetails,
@@ -10,6 +13,7 @@ const FriendsOverview = ({
     friends,
     isLoading,
 }: SettingsFriendsOverviewProps) => {
+    const [isLoadingRemove, setIsLoadingRemove] = useState<boolean>(false)
     const friendsContent = () => {
         return isLoading ? (
             <FriendsLoading />
@@ -34,7 +38,13 @@ const FriendsOverview = ({
                                     {item.friend.userName}
                                 </div>
                             </span>
-                            <button className="shrink-0">Remove</button>
+                            <button
+                                className="shrink-0 settings-menu-button not-disabled:outline-2 outline-red-600 small-button w-24 flex justify-center
+                                hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
+                                disabled={isLoadingRemove}
+                            >
+                                Remove
+                            </button>
                         </div>
                     )
                 })}
