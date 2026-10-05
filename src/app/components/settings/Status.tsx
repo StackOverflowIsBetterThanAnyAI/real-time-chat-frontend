@@ -41,7 +41,7 @@ const Status = ({
     const { showToast } = useToast()
 
     const [apiError, setApiError] = useState<string>('')
-    const [isLoadingStatus, setIsLoadingStatus] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useEscapeFocusTrapEditingStatus({ setIsEditingStatus })
 
@@ -89,7 +89,7 @@ const Status = ({
             setApiError,
             setIsEditingStatus,
             setInternalStatus,
-            setIsLoadingStatus,
+            setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
             setUserData,
@@ -100,7 +100,7 @@ const Status = ({
     return (
         <>
             <div className="triangle mx-auto h-0 w-0"></div>
-            {isLoadingStatus ? (
+            {isLoading ? (
                 <div className="bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
                     <FetchLoading theme="#f4f4f5" />
                 </div>
@@ -126,7 +126,7 @@ const Status = ({
                             onClick={handleCancelStatus}
                             className="settings-menu-button not-disabled:outline-2 outline-red-800 regular-button w-24 flex justify-center
                             hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
-                            disabled={isLoadingStatus}
+                            disabled={isLoading}
                         >
                             Cancel
                         </button>
@@ -134,7 +134,7 @@ const Status = ({
                             onClick={handleConfirmStatus}
                             className="settings-menu-button not-disabled:outline-2 outline-blue-600 regular-button w-24 flex justify-center
                             hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
-                            disabled={isLoadingStatus}
+                            disabled={isLoading}
                         >
                             Confirm
                         </button>

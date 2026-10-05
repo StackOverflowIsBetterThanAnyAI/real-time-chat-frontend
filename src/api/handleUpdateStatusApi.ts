@@ -7,13 +7,13 @@ export const handleUpdateStatusApi = async ({
     setApiError,
     setIsEditingStatus,
     setInternalStatus,
-    setIsLoadingStatus,
+    setIsLoading,
     setIsLoggedIn,
     setIsSettingsExpanded,
     setUserData,
     showToast,
 }: handleUpdateStatusAPiProps) => {
-    setIsLoadingStatus(true)
+    setIsLoading(true)
     setApiError('')
     try {
         const response = await fetch(`http://localhost:8000/api/status`, {
@@ -61,6 +61,6 @@ export const handleUpdateStatusApi = async ({
         )
         setApiError('Could not update status. Please try again.')
     } finally {
-        setIsLoadingStatus(false)
+        setIsLoading(false)
     }
 }
