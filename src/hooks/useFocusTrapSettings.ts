@@ -9,29 +9,43 @@ export const useFocusTrapSettings = () => {
                 return
             }
 
-            const focusableElements: HTMLButtonElement[] = Array.from(
-                document.querySelectorAll('.settings-menu-button')
-            )
+            const focusableElements = Array.from(
+                document.querySelectorAll<HTMLElement>('.settings-menu-button')
+            ).filter((element) => {
+                const detailsParent = element.closest('details')
+                if (
+                    detailsParent &&
+                    !detailsParent.open &&
+                    !element.matches('summary')
+                ) {
+                    return false
+                }
 
-            if (
-                !document.activeElement ||
-                !focusableElements.includes(
-                    document.activeElement as HTMLButtonElement
-                )
-            ) {
+                if (
+                    element.hasAttribute('disabled') ||
+                    (element as HTMLButtonElement).disabled
+                ) {
+                    return false
+                }
+            })
+
+            if (!focusableElements.length || !document.activeElement) {
                 return
             }
 
-            const firstFocusableElement =
-                focusableElements[0] as HTMLButtonElement
+            const currentIndex = focusableElements.indexOf(
+                document.activeElement as HTMLElement
+            )
 
-            const lastFocusableElement = focusableElements[
-                focusableElements.length - 1
-            ] as HTMLButtonElement
-
-            const findCurrentButtonIndex = (button: HTMLButtonElement) => {
-                return focusableElements.indexOf(button)
+            if (currentIndex === -1) {
+                e.preventDefault()
+                focusableElements[0]?.focus()
+                return
             }
+
+            const firstFocusableElement = focusableElements[0]
+            const lastFocusableElement =
+                focusableElements[focusableElements.length - 1]
 
             if (e.shiftKey) {
                 if (document.activeElement === firstFocusableElement) {
@@ -39,9 +53,6 @@ export const useFocusTrapSettings = () => {
                     lastFocusableElement?.focus()
                 } else {
                     e.preventDefault()
-                    const currentIndex = findCurrentButtonIndex(
-                        document.activeElement as HTMLButtonElement
-                    )
                     focusableElements[currentIndex - 1]?.focus()
                 }
             } else {
@@ -50,9 +61,6 @@ export const useFocusTrapSettings = () => {
                     firstFocusableElement?.focus()
                 } else {
                     e.preventDefault()
-                    const currentIndex = findCurrentButtonIndex(
-                        document.activeElement as HTMLButtonElement
-                    )
                     focusableElements[currentIndex + 1]?.focus()
                 }
             }
