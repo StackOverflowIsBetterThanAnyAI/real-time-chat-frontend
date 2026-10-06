@@ -1,6 +1,8 @@
+export { handleAddFriendApi } from './handleAddFriendApi'
 export { handleFetchFriendsApi } from './handleFetchFriendsApi'
 export { handleFetchUserApi } from './handleFetchUserApi'
 export { handleLoginApi } from './handleLoginApi'
 export { handleRegisterApi } from './handleRegisterApi'
+export { handleRemoveFriendApi } from './handleRemoveFriendApi'
 export { handleUpdateStatusApi } from './handleUpdateStatusApi'
 export { handleUploadProfilePictureApi } from './handleUploadProfilePictureApi'
