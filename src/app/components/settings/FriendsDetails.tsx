@@ -3,7 +3,7 @@ import { SettingsFriendsDetailsProps } from '@/types'
 
 const FriendsDetails = ({ content, summary }: SettingsFriendsDetailsProps) => {
     return (
-        <details className="group open:outline-2 outline-zinc-100 rounded-xl text-normal">
+        <details className="group open:outline-2 outline-zinc-500 rounded-xl text-normal">
             <summary className="settings-menu-button regular-button text-normal hover:bg-zinc-800/50 active:bg-zinc-800/50">
                 <span className="group-open:rotate-180 rotate-90 transition-transform duration-75">
                     <IoTriangle className="w-3" />
