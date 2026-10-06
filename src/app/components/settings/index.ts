@@ -1,3 +1,4 @@
+export { default as AddFriend } from './AddFriend'
 export { default as Button } from './Button'
 export { default as Friends } from './Friends'
 export { default as FriendsDetails } from './FriendsDetails'
