@@ -47,7 +47,7 @@ const PendingFriends = ({
         setIsLoadingAccept(true)
         try {
             const response = await fetch(
-                `http://localhost:8000/api/${id}/accept`,
+                `http://localhost:8000/api/friends/${id}/accept`,
                 {
                     method: 'PATCH',
                     headers: {
