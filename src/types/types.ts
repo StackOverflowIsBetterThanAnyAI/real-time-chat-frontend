@@ -10,6 +10,7 @@ export type ChatButtonProps = {
 
 export type ErrorMessageProps = {
     error: string
+    theme?: 'red' | 'white'
 }
 
 export type FriendType = {
@@ -121,6 +122,21 @@ export type UserDataProps = {
     userName: string
 }
 
+export type handleAddFriendApiProps = {
+    setError: React.Dispatch<React.SetStateAction<string>>
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setUserToBeAdded: React.Dispatch<React.SetStateAction<string>>
+    showToast: (props: ToastProps) => void
+    userToBeAdded: string
+}
+
 export type handleFetchFriendsApiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
@@ -156,6 +172,19 @@ export type handleLogoutProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+}
+
+export type handleRemoveFriendApiProps = {
+    id: number
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoadingRemove: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    showToast: (props: ToastProps) => void
 }
 
 export type handleUpdateStatusAPiProps = {
