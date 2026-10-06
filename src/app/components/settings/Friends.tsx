@@ -3,7 +3,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { handleFetchFriendsApi } from '@/api'
 import {
-    FriendsDetails,
+    AddFriend,
     FriendsOverview,
     PendingFriends,
 } from '@/app/components/settings'
@@ -49,7 +49,7 @@ const Friends = () => {
             setIsSettingsExpanded,
             showToast,
         })
-    }, [setIsLoggedIn, setIsSettingsExpanded, showToast])
+    }, [setFriendsData, setIsLoggedIn, setIsSettingsExpanded, showToast])
 
     useEffect(() => {
         fetchFriends()
@@ -64,7 +64,7 @@ const Friends = () => {
     return (
         <>
             <FriendsOverview friends={friends} isLoading={isLoading} />
-            <FriendsDetails content={undefined} summary="Add Friend" />
+            <AddFriend />
             <PendingFriends
                 isLoading={isLoading}
                 pendingFriends={pendingFriends}
