@@ -1,19 +1,65 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Image from 'next/image'
 import {
     FriendsDetails,
     FriendsFallback,
     FriendsLoading,
 } from '@/app/components/settings'
+import {
+    ContextFriends,
+    ContextIsLoggedIn,
+    ContextIsSettingsExpanded,
+    useToast,
+} from '@/context'
 import { SettingsFriendsOverviewProps } from '@/types'
+import { FetchLoading } from 'fetch-loading'
+import { handleRemoveFriendApi } from '@/api'
 
 const FriendsOverview = ({
     friends,
     isLoading,
 }: SettingsFriendsOverviewProps) => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error(
+            'FriendsOverview must be used within a ContextFriends.Provider'
+        )
+    }
+    const [, setFriendsData] = contextFriends
+
+    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
+    if (!contextIsLoggedIn) {
+        throw new Error(
+            'FriendsOverview must be used within a ContextIsLoggedIn.Provider'
+        )
+    }
+    const [, setIsLoggedIn] = contextIsLoggedIn
+
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'FriendsOverview must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
+
+    const { showToast } = useToast()
+
     const [isLoadingRemove, setIsLoadingRemove] = useState<boolean>(false)
+
+    const handleRemoveFriend = (id: number) => {
+        handleRemoveFriendApi({
+            id,
+            setFriendsData,
+            setIsLoadingRemove,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            showToast,
+        })
+    }
+
     const friendsContent = () => {
         return isLoading ? (
             <FriendsLoading />
@@ -42,8 +88,13 @@ const FriendsOverview = ({
                                 className="shrink-0 settings-menu-button not-disabled:outline-2 outline-red-600 small-button w-24 flex justify-center
                                 hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
                                 disabled={isLoadingRemove}
+                                onClick={() => handleRemoveFriend(item.id)}
                             >
-                                Remove
+                                {isLoadingRemove ? (
+                                    <FetchLoading theme="#f4f4f5" />
+                                ) : (
+                                    'Remove'
+                                )}
                             </button>
                         </div>
                     )
