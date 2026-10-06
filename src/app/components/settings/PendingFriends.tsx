@@ -1,6 +1,7 @@
 'use client'
 
 import { Fragment, useContext, useState } from 'react'
+import Image from 'next/image'
 import {
     FriendsDetails,
     FriendsFallback,
@@ -142,10 +143,19 @@ const PendingFriends = ({
                         {pendingFriendsReceived.map((item) => {
                             return (
                                 <Fragment key={item.id}>
-                                    <div>{item.friend.profilePicture}</div>
-                                    <div className="text-small">
-                                        {item.friend.userName}
-                                    </div>
+                                    <span className="flex min-w-0 items-center gap-2">
+                                        <Image
+                                            src={`http://localhost:8000${item.friend.profilePicture}`}
+                                            alt="profile picture"
+                                            height={24}
+                                            width={24}
+                                            unoptimized={true}
+                                            className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
+                                        />
+                                        <div className="truncate">
+                                            {item.friend.userName}
+                                        </div>
+                                    </span>
                                     <button>Decline</button>
                                     <button
                                         onClick={() =>
