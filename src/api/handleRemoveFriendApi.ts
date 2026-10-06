@@ -44,9 +44,7 @@ export const handleRemoveFriendApi = async ({
             return
         }
 
-        setFriendsData((prev) => {
-            prev ? prev.filter((item) => item.id !== id) : undefined
-        })
+        setFriendsData((prev) => prev?.filter((item) => item.id !== id))
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to remove the friend',
