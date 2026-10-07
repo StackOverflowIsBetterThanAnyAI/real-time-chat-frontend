@@ -1,67 +1,16 @@
-'use client'
-
-import { useContext, useState } from 'react'
-import { GrRevert } from 'react-icons/gr'
-import { MdCancel } from 'react-icons/md'
-import { TiTick } from 'react-icons/ti'
 import {
-    FriendInfo,
     FriendsDetails,
     FriendsFallback,
     FriendsLoading,
+    PendingFriendsItemReceived,
+    PendingFriendsItemSent,
 } from '@/app/components/settings'
-import { handleAcceptRequestApi } from '@/api'
-import {
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    useToast,
-} from '@/context'
 import { FriendType, SettingsPendingFriendsProps } from '@/types'
 
 const PendingFriends = ({
     isLoading,
     pendingFriends,
 }: SettingsPendingFriendsProps) => {
-    const contextFriends = useContext(ContextFriends)
-    if (!contextFriends) {
-        throw new Error(
-            'PendingFriends must be used within a ContextFriends.Provider'
-        )
-    }
-    const [, setFriendsData] = contextFriends
-
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'PendingFriends must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'PendingFriends must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
-    const { showToast } = useToast()
-
-    const [isLoadingAccept, setIsLoadingAccept] = useState<boolean>(false)
-
-    const handleAcceptRequest = async (id: number) => {
-        handleAcceptRequestApi({
-            id,
-            setFriendsData,
-            setIsLoadingAccept,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            showToast,
-        })
-    }
-
     const { pendingFriendsSent, pendingFriendsReceived } =
         pendingFriends.reduce<{
             pendingFriendsSent: FriendType[]
@@ -94,30 +43,14 @@ const PendingFriends = ({
                             </h3>
                             {pendingFriendsSent.map((item) => {
                                 return (
-                                    <div
+                                    <PendingFriendsItemSent
                                         key={item.id}
-                                        className="flex gap-2 justify-between"
-                                    >
-                                        <FriendInfo
-                                            id={item.id}
-                                            profilePicture={
-                                                item.friend.profilePicture
-                                            }
-                                            userName={item.friend.userName}
-                                        />
-                                        <button
-                                            onClick={() => {}}
-                                            className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
-                                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
-                                            disabled={isLoadingAccept}
-                                            title="Cancel"
-                                        >
-                                            <GrRevert
-                                                color="#fb2c36"
-                                                size={20}
-                                            />
-                                        </button>
-                                    </div>
+                                        id={item.id}
+                                        profilePicture={
+                                            item.friend.profilePicture
+                                        }
+                                        userName={item.friend.userName}
+                                    />
                                 )
                             })}
                         </div>
@@ -131,46 +64,14 @@ const PendingFriends = ({
                             </h3>
                             {pendingFriendsReceived.map((item) => {
                                 return (
-                                    <div
+                                    <PendingFriendsItemReceived
                                         key={item.id}
-                                        className="flex gap-2 justify-between"
-                                    >
-                                        <FriendInfo
-                                            id={item.id}
-                                            profilePicture={
-                                                item.friend.profilePicture
-                                            }
-                                            userName={item.friend.userName}
-                                        />
-                                        <span className="flex gap-2">
-                                            <button
-                                                onClick={() => {}}
-                                                className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
-                                                hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
-                                                disabled={isLoadingAccept}
-                                                title="Decline"
-                                            >
-                                                <MdCancel
-                                                    color="#fb2c36"
-                                                    size={20}
-                                                />
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleAcceptRequest(item.id)
-                                                }
-                                                className="settings-menu-button not-disabled:outline-2 outline-blue-600 small-button flex justify-center
-                                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
-                                                disabled={isLoadingAccept}
-                                                title="Accept"
-                                            >
-                                                <TiTick
-                                                    color="#155dfc"
-                                                    size={20}
-                                                />
-                                            </button>
-                                        </span>
-                                    </div>
+                                        id={item.id}
+                                        profilePicture={
+                                            item.friend.profilePicture
+                                        }
+                                        userName={item.friend.userName}
+                                    />
                                 )
                             })}
                         </div>
