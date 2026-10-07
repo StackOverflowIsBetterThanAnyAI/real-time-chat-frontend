@@ -105,14 +105,14 @@ const Settings = () => {
                     <Header header="Friends" />
                     <Button
                         handleClick={handleToggleIsFriendsExpanded}
-                        label="Go back"
+                        label="Go back to Settings"
                         icon={<IoMdArrowRoundBack />}
                     />
                     <Friends />
                 </>
             ) : (
                 <>
-                    <Header header="Profile" />
+                    <Header header="Settings" />
                     <Button
                         handleClick={handleToggleIsSettingsExpanded}
                         label="Close"
