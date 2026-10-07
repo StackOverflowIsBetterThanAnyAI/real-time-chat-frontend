@@ -13,8 +13,8 @@ const Profile = ({
             <label
                 htmlFor="uploadProfilePicture"
                 title="Upload a new profile picture"
-                className="w-32 h-32 rounded-full outline-2 outline-zinc-100 bg-linear-180 from-blue-500 to-blue-700
-                        relative overflow-hidden focus-within:outline-4 hover:cursor-pointer"
+                className="w-28 sm:w-32 h-28 sm:h-32 rounded-full outline-2 outline-zinc-100 relative
+                bg-linear-180 from-blue-500 to-blue-700 overflow-hidden focus-within:outline-4 hover:cursor-pointer"
             >
                 <input
                     type="file"

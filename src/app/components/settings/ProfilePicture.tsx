@@ -13,16 +13,16 @@ const ProfilePicture = ({
                 height={128}
                 width={128}
                 unoptimized={true}
-                className="w-32 h-32 rounded-full outline-2 outline-zinc-100 object-cover"
+                className="w-28 sm:w-32 h-28 sm:h-32 rounded-full outline-2 outline-zinc-100 object-cover"
             />
         ) : (
             <>
                 <span
-                    className="w-18 h-18 bg-blue-200 rounded-full outline-2 outline-zinc-100
+                    className="w-16 sm:w-18 h-16 sm:h-18 bg-blue-200 rounded-full outline-2 outline-zinc-100
                         absolute left-1/2 -bottom-4.5 -translate-x-1/2"
                 ></span>
                 <span
-                    className="w-13 h-13 bg-blue-200 rounded-full outline-2 outline-zinc-100
+                    className="w-11 sm:w-13 h-11 sm:h-13 bg-blue-200 rounded-full outline-2 outline-zinc-100
                         absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/4"
                 ></span>
             </>
