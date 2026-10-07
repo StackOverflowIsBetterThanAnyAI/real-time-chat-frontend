@@ -1,6 +1,7 @@
 'use client'
 
 import { useContext, useState } from 'react'
+import { HiOutlineUserRemove } from 'react-icons/hi'
 import Image from 'next/image'
 import {
     FriendsDetails,
@@ -14,7 +15,6 @@ import {
     useToast,
 } from '@/context'
 import { SettingsFriendsOverviewProps } from '@/types'
-import { FetchLoading } from 'fetch-loading'
 import { handleRemoveFriendApi } from '@/api'
 
 const FriendsOverview = ({
@@ -85,16 +85,16 @@ const FriendsOverview = ({
                                 </div>
                             </span>
                             <button
-                                className="shrink-0 settings-menu-button not-disabled:outline-2 outline-red-600 small-button w-24 flex justify-center
+                                className="shrink-0 settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
                                 hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
                                 disabled={isLoadingRemove}
                                 onClick={() => handleRemoveFriend(item.id)}
+                                title="Remove Friend"
                             >
-                                {isLoadingRemove ? (
-                                    <FetchLoading theme="#f4f4f5" />
-                                ) : (
-                                    'Remove'
-                                )}
+                                <HiOutlineUserRemove
+                                    size={20}
+                                    color="#fb2c36"
+                                />
                             </button>
                         </div>
                     )
