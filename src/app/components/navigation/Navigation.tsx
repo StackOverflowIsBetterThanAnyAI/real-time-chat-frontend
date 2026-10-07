@@ -46,12 +46,12 @@ const Navigation = () => {
     return (
         <>
             <nav className="w-full bg-zinc-600 flex items-center justify-between px-2 sm:px-4 py-1">
-                <div className="flex justify-between items-center gap-2 md:gap-4 w-full h-16">
+                <div className="flex justify-between items-center gap-2 md:gap-4 w-full h-12 sm:h-16">
                     <h1 className="text-large">Dieter-Chat</h1>
                     {isLoggedIn && (
                         <button
                             onClick={handleClick}
-                            className="w-12 h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden"
+                            className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden"
                             title={`${isSettingsExpanded ? 'Close' : 'Open'} Settings`}
                         >
                             <ProfilePicture
