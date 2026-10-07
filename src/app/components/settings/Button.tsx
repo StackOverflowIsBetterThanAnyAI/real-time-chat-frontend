@@ -16,7 +16,7 @@ const Button = ({
     ) : (
         <button
             className={`settings-menu-button regular-button hover:bg-zinc-800/50
-            ${isDelete ? ' outline-2 outline-red-800' : ''} active:bg-zinc-800/50`}
+            ${isDelete ? ' outline-2 outline-red-500' : ''} active:bg-zinc-800/50`}
             onClick={handleClick}
         >
             {icon}

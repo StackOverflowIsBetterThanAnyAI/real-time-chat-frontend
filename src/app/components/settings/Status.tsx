@@ -124,7 +124,7 @@ const Status = ({
                     <div className="flex gap-4 text-normal pt-2">
                         <button
                             onClick={handleCancelStatus}
-                            className="settings-menu-button not-disabled:outline-2 outline-red-800 small-button w-24 flex justify-center
+                            className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button w-24 flex justify-center
                             hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
                             disabled={isLoading}
                         >
