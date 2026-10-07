@@ -74,9 +74,13 @@ export const handleUploadProfilePictureApi = async ({
         }
 
         const data: { profilePicture: string } = await response.json()
-        setItemInStorage('profilepicture', data.profilePicture)
+        const timeStamp = new Date().getTime()
+        const profilePictureTimeStamp = `${data.profilePicture}?t=${timeStamp}`
+        setItemInStorage('profilepicture', profilePictureTimeStamp)
         setUserData((prev) =>
-            prev ? { ...prev, profilePicture: data.profilePicture } : undefined
+            prev
+                ? { ...prev, profilePicture: profilePictureTimeStamp }
+                : undefined
         )
     } catch (error) {
         console.error(
