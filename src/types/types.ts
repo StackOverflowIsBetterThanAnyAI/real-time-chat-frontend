@@ -85,6 +85,7 @@ export type SettingsFriendInfoProps = {
 
 export type SettingsFriendsDetailsProps = {
     content: React.ReactNode
+    isExpanded?: boolean
     summary: string
 }
 

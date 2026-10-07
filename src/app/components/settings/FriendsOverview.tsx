@@ -31,7 +31,13 @@ const FriendsOverview = ({
         )
     }
 
-    return <FriendsDetails content={friendsContent()} summary="Friends" />
+    return (
+        <FriendsDetails
+            content={friendsContent()}
+            summary="Friends"
+            isExpanded
+        />
+    )
 }
 
 export default FriendsOverview
