@@ -118,7 +118,7 @@ const Settings = () => {
                         label="Close"
                         icon={<IoMdClose />}
                     />
-                    <div className="flex flex-col justify-center items-center mx-auto">
+                    <div className="flex flex-col justify-center items-center mx-auto w-full">
                         <Profile
                             handleFileChange={handleFileChange}
                             isLoading={isLoading}

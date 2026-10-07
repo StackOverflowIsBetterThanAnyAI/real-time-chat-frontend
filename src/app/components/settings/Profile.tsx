@@ -35,7 +35,9 @@ const Profile = ({
                 )}
             </label>
             {userName ? (
-                <h2 className="text-center text-large mt-1">@{userName}</h2>
+                <h2 className="text-center text-large mt-1 max-w-full truncate whitespace-nowrap overflow-hidden">
+                    @{userName}
+                </h2>
             ) : (
                 <span className="h-6 sm:h-7 w-24 animate-pulse rounded-3xl outline outline-zinc-500 mt-1"></span>
             )}
