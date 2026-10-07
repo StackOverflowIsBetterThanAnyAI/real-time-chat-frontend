@@ -44,6 +44,9 @@ export const handleRemoveFriendApi = async ({
             return
         }
 
+        showToast({
+            label: 'Friend has been removed.',
+        })
         setFriendsData((prev) => prev?.filter((item) => item.id !== id))
     } catch (error) {
         console.error(
