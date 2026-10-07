@@ -143,7 +143,7 @@ export type handleAcceptRequestApiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
-    setIsLoadingAccept: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>

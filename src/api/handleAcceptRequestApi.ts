@@ -4,12 +4,12 @@ import { handleLogout } from '@/utils'
 export const handleAcceptRequestApi = async ({
     id,
     setFriendsData,
-    setIsLoadingAccept,
+    setIsLoading,
     setIsLoggedIn,
     setIsSettingsExpanded,
     showToast,
 }: handleAcceptRequestApiProps) => {
-    setIsLoadingAccept(true)
+    setIsLoading(true)
     try {
         const response = await fetch(
             `http://localhost:8000/api/friends/${id}/accept`,
@@ -60,6 +60,6 @@ export const handleAcceptRequestApi = async ({
             label: 'Could not update friend status. Please try again.',
         })
     } finally {
-        setIsLoadingAccept(false)
+        setIsLoading(false)
     }
 }
