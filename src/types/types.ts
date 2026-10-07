@@ -101,6 +101,12 @@ export type SettingsHeaderProps = {
     header: string
 }
 
+export type SettingsPendingFriendsItemProps = {
+    id: number
+    profilePicture: string
+    userName: string
+}
+
 export type SettingsPendingFriendsProps = {
     isLoading: boolean
     pendingFriends: FriendType[]
@@ -136,19 +142,6 @@ export type UserDataProps = {
     profilePicture: string
     status: string
     userName: string
-}
-
-export type handleAcceptRequestApiProps = {
-    id: number
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    showToast: (props: ToastProps) => void
 }
 
 export type handleAddFriendApiProps = {
@@ -209,6 +202,19 @@ export type handleRemoveFriendApiProps = {
         React.SetStateAction<FriendType[] | undefined>
     >
     setIsLoadingRemove: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    showToast: (props: ToastProps) => void
+}
+
+export type handleRequestApiProps = {
+    id: number
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>

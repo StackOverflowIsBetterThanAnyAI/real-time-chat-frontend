@@ -10,19 +10,14 @@ import {
     ContextIsSettingsExpanded,
     useToast,
 } from '@/context'
-import { handleAcceptRequestApi } from '@/api'
-
-export type SettingsPendingFriendsItemReceivedProps = {
-    id: number
-    profilePicture: string
-    userName: string
-}
+import { handleAcceptRequestApi, handleDeclineRequestApi } from '@/api'
+import { SettingsPendingFriendsItemProps } from '@/types'
 
 const PendingFriendsItem = ({
     id,
     profilePicture,
     userName,
-}: SettingsPendingFriendsItemReceivedProps) => {
+}: SettingsPendingFriendsItemProps) => {
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
         throw new Error(
@@ -61,6 +56,16 @@ const PendingFriendsItem = ({
             showToast,
         })
     }
+    const handleDeclineRequest = async (id: number) => {
+        handleDeclineRequestApi({
+            id,
+            setFriendsData,
+            setIsLoading,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            showToast,
+        })
+    }
 
     return (
         <div className="flex gap-2 justify-between">
@@ -71,7 +76,9 @@ const PendingFriendsItem = ({
             />
             <span className="flex gap-2">
                 <button
-                    onClick={() => {}}
+                    onClick={() => {
+                        handleDeclineRequest(id)
+                    }}
                     className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
                     hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
                     disabled={isLoading}
@@ -80,11 +87,7 @@ const PendingFriendsItem = ({
                     <MdCancel color="#fb2c36" size={20} />
                 </button>
                 <button
-                    onClick={
-                        handleAcceptRequest
-                            ? () => handleAcceptRequest(id)
-                            : undefined
-                    }
+                    onClick={() => handleAcceptRequest(id)}
                     className="settings-menu-button not-disabled:outline-2 outline-blue-600 small-button flex justify-center
                     hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
                     disabled={isLoading}

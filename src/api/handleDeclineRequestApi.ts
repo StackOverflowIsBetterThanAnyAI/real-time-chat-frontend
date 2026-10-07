@@ -1,7 +1,7 @@
-import { FriendType, handleRequestApiProps } from '@/types'
+import { handleRequestApiProps } from '@/types'
 import { handleLogout } from '@/utils'
 
-export const handleAcceptRequestApi = async ({
+export const handleDeclineRequestApi = async ({
     id,
     setFriendsData,
     setIsLoading,
@@ -12,9 +12,9 @@ export const handleAcceptRequestApi = async ({
     setIsLoading(true)
     try {
         const response = await fetch(
-            `http://localhost:8000/api/friends/${id}/accept`,
+            `http://localhost:8000/api/friends/${id}`,
             {
-                method: 'PATCH',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -44,13 +44,10 @@ export const handleAcceptRequestApi = async ({
             return
         }
 
-        const data: FriendType = await response.json()
         showToast({
-            label: 'Friend has been added!',
+            label: 'Friend has been removed!',
         })
-        setFriendsData((prev) =>
-            prev?.map((item) => (item.id === id ? data : item))
-        )
+        setFriendsData((prev) => prev?.filter((item) => item.id !== id))
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to update the friend status',
