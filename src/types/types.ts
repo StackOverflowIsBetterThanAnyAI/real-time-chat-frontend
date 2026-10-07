@@ -92,6 +92,12 @@ export type SettingsFriendsFallbackProps = {
     fallback: string
 }
 
+export type SettingsFriendsOverviewItemProps = {
+    id: number
+    profilePicture: string
+    userName: string
+}
+
 export type SettingsFriendsOverviewProps = {
     friends: FriendType[]
     isLoading: boolean
@@ -194,19 +200,6 @@ export type handleLogoutProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
-}
-
-export type handleRemoveFriendApiProps = {
-    id: number
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoadingRemove: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    showToast: (props: ToastProps) => void
 }
 
 export type handleRequestApiProps = {
