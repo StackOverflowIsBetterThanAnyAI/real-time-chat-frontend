@@ -130,7 +130,7 @@ export type SettingsProfileProps = {
     ) => Promise<void>
     isLoading: boolean
     profilePicture: string | undefined
-    userName: string
+    userName: string | undefined
 }
 
 export type SettingsStatusProps = {

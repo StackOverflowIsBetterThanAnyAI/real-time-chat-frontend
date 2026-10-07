@@ -24,7 +24,6 @@ import {
     useEscapeFocusTrapSettings,
     useFocusTrapSettings,
 } from '@/hooks'
-import userMockData from '@/mock/userMockData.json'
 import { handleLogout, setItemInSessionStorage } from '@/utils'
 
 const Settings = () => {
@@ -60,7 +59,7 @@ const Settings = () => {
     const [isFriendsExpanded, setIsFriendsExpanded] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const currentStatus = userData?.status || userMockData.status
+    const currentStatus = userData?.status || ''
 
     useEscapeFocusTrapFriends({ setIsFriendsExpanded })
     useEscapeFocusTrapSettings({
@@ -124,9 +123,7 @@ const Settings = () => {
                             handleFileChange={handleFileChange}
                             isLoading={isLoading}
                             profilePicture={userData?.profilePicture}
-                            userName={
-                                userData?.userName || userMockData.userName
-                            }
+                            userName={userData?.userName}
                         />
                         <Status
                             currentStatus={currentStatus}

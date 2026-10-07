@@ -99,7 +99,9 @@ const Status = ({
 
     return (
         <>
-            <div className="triangle mx-auto h-0 w-0"></div>
+            <div
+                className={`${currentStatus ? '' : 'animate-pulse'} triangle mx-auto h-0 w-0`}
+            ></div>
             {isLoading ? (
                 <div className="bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
                     <FetchLoading theme="#f4f4f5" />
@@ -140,13 +142,15 @@ const Status = ({
                         </button>
                     </div>
                 </>
-            ) : (
+            ) : currentStatus ? (
                 <h3
                     className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
                     onDoubleClick={handleIsEditingStatus}
                 >
                     {currentStatus}
                 </h3>
+            ) : (
+                <span className="animate-pulse bg-zinc-800 h-7 sm:h-8 w-40 px-4 py-1 rounded-xl"></span>
             )}
         </>
     )
