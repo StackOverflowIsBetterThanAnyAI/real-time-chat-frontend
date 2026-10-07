@@ -1,29 +1,36 @@
 'use client'
 
-import { Fragment, useContext, useState } from 'react'
+import { useContext, useState } from 'react'
+import { GrRevert } from 'react-icons/gr'
+import { MdCancel } from 'react-icons/md'
+import { TiTick } from 'react-icons/ti'
 import Image from 'next/image'
 import {
     FriendsDetails,
     FriendsFallback,
     FriendsLoading,
 } from '@/app/components/settings'
+import { handleAcceptRequestApi } from '@/api'
 import {
+    ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     useToast,
 } from '@/context'
-import { FriendType } from '@/types'
-import { handleLogout } from '@/utils'
-
-export type SettingsPendingFriendsProps = {
-    isLoading: boolean
-    pendingFriends: FriendType[]
-}
+import { FriendType, SettingsPendingFriendsProps } from '@/types'
 
 const PendingFriends = ({
     isLoading,
     pendingFriends,
 }: SettingsPendingFriendsProps) => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error(
+            'PendingFriends must be used within a ContextFriends.Provider'
+        )
+    }
+    const [, setFriendsData] = contextFriends
+
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -44,55 +51,24 @@ const PendingFriends = ({
 
     const [isLoadingAccept, setIsLoadingAccept] = useState<boolean>(false)
 
+    const fallbackProfilePicture = [
+        'from-red-500 to-red-700',
+        'from-amber-500 to-amber-700',
+        'from-blue-500 to-blue-700',
+        'from-teal-500 to-teal-700',
+        'from-green-500 to-green-700',
+        'from-fuchsia-500 to-fuchsia-700',
+    ]
+
     const handleAcceptRequest = async (id: number) => {
-        setIsLoadingAccept(true)
-        try {
-            const response = await fetch(
-                `http://localhost:8000/api/friends/${id}/accept`,
-                {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: 'include',
-                }
-            )
-
-            if (!response.ok) {
-                console.log(
-                    'An unexpected error occurred while trying to update the friend status',
-                    response.status,
-                    response.statusText
-                )
-                const error = await response.json()
-                if (response.status === 401) {
-                    handleLogout({ setIsLoggedIn, setIsSettingsExpanded })
-                    showToast({ label: 'Session expired. Logging user out.' })
-                } else if (response.status >= 400 && response.status < 500) {
-                    showToast({
-                        label: `Could not update friend status. ${error.error}`,
-                    })
-                } else if (response.status >= 500) {
-                    showToast({
-                        label: 'Could not update friend status. Please try again.',
-                    })
-                }
-                return
-            }
-
-            const data = await response.json()
-            console.log(data)
-        } catch (error) {
-            console.error(
-                'An unexpected error occurred while trying to update the friend status',
-                error
-            )
-            showToast({
-                label: 'Could not update friend status. Please try again.',
-            })
-        } finally {
-            setIsLoadingAccept(false)
-        }
+        handleAcceptRequestApi({
+            id,
+            setFriendsData,
+            setIsLoadingAccept,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            showToast,
+        })
     }
 
     const { pendingFriendsSent, pendingFriendsReceived } =
@@ -118,55 +94,129 @@ const PendingFriends = ({
         return isLoading ? (
             <FriendsLoading />
         ) : pendingFriends.length ? (
-            <div className="px-4 py-2 text-small flex flex-col gap-2">
+            <div className="px-4 py-2 text-small flex flex-col gap-4">
                 {pendingFriendsSent.length ? (
                     <>
-                        <h3 className="text-normal">Sent Friend Requests</h3>
-                        {pendingFriendsSent.map((item) => {
-                            return (
-                                <Fragment key={item.id}>
-                                    <div>{item.friend.profilePicture}</div>
-                                    <div className="text-small">
-                                        {item.friend.userName}
+                        <div className="flex flex-col gap-3">
+                            <h3 className="text-normal">
+                                Sent Friend Requests
+                            </h3>
+                            {pendingFriendsSent.map((item) => {
+                                return (
+                                    <div
+                                        key={item.id}
+                                        className="flex gap-2 justify-between"
+                                    >
+                                        <span className="flex min-w-0 items-center gap-2">
+                                            {item.friend.profilePicture ? (
+                                                <Image
+                                                    src={`http://localhost:8000${item.friend.profilePicture}`}
+                                                    alt="profile picture"
+                                                    height={24}
+                                                    width={24}
+                                                    unoptimized={true}
+                                                    className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
+                                                />
+                                            ) : (
+                                                <span
+                                                    className={`w-6 h-6 shrink-0 flex justify-center items-center rounded-full bg-linear-180
+                                                    ${fallbackProfilePicture[item.id % fallbackProfilePicture.length]}`}
+                                                >
+                                                    {item.friend.userName
+                                                        .charAt(0)
+                                                        .toUpperCase()}
+                                                </span>
+                                            )}
+                                            <div className="truncate">
+                                                {item.friend.userName}
+                                            </div>
+                                        </span>
+                                        <button
+                                            onClick={() => {}}
+                                            className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
+                                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
+                                            disabled={isLoadingAccept}
+                                            title="Cancel"
+                                        >
+                                            <GrRevert
+                                                color="#fb2c36"
+                                                size={20}
+                                            />
+                                        </button>
                                     </div>
-                                    <button>Cancel</button>
-                                </Fragment>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
                     </>
                 ) : null}
                 {pendingFriendsReceived.length ? (
                     <>
-                        <h3 className="text-normal">
-                            Received Friend Requests
-                        </h3>
-                        {pendingFriendsReceived.map((item) => {
-                            return (
-                                <Fragment key={item.id}>
-                                    <span className="flex min-w-0 items-center gap-2">
-                                        <Image
-                                            src={`http://localhost:8000${item.friend.profilePicture}`}
-                                            alt="profile picture"
-                                            height={24}
-                                            width={24}
-                                            unoptimized={true}
-                                            className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
-                                        />
-                                        <div className="truncate">
-                                            {item.friend.userName}
-                                        </div>
-                                    </span>
-                                    <button>Decline</button>
-                                    <button
-                                        onClick={() =>
-                                            handleAcceptRequest(item.id)
-                                        }
+                        <div className="flex flex-col gap-3">
+                            <h3 className="text-normal">
+                                Received Friend Requests
+                            </h3>
+                            {pendingFriendsReceived.map((item) => {
+                                return (
+                                    <div
+                                        key={item.id}
+                                        className="flex gap-2 justify-between"
                                     >
-                                        Accept
-                                    </button>
-                                </Fragment>
-                            )
-                        })}
+                                        <span className="flex min-w-0 items-center gap-2">
+                                            {item.friend.profilePicture ? (
+                                                <Image
+                                                    src={`http://localhost:8000${item.friend.profilePicture}`}
+                                                    alt="profile picture"
+                                                    height={24}
+                                                    width={24}
+                                                    unoptimized={true}
+                                                    className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
+                                                />
+                                            ) : (
+                                                <span
+                                                    className={`w-6 h-6 shrink-0 flex justify-center items-center rounded-full bg-linear-180
+                                                    ${fallbackProfilePicture[item.id % fallbackProfilePicture.length]}`}
+                                                >
+                                                    {item.friend.userName
+                                                        .charAt(0)
+                                                        .toUpperCase()}
+                                                </span>
+                                            )}
+                                            <div className="truncate">
+                                                {item.friend.userName}
+                                            </div>
+                                        </span>
+                                        <span className="flex gap-2">
+                                            <button
+                                                onClick={() => {}}
+                                                className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
+                                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
+                                                disabled={isLoadingAccept}
+                                                title="Decline"
+                                            >
+                                                <MdCancel
+                                                    color="#fb2c36"
+                                                    size={20}
+                                                />
+                                            </button>
+                                            <button
+                                                onClick={() =>
+                                                    handleAcceptRequest(item.id)
+                                                }
+                                                className="settings-menu-button not-disabled:outline-2 outline-blue-600 small-button flex justify-center
+                                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
+                                                disabled={isLoadingAccept}
+                                                title="Accept"
+                                            >
+                                                <TiTick
+                                                    color="#155dfc"
+                                                    size={20}
+                                                />
+                                            </button>
+                                        </span>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </>
                 ) : null}
             </div>

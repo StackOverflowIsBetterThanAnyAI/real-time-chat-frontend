@@ -90,6 +90,11 @@ export type SettingsHeaderProps = {
     header: string
 }
 
+export type SettingsPendingFriendsProps = {
+    isLoading: boolean
+    pendingFriends: FriendType[]
+}
+
 export type SettingsProfilePictureProps = {
     profilePicture: string | undefined
     size: 'small' | 'large'
@@ -120,6 +125,19 @@ export type UserDataProps = {
     profilePicture: string
     status: string
     userName: string
+}
+
+export type handleAcceptRequestApiProps = {
+    id: number
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoadingAccept: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    showToast: (props: ToastProps) => void
 }
 
 export type handleAddFriendApiProps = {
