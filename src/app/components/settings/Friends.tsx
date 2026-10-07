@@ -41,7 +41,7 @@ const Friends = () => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const fetchFriends = useCallback(() => {
+    const fetchFriends = useCallback(async () => {
         handleFetchFriendsApi({
             setFriendsData,
             setIsLoading,

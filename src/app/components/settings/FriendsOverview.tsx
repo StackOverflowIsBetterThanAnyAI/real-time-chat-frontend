@@ -49,7 +49,7 @@ const FriendsOverview = ({
 
     const [isLoadingRemove, setIsLoadingRemove] = useState<boolean>(false)
 
-    const handleRemoveFriend = (id: number) => {
+    const handleRemoveFriend = async (id: number) => {
         handleRemoveFriendApi({
             id,
             setFriendsData,

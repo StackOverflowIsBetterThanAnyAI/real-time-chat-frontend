@@ -35,7 +35,7 @@ const Chat = () => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const fetchUser = useCallback(() => {
+    const fetchUser = useCallback(async () => {
         handleFetchUserApi({
             setIsLoading,
             setIsLoggedIn,

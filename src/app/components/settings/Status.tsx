@@ -82,7 +82,7 @@ const Status = ({
             handleConfirmStatus()
         }
     }
-    const handleUpdateStatus = () => {
+    const handleUpdateStatus = async () => {
         handleUpdateStatusApi({
             currentStatus,
             internalStatus,
