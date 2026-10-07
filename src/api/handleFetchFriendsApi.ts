@@ -39,7 +39,6 @@ export const handleFetchFriendsApi = async ({
         }
 
         const data: FriendType[] = await response.json()
-        console.log(data)
         setFriendsData(data)
     } catch (error) {
         console.error(
