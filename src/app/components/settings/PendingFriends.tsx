@@ -4,9 +4,8 @@ import { useContext, useState } from 'react'
 import { GrRevert } from 'react-icons/gr'
 import { MdCancel } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
-import Image from 'next/image'
 import {
-    FallbackProfilePicture,
+    FriendInfo,
     FriendsDetails,
     FriendsFallback,
     FriendsLoading,
@@ -99,28 +98,13 @@ const PendingFriends = ({
                                         key={item.id}
                                         className="flex gap-2 justify-between"
                                     >
-                                        <span className="flex min-w-0 items-center gap-2">
-                                            {item.friend.profilePicture ? (
-                                                <Image
-                                                    src={`http://localhost:8000${item.friend.profilePicture}`}
-                                                    alt="profile picture"
-                                                    height={24}
-                                                    width={24}
-                                                    unoptimized={true}
-                                                    className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
-                                                />
-                                            ) : (
-                                                <FallbackProfilePicture
-                                                    id={item.id}
-                                                    userName={
-                                                        item.friend.userName
-                                                    }
-                                                />
-                                            )}
-                                            <div className="truncate">
-                                                {item.friend.userName}
-                                            </div>
-                                        </span>
+                                        <FriendInfo
+                                            id={item.id}
+                                            profilePicture={
+                                                item.friend.profilePicture
+                                            }
+                                            userName={item.friend.userName}
+                                        />
                                         <button
                                             onClick={() => {}}
                                             className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
@@ -151,28 +135,13 @@ const PendingFriends = ({
                                         key={item.id}
                                         className="flex gap-2 justify-between"
                                     >
-                                        <span className="flex min-w-0 items-center gap-2">
-                                            {item.friend.profilePicture ? (
-                                                <Image
-                                                    src={`http://localhost:8000${item.friend.profilePicture}`}
-                                                    alt="profile picture"
-                                                    height={24}
-                                                    width={24}
-                                                    unoptimized={true}
-                                                    className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
-                                                />
-                                            ) : (
-                                                <FallbackProfilePicture
-                                                    id={item.id}
-                                                    userName={
-                                                        item.friend.userName
-                                                    }
-                                                />
-                                            )}
-                                            <div className="truncate">
-                                                {item.friend.userName}
-                                            </div>
-                                        </span>
+                                        <FriendInfo
+                                            id={item.id}
+                                            profilePicture={
+                                                item.friend.profilePicture
+                                            }
+                                            userName={item.friend.userName}
+                                        />
                                         <span className="flex gap-2">
                                             <button
                                                 onClick={() => {}}

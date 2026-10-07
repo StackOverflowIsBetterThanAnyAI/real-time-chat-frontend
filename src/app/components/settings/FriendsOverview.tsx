@@ -2,9 +2,8 @@
 
 import { useContext, useState } from 'react'
 import { HiOutlineUserRemove } from 'react-icons/hi'
-import Image from 'next/image'
 import {
-    FallbackProfilePicture,
+    FriendInfo,
     FriendsDetails,
     FriendsFallback,
     FriendsLoading,
@@ -72,26 +71,11 @@ const FriendsOverview = ({
                             key={item.id}
                             className="flex items-center justify-between gap-2"
                         >
-                            <span className="flex min-w-0 items-center gap-2">
-                                {item.friend.profilePicture ? (
-                                    <Image
-                                        src={`http://localhost:8000${item.friend.profilePicture}`}
-                                        alt="profile picture"
-                                        height={24}
-                                        width={24}
-                                        unoptimized={true}
-                                        className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
-                                    />
-                                ) : (
-                                    <FallbackProfilePicture
-                                        id={item.id}
-                                        userName={item.friend.userName}
-                                    />
-                                )}
-                                <div className="truncate">
-                                    {item.friend.userName}
-                                </div>
-                            </span>
+                            <FriendInfo
+                                id={item.id}
+                                profilePicture={item.friend.profilePicture}
+                                userName={item.friend.userName}
+                            />
                             <button
                                 className="shrink-0 settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
                                 hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
