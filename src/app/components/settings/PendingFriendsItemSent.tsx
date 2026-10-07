@@ -2,8 +2,8 @@
 
 import { useContext, useState } from 'react'
 import { GrRevert } from 'react-icons/gr'
-import { FriendInfo } from '@/app/components/settings'
 import { handleDeclineRequestApi } from '@/api'
+import { FriendInfo } from '@/app/components/settings'
 import { SettingsPendingFriendsItemProps } from '@/types'
 import {
     ContextFriends,

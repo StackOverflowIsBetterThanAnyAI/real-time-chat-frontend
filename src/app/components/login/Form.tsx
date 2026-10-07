@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { handleLoginApi, handleRegisterApi } from '@/api'
 import { Message } from '@/app/components/error'
 import {
     FormHeader,
@@ -7,7 +8,6 @@ import {
     FormSubmit,
     FormSwitch,
 } from '@/app/components/login'
-import { handleLoginApi, handleRegisterApi } from '@/api'
 import { ContextIsLoggedIn } from '@/context'
 import {
     useErrorConfirmPassword,

@@ -3,9 +3,9 @@
 import { useContext, useState } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
 import { FetchLoading } from 'fetch-loading'
+import { handleAddFriendApi } from '@/api'
 import { Message } from '@/app/components/error'
 import { FriendsDetails } from '@/app/components/settings'
-import { handleAddFriendApi } from '@/api'
 import {
     ContextFriends,
     ContextIsLoggedIn,

@@ -5,6 +5,7 @@ import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdArrowRoundBack, IoMdClose } from 'react-icons/io'
 import { MdModeEdit, MdDeleteForever, MdLogout } from 'react-icons/md'
+import { handleUploadProfilePictureApi } from '@/api'
 import {
     Button,
     Friends,
@@ -12,7 +13,6 @@ import {
     Profile,
     Status,
 } from '@/app/components/settings'
-import { handleUploadProfilePictureApi } from '@/api'
 import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,

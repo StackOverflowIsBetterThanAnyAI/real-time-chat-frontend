@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react'
 import { MdCancel } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
+import { handleAcceptRequestApi, handleDeclineRequestApi } from '@/api'
 import { FriendInfo } from '@/app/components/settings'
 import {
     ContextFriends,
@@ -10,7 +11,6 @@ import {
     ContextIsSettingsExpanded,
     useToast,
 } from '@/context'
-import { handleAcceptRequestApi, handleDeclineRequestApi } from '@/api'
 import { SettingsPendingFriendsItemProps } from '@/types'
 
 const PendingFriendsItem = ({

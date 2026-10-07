@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useContext, useEffect, useState } from 'react'
+import { handleFetchUserApi } from '@/api'
 import { EmptyWindow, Sidebar } from '@/app/components/chat'
 import {
     ContextIsLoggedIn,
@@ -8,7 +9,6 @@ import {
     ContextUserData,
     useToast,
 } from '@/context'
-import { handleFetchUserApi } from '@/api'
 
 const Chat = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)

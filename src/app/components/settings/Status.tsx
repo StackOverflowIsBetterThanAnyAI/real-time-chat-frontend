@@ -2,8 +2,8 @@
 
 import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
-import { Message } from '@/app/components/error'
 import { handleUpdateStatusApi } from '@/api'
+import { Message } from '@/app/components/error'
 import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
