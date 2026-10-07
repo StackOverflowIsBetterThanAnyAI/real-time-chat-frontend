@@ -189,7 +189,7 @@ const PendingFriends = ({
                                             <button
                                                 onClick={() => {}}
                                                 className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button flex justify-center
-                                            hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
+                                                hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
                                                 disabled={isLoadingAccept}
                                                 title="Decline"
                                             >
