@@ -72,6 +72,17 @@ export type SettingsButtonProps = {
     label: string
 }
 
+export type SettingsFallbackProfilePictureProps = {
+    id: number
+    userName: string
+}
+
+export type SettingsFriendInfoProps = {
+    id: number
+    profilePicture: string
+    userName: string
+}
+
 export type SettingsFriendsDetailsProps = {
     content: React.ReactNode
     summary: string

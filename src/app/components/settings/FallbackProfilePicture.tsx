@@ -1,7 +1,4 @@
-export type SettingsFallbackProfilePictureProps = {
-    id: number
-    userName: string
-}
+import { SettingsFallbackProfilePictureProps } from '@/types'
 
 const FallbackProfilePicture = ({
     id,
