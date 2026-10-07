@@ -6,6 +6,7 @@ import { MdCancel } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
 import Image from 'next/image'
 import {
+    FallbackProfilePicture,
     FriendsDetails,
     FriendsFallback,
     FriendsLoading,
@@ -50,15 +51,6 @@ const PendingFriends = ({
     const { showToast } = useToast()
 
     const [isLoadingAccept, setIsLoadingAccept] = useState<boolean>(false)
-
-    const fallbackProfilePicture = [
-        'from-red-500 to-red-700',
-        'from-amber-500 to-amber-700',
-        'from-blue-500 to-blue-700',
-        'from-teal-500 to-teal-700',
-        'from-green-500 to-green-700',
-        'from-fuchsia-500 to-fuchsia-700',
-    ]
 
     const handleAcceptRequest = async (id: number) => {
         handleAcceptRequestApi({
@@ -118,14 +110,12 @@ const PendingFriends = ({
                                                     className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
                                                 />
                                             ) : (
-                                                <span
-                                                    className={`w-6 h-6 shrink-0 flex justify-center items-center rounded-full bg-linear-180
-                                                    ${fallbackProfilePicture[item.id % fallbackProfilePicture.length]}`}
-                                                >
-                                                    {item.friend.userName
-                                                        .charAt(0)
-                                                        .toUpperCase()}
-                                                </span>
+                                                <FallbackProfilePicture
+                                                    id={item.id}
+                                                    userName={
+                                                        item.friend.userName
+                                                    }
+                                                />
                                             )}
                                             <div className="truncate">
                                                 {item.friend.userName}
@@ -172,14 +162,12 @@ const PendingFriends = ({
                                                     className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
                                                 />
                                             ) : (
-                                                <span
-                                                    className={`w-6 h-6 shrink-0 flex justify-center items-center rounded-full bg-linear-180
-                                                    ${fallbackProfilePicture[item.id % fallbackProfilePicture.length]}`}
-                                                >
-                                                    {item.friend.userName
-                                                        .charAt(0)
-                                                        .toUpperCase()}
-                                                </span>
+                                                <FallbackProfilePicture
+                                                    id={item.id}
+                                                    userName={
+                                                        item.friend.userName
+                                                    }
+                                                />
                                             )}
                                             <div className="truncate">
                                                 {item.friend.userName}

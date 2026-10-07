@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 import { HiOutlineUserRemove } from 'react-icons/hi'
 import Image from 'next/image'
 import {
+    FallbackProfilePicture,
     FriendsDetails,
     FriendsFallback,
     FriendsLoading,
@@ -72,14 +73,21 @@ const FriendsOverview = ({
                             className="flex items-center justify-between gap-2"
                         >
                             <span className="flex min-w-0 items-center gap-2">
-                                <Image
-                                    src={`http://localhost:8000${item.friend.profilePicture}`}
-                                    alt="profile picture"
-                                    height={24}
-                                    width={24}
-                                    unoptimized={true}
-                                    className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
-                                />
+                                {item.friend.profilePicture ? (
+                                    <Image
+                                        src={`http://localhost:8000${item.friend.profilePicture}`}
+                                        alt="profile picture"
+                                        height={24}
+                                        width={24}
+                                        unoptimized={true}
+                                        className="h-6 w-6 shrink-0 rounded-full outline-2 outline-zinc-100 object-cover"
+                                    />
+                                ) : (
+                                    <FallbackProfilePicture
+                                        id={item.id}
+                                        userName={item.friend.userName}
+                                    />
+                                )}
                                 <div className="truncate">
                                     {item.friend.userName}
                                 </div>
