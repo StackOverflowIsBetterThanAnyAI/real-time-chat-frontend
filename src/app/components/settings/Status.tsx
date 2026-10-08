@@ -56,6 +56,7 @@ const Status = ({
         setIsEditingStatus(false)
         setInternalStatus(currentStatus)
         setItemInSessionStorage('status', currentStatus)
+        setItemInSessionStorage('iseditingstatus', false)
         if (apiError) {
             setApiError('')
         }
@@ -81,6 +82,7 @@ const Status = ({
         } else {
             setInternalStatus(currentStatus)
             setItemInSessionStorage('status', currentStatus)
+            setItemInSessionStorage('iseditingstatus', false)
             setIsEditingStatus(false)
         }
     }

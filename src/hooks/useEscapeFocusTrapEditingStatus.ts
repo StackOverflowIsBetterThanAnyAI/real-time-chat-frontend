@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { useEscapeFocusTrapEditingStatusProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const useEscapeFocusTrapEditingStatus = ({
     setIsEditingStatus,
@@ -11,10 +12,9 @@ export const useEscapeFocusTrapEditingStatus = ({
             if (e.key !== 'Escape') {
                 return
             }
-
+            setItemInSessionStorage('iseditingstatus', false)
             setIsEditingStatus(false)
         }
-
         document.addEventListener('keydown', escapeFocusTrap)
 
         return () => {

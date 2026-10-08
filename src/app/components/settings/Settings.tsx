@@ -76,6 +76,7 @@ const Settings = () => {
 
     const handleIsEditingStatus = () => {
         setIsEditingStatus(true)
+        setItemInSessionStorage('iseditingstatus', true)
         setInternalStatus(currentStatus)
     }
     const handleToggleIsSettingsExpanded = () => {
