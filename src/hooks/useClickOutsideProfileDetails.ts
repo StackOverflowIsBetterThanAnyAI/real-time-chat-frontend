@@ -1,8 +1,5 @@
 import { useEffect } from 'react'
-
-export type useClickOutsideProfileDetailsProps = {
-    detailsRef: React.RefObject<HTMLDetailsElement | null>
-}
+import { useClickOutsideProfileDetailsProps } from '@/types'
 
 export const useClickOutsideProfileDetails = ({
     detailsRef,
