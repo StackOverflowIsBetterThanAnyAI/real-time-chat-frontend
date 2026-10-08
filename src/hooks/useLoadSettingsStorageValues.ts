@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
-import { USER_NAME_PATTERN } from '@/constants'
 import { useLoadSettingsStorageValuesProps } from '@/types'
-import { getStoredSessionData, setItemInStorage } from '@/utils'
+import { getStoredSessionData, setItemInSessionStorage } from '@/utils'
 
 export const useLoadSettingsStorageValues = ({
+    setInternalStatus,
     setIsEditingStatus,
     setIsFriendsExpanded,
 }: useLoadSettingsStorageValuesProps) => {
@@ -13,19 +13,32 @@ export const useLoadSettingsStorageValues = ({
         const parsedSessionData = getStoredSessionData()
 
         if (parsedSessionData) {
+            const savedInternalStatus = parsedSessionData?.internalstatus
+            if (
+                typeof savedInternalStatus === 'string' &&
+                savedInternalStatus.length <= 255
+            ) {
+                setInternalStatus(savedInternalStatus)
+            } else {
+                setItemInSessionStorage('internalstatus', '')
+                setInternalStatus('')
+            }
+
             const savedIsEditingStatus = parsedSessionData?.iseditingstatus
             if (typeof savedIsEditingStatus === 'boolean') {
                 setIsEditingStatus(savedIsEditingStatus)
             } else {
-                setItemInStorage('iseditingstatus', false)
+                setItemInSessionStorage('iseditingstatus', false)
+                setIsEditingStatus(false)
             }
 
             const savedIsFriendsExpanded = parsedSessionData?.isfriendsexpanded
             if (typeof savedIsFriendsExpanded === 'boolean') {
                 setIsFriendsExpanded(savedIsFriendsExpanded)
             } else {
-                setItemInStorage('isfriendsexpanded', false)
+                setItemInSessionStorage('isfriendsexpanded', false)
+                setIsFriendsExpanded(false)
             }
         }
-    }, [setIsEditingStatus, setIsFriendsExpanded])
+    }, [setInternalStatus, setIsEditingStatus, setIsFriendsExpanded])
 }

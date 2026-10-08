@@ -55,7 +55,7 @@ const Status = ({
     const handleCancelStatus = () => {
         setIsEditingStatus(false)
         setInternalStatus(currentStatus)
-        setItemInSessionStorage('status', currentStatus)
+        setItemInSessionStorage('internalstatus', currentStatus)
         setItemInSessionStorage('iseditingstatus', false)
         if (apiError) {
             setApiError('')
@@ -64,7 +64,7 @@ const Status = ({
     const handleChangeStatus = (e: React.InputEvent<HTMLInputElement>) => {
         const newValue = e.currentTarget.value
         setInternalStatus(newValue)
-        setItemInSessionStorage('status', newValue)
+        setItemInSessionStorage('internalstatus', newValue)
         if (apiError) {
             setApiError('')
         }
@@ -81,7 +81,7 @@ const Status = ({
             handleUpdateStatus()
         } else {
             setInternalStatus(currentStatus)
-            setItemInSessionStorage('status', currentStatus)
+            setItemInSessionStorage('internalstatus', currentStatus)
             setItemInSessionStorage('iseditingstatus', false)
             setIsEditingStatus(false)
         }

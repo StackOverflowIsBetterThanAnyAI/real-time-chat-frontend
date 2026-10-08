@@ -74,12 +74,17 @@ const Settings = () => {
         setIsSettingsExpanded,
     })
     useFocusTrapSettings()
-    useLoadSettingsStorageValues({ setIsEditingStatus, setIsFriendsExpanded })
+    useLoadSettingsStorageValues({
+        setInternalStatus,
+        setIsEditingStatus,
+        setIsFriendsExpanded,
+    })
 
     const handleIsEditingStatus = () => {
         setIsEditingStatus(true)
         setItemInSessionStorage('iseditingstatus', true)
         setInternalStatus(currentStatus)
+        setItemInSessionStorage('internalstatus', currentStatus)
     }
     const handleToggleIsSettingsExpanded = () => {
         setIsSettingsExpanded(() => {
