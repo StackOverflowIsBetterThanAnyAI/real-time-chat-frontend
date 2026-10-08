@@ -127,6 +127,7 @@ export type SettingsProfilePictureProps = {
 export type SettingsProfileProps = {
     isLoading: boolean
     profilePicture: string | null | undefined
+    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     userName: string | undefined
 }

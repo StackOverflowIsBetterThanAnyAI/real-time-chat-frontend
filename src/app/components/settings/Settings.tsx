@@ -125,6 +125,7 @@ const Settings = () => {
                         <Profile
                             isLoading={isLoading}
                             profilePicture={userData?.profilePicture}
+                            setIsEditingStatus={setIsEditingStatus}
                             setIsLoading={setIsLoading}
                             userName={userData?.userName}
                         />

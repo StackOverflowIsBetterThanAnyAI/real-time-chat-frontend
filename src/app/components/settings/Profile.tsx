@@ -16,10 +16,12 @@ import {
     useToast,
 } from '@/context'
 import { useClickOutsideProfileDetails } from '@/hooks'
+import { setItemInSessionStorage } from '@/utils'
 
 const Profile = ({
     isLoading,
     profilePicture,
+    setIsEditingStatus,
     setIsLoading,
     userName,
 }: SettingsProfileProps) => {
@@ -63,6 +65,12 @@ const Profile = ({
             detailsRef.current.open = false
         }
     }
+    const handleDetailsToggle = () => {
+        if (detailsRef.current?.open) {
+            setIsEditingStatus(false)
+            setItemInSessionStorage('iseditingstatus', false)
+        }
+    }
     const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
         if (e.key === ' ' || e.key === 'Enter') {
             labelRef?.current?.click()
@@ -96,7 +104,11 @@ const Profile = ({
 
     return (
         <div className="flex flex-col items-center">
-            <details ref={detailsRef} className="relative group">
+            <details
+                ref={detailsRef}
+                className="relative group"
+                onToggle={handleDetailsToggle}
+            >
                 <summary
                     title="Manage Profile Picture"
                     className={`settings-menu-button w-28 sm:w-32 h-28 sm:h-32 rounded-full outline-2 outline-zinc-100 relative
