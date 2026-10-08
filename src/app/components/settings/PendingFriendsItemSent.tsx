@@ -46,7 +46,7 @@ const PendingFriendsItem = ({
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const handleDeclineRequest = async (id: number) => {
-        handleDeclineRequestApi({
+        await handleDeclineRequestApi({
             id,
             setFriendsData,
             setIsLoading,

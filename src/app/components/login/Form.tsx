@@ -64,7 +64,7 @@ const Form = () => {
         }
     }
     const handleLogin = async () => {
-        handleLoginApi({
+        await handleLoginApi({
             password,
             setApiError,
             setIsLoading,
@@ -73,7 +73,7 @@ const Form = () => {
         })
     }
     const handleRegister = async () => {
-        handleRegisterApi({
+        await handleRegisterApi({
             password,
             setApiError,
             setIsLoading,

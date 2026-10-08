@@ -46,7 +46,7 @@ const FriendsOverviewItem = ({
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const handleRemoveFriend = async (id: number) => {
-        handleDeclineRequestApi({
+        await handleDeclineRequestApi({
             id,
             setFriendsData,
             setIsLoading,

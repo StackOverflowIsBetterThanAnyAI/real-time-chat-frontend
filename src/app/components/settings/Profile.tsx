@@ -49,7 +49,7 @@ const Profile = ({
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        handleUploadProfilePictureApi({
+        await handleUploadProfilePictureApi({
             e,
             setIsLoading,
             setIsLoggedIn,
@@ -60,7 +60,7 @@ const Profile = ({
         setIsOpen(false)
     }
     const handleRemoveProfilePicture = async () => {
-        handleRemoveProfilePictureApi({
+        await handleRemoveProfilePictureApi({
             setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,

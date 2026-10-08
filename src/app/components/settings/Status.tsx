@@ -83,7 +83,7 @@ const Status = ({
         }
     }
     const handleUpdateStatus = async () => {
-        handleUpdateStatusApi({
+        await handleUpdateStatusApi({
             currentStatus,
             internalStatus,
             setApiError,

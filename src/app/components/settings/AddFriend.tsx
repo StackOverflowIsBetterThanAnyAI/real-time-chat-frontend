@@ -57,7 +57,7 @@ const AddFriend = () => {
         }
     }
     const handleAddFriend = async () => {
-        handleAddFriendApi({
+        await handleAddFriendApi({
             setError,
             setFriendsData,
             setIsLoading,
