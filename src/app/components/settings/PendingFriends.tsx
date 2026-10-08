@@ -31,7 +31,7 @@ const PendingFriends = ({
         )
 
     const pendingFriendsContent = () => {
-        return isLoading ? (
+        return isLoading && !pendingFriends.length ? (
             <FriendsLoading />
         ) : pendingFriends.length ? (
             <div className="px-4 py-2 text-small flex flex-col gap-4">

@@ -11,7 +11,7 @@ const FriendsOverview = ({
     isLoading,
 }: SettingsFriendsOverviewProps) => {
     const friendsContent = () => {
-        return isLoading ? (
+        return isLoading && !friends.length ? (
             <FriendsLoading />
         ) : friends.length ? (
             <div className="px-4 py-2 text-small flex flex-col gap-4">
