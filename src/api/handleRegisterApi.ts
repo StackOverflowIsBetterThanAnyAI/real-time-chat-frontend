@@ -9,6 +9,7 @@ export const handleRegisterApi = async ({
     userName,
 }: handleLoginApiProps) => {
     setIsLoading(true)
+    setIsLoggedIn(false)
     setApiError('')
     try {
         const response = await fetch(`http://localhost:8000/api/register`, {
