@@ -4,7 +4,10 @@ import { FetchLoading } from 'fetch-loading'
 import { useContext, useState } from 'react'
 import { ProfilePicture } from '@/app/components/settings'
 import { SettingsProfileProps } from '@/types'
-import { handleUploadProfilePictureApi } from '@/api'
+import {
+    handleRemoveProfilePictureApi,
+    handleUploadProfilePictureApi,
+} from '@/api'
 import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
@@ -56,7 +59,16 @@ const Profile = ({
         })
         setIsOpen(false)
     }
-    // const handleRemoveProfilePictureApi = async () => {}
+    const handleRemoveProfilePicture = async () => {
+        handleRemoveProfilePictureApi({
+            setIsLoading,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            setUserData,
+            showToast,
+        })
+        setIsOpen(false)
+    }
 
     return (
         <div className="flex flex-col items-center">
@@ -102,7 +114,7 @@ const Profile = ({
                         <button
                             type="button"
                             className="settings-menu-button regular-button hover:bg-zinc-700/60 active:bg-zinc-700 text-red-400"
-                            onClick={() => {}}
+                            onClick={handleRemoveProfilePicture}
                         >
                             Remove Image
                         </button>
