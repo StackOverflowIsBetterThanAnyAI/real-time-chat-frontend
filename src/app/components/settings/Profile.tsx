@@ -15,6 +15,7 @@ import {
     ContextUserData,
     useToast,
 } from '@/context'
+import { useClickOutsideProfileDetails } from '@/hooks'
 
 const Profile = ({
     isLoading,
@@ -90,6 +91,8 @@ const Profile = ({
             showToast,
         })
     }
+
+    useClickOutsideProfileDetails({ detailsRef })
 
     return (
         <div className="flex flex-col items-center">
