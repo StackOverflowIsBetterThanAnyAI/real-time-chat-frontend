@@ -166,6 +166,19 @@ export type handleAddFriendApiProps = {
     userToBeAdded: string
 }
 
+export type handleDeleteAccountApiProps = {
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
+}
+
 export type handleFetchFriendsApiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
@@ -268,6 +281,10 @@ export type handleUploadProfilePictureApiProps = {
     >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
+}
+
+export type useClickOutsideProfileDetailsProps = {
+    detailsRef: React.RefObject<HTMLDetailsElement | null>
 }
 
 export type useErrorConfirmPasswordProps = {

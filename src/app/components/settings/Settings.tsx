@@ -5,6 +5,7 @@ import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdArrowRoundBack, IoMdClose } from 'react-icons/io'
 import { MdModeEdit, MdDeleteForever, MdLogout } from 'react-icons/md'
+import { handleDeleteAccountApi } from '@/api'
 import {
     Button,
     Friends,
@@ -17,6 +18,7 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
+    useToast,
 } from '@/context'
 import {
     useEscapeFocusTrapFriends,
@@ -60,7 +62,10 @@ const Settings = () => {
     }
     const [userData, setUserData] = contextUserData
 
+    const { showToast } = useToast()
+
     const [internalStatus, setInternalStatus] = useState<string>('')
+    const [isDeleteAccount, setIsDeleteAccount] = useState<boolean>(false)
     const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
     const [isFriendsExpanded, setIsFriendsExpanded] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -79,7 +84,19 @@ const Settings = () => {
         setIsEditingStatus,
         setIsFriendsExpanded,
     })
-
+    const handleDeleteAccount = async () => {
+        if (isDeleteAccount) {
+            await handleDeleteAccountApi({
+                setFriendsData,
+                setIsLoading,
+                setIsLoggedIn,
+                setIsSettingsExpanded,
+                setUserData,
+                showToast,
+            })
+        }
+        setIsDeleteAccount((prev) => !prev)
+    }
     const handleIsEditingStatus = () => {
         setIsEditingStatus(true)
         setItemInSessionStorage('iseditingstatus', true)
@@ -175,8 +192,8 @@ const Settings = () => {
                                 isDelete
                             />
                             <Button
-                                handleClick={() => {}}
-                                label="Delete Account"
+                                handleClick={handleDeleteAccount}
+                                label={`${isDeleteAccount ? 'Confirm Deletion' : 'Delete Account'}`}
                                 icon={<MdDeleteForever />}
                                 isDelete
                             />
