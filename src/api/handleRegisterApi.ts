@@ -1,3 +1,4 @@
+import { handleLoginApi } from '@/api'
 import { handleLoginApiProps } from '@/types'
 import { setItemInStorage } from '@/utils'
 
@@ -38,9 +39,13 @@ export const handleRegisterApi = async ({
             return
         }
 
-        setIsLoggedIn(true)
-        setItemInStorage('isloggedin', true)
-        setApiError('')
+        await handleLoginApi({
+            password,
+            setApiError,
+            setIsLoading,
+            setIsLoggedIn,
+            userName,
+        })
     } catch (error) {
         setIsLoggedIn(false)
         setItemInStorage('isloggedin', false)
