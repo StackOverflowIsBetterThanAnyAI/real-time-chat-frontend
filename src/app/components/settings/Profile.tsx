@@ -1,7 +1,7 @@
 'use client'
 
 import { FetchLoading } from 'fetch-loading'
-import { useContext, useState } from 'react'
+import { useContext, useRef } from 'react'
 import { ProfilePicture } from '@/app/components/settings'
 import { SettingsProfileProps } from '@/types'
 import {
@@ -14,6 +14,7 @@ import {
     ContextUserData,
     useToast,
 } from '@/context'
+
 const Profile = ({
     isLoading,
     profilePicture,
@@ -46,10 +47,21 @@ const Profile = ({
 
     const { showToast } = useToast()
 
-    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const detailsRef = useRef<HTMLDetailsElement>(null)
+    const labelRef = useRef<HTMLLabelElement>(null)
 
+    const closeMenu = () => {
+        if (detailsRef.current) {
+            detailsRef.current.open = false
+        }
+    }
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            labelRef?.current?.click()
+        }
+    }
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIsOpen(false)
+        closeMenu()
         await handleUploadProfilePictureApi({
             e,
             setIsLoading,
@@ -60,6 +72,7 @@ const Profile = ({
         })
     }
     const handleRemoveProfilePicture = async () => {
+        closeMenu()
         await handleRemoveProfilePictureApi({
             setIsLoading,
             setIsLoggedIn,
@@ -67,12 +80,11 @@ const Profile = ({
             setUserData,
             showToast,
         })
-        setIsOpen(false)
     }
 
     return (
         <div className="flex flex-col items-center">
-            <details className="relative group" open={isOpen}>
+            <details ref={detailsRef} className="relative group">
                 <summary
                     title="Manage Profile Picture"
                     className="settings-menu-button w-28 sm:w-32 h-28 sm:h-32 rounded-full outline-2 outline-zinc-100 relative
@@ -95,11 +107,10 @@ const Profile = ({
                 >
                     <label
                         htmlFor="uploadProfilePicture"
-                        className="settings-menu-button regular-button cursor-pointer hover:bg-zinc-700/60 active:bg-zinc-700 focus-visible:outline-2 outline-zinc-100"
-                        onClick={() => {
-                            setIsOpen((prev) => !prev)
-                        }}
                         tabIndex={0}
+                        className="settings-menu-button regular-button cursor-pointer hover:bg-zinc-700/60 active:bg-zinc-700 focus-visible:outline-2 outline-zinc-100"
+                        onKeyDown={handleKeyDown}
+                        ref={labelRef}
                     >
                         Upload Image
                     </label>
