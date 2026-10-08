@@ -5,7 +5,6 @@ import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdArrowRoundBack, IoMdClose } from 'react-icons/io'
 import { MdModeEdit, MdDeleteForever, MdLogout } from 'react-icons/md'
-import { handleUploadProfilePictureApi } from '@/api'
 import {
     Button,
     Friends,
@@ -17,7 +16,6 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
 import {
     useEscapeFocusTrapFriends,
@@ -52,8 +50,6 @@ const Settings = () => {
     }
     const [userData, setUserData] = contextUserData
 
-    const { showToast } = useToast()
-
     const [internalStatus, setInternalStatus] = useState<string>('')
     const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
     const [isFriendsExpanded, setIsFriendsExpanded] = useState<boolean>(false)
@@ -87,16 +83,6 @@ const Settings = () => {
             return nextVal
         })
     }
-    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        handleUploadProfilePictureApi({
-            e,
-            setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
-            showToast,
-        })
-    }
 
     return (
         <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
@@ -120,9 +106,9 @@ const Settings = () => {
                     />
                     <div className="flex flex-col justify-center items-center mx-auto w-full">
                         <Profile
-                            handleFileChange={handleFileChange}
                             isLoading={isLoading}
                             profilePicture={userData?.profilePicture}
+                            setIsLoading={setIsLoading}
                             userName={userData?.userName}
                         />
                         <Status

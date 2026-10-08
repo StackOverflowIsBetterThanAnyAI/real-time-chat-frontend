@@ -125,11 +125,9 @@ export type SettingsProfilePictureProps = {
 }
 
 export type SettingsProfileProps = {
-    handleFileChange: (
-        e: React.ChangeEvent<HTMLInputElement, Element>
-    ) => Promise<void>
     isLoading: boolean
     profilePicture: string | undefined
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     userName: string | undefined
 }
 
