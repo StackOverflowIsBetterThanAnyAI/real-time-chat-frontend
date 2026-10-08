@@ -84,7 +84,7 @@ export const handleUploadProfilePictureApi = async ({
         )
     } catch (error) {
         console.error(
-            'An unexpected error occurred while trying to fetch personal user data',
+            'An unexpected error occurred while trying to upload profile picture',
             error
         )
         showToast({
