@@ -120,13 +120,13 @@ export type SettingsPendingFriendsProps = {
 }
 
 export type SettingsProfilePictureProps = {
-    profilePicture: string | undefined
+    profilePicture: string | null | undefined
     size: 'small' | 'large'
 }
 
 export type SettingsProfileProps = {
     isLoading: boolean
-    profilePicture: string | undefined
+    profilePicture: string | null | undefined
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     userName: string | undefined
 }
@@ -144,7 +144,7 @@ export type SettingsStatusProps = {
 export type ToastProps = { label: string }
 
 export type UserDataProps = {
-    profilePicture: string
+    profilePicture: string | null
     status: string
     userName: string
 }
@@ -199,6 +199,16 @@ export type handleLogoutProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+}
+
+export type handleRemoveProfilePictureApiProps = {
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
 }
 
 export type handleRequestApiProps = {
