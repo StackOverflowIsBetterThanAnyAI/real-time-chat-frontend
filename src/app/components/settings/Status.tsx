@@ -111,7 +111,7 @@ const Status = ({
                 className={`${currentStatus ? '' : 'animate-pulse'} triangle mx-auto h-0 w-0`}
             ></div>
             {isLoading ? (
-                <div className="bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto">
+                <div className="bg-zinc-800 max-w-full w-fit h-7 sm:h-8 lg:h-9 px-4 py-1 rounded-xl mx-auto">
                     <FetchLoading theme="#f4f4f5" />
                 </div>
             ) : isEditingStatus ? (
