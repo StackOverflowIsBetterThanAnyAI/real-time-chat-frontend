@@ -314,6 +314,11 @@ export type useLoadLoginStorageValuesProps = {
     setUserName: React.Dispatch<React.SetStateAction<string>>
 }
 
+export type useLoadSettingsStorageValuesProps = {
+    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 export type useLoginSubmitDisabledProps = {
     confirmPassword: string
     isSigningUp: boolean

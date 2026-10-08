@@ -22,6 +22,7 @@ import {
     useEscapeFocusTrapFriends,
     useEscapeFocusTrapSettings,
     useFocusTrapSettings,
+    useLoadSettingsStorageValues,
 } from '@/hooks'
 import { handleLogout, setItemInSessionStorage } from '@/utils'
 
@@ -73,6 +74,7 @@ const Settings = () => {
         setIsSettingsExpanded,
     })
     useFocusTrapSettings()
+    useLoadSettingsStorageValues({ setIsEditingStatus, setIsFriendsExpanded })
 
     const handleIsEditingStatus = () => {
         setIsEditingStatus(true)
