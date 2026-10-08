@@ -87,8 +87,9 @@ const Profile = ({
             <details ref={detailsRef} className="relative group">
                 <summary
                     title="Manage Profile Picture"
-                    className="settings-menu-button w-28 sm:w-32 h-28 sm:h-32 rounded-full outline-2 outline-zinc-100 relative
-                    bg-linear-180 from-blue-500 to-blue-700 overflow-hidden focus-within:outline-4! block"
+                    className={`settings-menu-button w-28 sm:w-32 h-28 sm:h-32 rounded-full outline-2 outline-zinc-100 relative
+                    bg-linear-180 from-blue-500 to-blue-700 overflow-hidden focus-within:outline-4! block
+                    ${profilePicture === undefined ? 'animate-pulse' : ''}`}
                 >
                     {isLoading ? (
                         <span className="flex justify-center items-center h-full">

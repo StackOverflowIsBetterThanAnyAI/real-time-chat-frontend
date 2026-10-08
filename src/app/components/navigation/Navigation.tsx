@@ -51,7 +51,8 @@ const Navigation = () => {
                     {isLoggedIn && (
                         <button
                             onClick={handleClick}
-                            className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden"
+                            className={`w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700
+                            relative overflow-hidden ${userData === undefined ? ' animate-pulse' : ''}`}
                             title={`${isSettingsExpanded ? 'Close' : 'Open'} Settings`}
                         >
                             <ProfilePicture
