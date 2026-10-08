@@ -159,6 +159,7 @@ export type handleAddFriendApiProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     setUserToBeAdded: React.Dispatch<React.SetStateAction<string>>
     showToast: (props: ToastProps) => void
     userToBeAdded: string
@@ -173,10 +174,14 @@ export type handleFetchFriendsApiProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleFetchUserApiProps = {
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
@@ -195,13 +200,20 @@ export type handleLoginApiProps = {
 }
 
 export type handleLogoutProps = {
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 
 export type handleRemoveProfilePictureApiProps = {
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
@@ -221,6 +233,7 @@ export type handleRequestApiProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
@@ -228,6 +241,9 @@ export type handleUpdateStatusAPiProps = {
     currentStatus: string
     internalStatus: string
     setApiError: React.Dispatch<React.SetStateAction<string>>
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -241,6 +257,9 @@ export type handleUpdateStatusAPiProps = {
 
 export type handleUploadProfilePictureApiProps = {
     e: React.ChangeEvent<HTMLInputElement>
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<

@@ -10,6 +10,7 @@ import {
     ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
+    ContextUserData,
     useToast,
 } from '@/context'
 import { useErrorUserName } from '@/hooks'
@@ -39,6 +40,14 @@ const AddFriend = () => {
     }
     const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
+    const contextUserData = useContext(ContextUserData)
+    if (!contextUserData) {
+        throw new Error(
+            'AddFriend must be used within a ContextUserData.Provider'
+        )
+    }
+    const [, setUserData] = contextUserData
+
     const { showToast } = useToast()
 
     const [error, setError] = useState<string>('')
@@ -63,6 +72,7 @@ const AddFriend = () => {
             setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
+            setUserData,
             setUserToBeAdded,
             showToast,
             userToBeAdded,

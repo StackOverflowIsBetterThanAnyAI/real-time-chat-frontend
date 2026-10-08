@@ -5,6 +5,7 @@ import { FetchLoading } from 'fetch-loading'
 import { handleUpdateStatusApi } from '@/api'
 import { Message } from '@/app/components/error'
 import {
+    ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     useToast,
@@ -22,6 +23,12 @@ const Status = ({
     setIsEditingStatus,
     setUserData,
 }: SettingsStatusProps) => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error('Status must be used within a ContextFriends.Provider')
+    }
+    const [, setFriendsData] = contextFriends
+
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -87,6 +94,7 @@ const Status = ({
             currentStatus,
             internalStatus,
             setApiError,
+            setFriendsData,
             setIsEditingStatus,
             setInternalStatus,
             setIsLoading,

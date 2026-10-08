@@ -7,8 +7,10 @@ import {
 } from '@/utils'
 
 export const handleLogout = ({
+    setFriendsData,
     setIsLoggedIn,
     setIsSettingsExpanded,
+    setUserData,
 }: handleLogoutProps) => {
     const parsedSessionData = getStoredSessionData()
     const parsedStorageData = getStoredData()
@@ -24,6 +26,8 @@ export const handleLogout = ({
         setItemInStorage('username', dataUserName)
     }
 
-    setIsSettingsExpanded(false)
+    setFriendsData(undefined)
     setIsLoggedIn(false)
+    setIsSettingsExpanded(false)
+    setUserData(undefined)
 }

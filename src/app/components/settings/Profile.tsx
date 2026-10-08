@@ -9,6 +9,7 @@ import {
     handleUploadProfilePictureApi,
 } from '@/api'
 import {
+    ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
@@ -21,6 +22,12 @@ const Profile = ({
     setIsLoading,
     userName,
 }: SettingsProfileProps) => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error('Profile must be used within a ContextFriends.Provider')
+    }
+    const [, setFriendsData] = contextFriends
+
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -64,6 +71,7 @@ const Profile = ({
         closeMenu()
         await handleUploadProfilePictureApi({
             e,
+            setFriendsData,
             setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
@@ -74,6 +82,7 @@ const Profile = ({
     const handleRemoveProfilePicture = async () => {
         closeMenu()
         await handleRemoveProfilePictureApi({
+            setFriendsData,
             setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,

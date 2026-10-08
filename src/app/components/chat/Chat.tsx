@@ -4,6 +4,7 @@ import { useCallback, useContext, useEffect, useState } from 'react'
 import { handleFetchUserApi } from '@/api'
 import { EmptyWindow, Sidebar } from '@/app/components/chat'
 import {
+    ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
@@ -11,6 +12,12 @@ import {
 } from '@/context'
 
 const Chat = () => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error('Chat must be used within a ContextFriends.Provider')
+    }
+    const [, setFriendsData] = contextFriends
+
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error('Chat must be used within a ContextIsLoggedIn.Provider')
@@ -37,13 +44,20 @@ const Chat = () => {
 
     const fetchUser = useCallback(async () => {
         handleFetchUserApi({
+            setFriendsData,
             setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
             setUserData,
             showToast,
         })
-    }, [setIsLoggedIn, setIsSettingsExpanded, setUserData, showToast])
+    }, [
+        setFriendsData,
+        setIsLoggedIn,
+        setIsSettingsExpanded,
+        setUserData,
+        showToast,
+    ])
 
     useEffect(() => {
         fetchUser()

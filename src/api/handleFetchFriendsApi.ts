@@ -6,6 +6,7 @@ export const handleFetchFriendsApi = async ({
     setIsLoading,
     setIsLoggedIn,
     setIsSettingsExpanded,
+    setUserData,
     showToast,
 }: handleFetchFriendsApiProps) => {
     setIsLoading(true)
@@ -26,7 +27,12 @@ export const handleFetchFriendsApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogout({ setIsLoggedIn, setIsSettingsExpanded })
+                handleLogout({
+                    setFriendsData,
+                    setIsLoggedIn,
+                    setIsSettingsExpanded,
+                    setUserData,
+                })
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 showToast({ label: `Could not fetch friends. ${error.error}` })

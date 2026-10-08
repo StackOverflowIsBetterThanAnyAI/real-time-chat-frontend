@@ -13,6 +13,7 @@ import {
     Status,
 } from '@/app/components/settings'
 import {
+    ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
@@ -25,6 +26,14 @@ import {
 import { handleLogout, setItemInSessionStorage } from '@/utils'
 
 const Settings = () => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error(
+            'Settings must be used within a ContextFriends.Provider'
+        )
+    }
+    const [, setFriendsData] = contextFriends
+
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -146,8 +155,10 @@ const Settings = () => {
                             <Button
                                 handleClick={() =>
                                     handleLogout({
+                                        setFriendsData,
                                         setIsLoggedIn,
                                         setIsSettingsExpanded,
+                                        setUserData,
                                     })
                                 }
                                 label="Logout"

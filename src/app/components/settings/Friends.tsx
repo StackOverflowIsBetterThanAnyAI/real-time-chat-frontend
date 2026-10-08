@@ -11,6 +11,7 @@ import {
     ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
+    ContextUserData,
     useToast,
 } from '@/context'
 
@@ -37,6 +38,14 @@ const Friends = () => {
     }
     const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
+    const contextUserData = useContext(ContextUserData)
+    if (!contextUserData) {
+        throw new Error(
+            'Friends must be used within a ContextUserData.Provider'
+        )
+    }
+    const [, setUserData] = contextUserData
+
     const { showToast } = useToast()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -47,9 +56,16 @@ const Friends = () => {
             setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
+            setUserData,
             showToast,
         })
-    }, [setFriendsData, setIsLoggedIn, setIsSettingsExpanded, showToast])
+    }, [
+        setFriendsData,
+        setIsLoggedIn,
+        setIsSettingsExpanded,
+        setUserData,
+        showToast,
+    ])
 
     useEffect(() => {
         fetchFriends()

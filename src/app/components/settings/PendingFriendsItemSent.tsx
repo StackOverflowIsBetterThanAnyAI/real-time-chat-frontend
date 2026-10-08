@@ -9,6 +9,7 @@ import {
     ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
+    ContextUserData,
     useToast,
 } from '@/context'
 
@@ -41,6 +42,14 @@ const PendingFriendsItem = ({
     }
     const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
+    const contextUserData = useContext(ContextUserData)
+    if (!contextUserData) {
+        throw new Error(
+            'PendingFriendsItemSent must be used within a ContextUserData.Provider'
+        )
+    }
+    const [, setUserData] = contextUserData
+
     const { showToast } = useToast()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -52,6 +61,7 @@ const PendingFriendsItem = ({
             setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
+            setUserData,
             showToast,
         })
     }

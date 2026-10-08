@@ -7,6 +7,7 @@ export const handleAddFriendApi = async ({
     setIsLoading,
     setIsLoggedIn,
     setIsSettingsExpanded,
+    setUserData,
     setUserToBeAdded,
     showToast,
     userToBeAdded,
@@ -34,7 +35,12 @@ export const handleAddFriendApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogout({ setIsLoggedIn, setIsSettingsExpanded })
+                handleLogout({
+                    setFriendsData,
+                    setIsLoggedIn,
+                    setIsSettingsExpanded,
+                    setUserData,
+                })
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 setError(`Could not send friend request. ${error.error}`)
