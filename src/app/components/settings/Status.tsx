@@ -158,7 +158,7 @@ const Status = ({
                     {currentStatus}
                 </h3>
             ) : (
-                <span className="animate-pulse bg-zinc-800 h-7 sm:h-8 w-40 px-4 py-1 rounded-xl"></span>
+                <span className="animate-pulse bg-zinc-800 h-7 sm:h-8 lg:h-9 w-40 px-4 py-1 rounded-xl"></span>
             )}
         </>
     )
