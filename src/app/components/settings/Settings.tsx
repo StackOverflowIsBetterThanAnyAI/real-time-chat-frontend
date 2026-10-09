@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdArrowRoundBack, IoMdClose } from 'react-icons/io'
@@ -72,12 +72,15 @@ const Settings = () => {
     const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false)
     const [isLoadingLogout, setIsLoadingLogout] = useState<boolean>(false)
 
+    const profilePictureDetailsRef = useRef<HTMLDetailsElement>(null)
+
     const currentStatus = userData?.status || ''
 
     useEscapeFocusTrapFriends({ setIsFriendsExpanded })
     useEscapeFocusTrapSettings({
         isEditingStatus,
         isFriendsExpanded,
+        profilePictureDetailsRef,
         setIsSettingsExpanded,
     })
     useFocusTrapSettings()
@@ -156,6 +159,7 @@ const Settings = () => {
                         <Profile
                             isLoading={isLoading}
                             profilePicture={userData?.profilePicture}
+                            profilePictureDetailsRef={profilePictureDetailsRef}
                             setIsEditingStatus={setIsEditingStatus}
                             setIsLoading={setIsLoading}
                             userName={userData?.userName}

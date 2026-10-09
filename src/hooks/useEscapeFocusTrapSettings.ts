@@ -7,11 +7,17 @@ import { setItemInSessionStorage } from '@/utils'
 export const useEscapeFocusTrapSettings = ({
     isEditingStatus,
     isFriendsExpanded,
+    profilePictureDetailsRef,
     setIsSettingsExpanded,
 }: useEscapeFocusTrapSettingsProps) => {
     useEffect(() => {
         const escapeFocusTrap = (e: KeyboardEvent) => {
-            if (e.key !== 'Escape' || isEditingStatus || isFriendsExpanded) {
+            if (
+                e.key !== 'Escape' ||
+                isEditingStatus ||
+                isFriendsExpanded ||
+                profilePictureDetailsRef?.current?.open
+            ) {
                 return
             }
 
@@ -24,5 +30,10 @@ export const useEscapeFocusTrapSettings = ({
         return () => {
             document.removeEventListener('keydown', escapeFocusTrap)
         }
-    }, [isEditingStatus, isFriendsExpanded, setIsSettingsExpanded])
+    }, [
+        isEditingStatus,
+        isFriendsExpanded,
+        profilePictureDetailsRef,
+        setIsSettingsExpanded,
+    ])
 }

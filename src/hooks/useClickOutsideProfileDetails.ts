@@ -2,20 +2,20 @@ import { useEffect } from 'react'
 import { useClickOutsideProfileDetailsProps } from '@/types'
 
 export const useClickOutsideProfileDetails = ({
-    detailsRef,
+    profilePictureDetailsRef,
 }: useClickOutsideProfileDetailsProps) => {
     useEffect(() => {
         const useClickOutsideProfileDetails = (e: MouseEvent) => {
             if (
-                detailsRef.current &&
-                !detailsRef.current.contains(e.target as Node)
+                profilePictureDetailsRef.current &&
+                !profilePictureDetailsRef.current.contains(e.target as Node)
             ) {
-                detailsRef.current.open = false
+                profilePictureDetailsRef.current.open = false
             }
         }
         document.addEventListener('click', useClickOutsideProfileDetails)
         return () => {
             document.removeEventListener('click', useClickOutsideProfileDetails)
         }
-    }, [detailsRef])
+    }, [profilePictureDetailsRef])
 }

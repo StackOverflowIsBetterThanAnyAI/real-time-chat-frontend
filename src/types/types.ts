@@ -129,6 +129,7 @@ export type SettingsProfilePictureProps = {
 export type SettingsProfileProps = {
     isLoading: boolean
     profilePicture: string | null | undefined
+    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     userName: string | undefined
@@ -299,7 +300,7 @@ export type resetStorageProps = {
 }
 
 export type useClickOutsideProfileDetailsProps = {
-    detailsRef: React.RefObject<HTMLDetailsElement | null>
+    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
 }
 
 export type useErrorConfirmPasswordProps = {
@@ -323,6 +324,10 @@ export type useEscapeFocusTrapFriendsProps = {
     setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+export type useEscapeFocusTrapProfilePictureProps = {
+    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
+}
+
 export type useEscapeFocusTrapEditingStatusProps = {
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -330,6 +335,7 @@ export type useEscapeFocusTrapEditingStatusProps = {
 export type useEscapeFocusTrapSettingsProps = {
     isEditingStatus: boolean
     isFriendsExpanded: boolean
+    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >

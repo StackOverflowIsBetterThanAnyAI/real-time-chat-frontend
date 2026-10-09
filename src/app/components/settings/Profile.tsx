@@ -3,7 +3,6 @@
 import { FetchLoading } from 'fetch-loading'
 import { useContext, useRef } from 'react'
 import { ProfilePicture } from '@/app/components/settings'
-import { SettingsProfileProps } from '@/types'
 import {
     handleRemoveProfilePictureApi,
     handleUploadProfilePictureApi,
@@ -16,11 +15,13 @@ import {
     useToast,
 } from '@/context'
 import { useClickOutsideProfileDetails } from '@/hooks'
+import { SettingsProfileProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
 const Profile = ({
     isLoading,
     profilePicture,
+    profilePictureDetailsRef,
     setIsEditingStatus,
     setIsLoading,
     userName,
@@ -57,16 +58,15 @@ const Profile = ({
 
     const { showToast } = useToast()
 
-    const detailsRef = useRef<HTMLDetailsElement>(null)
     const labelRef = useRef<HTMLLabelElement>(null)
 
     const closeMenu = () => {
-        if (detailsRef.current) {
-            detailsRef.current.open = false
+        if (profilePictureDetailsRef.current) {
+            profilePictureDetailsRef.current.open = false
         }
     }
     const handleDetailsToggle = () => {
-        if (detailsRef.current?.open) {
+        if (profilePictureDetailsRef.current?.open) {
             setIsEditingStatus(false)
             setItemInSessionStorage('iseditingstatus', false)
         }
@@ -100,12 +100,12 @@ const Profile = ({
         })
     }
 
-    useClickOutsideProfileDetails({ detailsRef })
+    useClickOutsideProfileDetails({ profilePictureDetailsRef })
 
     return (
         <div className="flex flex-col items-center">
             <details
-                ref={detailsRef}
+                ref={profilePictureDetailsRef}
                 className="relative group"
                 onToggle={handleDetailsToggle}
             >
