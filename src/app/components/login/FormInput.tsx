@@ -3,6 +3,7 @@ import { LoginFormInputProps } from '@/types'
 const FormInput = ({
     error,
     id,
+    isLoading,
     label,
     onInput,
     onKeyDown,
@@ -18,8 +19,8 @@ const FormInput = ({
             </label>
             <input
                 id={id}
-                className={`bg-zinc-100 outline outline-zinc-500 text-normal w-full
-                ${marginBottom} rounded px-2 py-1 enabled:hover:bg-zinc-200`}
+                className={`bg-zinc-100 enabled:outline outline-zinc-500 text-normal w-full
+                ${marginBottom} rounded px-2 py-1 disabled:bg-zinc-200 enabled:hover:bg-zinc-200`}
                 maxLength={20}
                 minLength={5}
                 onInput={onInput}
@@ -29,6 +30,7 @@ const FormInput = ({
                 title={title}
                 type="text"
                 value={value}
+                disabled={isLoading}
             />
         </>
     )

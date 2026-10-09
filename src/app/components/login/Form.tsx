@@ -137,6 +137,7 @@ const Form = () => {
                 <FormInput
                     error={errorUserName}
                     id={`${isSigningUp ? 'signup' : 'login'}User`}
+                    isLoading={isLoading}
                     label="User Name"
                     onInput={handleInputUserName}
                     onKeyDown={handleKeyDown}
@@ -151,6 +152,7 @@ const Form = () => {
                 <FormPassword
                     error={(!isSigningUp && apiError) || errorPassword}
                     id={`${isSigningUp ? 'signup' : 'login'}Password`}
+                    isDisabled={isLoading}
                     isPasswordHidden={isPasswordHidden}
                     label="Password"
                     onInput={handleInputPassword}
@@ -173,7 +175,7 @@ const Form = () => {
                         <FormPassword
                             error={apiError || errorConfirmPassword}
                             id="signupConfirmPassword"
-                            isDisabled={confirmPasswordDisabled}
+                            isDisabled={confirmPasswordDisabled || isLoading}
                             isPasswordHidden={isPasswordHidden}
                             label="Confirm Password"
                             onInput={handleInputConfirmPassword}

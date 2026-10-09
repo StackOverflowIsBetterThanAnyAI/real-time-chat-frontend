@@ -3,7 +3,7 @@ import { LoginFormPasswordProps } from '@/types'
 const FormPassword = ({
     error,
     id,
-    isDisabled = false,
+    isDisabled,
     isPasswordHidden,
     label,
     onInput,

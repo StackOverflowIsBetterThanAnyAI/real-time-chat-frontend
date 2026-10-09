@@ -31,6 +31,7 @@ export type LoginFormHeaderProps = {
 export type LoginFormInputProps = {
     error: string | boolean
     id: string
+    isLoading: boolean
     label: string
     onInput: (e: React.InputEvent<HTMLInputElement>) => void
     onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
@@ -41,7 +42,7 @@ export type LoginFormInputProps = {
 export type LoginFormPasswordProps = {
     error: string | boolean
     id: string
-    isDisabled?: boolean
+    isDisabled: boolean
     isPasswordHidden: boolean
     label: string
     onInput: (e: React.InputEvent<HTMLInputElement>) => void
