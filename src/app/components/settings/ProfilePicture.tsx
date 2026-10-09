@@ -14,6 +14,7 @@ const ProfilePicture = ({
                 width={128}
                 unoptimized={true}
                 className="w-28 sm:w-32 h-28 sm:h-32 rounded-full outline-2 outline-zinc-100 object-cover"
+                loading="lazy"
             />
         ) : (
             <>
@@ -35,6 +36,7 @@ const ProfilePicture = ({
             width={48}
             unoptimized={true}
             className="w-10 sm:w-12 h-10 sm:h-12 rounded-full outline-2 object-cover"
+            loading="lazy"
         />
     ) : (
         <>

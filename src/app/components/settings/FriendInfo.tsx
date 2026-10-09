@@ -17,6 +17,7 @@ const FriendInfo = ({
                     width={24}
                     unoptimized={true}
                     className="h-6 w-6 shrink-0 rounded-full object-cover bg-linear-180 from-blue-500 to-blue-700"
+                    loading="lazy"
                 />
             ) : (
                 <FallbackProfilePicture id={id} userName={userName} />
