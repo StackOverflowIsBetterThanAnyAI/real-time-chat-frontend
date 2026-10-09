@@ -213,7 +213,7 @@ export type handleLoginApiProps = {
     userName: string
 }
 
-export type handleLogoutProps = {
+export type handleLogoutApiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
@@ -222,6 +222,7 @@ export type handleLogoutProps = {
         React.SetStateAction<boolean | undefined>
     >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
 }
 
 export type handleRemoveProfilePictureApiProps = {

@@ -5,7 +5,7 @@ import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdArrowRoundBack, IoMdClose } from 'react-icons/io'
 import { MdModeEdit, MdDeleteForever, MdLogout } from 'react-icons/md'
-import { handleDeleteAccountApi } from '@/api'
+import { handleLogoutApi, handleDeleteAccountApi } from '@/api'
 import {
     Button,
     Friends,
@@ -26,7 +26,7 @@ import {
     useFocusTrapSettings,
     useLoadSettingsStorageValues,
 } from '@/hooks'
-import { handleLogout, setItemInSessionStorage } from '@/utils'
+import { setItemInSessionStorage } from '@/utils'
 
 const Settings = () => {
     const contextFriends = useContext(ContextFriends)
@@ -180,11 +180,12 @@ const Settings = () => {
                         <div className="flex flex-col gap-4">
                             <Button
                                 handleClick={() =>
-                                    handleLogout({
+                                    handleLogoutApi({
                                         setFriendsData,
                                         setIsLoggedIn,
                                         setIsSettingsExpanded,
                                         setUserData,
+                                        showToast,
                                     })
                                 }
                                 label="Logout"

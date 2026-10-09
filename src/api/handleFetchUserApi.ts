@@ -1,5 +1,6 @@
+import { handleLogoutApi } from '@/api'
 import { handleFetchUserApiProps, UserDataProps } from '@/types'
-import { handleLogout, setItemInStorage } from '@/utils'
+import { setItemInStorage } from '@/utils'
 
 export const handleFetchUserApi = async ({
     setFriendsData,
@@ -27,11 +28,12 @@ export const handleFetchUserApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogout({
+                handleLogoutApi({
                     setFriendsData,
                     setIsLoggedIn,
                     setIsSettingsExpanded,
                     setUserData,
+                    showToast,
                 })
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400) {

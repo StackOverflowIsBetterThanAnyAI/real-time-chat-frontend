@@ -1,5 +1,4 @@
 export { getStoredData } from './getStoredData'
 export { getStoredSessionData } from './getStoredSessionData'
-export { handleLogout } from './handleLogout'
 export { setItemInSessionStorage } from './setItemInSessionStorage'
 export { setItemInStorage } from './setItemInStorage'

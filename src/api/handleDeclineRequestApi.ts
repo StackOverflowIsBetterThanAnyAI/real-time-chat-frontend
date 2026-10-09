@@ -1,5 +1,5 @@
+import { handleLogoutApi } from '@/api'
 import { handleRequestApiProps } from '@/types'
-import { handleLogout } from '@/utils'
 
 export const handleDeclineRequestApi = async ({
     id,
@@ -31,11 +31,12 @@ export const handleDeclineRequestApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogout({
+                handleLogoutApi({
                     setFriendsData,
                     setIsLoggedIn,
                     setIsSettingsExpanded,
                     setUserData,
+                    showToast,
                 })
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
