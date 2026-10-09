@@ -10,7 +10,6 @@ import {
     ContextIsSettingsExpanded,
     useToast,
 } from '@/context'
-import { useEscapeFocusTrapEditingStatus } from '@/hooks'
 import { SettingsStatusProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
@@ -49,8 +48,6 @@ const Status = ({
 
     const [apiError, setApiError] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
-
-    useEscapeFocusTrapEditingStatus({ setIsEditingStatus })
 
     const handleCancelStatus = () => {
         setIsEditingStatus(false)

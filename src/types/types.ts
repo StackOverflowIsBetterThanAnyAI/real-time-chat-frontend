@@ -320,22 +320,12 @@ export type useErrorUserNameProps = {
     userName: string
 }
 
-export type useEscapeFocusTrapFriendsProps = {
-    setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export type useEscapeFocusTrapProfilePictureProps = {
-    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
-}
-
-export type useEscapeFocusTrapEditingStatusProps = {
-    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
-}
-
 export type useEscapeFocusTrapSettingsProps = {
     isEditingStatus: boolean
     isFriendsExpanded: boolean
     profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
+    setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >

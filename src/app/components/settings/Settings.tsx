@@ -21,7 +21,6 @@ import {
     useToast,
 } from '@/context'
 import {
-    useEscapeFocusTrapFriends,
     useEscapeFocusTrapSettings,
     useFocusTrapSettings,
     useLoadSettingsStorageValues,
@@ -76,11 +75,12 @@ const Settings = () => {
 
     const currentStatus = userData?.status || ''
 
-    useEscapeFocusTrapFriends({ setIsFriendsExpanded })
     useEscapeFocusTrapSettings({
         isEditingStatus,
         isFriendsExpanded,
         profilePictureDetailsRef,
+        setIsEditingStatus,
+        setIsFriendsExpanded,
         setIsSettingsExpanded,
     })
     useFocusTrapSettings()
