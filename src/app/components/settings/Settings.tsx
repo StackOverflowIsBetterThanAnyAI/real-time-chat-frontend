@@ -69,6 +69,8 @@ const Settings = () => {
     const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
     const [isFriendsExpanded, setIsFriendsExpanded] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false)
+    const [isLoadingLogout, setIsLoadingLogout] = useState<boolean>(false)
 
     const currentStatus = userData?.status || ''
 
@@ -86,6 +88,7 @@ const Settings = () => {
     })
     const handleDeleteAccount = async () => {
         if (isDeleteAccount) {
+            setIsLoadingDelete(true)
             await handleDeleteAccountApi({
                 setFriendsData,
                 setIsLoading,
@@ -102,6 +105,16 @@ const Settings = () => {
         setItemInSessionStorage('iseditingstatus', true)
         setInternalStatus(currentStatus)
         setItemInSessionStorage('internalstatus', currentStatus)
+    }
+    const handleLogout = async () => {
+        setIsLoadingLogout(true)
+        await handleLogoutApi({
+            setFriendsData,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            setUserData,
+            showToast,
+        })
     }
     const handleToggleIsSettingsExpanded = () => {
         setIsSettingsExpanded(() => {
@@ -179,24 +192,18 @@ const Settings = () => {
                         </div>
                         <div className="flex flex-col gap-4">
                             <Button
-                                handleClick={() =>
-                                    handleLogoutApi({
-                                        setFriendsData,
-                                        setIsLoggedIn,
-                                        setIsSettingsExpanded,
-                                        setUserData,
-                                        showToast,
-                                    })
-                                }
+                                handleClick={handleLogout}
                                 label="Logout"
                                 icon={<MdLogout />}
                                 isDelete
+                                isLoading={isLoadingLogout}
                             />
                             <Button
                                 handleClick={handleDeleteAccount}
                                 label={`${isDeleteAccount ? 'Confirm Deletion' : 'Delete Account'}`}
                                 icon={<MdDeleteForever />}
                                 isDelete
+                                isLoading={isLoadingDelete}
                             />
                         </div>
                     </div>

@@ -69,6 +69,7 @@ export type SettingsButtonProps = {
     isClicked?: boolean
     isClickedLabel?: string
     isDelete?: boolean
+    isLoading?: boolean
     label: string
 }
 
