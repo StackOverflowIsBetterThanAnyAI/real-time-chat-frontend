@@ -1,17 +1,22 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useLoadSettingsStorageValuesProps } from '@/types'
-import { getStoredSessionData, setItemInSessionStorage } from '@/utils'
+import { useLoadSettingsStorageValuesProps, UserDataProps } from '@/types'
+import {
+    getStoredData,
+    getStoredSessionData,
+    setItemInSessionStorage,
+    setItemInStorage,
+} from '@/utils'
 
 export const useLoadSettingsStorageValues = ({
     setInternalStatus,
     setIsEditingStatus,
     setIsFriendsExpanded,
+    setUserData,
 }: useLoadSettingsStorageValuesProps) => {
     return useEffect(() => {
         const parsedSessionData = getStoredSessionData()
-
         if (parsedSessionData) {
             const savedInternalStatus = parsedSessionData?.internalstatus
             if (
@@ -40,5 +45,48 @@ export const useLoadSettingsStorageValues = ({
                 setIsFriendsExpanded(false)
             }
         }
-    }, [setInternalStatus, setIsEditingStatus, setIsFriendsExpanded])
+
+        const parsedStorageData = getStoredData()
+        if (parsedStorageData) {
+            const internalUserData: UserDataProps = {
+                profilePicture: null,
+                status: '',
+                userName: '',
+            }
+            const savedProfilePicture = parsedStorageData?.profilepicture
+            if (
+                typeof savedProfilePicture === 'string' &&
+                savedProfilePicture.length <= 255
+            ) {
+                internalUserData.profilePicture = savedProfilePicture
+            } else {
+                setItemInStorage('profilepicture', null)
+                internalUserData.profilePicture = null
+            }
+            const savedStatus = parsedStorageData?.status
+            if (typeof savedStatus === 'string' && savedStatus.length <= 255) {
+                internalUserData.status = savedStatus
+            } else {
+                setItemInStorage('status', '')
+                internalUserData.status = ''
+            }
+            const savedUserName = parsedStorageData?.username
+            if (
+                typeof savedUserName === 'string' &&
+                savedUserName.length >= 5 &&
+                savedUserName.length <= 63
+            ) {
+                internalUserData.userName = savedUserName
+            } else {
+                setItemInStorage('username', '')
+                internalUserData.userName = ''
+            }
+            setUserData(internalUserData)
+        }
+    }, [
+        setInternalStatus,
+        setIsEditingStatus,
+        setIsFriendsExpanded,
+        setUserData,
+    ])
 }

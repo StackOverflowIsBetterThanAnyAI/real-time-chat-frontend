@@ -85,6 +85,7 @@ const Settings = () => {
         setInternalStatus,
         setIsEditingStatus,
         setIsFriendsExpanded,
+        setUserData,
     })
     const handleDeleteAccount = async () => {
         if (isDeleteAccount) {

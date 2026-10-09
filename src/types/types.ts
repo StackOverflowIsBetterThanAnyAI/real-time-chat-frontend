@@ -350,6 +350,7 @@ export type useLoadSettingsStorageValuesProps = {
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
     setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 
 export type useLoginSubmitDisabledProps = {
