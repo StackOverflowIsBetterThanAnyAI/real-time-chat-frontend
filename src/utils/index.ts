@@ -1,4 +1,5 @@
 export { getStoredData } from './getStoredData'
 export { getStoredSessionData } from './getStoredSessionData'
+export { resetStorage } from './resetStorage'
 export { setItemInSessionStorage } from './setItemInSessionStorage'
 export { setItemInStorage } from './setItemInStorage'

@@ -1,10 +1,5 @@
 import { handleLogoutApiProps } from '@/types'
-import {
-    getStoredSessionData,
-    getStoredData,
-    setItemInSessionStorage,
-    setItemInStorage,
-} from '@/utils'
+import { resetStorage } from '@/utils'
 
 export const handleLogoutApi = async ({
     setFriendsData,
@@ -37,24 +32,12 @@ export const handleLogoutApi = async ({
             return
         }
 
-        const parsedSessionData = getStoredSessionData()
-        const parsedStorageData = getStoredData()
-
-        for (const key in parsedSessionData) {
-            setItemInSessionStorage(key, null)
-        }
-        const dataUserName = parsedStorageData?.username
-        for (const key in parsedStorageData) {
-            setItemInStorage(key, null)
-        }
-        if (typeof dataUserName === 'string' && dataUserName) {
-            setItemInStorage('username', dataUserName)
-        }
-
-        setFriendsData(undefined)
-        setIsLoggedIn(false)
-        setIsSettingsExpanded(false)
-        setUserData(undefined)
+        resetStorage({
+            setFriendsData,
+            setIsLoggedIn,
+            setIsSettingsExpanded,
+            setUserData,
+        })
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to logout',

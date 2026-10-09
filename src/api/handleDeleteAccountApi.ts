@@ -1,6 +1,6 @@
 import { handleLogoutApi } from '@/api'
 import { handleDeleteAccountApiProps } from '@/types'
-import { setItemInStorage } from '@/utils'
+import { resetStorage, setItemInStorage } from '@/utils'
 
 export const handleDeleteAccountApi = async ({
     setFriendsData,
@@ -45,12 +45,12 @@ export const handleDeleteAccountApi = async ({
             return
         }
 
-        handleLogoutApi({
+        resetStorage({
+            isDeleteAccount: true,
             setFriendsData,
             setIsLoggedIn,
             setIsSettingsExpanded,
             setUserData,
-            showToast,
         })
         setItemInStorage('username', null)
         showToast({

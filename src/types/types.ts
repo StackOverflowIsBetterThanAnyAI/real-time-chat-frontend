@@ -284,6 +284,18 @@ export type handleUploadProfilePictureApiProps = {
     showToast: (props: ToastProps) => void
 }
 
+export type resetStorageProps = {
+    isDeleteAccount?: boolean
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+}
+
 export type useClickOutsideProfileDetailsProps = {
     detailsRef: React.RefObject<HTMLDetailsElement | null>
 }
