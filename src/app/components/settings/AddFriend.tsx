@@ -100,6 +100,7 @@ const AddFriend = () => {
                         minLength={5}
                         title="Search for a user to add as friend."
                         type="text"
+                        disabled={isLoading}
                     />
                 </div>
                 {isLoading ? (
