@@ -1,5 +1,6 @@
 import { handleLogoutApi } from '@/api'
 import { FriendType, handleAddFriendApiProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const handleAddFriendApi = async ({
     setError,
@@ -55,7 +56,11 @@ export const handleAddFriendApi = async ({
         showToast({
             label: 'Friend request sent successfully!',
         })
-        setFriendsData((prev) => (prev ? [...prev, data] : [data]))
+        setFriendsData((prev) => {
+            const updatedFriends = prev ? [...prev, data] : [data]
+            setItemInSessionStorage('friendsdata', updatedFriends)
+            return updatedFriends
+        })
         setUserToBeAdded('')
         setError('')
     } catch (error) {

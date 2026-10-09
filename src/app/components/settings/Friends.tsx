@@ -14,6 +14,7 @@ import {
     ContextUserData,
     useToast,
 } from '@/context'
+import { useLoadFriendsStorageValues } from '@/hooks'
 
 const Friends = () => {
     const contextFriends = useContext(ContextFriends)
@@ -66,6 +67,8 @@ const Friends = () => {
         setUserData,
         showToast,
     ])
+
+    useLoadFriendsStorageValues({ setFriendsData })
 
     useEffect(() => {
         fetchFriends()

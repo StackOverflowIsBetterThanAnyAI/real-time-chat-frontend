@@ -1,5 +1,6 @@
 import { handleLogoutApi } from '@/api'
 import { handleRequestApiProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const handleDeclineRequestApi = async ({
     id,
@@ -54,7 +55,11 @@ export const handleDeclineRequestApi = async ({
         showToast({
             label: 'Friend has been removed!',
         })
-        setFriendsData((prev) => prev?.filter((item) => item.id !== id))
+        setFriendsData((prev) => {
+            const updatedFriends = prev?.filter((item) => item.id !== id)
+            setItemInSessionStorage('friendsdata', updatedFriends)
+            return updatedFriends
+        })
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to update the friend status',

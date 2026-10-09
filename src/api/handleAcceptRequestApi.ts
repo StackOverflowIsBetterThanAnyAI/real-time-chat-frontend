@@ -1,5 +1,6 @@
 import { handleLogoutApi } from '@/api'
 import { FriendType, handleRequestApiProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const handleAcceptRequestApi = async ({
     id,
@@ -55,9 +56,13 @@ export const handleAcceptRequestApi = async ({
         showToast({
             label: 'Friend has been added!',
         })
-        setFriendsData((prev) =>
-            prev?.map((item) => (item.id === id ? data : item))
-        )
+        setFriendsData((prev) => {
+            const updatedFriends = prev?.map((item) =>
+                item.id === id ? data : item
+            )
+            setItemInSessionStorage('friendsdata', updatedFriends)
+            return updatedFriends
+        })
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to update the friend status',

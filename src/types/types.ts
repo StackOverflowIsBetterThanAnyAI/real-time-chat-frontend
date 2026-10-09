@@ -331,6 +331,12 @@ export type useEscapeFocusTrapSettingsProps = {
     >
 }
 
+export type useLoadFriendsStorageValuesProps = {
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+}
+
 export type useLoadLoggedInStorageValueProps = {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<

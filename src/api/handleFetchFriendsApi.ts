@@ -1,5 +1,6 @@
 import { handleLogoutApi } from '@/api'
 import { FriendType, handleFetchFriendsApiProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const handleFetchFriendsApi = async ({
     setFriendsData,
@@ -47,6 +48,7 @@ export const handleFetchFriendsApi = async ({
 
         const data: FriendType[] = await response.json()
         setFriendsData(data)
+        setItemInSessionStorage('friendsdata', data)
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to fetch your friends',
