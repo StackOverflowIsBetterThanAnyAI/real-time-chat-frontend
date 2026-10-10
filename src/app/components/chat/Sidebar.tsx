@@ -1,7 +1,21 @@
+'use client'
+
+import { useContext } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
 import { RiChatNewFill } from 'react-icons/ri'
+import { Button } from '@/app/components/chat'
+import { ContextFriends } from '@/context'
 
 const Sidebar = () => {
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error('Sidebar must be used within a ContextFriends.Provider')
+    }
+    const [friendsData] = contextFriends
+
+    const friends =
+        friendsData?.filter((item) => item.status === 'accepted') || []
+
     return (
         <div className="flex flex-col gap-4 bg-zinc-800/80 p-2">
             <button
@@ -24,17 +38,18 @@ const Sidebar = () => {
                     placeholder="Münzendieter"
                 />
             </div>
-            {/* {userMockData[0].chats.map((item, index) => {
-                const key = item.chat_history.at(-1) || ''
-                const text = Object.values(key)[0]
-                return (
-                    <Button
-                        friend={item.userName}
-                        text={text}
-                        key={index}
-                    />
-                )
-            })} */}
+            {friends.length
+                ? friends.map((item) => {
+                      return (
+                          <Button
+                              key={item.id}
+                              friend={item.friend}
+                              id={item.id}
+                              text="Hello World!"
+                          />
+                      )
+                  })
+                : null}
         </div>
     )
 }
