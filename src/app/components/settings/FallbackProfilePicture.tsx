@@ -15,7 +15,8 @@ const FallbackProfilePicture = ({
 
     return (
         <span
-            className={`w-6 h-6 shrink-0 flex justify-center items-center rounded-full bg-linear-180 ${fallbackClassName[id % fallbackClassName.length]}`}
+            className={`w-6 h-6 shrink-0 flex justify-center items-center rounded-full bg-linear-180 select-none
+                ${fallbackClassName[id % fallbackClassName.length]}`}
         >
             {userName.charAt(0).toUpperCase()}
         </span>
