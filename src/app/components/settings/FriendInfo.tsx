@@ -20,7 +20,11 @@ const FriendInfo = ({
                     loading="lazy"
                 />
             ) : (
-                <FallbackProfilePicture id={id} userName={userName} />
+                <FallbackProfilePicture
+                    id={id}
+                    userName={userName}
+                    size="small"
+                />
             )}
             <div className="truncate">{userName}</div>
         </span>

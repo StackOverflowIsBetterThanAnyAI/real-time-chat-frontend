@@ -2,6 +2,7 @@ import { SettingsFallbackProfilePictureProps } from '@/types'
 
 const FallbackProfilePicture = ({
     id,
+    size,
     userName,
 }: SettingsFallbackProfilePictureProps) => {
     const fallbackClassName = [
@@ -15,8 +16,9 @@ const FallbackProfilePicture = ({
 
     return (
         <span
-            className={`w-6 h-6 shrink-0 flex justify-center items-center rounded-full bg-linear-180 select-none
-                ${fallbackClassName[id % fallbackClassName.length]}`}
+            className={`shrink-0 flex justify-center items-center rounded-full bg-linear-180 select-none
+                ${fallbackClassName[id % fallbackClassName.length]} font-bold
+                ${size === 'small' ? 'w-6 h-6 text-small' : 'w-10 sm:w-12 h-10 sm:h-12 text-2xl'}`}
         >
             {userName.charAt(0).toUpperCase()}
         </span>

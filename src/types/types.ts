@@ -5,6 +5,7 @@ export type ContextToastType = {
 
 export type ChatButtonProps = {
     friend: FriendFriendType
+    id: number
     text: string
 }
 
@@ -79,6 +80,7 @@ export type SettingsButtonProps = {
 
 export type SettingsFallbackProfilePictureProps = {
     id: number
+    size: 'small' | 'large'
     userName: string
 }
 
