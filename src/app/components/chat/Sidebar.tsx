@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
 import { RiChatNewFill } from 'react-icons/ri'
 import { Button } from '@/app/components/chat'
@@ -13,8 +13,16 @@ const Sidebar = () => {
     }
     const [friendsData] = contextFriends
 
+    const [filter, setFilter] = useState<string>('')
     const friends =
         friendsData?.filter((item) => item.status === 'accepted') || []
+    const filteredFriends = friends.filter((item) =>
+        item.friend.userName.toLowerCase().includes(filter.toLowerCase())
+    )
+
+    const handleFilterInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilter(e.currentTarget.value)
+    }
 
     return (
         <div className="flex flex-col gap-4 bg-zinc-800/80 p-2">
@@ -36,10 +44,13 @@ const Sidebar = () => {
                     id="search"
                     type="search"
                     placeholder="Münzendieter"
+                    onChange={handleFilterInput}
+                    value={filter}
+                    title="Filter Friends"
                 />
             </div>
-            {friends.length
-                ? friends.map((item) => {
+            {filteredFriends.length
+                ? filteredFriends.map((item) => {
                       return (
                           <Button
                               key={item.id}
