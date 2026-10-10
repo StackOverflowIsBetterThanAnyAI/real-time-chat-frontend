@@ -25,6 +25,7 @@ import {
 import {
     useEscapeFocusTrapSettings,
     useFocusTrapSettings,
+    useIsDeleteCountdown,
     useLoadSettingsStorageValues,
 } from '@/hooks'
 import { setItemInSessionStorage } from '@/utils'
@@ -81,6 +82,7 @@ const Settings = () => {
 
     const { showToast } = useToast()
 
+    const [deleteCountdown, setDeleteCountdown] = useState<number>(5)
     const [internalStatus, setInternalStatus] = useState<string>('')
     const [isDeleteAccount, setIsDeleteAccount] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -106,6 +108,11 @@ const Settings = () => {
         setIsSettingsExpanded,
     })
     useFocusTrapSettings()
+    useIsDeleteCountdown({
+        isDeleteAccount,
+        setDeleteCountdown,
+        setIsDeleteAccount,
+    })
 
     const handleDeleteAccount = async () => {
         if (isDeleteAccount) {
@@ -151,34 +158,6 @@ const Settings = () => {
             return nextVal
         })
     }
-
-    const [deleteCountdown, setDeleteCountdown] = useState(5)
-
-    useEffect(() => {
-        if (!isDeleteAccount) {
-            setDeleteCountdown(5)
-            return
-        }
-
-        const startedAt = Date.now()
-
-        const updateCountdown = () => {
-            const elapsed = (Date.now() - startedAt) / 1000
-            const remaining = Math.max(0, 5 - elapsed)
-
-            setDeleteCountdown(Math.ceil(remaining))
-
-            if (remaining <= 0) {
-                setIsDeleteAccount(false)
-            }
-        }
-
-        updateCountdown()
-
-        const interval = setInterval(updateCountdown, 50)
-
-        return () => clearInterval(interval)
-    }, [isDeleteAccount])
 
     return (
         <aside className="z-10 flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">

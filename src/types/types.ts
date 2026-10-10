@@ -4,7 +4,7 @@ export type ContextToastType = {
 }
 
 export type ChatButtonProps = {
-    friend: string
+    friend: FriendFriendType
     text: string
 }
 
@@ -13,13 +13,15 @@ export type ErrorMessageProps = {
     theme?: 'red' | 'white'
 }
 
+export type FriendFriendType = {
+    userName: string
+    status: string
+    profilePicture: string
+}
+
 export type FriendType = {
     direction: 'sent' | 'received'
-    friend: {
-        userName: string
-        status: string
-        profilePicture: string
-    }
+    friend: FriendFriendType
     id: number
     status: 'pending' | 'accepted'
 }
@@ -340,6 +342,12 @@ export type useEscapeFocusTrapSettingsProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+}
+
+export type useIsDeleteCountdownProps = {
+    isDeleteAccount: boolean
+    setDeleteCountdown: React.Dispatch<React.SetStateAction<number>>
+    setIsDeleteAccount: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type useLoadFriendsStorageValuesProps = {
