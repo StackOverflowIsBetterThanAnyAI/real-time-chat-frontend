@@ -64,7 +64,7 @@ const Chat = () => {
     }, [fetchUser])
 
     return (
-        <main className="grid grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,448px)_1fr] w-full h-full">
+        <main className="grid grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full">
             {isLoading ? (
                 <div>Hello World!</div>
             ) : (
