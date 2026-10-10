@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdArrowRoundBack, IoMdClose } from 'react-icons/io'
@@ -152,6 +152,34 @@ const Settings = () => {
         })
     }
 
+    const [deleteCountdown, setDeleteCountdown] = useState(5)
+
+    useEffect(() => {
+        if (!isDeleteAccount) {
+            setDeleteCountdown(5)
+            return
+        }
+
+        const startedAt = Date.now()
+
+        const updateCountdown = () => {
+            const elapsed = (Date.now() - startedAt) / 1000
+            const remaining = Math.max(0, 5 - elapsed)
+
+            setDeleteCountdown(Math.ceil(remaining))
+
+            if (remaining <= 0) {
+                setIsDeleteAccount(false)
+            }
+        }
+
+        updateCountdown()
+
+        const interval = setInterval(updateCountdown, 50)
+
+        return () => clearInterval(interval)
+    }, [isDeleteAccount])
+
     return (
         <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
             {isFriendsExpanded ? (
@@ -222,8 +250,9 @@ const Settings = () => {
                             />
                             <Button
                                 handleClick={handleDeleteAccount}
-                                label={`${isDeleteAccount ? 'Confirm Deletion' : 'Delete Account'}`}
+                                label={`${isDeleteAccount ? `Confirm Deletion (${deleteCountdown}s)` : 'Delete Account'}`}
                                 icon={<MdDeleteForever />}
+                                isConfirmingDelete={isDeleteAccount}
                                 isDelete
                                 isLoading={isLoadingDelete}
                             />

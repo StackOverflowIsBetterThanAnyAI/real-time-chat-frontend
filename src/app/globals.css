@@ -76,3 +76,18 @@ input:focus-visible {
     border-right: 12px solid transparent;
     border-bottom: 12px solid rgb(39 39 42);
 }
+
+.delete-countdown-progress {
+    transform: scaleX(1);
+    animation: delete-countdown-shrink 5s linear forwards;
+    @apply bg-red-500 absolute inset-0 origin-left;
+}
+
+@keyframes delete-countdown-shrink {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}

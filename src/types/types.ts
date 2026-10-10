@@ -69,6 +69,7 @@ export type SettingsButtonProps = {
     handleClick: () => void
     isClicked?: boolean
     isClickedLabel?: string
+    isConfirmingDelete?: boolean
     isDelete?: boolean
     isLoading?: boolean
     label: string
