@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useContext, useEffect, useState } from 'react'
-import { handleFetchUserApi } from '@/api'
+import { handleFetchInitialDataApi } from '@/api'
 import { EmptyWindow, Sidebar } from '@/app/components/chat'
 import {
     ContextFriends,
@@ -43,7 +43,7 @@ const Chat = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const fetchUser = useCallback(async () => {
-        handleFetchUserApi({
+        handleFetchInitialDataApi({
             setFriendsData,
             setIsLoading,
             setIsLoggedIn,

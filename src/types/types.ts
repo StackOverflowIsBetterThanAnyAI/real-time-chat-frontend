@@ -204,7 +204,7 @@ export type handleFetchFriendsApiProps = {
     showToast: (props: ToastProps) => void
 }
 
-export type handleFetchUserApiProps = {
+export type handleFetchInitialDataApiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
