@@ -6,7 +6,6 @@ export type ContextToastType = {
 export type ChatButtonProps = {
     friend: FriendFriendType
     id: number
-    text: string
 }
 
 export type ErrorMessageProps = {

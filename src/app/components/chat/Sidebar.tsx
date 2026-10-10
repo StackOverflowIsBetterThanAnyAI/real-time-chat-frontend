@@ -45,7 +45,6 @@ const Sidebar = () => {
                               key={item.id}
                               friend={item.friend}
                               id={item.id}
-                              text="Hello World!"
                           />
                       )
                   })

@@ -4,7 +4,7 @@ import {
 } from '@/app/components/settings'
 import { ChatButtonProps } from '@/types'
 
-const Button = ({ friend, id, text }: ChatButtonProps) => {
+const Button = ({ friend, id }: ChatButtonProps) => {
     return (
         <button
             className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60"
@@ -29,7 +29,7 @@ const Button = ({ friend, id, text }: ChatButtonProps) => {
                     {friend.userName}
                 </div>
                 <div className="text-small truncate w-full text-left">
-                    {text}
+                    {friend.status}
                 </div>
             </div>
         </button>
