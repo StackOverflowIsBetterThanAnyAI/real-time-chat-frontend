@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import {
     ContextFriends,
+    ContextIsEditingStatus,
+    ContextIsFriendsExpanded,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
@@ -12,6 +14,12 @@ import { useLoadLoggedInStorageValue } from '@/hooks'
 import { FriendType, UserDataProps } from '@/types'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
+    const [isEditingStatus, setIsEditingStatus] = useState<boolean | undefined>(
+        false
+    )
+    const [isFriendsExpanded, setIsFriendsExpanded] = useState<
+        boolean | undefined
+    >(false)
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(false)
     const [isSettingsExpanded, setIsSettingsExpanded] = useState<
         boolean | undefined
@@ -23,15 +31,25 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <ContextFriends.Provider value={friendsState}>
-            <ContextIsLoggedIn.Provider value={[isLoggedIn, setIsLoggedIn]}>
-                <ContextIsSettingsExpanded.Provider
-                    value={[isSettingsExpanded, setIsSettingsExpanded]}
+            <ContextIsEditingStatus.Provider
+                value={[isEditingStatus, setIsEditingStatus]}
+            >
+                <ContextIsFriendsExpanded.Provider
+                    value={[isFriendsExpanded, setIsFriendsExpanded]}
                 >
-                    <ContextUserData.Provider value={userState}>
-                        <ToastProvider>{children}</ToastProvider>
-                    </ContextUserData.Provider>
-                </ContextIsSettingsExpanded.Provider>
-            </ContextIsLoggedIn.Provider>
+                    <ContextIsLoggedIn.Provider
+                        value={[isLoggedIn, setIsLoggedIn]}
+                    >
+                        <ContextIsSettingsExpanded.Provider
+                            value={[isSettingsExpanded, setIsSettingsExpanded]}
+                        >
+                            <ContextUserData.Provider value={userState}>
+                                <ToastProvider>{children}</ToastProvider>
+                            </ContextUserData.Provider>
+                        </ContextIsSettingsExpanded.Provider>
+                    </ContextIsLoggedIn.Provider>
+                </ContextIsFriendsExpanded.Provider>
+            </ContextIsEditingStatus.Provider>
         </ContextFriends.Provider>
     )
 }

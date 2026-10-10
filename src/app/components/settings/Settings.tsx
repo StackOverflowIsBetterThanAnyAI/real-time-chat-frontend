@@ -15,6 +15,8 @@ import {
 } from '@/app/components/settings'
 import {
     ContextFriends,
+    ContextIsEditingStatus,
+    ContextIsFriendsExpanded,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
@@ -35,6 +37,22 @@ const Settings = () => {
         )
     }
     const [, setFriendsData] = contextFriends
+
+    const contextIsEditingStatus = useContext(ContextIsEditingStatus)
+    if (!contextIsEditingStatus) {
+        throw new Error(
+            'Settings must be used within a ContextIsEditingStatus.Provider'
+        )
+    }
+    const [isEditingStatus, setIsEditingStatus] = contextIsEditingStatus
+
+    const contextIsFriendsExpanded = useContext(ContextIsFriendsExpanded)
+    if (!contextIsFriendsExpanded) {
+        throw new Error(
+            'Settings must be used within a ContextIsFriendsExpanded.Provider'
+        )
+    }
+    const [isFriendsExpanded, setIsFriendsExpanded] = contextIsFriendsExpanded
 
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
@@ -65,8 +83,6 @@ const Settings = () => {
 
     const [internalStatus, setInternalStatus] = useState<string>('')
     const [isDeleteAccount, setIsDeleteAccount] = useState<boolean>(false)
-    const [isEditingStatus, setIsEditingStatus] = useState<boolean>(false)
-    const [isFriendsExpanded, setIsFriendsExpanded] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false)
     const [isLoadingLogout, setIsLoadingLogout] = useState<boolean>(false)
@@ -75,6 +91,12 @@ const Settings = () => {
 
     const currentStatus = userData?.status || ''
 
+    useLoadSettingsStorageValues({
+        setInternalStatus,
+        setIsEditingStatus,
+        setIsFriendsExpanded,
+        setUserData,
+    })
     useEscapeFocusTrapSettings({
         isEditingStatus,
         isFriendsExpanded,
@@ -84,12 +106,7 @@ const Settings = () => {
         setIsSettingsExpanded,
     })
     useFocusTrapSettings()
-    useLoadSettingsStorageValues({
-        setInternalStatus,
-        setIsEditingStatus,
-        setIsFriendsExpanded,
-        setUserData,
-    })
+
     const handleDeleteAccount = async () => {
         if (isDeleteAccount) {
             setIsLoadingDelete(true)

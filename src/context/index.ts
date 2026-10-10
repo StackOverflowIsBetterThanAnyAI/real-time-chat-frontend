@@ -1,5 +1,7 @@
 export { ContextIsLoggedIn } from './ContexIsLoggedIn'
 export { ContextFriends } from './ContextFriends'
+export { ContextIsEditingStatus } from './ContextIsEditingStatus'
+export { ContextIsFriendsExpanded } from './ContextIsFriendsExpanded'
 export { ContextIsSettingsExpanded } from './ContextIsSettingsExpanded'
 export { ContextUserData } from './ContextUserData'
 export { useToast } from './ContextToast'

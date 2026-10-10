@@ -6,10 +6,28 @@ import {
     ContextIsLoggedIn,
     ContextUserData,
     ContextIsSettingsExpanded,
+    ContextIsEditingStatus,
+    ContextIsFriendsExpanded,
 } from '@/context'
 import { setItemInSessionStorage } from '@/utils'
 
 const Navigation = () => {
+    const contextIsEditingStatus = useContext(ContextIsEditingStatus)
+    if (!contextIsEditingStatus) {
+        throw new Error(
+            'Navigation must be used within a ContextIsEditingStatus.Provider'
+        )
+    }
+    const [, setIsEditingStatus] = contextIsEditingStatus
+
+    const contextIsFriendsExpanded = useContext(ContextIsFriendsExpanded)
+    if (!contextIsFriendsExpanded) {
+        throw new Error(
+            'Navigation must be used within a ContextIsFriendsExpanded.Provider'
+        )
+    }
+    const [, setIsFriendsExpanded] = contextIsFriendsExpanded
+
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -37,10 +55,14 @@ const Navigation = () => {
 
     const handleClick = () => {
         setIsSettingsExpanded(() => {
-            const nextVal = !isSettingsExpanded
-            setItemInSessionStorage('issettingsexpanded', nextVal)
-            return nextVal
+            const newVal = !isSettingsExpanded
+            setItemInSessionStorage('issettingsexpanded', newVal)
+            return newVal
         })
+        setIsEditingStatus(false)
+        setItemInSessionStorage('iseditingstatus', false)
+        setIsFriendsExpanded(false)
+        setItemInSessionStorage('isfriendsexpanded', false)
     }
 
     return (

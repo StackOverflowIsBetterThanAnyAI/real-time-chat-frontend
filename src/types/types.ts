@@ -130,7 +130,9 @@ export type SettingsProfileProps = {
     isLoading: boolean
     profilePicture: string | null | undefined
     profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
-    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setIsEditingStatus: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     userName: string | undefined
 }
@@ -139,9 +141,11 @@ export type SettingsStatusProps = {
     currentStatus: string
     handleIsEditingStatus: () => void
     internalStatus: string
-    isEditingStatus: boolean
+    isEditingStatus: boolean | undefined
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
-    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setIsEditingStatus: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 
@@ -262,7 +266,9 @@ export type handleUpdateStatusAPiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
-    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setIsEditingStatus: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
@@ -321,11 +327,15 @@ export type useErrorUserNameProps = {
 }
 
 export type useEscapeFocusTrapSettingsProps = {
-    isEditingStatus: boolean
-    isFriendsExpanded: boolean
+    isEditingStatus: boolean | undefined
+    isFriendsExpanded: boolean | undefined
     profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
-    setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
-    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
+    setIsFriendsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setIsEditingStatus: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
@@ -351,8 +361,12 @@ export type useLoadLoginStorageValuesProps = {
 
 export type useLoadSettingsStorageValuesProps = {
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
-    setIsEditingStatus: React.Dispatch<React.SetStateAction<boolean>>
-    setIsFriendsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+    setIsEditingStatus: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setIsFriendsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 
