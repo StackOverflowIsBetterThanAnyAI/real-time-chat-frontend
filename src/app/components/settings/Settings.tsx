@@ -181,7 +181,7 @@ const Settings = () => {
     }, [isDeleteAccount])
 
     return (
-        <aside className="flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
+        <aside className="z-10 flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
             {isFriendsExpanded ? (
                 <>
                     <Header header="Friends" />
