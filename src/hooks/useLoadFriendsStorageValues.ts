@@ -2,11 +2,7 @@
 
 import { useEffect } from 'react'
 import { FriendType, useLoadFriendsStorageValuesProps } from '@/types'
-import {
-    getStoredData,
-    getStoredSessionData,
-    setItemInSessionStorage,
-} from '@/utils'
+import { getStoredSessionData, setItemInSessionStorage } from '@/utils'
 
 export const useLoadFriendsStorageValues = ({
     setFriendsData,
