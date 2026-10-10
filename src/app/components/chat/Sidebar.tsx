@@ -21,7 +21,7 @@ const Sidebar = () => {
                     hover:bg-zinc-200 flex-1 min-w-32"
                     id="search"
                     type="search"
-                    placeholder="JohnDoe1337"
+                    placeholder="Münzendieter"
                 />
             </div>
             {/* {userMockData[0].chats.map((item, index) => {
