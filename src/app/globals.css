@@ -10,7 +10,8 @@ a {
 
 a:focus-visible,
 button:focus-visible,
-summary:focus-visible {
+summary:focus-visible,
+textarea:focus-visible {
     @apply outline-2 outline-zinc-100;
 }
 
