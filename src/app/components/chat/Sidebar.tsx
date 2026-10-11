@@ -50,7 +50,7 @@ const Sidebar = () => {
                     title="Filter Friends"
                 />
             </div>
-            <div className="min-h-0 flex-1 space-y-2 overflow-y-auto">
+            <div className="min-h-0 flex-1 space-y-2 overflow-y-auto p-0.5">
                 {filteredFriends.map((item) => (
                     <Button key={item.id} friend={item} />
                 ))}
