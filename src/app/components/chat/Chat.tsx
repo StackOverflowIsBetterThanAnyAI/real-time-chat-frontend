@@ -2,14 +2,17 @@
 
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { handleFetchInitialDataApi } from '@/api'
-import { EmptyWindow, Sidebar } from '@/app/components/chat'
+import { EmptyWindow, Sidebar, Window } from '@/app/components/chat'
 import {
+    ContextChatFriendData,
     ContextFriends,
+    ContextIsChatOpened,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
     useToast,
 } from '@/context'
+import { FriendType } from '@/types'
 
 const Chat = () => {
     const contextFriends = useContext(ContextFriends)
@@ -41,6 +44,10 @@ const Chat = () => {
     const { showToast } = useToast()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isChatOpened, setIsChatOpened] = useState<boolean | undefined>(false)
+    const [chatFriendData, setChatFriendData] = useState<
+        FriendType | undefined
+    >(undefined)
 
     const fetchUser = useCallback(async () => {
         handleFetchInitialDataApi({
@@ -64,16 +71,24 @@ const Chat = () => {
     }, [fetchUser])
 
     return (
-        <main className="grid grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full">
-            {isLoading ? (
-                <div>Hello World!</div>
-            ) : (
-                <>
-                    <Sidebar />
-                    <EmptyWindow />
-                </>
-            )}
-        </main>
+        <ContextChatFriendData.Provider
+            value={[chatFriendData, setChatFriendData]}
+        >
+            <ContextIsChatOpened.Provider
+                value={[isChatOpened, setIsChatOpened]}
+            >
+                <main
+                    className={`${isLoading ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
+                >
+                    {isLoading ? null : <Sidebar />}
+                    {isChatOpened ? (
+                        <Window friend={chatFriendData} />
+                    ) : (
+                        <EmptyWindow isLoading={isLoading} />
+                    )}
+                </main>
+            </ContextIsChatOpened.Provider>
+        </ContextChatFriendData.Provider>
     )
 }
 

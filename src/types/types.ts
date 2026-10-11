@@ -1,11 +1,18 @@
+export type ChatButtonProps = {
+    friend: FriendType
+}
+
+export type ChatEmptyWindowProps = {
+    isLoading: boolean
+}
+
+export type ChatWindowProps = {
+    friend: FriendType | undefined
+}
+
 export type ContextToastType = {
     showToast: (props: ToastProps) => void
     hideToast: () => void
-}
-
-export type ChatButtonProps = {
-    friend: FriendFriendType
-    id: number
 }
 
 export type ErrorMessageProps = {

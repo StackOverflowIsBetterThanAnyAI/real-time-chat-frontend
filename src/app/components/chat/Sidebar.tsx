@@ -53,13 +53,7 @@ const Sidebar = () => {
             </div>
             {filteredFriends.length
                 ? filteredFriends.map((item) => {
-                      return (
-                          <Button
-                              key={item.id}
-                              friend={item.friend}
-                              id={item.id}
-                          />
-                      )
+                      return <Button key={item.id} friend={item} />
                   })
                 : null}
         </div>
