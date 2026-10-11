@@ -7,7 +7,7 @@ export type ChatEmptyWindowProps = {
 }
 
 export type ChatWindowProps = {
-    friend: FriendType | undefined
+    friend: FriendType
 }
 
 export type ContextToastType = {
