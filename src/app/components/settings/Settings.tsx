@@ -167,7 +167,7 @@ const Settings = () => {
                     <Button
                         handleClick={handleToggleIsFriendsExpanded}
                         label="Go back to Settings"
-                        icon={<IoMdArrowRoundBack />}
+                        icon={<IoMdArrowRoundBack color="#f4f4f5" />}
                     />
                     <Friends />
                 </>
@@ -177,7 +177,7 @@ const Settings = () => {
                     <Button
                         handleClick={handleToggleIsSettingsExpanded}
                         label="Close"
-                        icon={<IoMdClose />}
+                        icon={<IoMdClose color="#f4f4f5" />}
                     />
                     <div className="flex flex-col justify-center items-center mx-auto w-full">
                         <Profile
@@ -206,12 +206,12 @@ const Settings = () => {
                                 isClicked={isEditingStatus}
                                 isClickedLabel="Editing Status"
                                 label="Edit Status"
-                                icon={<MdModeEdit />}
+                                icon={<MdModeEdit color="#f4f4f5" />}
                             />
                             <Button
                                 handleClick={handleToggleIsFriendsExpanded}
                                 label="Friends"
-                                icon={<FaUserFriends />}
+                                icon={<FaUserFriends color="#f4f4f5" />}
                             />
                             <Button
                                 handleClick={() => {}}

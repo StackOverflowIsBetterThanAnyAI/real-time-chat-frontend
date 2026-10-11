@@ -19,7 +19,7 @@ const FriendsDetails = ({
         >
             <summary className="settings-menu-button regular-button text-normal hover:bg-zinc-800/50 active:bg-zinc-800/50">
                 <span className="group-open:rotate-180 rotate-90 transition-transform duration-75">
-                    <IoTriangle className="w-3" />
+                    <IoTriangle className="w-3" color="#f4f4f5" />
                 </span>
                 {summary}
             </summary>

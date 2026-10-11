@@ -88,6 +88,7 @@ const AddFriend = () => {
                         <MdOutlineSearch
                             className="w-6 h-6"
                             aria-hidden="true"
+                            color="#f4f4f5"
                         />
                     </label>
                     <input

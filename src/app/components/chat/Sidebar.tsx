@@ -32,13 +32,17 @@ const Sidebar = () => {
                 className="regular-button shrink-0 bg-blue-600 hover:bg-blue-600/85 active:bg-blue-600/75"
                 onClick={() => {}}
             >
-                <RiChatNewFill />
+                <RiChatNewFill color="#f4f4f5" />
                 <span>New Chat</span>
             </button>
             <div className="flex shrink-0 flex-wrap items-center gap-2">
                 <label htmlFor="search">
                     <span className="sr-only">Search</span>
-                    <MdOutlineSearch className="h-8 w-8" aria-hidden="true" />
+                    <MdOutlineSearch
+                        className="h-8 w-8"
+                        aria-hidden="true"
+                        color="#f4f4f5"
+                    />
                 </label>
                 <input
                     className="min-w-32 flex-1 rounded bg-zinc-100 px-2 py-1 text-zinc-950 outline outline-zinc-500 hover:bg-zinc-200"
