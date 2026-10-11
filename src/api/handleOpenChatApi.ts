@@ -10,8 +10,8 @@ export const handleOpenChatApi = async ({
     setUserData,
     showToast,
 }: handleOpenChatApiProps) => {
+    setIsLoading(true)
     try {
-        setIsLoading(true)
         const response = await fetch(
             `http://localhost:8000/api/conversation/${friend}`,
             {
