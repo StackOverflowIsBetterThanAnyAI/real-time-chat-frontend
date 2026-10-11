@@ -243,6 +243,20 @@ export type handleLogoutApiProps = {
     showToast: (props: ToastProps) => void
 }
 
+export type handleOpenChatApiProps = {
+    friend: string
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
+}
+
 export type handleRemoveProfilePictureApiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
