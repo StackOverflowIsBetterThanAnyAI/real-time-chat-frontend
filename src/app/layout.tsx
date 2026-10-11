@@ -24,12 +24,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     return (
         <html
             lang="en"
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased flex justify-center`}
+            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
         >
-            <body className="min-h-full flex flex-col bg-zinc-700 text-zinc-100 w-full items-center">
+            <body className="h-dvh flex flex-col overflow-hidden bg-zinc-700 text-zinc-100 w-full">
                 <Providers>
                     <Navigation />
-                    {children}
+                    <div className="flex-1 min-h-0 w-full">{children}</div>
                     <Footer />
                 </Providers>
             </body>
