@@ -27,22 +27,21 @@ const Sidebar = () => {
     }
 
     return (
-        <div className="flex flex-col gap-4 bg-zinc-800/80 p-2">
+        <div className="flex h-full min-h-0 flex-col gap-4 bg-zinc-800/80 p-2">
             <button
-                className="regular-button bg-blue-600 hover:bg-blue-600/85 active:bg-blue-600/75"
+                className="regular-button shrink-0 bg-blue-600 hover:bg-blue-600/85 active:bg-blue-600/75"
                 onClick={() => {}}
             >
                 <RiChatNewFill />
                 <span>New Chat</span>
             </button>
-            <div className="flex flex-wrap gap-2 items-center">
+            <div className="flex shrink-0 flex-wrap items-center gap-2">
                 <label htmlFor="search">
                     <span className="sr-only">Search</span>
-                    <MdOutlineSearch className="w-8 h-8" aria-hidden="true" />
+                    <MdOutlineSearch className="h-8 w-8" aria-hidden="true" />
                 </label>
                 <input
-                    className="bg-zinc-100 outline outline-zinc-500 text-zinc-950 text-normal rounded px-2 py-1
-                    hover:bg-zinc-200 flex-1 min-w-32"
+                    className="min-w-32 flex-1 rounded bg-zinc-100 px-2 py-1 text-zinc-950 outline outline-zinc-500 hover:bg-zinc-200"
                     id="search"
                     type="search"
                     placeholder="Münzendieter"
@@ -51,11 +50,11 @@ const Sidebar = () => {
                     title="Filter Friends"
                 />
             </div>
-            {filteredFriends.length
-                ? filteredFriends.map((item) => {
-                      return <Button key={item.id} friend={item} />
-                  })
-                : null}
+            <div className="min-h-0 flex-1 space-y-2 overflow-y-auto">
+                {filteredFriends.map((item) => (
+                    <Button key={item.id} friend={item} />
+                ))}
+            </div>
         </div>
     )
 }
