@@ -6,7 +6,6 @@ import { EmptyWindow, Sidebar, Window } from '@/app/components/chat'
 import {
     ContextChatFriendData,
     ContextFriends,
-    ContextIsChatOpened,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
@@ -46,7 +45,6 @@ const Chat = () => {
     const [chatFriendData, setChatFriendData] = useState<
         FriendType | undefined
     >(undefined)
-    const [isChatOpened, setIsChatOpened] = useState<boolean | undefined>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const fetchUser = useCallback(async () => {
@@ -74,20 +72,16 @@ const Chat = () => {
         <ContextChatFriendData.Provider
             value={[chatFriendData, setChatFriendData]}
         >
-            <ContextIsChatOpened.Provider
-                value={[isChatOpened, setIsChatOpened]}
+            <main
+                className={`${isLoading ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
             >
-                <main
-                    className={`${isLoading ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
-                >
-                    {isLoading ? null : <Sidebar />}
-                    {isChatOpened ? (
-                        <Window friend={chatFriendData} />
-                    ) : (
-                        <EmptyWindow isLoading={isLoading} />
-                    )}
-                </main>
-            </ContextIsChatOpened.Provider>
+                {isLoading ? null : <Sidebar />}
+                {chatFriendData ? (
+                    <Window friend={chatFriendData} />
+                ) : (
+                    <EmptyWindow isLoading={isLoading} />
+                )}
+            </main>
         </ContextChatFriendData.Provider>
     )
 }
