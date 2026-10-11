@@ -17,7 +17,9 @@ const Sidebar = () => {
     const friends =
         friendsData?.filter((item) => item.status === 'accepted') || []
     const filteredFriends = friends.filter((item) =>
-        item.friend.userName.toLowerCase().includes(filter.toLowerCase())
+        item.friend.userName
+            .toLowerCase()
+            .includes(filter.replace(/\s/g, '').toLowerCase())
     )
 
     const handleFilterInput = (e: React.ChangeEvent<HTMLInputElement>) => {
