@@ -43,11 +43,11 @@ const Chat = () => {
 
     const { showToast } = useToast()
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [isChatOpened, setIsChatOpened] = useState<boolean | undefined>(false)
     const [chatFriendData, setChatFriendData] = useState<
         FriendType | undefined
     >(undefined)
+    const [isChatOpened, setIsChatOpened] = useState<boolean | undefined>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const fetchUser = useCallback(async () => {
         handleFetchInitialDataApi({
