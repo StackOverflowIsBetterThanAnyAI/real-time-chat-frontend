@@ -5,7 +5,7 @@
 }
 
 a {
-    @apply w-fit flex items-center gap-1 px-2 py-1 rounded-sm mx-2 underline hover:bg-zinc-800 active:bg-zinc-800/50;
+    @apply w-fit flex items-center gap-1 px-2 py-1 rounded-sm mx-2 underline hover:bg-zinc-700 active:bg-zinc-800/70;
 }
 
 a:focus-visible,
