@@ -25,8 +25,8 @@ const Button = ({
         </div>
     ) : (
         <button
-            className={`settings-menu-button regular-button relative overflow-hidden active:bg-zinc-800/50
-            ${isDelete ? 'outline-2 outline-red-500' : ''} hover:bg-zinc-800/50 active:bg-zinc-800/50`}
+            className={`settings-menu-button regular-button relative active:bg-zinc-800/50
+            ${isDelete ? 'outline-2 outline-red-500 overflow-hidden' : ''} hover:bg-zinc-800/50 active:bg-zinc-800/50`}
             onClick={handleClick}
         >
             {isConfirmingDelete && (
