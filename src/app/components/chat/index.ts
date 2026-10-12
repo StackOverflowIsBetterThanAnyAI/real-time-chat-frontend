@@ -1,6 +1,7 @@
 export { default as Button } from './Button'
 export { default as Chat } from './Chat'
 export { default as EmptyWindow } from './EmptyWindow'
+export { default as Message } from './Message'
 export { default as Sidebar } from './Sidebar'
 export { default as SendText } from './SendText'
 export { default as Window } from './Window'

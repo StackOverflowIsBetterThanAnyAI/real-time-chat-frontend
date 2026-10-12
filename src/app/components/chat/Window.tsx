@@ -2,12 +2,12 @@
 
 import { FetchLoading } from 'fetch-loading'
 import { useContext } from 'react'
-import { SendText } from '@/app/components/chat'
+import { Message, SendText } from '@/app/components/chat'
 import {
     FallbackProfilePicture,
     ProfilePicture,
 } from '@/app/components/settings'
-import { ContextChatFriendData } from '@/context'
+import { ContextChatFriendData, ContextUserData } from '@/context'
 
 const Window = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)
@@ -18,10 +18,16 @@ const Window = () => {
     }
     const [chatFriendData] = contextChatFriendData
 
+    const contextUserData = useContext(ContextUserData)
+    if (!contextUserData) {
+        throw new Error('Window must be used within a ContextUserData.Provider')
+    }
+    const [userData] = contextUserData
+
     return (
-        <div className="bg-zinc-700 flex flex-col justify-between items-center">
+        <div className="bg-zinc-700 flex flex-col h-full min-h-0 justify-between items-center overflow-hidden">
             {chatFriendData ? (
-                <div className="text-sm sm:text-base lg:text-lg flex gap-2 items-center px-4 py-2 bg-zinc-900/60 w-full border-b border-zinc-100">
+                <div className="shrink-0 text-sm sm:text-base lg:text-lg flex gap-2 items-center px-4 py-2 bg-zinc-900/60 w-full border-b border-zinc-100">
                     {chatFriendData.friend.profilePicture ? (
                         <span className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden">
                             <ProfilePicture
@@ -48,7 +54,7 @@ const Window = () => {
                     </div>
                 </div>
             ) : (
-                <div className="flex gap-2 items-center px-4 py-2 bg-zinc-900/60 w-full border-b border-zinc-100">
+                <div className="shrink-0 flex gap-2 items-center px-4 py-2 bg-zinc-900/60 w-full border-b border-zinc-100">
                     <span className="animate-pulse bg-zinc-700 h-10 lg:h-12 w-10 lg:w-12 px-4 py-1 rounded-full"></span>
                     <div className="flex flex-col gap-1 mb-auto items-start min-w-0 flex-1">
                         <span className="animate-pulse bg-zinc-700 h-5 sm:h-6 lg:h-7 w-full max-w-24 px-4 py-1 rounded-xl"></span>
@@ -58,6 +64,22 @@ const Window = () => {
             )}
             {!chatFriendData?.conversationId || !chatFriendData?.messages ? (
                 <FetchLoading theme="#f4f4f5" />
+            ) : chatFriendData?.messages ? (
+                <div
+                    className="flex-1 min-h-0 overflow-y-auto w-full flex flex-col gap-2 p-2"
+                    role="log"
+                    aria-live="polite"
+                    aria-relevant="additions"
+                    aria-label="Chat History"
+                >
+                    {chatFriendData.messages.map((item) => (
+                        <Message
+                            content={item.content}
+                            isSent={item.sender.userName === userData?.userName}
+                            key={item.id}
+                        />
+                    ))}
+                </div>
             ) : null}
             <SendText />
         </div>
