@@ -6,7 +6,10 @@ export type ChatEmptyWindowProps = {
     isLoading: boolean
 }
 
-export type ChatFriendType = FriendType & ConversationProps
+export type ChatFriendType = FriendType &
+    ConversationProps & {
+        draftedMessage: string
+    }
 
 export type ChatMessageProps = {
     content: string
@@ -312,7 +315,6 @@ export type handleSendMessageApiProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
-    setMessage: React.Dispatch<React.SetStateAction<string>>
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
     userData: UserDataProps | undefined

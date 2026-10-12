@@ -78,6 +78,7 @@ const Button = ({ friend }: ChatButtonProps) => {
             status: friend.status,
             conversationId: -1,
             messages: [],
+            draftedMessage: '',
         }))
         handleOpenChat(friend.friend.userName)
     }

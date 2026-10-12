@@ -55,16 +55,22 @@ const SendText = () => {
 
     const { showToast } = useToast()
 
-    const [message, setMessage] = useState<string>('')
+    const currentMessage = chatFriendData?.draftedMessage || ''
 
+    const handleChangeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const value = e.currentTarget.value
+        setChatFriendData((prev) =>
+            prev ? { ...prev, draftedMessage: value } : prev
+        )
+    }
     const handleKeyDownMessage = (
         e: React.KeyboardEvent<HTMLTextAreaElement>
     ) => {
         if (isAnyChatFriendDataMissing) {
             return
         }
-        if (e.key === 'Enter' && !e.shiftKey && message.trim().length) {
-            handleSendMessage(chatFriendData.conversationId, message)
+        if (e.key === 'Enter' && !e.shiftKey && currentMessage.trim().length) {
+            handleSendMessage(chatFriendData.conversationId, currentMessage)
             e.preventDefault()
         }
     }
@@ -76,7 +82,6 @@ const SendText = () => {
             setFriendsData,
             setIsLoggedIn,
             setIsSettingsExpanded,
-            setMessage,
             setUserData,
             showToast,
             userData,
@@ -95,8 +100,8 @@ const SendText = () => {
     return (
         <div className="flex w-full gap-1.5 justify-between bg-zinc-800 p-1.5">
             <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                value={currentMessage}
+                onChange={handleChangeMessage}
                 placeholder="Your message ..."
                 rows={3}
                 className="resize-none w-full bg-zinc-700 px-4 py-2 text-base disabled:bg-zinc-500"
@@ -112,13 +117,13 @@ const SendText = () => {
                 onClick={() =>
                     handleSendMessage(
                         chatFriendData?.conversationId || -1,
-                        message
+                        currentMessage
                     )
                 }
                 disabled={
                     isAnyChatFriendDataMissing ||
                     chatFriendData.conversationId < 0 ||
-                    !message.trim().length
+                    !currentMessage.trim().length
                 }
             >
                 <IoMdSend color="#f4f4f5" />

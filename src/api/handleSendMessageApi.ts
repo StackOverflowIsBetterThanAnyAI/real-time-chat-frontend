@@ -10,7 +10,6 @@ export const handleSendMessageApi = async ({
     setFriendsData,
     setIsLoggedIn,
     setIsSettingsExpanded,
-    setMessage,
     setUserData,
     showToast,
     userData,
@@ -29,10 +28,10 @@ export const handleSendMessageApi = async ({
             ? {
                   ...prev,
                   messages: [...prev.messages, messageObject],
+                  draftedMessage: '',
               }
             : prev
     )
-    setMessage('')
     try {
         const response = await fetch(
             `http://localhost:8000/api/conversation/${id}/message`,
