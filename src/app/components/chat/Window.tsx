@@ -70,7 +70,7 @@ const Window = () => {
             {!chatFriendData?.conversationId ||
             chatFriendData.conversationId < 0 ? (
                 <FetchLoading theme="#f4f4f5" />
-            ) : chatFriendData?.messages ? (
+            ) : chatFriendData?.messages.length ? (
                 <div
                     className="flex-1 min-h-0 overflow-y-auto w-full flex flex-col gap-2 px-4 py-2"
                     role="log"
@@ -87,7 +87,18 @@ const Window = () => {
                         />
                     ))}
                 </div>
-            ) : null}
+            ) : (
+                <div
+                    className="outline outline-blue-600 rounded-r-lg px-2 py-0.5 rounded-t-lg text-normal
+                    w-fit max-w-4/5 flex flex-col gap-1 text-pretty text-center"
+                >
+                    <span>
+                        It looks like you haven't started a chat with this user
+                        yet.
+                    </span>
+                    <span>Send a message now.</span>
+                </div>
+            )}
             <SendText />
         </div>
     )
