@@ -58,6 +58,17 @@ const SendText = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [message, setMessage] = useState<string>('')
 
+    const handleKeyDownMessage = (
+        e: React.KeyboardEvent<HTMLTextAreaElement>
+    ) => {
+        if (isAnyChatFriendDataMissing || isLoading) {
+            return
+        }
+        if (e.key === 'Enter' && !e.shiftKey && message.trim().length) {
+            handleSendMessage(chatFriendData.conversationId, message)
+            e.preventDefault()
+        }
+    }
     const handleSendMessage = async (id: number, message: string) => {
         handleSendMessageApi({
             id,
@@ -92,6 +103,7 @@ const SendText = () => {
                 rows={3}
                 className="resize-none w-full bg-zinc-700 px-4 py-2 text-base disabled:bg-zinc-500"
                 disabled={isAnyChatFriendDataMissing || isLoading}
+                onKeyDown={handleKeyDownMessage}
             />
             <button
                 className="regular-button bg-blue-600 enabled:hover:bg-blue-600/85
@@ -102,7 +114,11 @@ const SendText = () => {
                         message
                     )
                 }
-                disabled={isAnyChatFriendDataMissing || isLoading}
+                disabled={
+                    isAnyChatFriendDataMissing ||
+                    isLoading ||
+                    !message.trim().length
+                }
             >
                 <IoMdSend color="#f4f4f5" />
             </button>
