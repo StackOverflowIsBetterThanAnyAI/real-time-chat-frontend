@@ -1,7 +1,4 @@
-export type ChatMessageProps = {
-    content: string
-    isSent?: boolean
-}
+import { ChatMessageProps } from '@/types'
 
 const Message = ({ content, isSent = false }: ChatMessageProps) => {
     return (

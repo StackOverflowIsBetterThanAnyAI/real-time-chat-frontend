@@ -8,6 +8,11 @@ export type ChatEmptyWindowProps = {
 
 export type ChatFriendType = FriendType & ConversationProps
 
+export type ChatMessageProps = {
+    content: string
+    isSent?: boolean
+}
+
 export type ConversationProps = {
     conversationId: number
     messages: {
@@ -358,6 +363,11 @@ export type resetStorageProps = {
         React.SetStateAction<boolean | undefined>
     >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+}
+
+export type useChatScrollToBottomProps = {
+    chatFriendData: ChatFriendType | undefined
+    chatRef: React.RefObject<HTMLDivElement | null>
 }
 
 export type useClickOutsideProfileDetailsProps = {
