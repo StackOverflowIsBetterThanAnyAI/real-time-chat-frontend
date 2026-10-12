@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { IoMdSend } from 'react-icons/io'
 import { handleSendMessageApi } from '@/api'
 import {

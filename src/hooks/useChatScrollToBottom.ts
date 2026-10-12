@@ -13,5 +13,5 @@ export const useChatScrollToBottom = ({
                 behavior: 'smooth',
             })
         }
-    }, [chatFriendData?.messages])
+    }, [chatFriendData?.messages, chatRef])
 }
