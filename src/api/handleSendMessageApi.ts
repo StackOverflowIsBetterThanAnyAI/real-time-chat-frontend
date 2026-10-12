@@ -13,21 +13,19 @@ export const handleSendMessageApi = async ({
     showToast,
     userData,
 }: handleSendMessageApiProps) => {
+    const messageObject = {
+        id: -Date.now(),
+        content: message,
+        createdAt: new Date().toISOString(),
+        sender: {
+            userName: userData?.userName || '',
+        },
+    }
     setChatFriendData((prev) =>
         prev
             ? {
                   ...prev,
-                  messages: [
-                      ...prev.messages,
-                      {
-                          id: -Date.now(),
-                          content: message,
-                          createdAt: new Date().toISOString(),
-                          sender: {
-                              userName: userData?.userName || '',
-                          },
-                      },
-                  ],
+                  messages: [...prev.messages, messageObject],
               }
             : prev
     )
