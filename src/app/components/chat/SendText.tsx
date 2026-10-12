@@ -93,7 +93,7 @@ const SendText = () => {
         !chatFriendData?.status
 
     return (
-        <div className="flex w-full gap-1 justify-between bg-zinc-800 p-1">
+        <div className="flex w-full gap-1.5 justify-between bg-zinc-800 p-1.5">
             <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
