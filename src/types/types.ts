@@ -6,8 +6,16 @@ export type ChatEmptyWindowProps = {
     isLoading: boolean
 }
 
-export type ChatWindowProps = {
-    friend: FriendType
+export type ChatFriendType = FriendType & ConversationProps
+
+export type ConversationProps = {
+    conversationId: number
+    messages: {
+        id: number
+        content: string
+        createdAt: string
+        sender: { userName: string }
+    }[]
 }
 
 export type ContextToastType = {
@@ -245,10 +253,12 @@ export type handleLogoutApiProps = {
 
 export type handleOpenChatApiProps = {
     friend: string
+    setChatFriendData: React.Dispatch<
+        React.SetStateAction<ChatFriendType | undefined>
+    >
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
@@ -282,6 +292,26 @@ export type handleRequestApiProps = {
     >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
+}
+
+export type handleSendMessageApiProps = {
+    id: number
+    message: string
+    setChatFriendData: React.Dispatch<
+        React.SetStateAction<ChatFriendType | undefined>
+    >
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setMessage: React.Dispatch<React.SetStateAction<string>>
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
+    userData: UserDataProps | undefined
 }
 
 export type handleUpdateStatusAPiProps = {
