@@ -11,7 +11,7 @@ import {
     ContextUserData,
     useToast,
 } from '@/context'
-import { FriendType } from '@/types'
+import { ChatFriendType } from '@/types'
 
 const Chat = () => {
     const contextFriends = useContext(ContextFriends)
@@ -43,7 +43,7 @@ const Chat = () => {
     const { showToast } = useToast()
 
     const [chatFriendData, setChatFriendData] = useState<
-        FriendType | undefined
+        ChatFriendType | undefined
     >(undefined)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -77,7 +77,7 @@ const Chat = () => {
             >
                 {isLoading ? null : <Sidebar />}
                 {chatFriendData ? (
-                    <Window friend={chatFriendData} />
+                    <Window />
                 ) : (
                     <EmptyWindow isLoading={isLoading} />
                 )}
