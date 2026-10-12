@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import {
     FallbackProfilePicture,
     ProfilePicture,
@@ -23,7 +23,7 @@ const Button = ({ friend }: ChatButtonProps) => {
             'Button must be used within a ContextChatFriendData.Provider'
         )
     }
-    const [, setChatFriendData] = contextChatFriendData
+    const [chatFriendData, setChatFriendData] = contextChatFriendData
 
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
@@ -55,23 +55,31 @@ const Button = ({ friend }: ChatButtonProps) => {
 
     const { showToast } = useToast()
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-
-    const hanldeSetChatUser = () => {
-        setChatFriendData(friend)
-        handleOpenChat(friend.friend.userName)
-    }
-
     const handleOpenChat = async (friend: string) => {
         await handleOpenChatApi({
             friend,
+            setChatFriendData,
             setFriendsData,
-            setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
             setUserData,
             showToast,
         })
+    }
+    const hanldeSetChatUser = () => {
+        if (chatFriendData?.friend.userName === friend.friend.userName) {
+            return
+        }
+        setChatFriendData((prev) => ({
+            ...prev,
+            direction: friend.direction,
+            friend: friend.friend,
+            id: friend.id,
+            status: friend.status,
+            conversationId: prev?.conversationId ?? 0,
+            messages: prev?.messages ?? [],
+        }))
+        handleOpenChat(friend.friend.userName)
     }
 
     return (
