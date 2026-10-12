@@ -67,7 +67,8 @@ const Window = () => {
                     </div>
                 </div>
             )}
-            {!chatFriendData?.conversationId || !chatFriendData?.messages ? (
+            {!chatFriendData?.conversationId ||
+            chatFriendData.conversationId < 0 ? (
                 <FetchLoading theme="#f4f4f5" />
             ) : chatFriendData?.messages ? (
                 <div

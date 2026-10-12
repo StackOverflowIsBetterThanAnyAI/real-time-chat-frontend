@@ -100,7 +100,10 @@ const SendText = () => {
                 placeholder="Your message ..."
                 rows={3}
                 className="resize-none w-full bg-zinc-700 px-4 py-2 text-base disabled:bg-zinc-500"
-                disabled={isAnyChatFriendDataMissing}
+                disabled={
+                    isAnyChatFriendDataMissing ||
+                    chatFriendData.conversationId < 0
+                }
                 onKeyDown={handleKeyDownMessage}
             />
             <button
@@ -112,7 +115,11 @@ const SendText = () => {
                         message
                     )
                 }
-                disabled={isAnyChatFriendDataMissing || !message.trim().length}
+                disabled={
+                    isAnyChatFriendDataMissing ||
+                    chatFriendData.conversationId < 0 ||
+                    !message.trim().length
+                }
             >
                 <IoMdSend color="#f4f4f5" />
             </button>

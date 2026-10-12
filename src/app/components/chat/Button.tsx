@@ -76,8 +76,8 @@ const Button = ({ friend }: ChatButtonProps) => {
             friend: friend.friend,
             id: friend.id,
             status: friend.status,
-            conversationId: prev?.conversationId ?? 0,
-            messages: prev?.messages ?? [],
+            conversationId: -1,
+            messages: [],
         }))
         handleOpenChat(friend.friend.userName)
     }
