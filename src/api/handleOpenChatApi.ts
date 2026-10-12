@@ -1,16 +1,15 @@
 import { handleLogoutApi } from '@/api'
-import { handleOpenChatApiProps } from '@/types'
+import { ConversationProps, handleOpenChatApiProps } from '@/types'
 
 export const handleOpenChatApi = async ({
     friend,
+    setChatFriendData,
     setFriendsData,
-    setIsLoading,
     setIsLoggedIn,
     setIsSettingsExpanded,
     setUserData,
     showToast,
 }: handleOpenChatApiProps) => {
-    setIsLoading(true)
     try {
         const response = await fetch(
             `http://localhost:8000/api/conversation/${friend}`,
@@ -51,15 +50,21 @@ export const handleOpenChatApi = async ({
             return
         }
 
-        const data = await response.json()
-        console.log(data)
+        const data: ConversationProps = await response.json()
+        setChatFriendData((prev) =>
+            prev
+                ? {
+                      ...prev,
+                      conversationId: data.conversationId,
+                      messages: data.messages,
+                  }
+                : prev
+        )
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to open the chat',
             error
         )
         showToast({ label: 'Could not open chat.' })
-    } finally {
-        setIsLoading(false)
     }
 }
