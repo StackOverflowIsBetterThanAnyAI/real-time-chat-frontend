@@ -1,3 +1,4 @@
+export { useChatScrollToBottom } from './useChatScrollToBottom'
 export { useClickOutsideProfileDetails } from './useClickOutsideProfileDetails'
 export { useErrorConfirmPassword } from './useErrorConfirmPassword'
 export { useErrorPassword } from './useErrorPassword'

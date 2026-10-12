@@ -1,13 +1,14 @@
 'use client'
 
 import { FetchLoading } from 'fetch-loading'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { Message, SendText } from '@/app/components/chat'
 import {
     FallbackProfilePicture,
     ProfilePicture,
 } from '@/app/components/settings'
 import { ContextChatFriendData, ContextUserData } from '@/context'
+import { useChatScrollToBottom } from '@/hooks'
 
 const Window = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)
@@ -23,6 +24,10 @@ const Window = () => {
         throw new Error('Window must be used within a ContextUserData.Provider')
     }
     const [userData] = contextUserData
+
+    const chatRef = useRef<HTMLDivElement>(null)
+
+    useChatScrollToBottom({ chatFriendData, chatRef })
 
     return (
         <div className="bg-zinc-700 flex flex-col h-full min-h-0 justify-between items-center overflow-hidden">
@@ -71,6 +76,7 @@ const Window = () => {
                     aria-live="polite"
                     aria-relevant="additions"
                     aria-label="Chat History"
+                    ref={chatRef}
                 >
                     {chatFriendData.messages.map((item) => (
                         <Message
