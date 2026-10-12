@@ -177,7 +177,12 @@ const Settings = () => {
                     <Button
                         handleClick={handleToggleIsSettingsExpanded}
                         label="Close"
-                        icon={<IoMdClose color="#f4f4f5" />}
+                        icon={
+                            <IoMdClose
+                                color="#f4f4f5"
+                                className="h-4 sm:h-5 w-4 sm:w-5"
+                            />
+                        }
                     />
                     <div className="flex flex-col justify-center items-center mx-auto w-full">
                         <Profile
@@ -206,31 +211,56 @@ const Settings = () => {
                                 isClicked={isEditingStatus}
                                 isClickedLabel="Editing Status"
                                 label="Edit Status"
-                                icon={<MdModeEdit color="#f4f4f5" />}
+                                icon={
+                                    <MdModeEdit
+                                        color="#f4f4f5"
+                                        className="h-4 sm:h-5 w-4 sm:w-5"
+                                    />
+                                }
                             />
                             <Button
                                 handleClick={handleToggleIsFriendsExpanded}
                                 label="Friends"
-                                icon={<FaUserFriends color="#f4f4f5" />}
+                                icon={
+                                    <FaUserFriends
+                                        color="#f4f4f5"
+                                        className="h-4 sm:h-5 w-4 sm:w-5"
+                                    />
+                                }
                             />
                             <Button
                                 handleClick={() => {}}
                                 label="Statistics"
-                                icon={<IoStatsChart />}
+                                icon={
+                                    <IoStatsChart
+                                        color="#f4f4f5"
+                                        className="h-4 sm:h-5 w-4 sm:w-5"
+                                    />
+                                }
                             />
                         </div>
                         <div className="flex flex-col gap-4">
                             <Button
                                 handleClick={handleLogout}
                                 label="Logout"
-                                icon={<MdLogout />}
+                                icon={
+                                    <MdLogout
+                                        color="#f4f4f5"
+                                        className="h-4 sm:h-5 w-4 sm:w-5"
+                                    />
+                                }
                                 isDelete
                                 isLoading={isLoadingLogout}
                             />
                             <Button
                                 handleClick={handleDeleteAccount}
                                 label={`${isDeleteAccount ? `Confirm Deletion (${deleteCountdown}s)` : 'Delete Account'}`}
-                                icon={<MdDeleteForever />}
+                                icon={
+                                    <MdDeleteForever
+                                        color="#f4f4f5"
+                                        className="h-4 sm:h-5 w-4 sm:w-5"
+                                    />
+                                }
                                 isConfirmingDelete={isDeleteAccount}
                                 isDelete
                                 isLoading={isLoadingDelete}
