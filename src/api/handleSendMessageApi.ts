@@ -1,6 +1,8 @@
 import { handleLogoutApi } from '@/api'
 import { handleSendMessageApiProps } from '@/types'
 
+let tempIdCounter = -1
+
 export const handleSendMessageApi = async ({
     id,
     message,
@@ -13,8 +15,9 @@ export const handleSendMessageApi = async ({
     showToast,
     userData,
 }: handleSendMessageApiProps) => {
+    const tempId = tempIdCounter--
     const messageObject = {
-        id: -Date.now(),
+        id: tempId,
         content: message,
         createdAt: new Date().toISOString(),
         sender: {
@@ -44,10 +47,15 @@ export const handleSendMessageApi = async ({
         )
 
         if (!response.ok) {
-            console.log(
-                'An unexpected error occurred while trying to send the message',
-                response.status,
-                response.statusText
+            setChatFriendData((prev) =>
+                prev
+                    ? {
+                          ...prev,
+                          messages: prev.messages.filter(
+                              (msg) => msg.id !== tempId
+                          ),
+                      }
+                    : prev
             )
             const error = await response.json()
             if (response.status === 401) {
@@ -70,7 +78,41 @@ export const handleSendMessageApi = async ({
             }
             return
         }
+
+        const savedMessage = await response.json()
+        setChatFriendData((prev) => {
+            if (!prev) {
+                return prev
+            }
+
+            const index = prev.messages.findIndex((item) => item.id === tempId)
+            if (index === -1) {
+                return {
+                    ...prev,
+                    messages: [...prev.messages, savedMessage],
+                }
+            }
+
+            const updatedMessages = [...prev.messages]
+            updatedMessages[index] = savedMessage
+
+            return {
+                ...prev,
+                messages: updatedMessages,
+            }
+        })
     } catch (error) {
+        setChatFriendData((prev) =>
+            prev
+                ? {
+                      ...prev,
+                      messages: prev.messages.filter(
+                          (item) => item.id !== tempId
+                      ),
+                  }
+                : prev
+        )
+
         console.error(
             'An unexpected error occurred while trying to send the message',
             error
