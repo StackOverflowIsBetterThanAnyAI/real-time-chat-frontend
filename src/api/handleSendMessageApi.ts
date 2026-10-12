@@ -6,7 +6,6 @@ export const handleSendMessageApi = async ({
     message,
     setChatFriendData,
     setFriendsData,
-    setIsLoading,
     setIsLoggedIn,
     setIsSettingsExpanded,
     setMessage,
@@ -14,7 +13,25 @@ export const handleSendMessageApi = async ({
     showToast,
     userData,
 }: handleSendMessageApiProps) => {
-    setIsLoading(true)
+    setChatFriendData((prev) =>
+        prev
+            ? {
+                  ...prev,
+                  messages: [
+                      ...prev.messages,
+                      {
+                          id: -Date.now(),
+                          content: message,
+                          createdAt: new Date().toISOString(),
+                          sender: {
+                              userName: userData?.userName || '',
+                          },
+                      },
+                  ],
+              }
+            : prev
+    )
+    setMessage('')
     try {
         const response = await fetch(
             `http://localhost:8000/api/conversation/${id}/message`,
@@ -55,26 +72,6 @@ export const handleSendMessageApi = async ({
             }
             return
         }
-
-        setChatFriendData((prev) =>
-            prev
-                ? {
-                      ...prev,
-                      messages: [
-                          ...prev.messages,
-                          {
-                              id: -Date.now(),
-                              content: message,
-                              createdAt: new Date().toISOString(),
-                              sender: {
-                                  userName: userData?.userName || '',
-                              },
-                          },
-                      ],
-                  }
-                : prev
-        )
-        setMessage('')
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to send the message',
@@ -83,7 +80,5 @@ export const handleSendMessageApi = async ({
         showToast({
             label: 'Could not send message. Please try again.',
         })
-    } finally {
-        setIsLoading(false)
     }
 }

@@ -55,13 +55,12 @@ const SendText = () => {
 
     const { showToast } = useToast()
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [message, setMessage] = useState<string>('')
 
     const handleKeyDownMessage = (
         e: React.KeyboardEvent<HTMLTextAreaElement>
     ) => {
-        if (isAnyChatFriendDataMissing || isLoading) {
+        if (isAnyChatFriendDataMissing) {
             return
         }
         if (e.key === 'Enter' && !e.shiftKey && message.trim().length) {
@@ -75,7 +74,6 @@ const SendText = () => {
             message,
             setChatFriendData,
             setFriendsData,
-            setIsLoading,
             setIsLoggedIn,
             setIsSettingsExpanded,
             setMessage,
@@ -102,7 +100,7 @@ const SendText = () => {
                 placeholder="Your message ..."
                 rows={3}
                 className="resize-none w-full bg-zinc-700 px-4 py-2 text-base disabled:bg-zinc-500"
-                disabled={isAnyChatFriendDataMissing || isLoading}
+                disabled={isAnyChatFriendDataMissing}
                 onKeyDown={handleKeyDownMessage}
             />
             <button
@@ -114,11 +112,7 @@ const SendText = () => {
                         message
                     )
                 }
-                disabled={
-                    isAnyChatFriendDataMissing ||
-                    isLoading ||
-                    !message.trim().length
-                }
+                disabled={isAnyChatFriendDataMissing || !message.trim().length}
             >
                 <IoMdSend color="#f4f4f5" />
             </button>
