@@ -72,7 +72,7 @@ const Window = () => {
                 <FetchLoading theme="#f4f4f5" />
             ) : chatFriendData?.messages ? (
                 <div
-                    className="flex-1 min-h-0 overflow-y-auto w-full flex flex-col gap-2 p-2"
+                    className="flex-1 min-h-0 overflow-y-auto w-full flex flex-col gap-2 px-4 py-2"
                     role="log"
                     aria-live="polite"
                     aria-relevant="additions"
