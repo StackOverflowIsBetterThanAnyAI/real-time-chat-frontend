@@ -320,7 +320,7 @@ export type handleSendMessageApiProps = {
     userData: UserDataProps | undefined
 }
 
-export type handleUpdateStatusAPiProps = {
+export type handleUpdateStatusApiProps = {
     currentStatus: string
     internalStatus: string
     setApiError: React.Dispatch<React.SetStateAction<string>>

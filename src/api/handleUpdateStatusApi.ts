@@ -1,5 +1,5 @@
 import { handleLogoutApi } from '@/api'
-import { handleUpdateStatusAPiProps } from '@/types'
+import { handleUpdateStatusApiProps } from '@/types'
 import { setItemInSessionStorage, setItemInStorage } from '@/utils'
 
 export const handleUpdateStatusApi = async ({
@@ -14,7 +14,7 @@ export const handleUpdateStatusApi = async ({
     setIsSettingsExpanded,
     setUserData,
     showToast,
-}: handleUpdateStatusAPiProps) => {
+}: handleUpdateStatusApiProps) => {
     setIsLoading(true)
     setApiError('')
     try {
