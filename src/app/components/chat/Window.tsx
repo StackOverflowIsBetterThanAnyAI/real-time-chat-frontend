@@ -93,8 +93,8 @@ const Window = () => {
                     w-fit max-w-4/5 flex flex-col gap-1 text-pretty text-center"
                 >
                     <span>
-                        It looks like you haven't started a chat with this user
-                        yet.
+                        It looks like you haven&#39;t started a chat with this
+                        user yet.
                     </span>
                     <span>Send a message now.</span>
                 </div>
