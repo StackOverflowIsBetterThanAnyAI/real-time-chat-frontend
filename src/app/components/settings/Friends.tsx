@@ -12,9 +12,8 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
-import { useLoadFriendsStorageValues } from '@/hooks'
+import { useLoadFriendsStorageValues, useToast } from '@/hooks'
 
 const Friends = () => {
     const contextFriends = useContext(ContextFriends)

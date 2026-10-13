@@ -13,10 +13,8 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
-import { useChatScrollToBottom } from '@/hooks'
-import { usePollMessage } from '@/hooks/usePollMessage'
+import { useChatScrollToBottom, useToast, usePollMessage } from '@/hooks'
 
 const Window = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)

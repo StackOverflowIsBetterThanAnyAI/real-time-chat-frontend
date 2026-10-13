@@ -12,9 +12,8 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
-import { useClickOutsideProfileDetails } from '@/hooks'
+import { useClickOutsideProfileDetails, useToast } from '@/hooks'
 import { SettingsProfileProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 

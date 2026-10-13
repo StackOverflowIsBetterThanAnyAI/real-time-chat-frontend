@@ -9,8 +9,8 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
+import { useToast } from '@/hooks'
 import { SettingsFriendsOverviewItemProps } from '@/types'
 
 const FriendsOverviewItem = ({

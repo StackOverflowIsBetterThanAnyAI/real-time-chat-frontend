@@ -8,8 +8,8 @@ import {
     ContextFriends,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
-    useToast,
 } from '@/context'
+import { useToast } from '@/hooks'
 import { SettingsStatusProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 

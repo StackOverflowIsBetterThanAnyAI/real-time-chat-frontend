@@ -10,8 +10,8 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
+import { useToast } from '@/hooks'
 
 const PendingFriendsItem = ({
     id,

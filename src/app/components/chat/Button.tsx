@@ -12,8 +12,8 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
+import { useToast } from '@/hooks'
 import { ChatButtonProps } from '@/types'
 
 const Button = ({ friend }: ChatButtonProps) => {

@@ -20,13 +20,13 @@ import {
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
     ContextUserData,
-    useToast,
 } from '@/context'
 import {
     useEscapeFocusTrapSettings,
     useFocusTrapSettings,
     useIsDeleteCountdown,
     useLoadSettingsStorageValues,
+    useToast,
 } from '@/hooks'
 import { setItemInSessionStorage } from '@/utils'
 

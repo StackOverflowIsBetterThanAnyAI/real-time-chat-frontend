@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useToast } from '@/hooks'
 import type { ToastProps } from '@/types'
-import { useToast } from '@/context'
 
 const Toast = ({ label }: ToastProps) => {
     const { hideToast } = useToast()

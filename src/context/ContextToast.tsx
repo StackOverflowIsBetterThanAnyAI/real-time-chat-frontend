@@ -2,7 +2,6 @@
 
 import {
     createContext,
-    useContext,
     useState,
     useEffect,
     useCallback,
@@ -11,7 +10,9 @@ import {
 import { Toast } from '@/app/components/toast'
 import type { ContextToastType, ToastProps } from '@//types'
 
-const ContextToast = createContext<ContextToastType | undefined>(undefined)
+export const ContextToast = createContext<ContextToastType | undefined>(
+    undefined
+)
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
     const [toast, setToast] = useState<ToastProps | null>(null)
@@ -43,12 +44,4 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
             )}
         </ContextToast.Provider>
     )
-}
-
-export const useToast = () => {
-    const context = useContext(ContextToast)
-    if (!context) {
-        throw new Error('useToast must be used within a ToastProvider')
-    }
-    return context
 }
