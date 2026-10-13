@@ -7,8 +7,16 @@ import {
     FallbackProfilePicture,
     ProfilePicture,
 } from '@/app/components/settings'
-import { ContextChatFriendData, ContextUserData } from '@/context'
+import {
+    ContextChatFriendData,
+    ContextFriends,
+    ContextIsLoggedIn,
+    ContextIsSettingsExpanded,
+    ContextUserData,
+    useToast,
+} from '@/context'
 import { useChatScrollToBottom } from '@/hooks'
+import { usePollMessage } from '@/hooks/usePollMessage'
 
 const Window = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)
@@ -17,17 +25,53 @@ const Window = () => {
             'Window must be used within a ContextChatFriendData.Provider'
         )
     }
-    const [chatFriendData] = contextChatFriendData
+    const [chatFriendData, setChatFriendData] = contextChatFriendData
+
+    const contextFriends = useContext(ContextFriends)
+    if (!contextFriends) {
+        throw new Error('Window must be used within a ContextFriends.Provider')
+    }
+    const [, setFriendsData] = contextFriends
+
+    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
+    if (!contextIsLoggedIn) {
+        throw new Error(
+            'Window must be used within a ContextIsLoggedIn.Provider'
+        )
+    }
+    const [, setIsLoggedIn] = contextIsLoggedIn
+
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'Window must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
         throw new Error('Window must be used within a ContextUserData.Provider')
     }
-    const [userData] = contextUserData
+    const [userData, setUserData] = contextUserData
+
+    const { showToast } = useToast()
 
     const chatRef = useRef<HTMLDivElement>(null)
 
     useChatScrollToBottom({ chatFriendData, chatRef })
+
+    const conversationId = chatFriendData?.conversationId
+    usePollMessage({
+        chatFriendData,
+        conversationId,
+        setChatFriendData,
+        setFriendsData,
+        setIsLoggedIn,
+        setIsSettingsExpanded,
+        setUserData,
+        showToast,
+    })
 
     return (
         <div className="bg-zinc-700 flex flex-col h-full min-h-0 justify-between items-center overflow-hidden">

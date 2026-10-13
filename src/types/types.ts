@@ -275,6 +275,23 @@ export type handleOpenChatApiProps = {
     showToast: (props: ToastProps) => void
 }
 
+export type handlePollMessageApiProps = {
+    chatFriendData: ChatFriendType | undefined
+    conversationId: number
+    setChatFriendData: React.Dispatch<
+        React.SetStateAction<ChatFriendType | undefined>
+    >
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
+}
+
 export type handleRemoveProfilePictureApiProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
@@ -448,4 +465,21 @@ export type useLoginSubmitDisabledProps = {
     password: string
     setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     userName: string
+}
+
+export type usePollMessageProps = {
+    chatFriendData: ChatFriendType | undefined
+    conversationId: number | undefined
+    setChatFriendData: React.Dispatch<
+        React.SetStateAction<ChatFriendType | undefined>
+    >
+    setFriendsData: React.Dispatch<
+        React.SetStateAction<FriendType[] | undefined>
+    >
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: React.Dispatch<
+        React.SetStateAction<boolean | undefined>
+    >
+    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
 }

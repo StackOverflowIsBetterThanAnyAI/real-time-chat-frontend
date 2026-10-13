@@ -1,6 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
+import { handleOpenChatApi } from '@/api'
 import {
     FallbackProfilePicture,
     ProfilePicture,
@@ -14,7 +15,6 @@ import {
     useToast,
 } from '@/context'
 import { ChatButtonProps } from '@/types'
-import { handleOpenChatApi } from '@/api/handleOpenChatApi'
 
 const Button = ({ friend }: ChatButtonProps) => {
     const contextChatFriendData = useContext(ContextChatFriendData)
