@@ -11,6 +11,8 @@ export const handlePollMessageApi = async ({
     setUserData,
     showToast,
 }: handlePollMessageApiProps) => {
+    const startTime = performance.now()
+
     const currentMessages = chatFriendData?.messages
     const lastId = currentMessages?.length
         ? Math.max(...currentMessages.map((item) => item.id))
@@ -90,5 +92,7 @@ export const handlePollMessageApi = async ({
         showToast({
             label: 'Could not poll latest message. Please try again.',
         })
+    } finally {
+        return performance.now() - startTime
     }
 }

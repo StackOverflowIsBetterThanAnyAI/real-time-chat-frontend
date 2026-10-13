@@ -17,20 +17,36 @@ export const usePollMessage = ({
             return
         }
 
-        const intervalId = setInterval(async () => {
-            handlePollMessageApi({
-                chatFriendData,
-                conversationId,
-                setChatFriendData,
-                setFriendsData,
-                setIsLoggedIn,
-                setIsSettingsExpanded,
-                setUserData,
-                showToast,
-            })
-        }, 2000)
+        let isMounted = true
+        let timeoutId: NodeJS.Timeout
 
-        return () => clearInterval(intervalId)
+        const pollMessages = async () => {
+            const rtt =
+                (await handlePollMessageApi({
+                    chatFriendData,
+                    conversationId,
+                    setChatFriendData,
+                    setFriendsData,
+                    setIsLoggedIn,
+                    setIsSettingsExpanded,
+                    setUserData,
+                    showToast,
+                })) || 0
+
+            const interval = rtt < 1000 ? 2000 : rtt < 2000 ? 4000 : 8000
+            console.log(rtt, 'rtt')
+            console.log(interval, 'interval')
+
+            if (isMounted) {
+                timeoutId = setTimeout(pollMessages, interval)
+            }
+        }
+
+        timeoutId = setTimeout(pollMessages, 1500)
+        return () => {
+            isMounted = false
+            clearTimeout(timeoutId)
+        }
     }, [
         chatFriendData,
         conversationId,
