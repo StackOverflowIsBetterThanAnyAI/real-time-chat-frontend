@@ -28,14 +28,7 @@ const Sidebar = () => {
 
     return (
         <div className="flex h-full min-h-0 flex-col gap-4 bg-zinc-800/80 p-2">
-            <button
-                className="regular-button shrink-0 bg-blue-600 hover:bg-blue-600/85 active:bg-blue-600/75"
-                onClick={() => {}}
-            >
-                <RiChatNewFill color="#f4f4f5" />
-                <span>New Chat</span>
-            </button>
-            <div className="flex shrink-0 flex-wrap items-center gap-2">
+            <div className="flex shrink-0 flex-wrap items-center gap-2 p-2">
                 <label htmlFor="search">
                     <span className="sr-only">Search</span>
                     <MdOutlineSearch
