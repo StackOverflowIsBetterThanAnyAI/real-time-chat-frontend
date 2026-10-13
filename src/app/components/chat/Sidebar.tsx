@@ -2,7 +2,6 @@
 
 import { useContext, useState } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
-import { RiChatNewFill } from 'react-icons/ri'
 import { Button } from '@/app/components/chat'
 import { ContextFriends } from '@/context'
 
