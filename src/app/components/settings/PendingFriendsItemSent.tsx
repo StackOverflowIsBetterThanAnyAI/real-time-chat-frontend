@@ -4,13 +4,9 @@ import { useContext, useState } from 'react'
 import { GrRevert } from 'react-icons/gr'
 import { handleDeclineRequestApi } from '@/api'
 import { FriendInfo } from '@/app/components/settings'
+import { useLogout } from '@/app/providers'
 import { SettingsPendingFriendsItemProps } from '@/types'
-import {
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    ContextUserData,
-} from '@/context'
+import { ContextFriends } from '@/context'
 import { useToast } from '@/hooks'
 
 const PendingFriendsItem = ({
@@ -26,30 +22,7 @@ const PendingFriendsItem = ({
     }
     const [, setFriendsData] = contextFriends
 
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'PendingFriendsItemSent must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'PendingFriendsItemSent must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
-    const contextUserData = useContext(ContextUserData)
-    if (!contextUserData) {
-        throw new Error(
-            'PendingFriendsItemSent must be used within a ContextUserData.Provider'
-        )
-    }
-    const [, setUserData] = contextUserData
-
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -59,9 +32,7 @@ const PendingFriendsItem = ({
             id,
             setFriendsData,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
+            logout,
             showToast,
         })
     }
