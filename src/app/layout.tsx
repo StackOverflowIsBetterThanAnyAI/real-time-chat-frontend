@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: 'Real-Time Dieter Chat Web Application',
 }
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+const RootLayout = ({ children }: LayoutProps<'/'>) => {
     return (
         <html
             lang="en"
@@ -36,3 +36,5 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         </html>
     )
 }
+
+export default RootLayout
