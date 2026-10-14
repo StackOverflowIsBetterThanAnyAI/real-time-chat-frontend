@@ -5,12 +5,8 @@ import { MdCancel } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
 import { handleAcceptRequestApi, handleDeclineRequestApi } from '@/api'
 import { FriendInfo } from '@/app/components/settings'
-import {
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    ContextUserData,
-} from '@/context'
+import { useLogout } from '@/app/providers'
+import { ContextFriends } from '@/context'
 import { useToast } from '@/hooks'
 import { SettingsPendingFriendsItemProps } from '@/types'
 
@@ -27,30 +23,7 @@ const PendingFriendsItem = ({
     }
     const [, setFriendsData] = contextFriends
 
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'PendingFriendsItemReceived must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'PendingFriendsItemReceived must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
-    const contextUserData = useContext(ContextUserData)
-    if (!contextUserData) {
-        throw new Error(
-            'PendingFriendsItemReceived must be used within a ContextUserData.Provider'
-        )
-    }
-    const [, setUserData] = contextUserData
-
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -59,21 +32,17 @@ const PendingFriendsItem = ({
         await handleAcceptRequestApi({
             id,
             setFriendsData,
+            logout,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
             showToast,
         })
     }
     const handleDeclineRequest = async (id: number) => {
         await handleDeclineRequestApi({
             id,
+            logout,
             setFriendsData,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
             showToast,
         })
     }

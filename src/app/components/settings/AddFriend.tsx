@@ -6,12 +6,8 @@ import { FetchLoading } from 'fetch-loading'
 import { handleAddFriendApi } from '@/api'
 import { Message } from '@/app/components/error'
 import { FriendsDetails } from '@/app/components/settings'
-import {
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    ContextUserData,
-} from '@/context'
+import { useLogout } from '@/app/providers'
+import { ContextFriends } from '@/context'
 import { useErrorUserName, useToast } from '@/hooks'
 
 const AddFriend = () => {
@@ -23,30 +19,7 @@ const AddFriend = () => {
     }
     const [, setFriendsData] = contextFriends
 
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'AddFriend must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'AddFriend must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
-    const contextUserData = useContext(ContextUserData)
-    if (!contextUserData) {
-        throw new Error(
-            'AddFriend must be used within a ContextUserData.Provider'
-        )
-    }
-    const [, setUserData] = contextUserData
-
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const [error, setError] = useState<string>('')
@@ -69,9 +42,7 @@ const AddFriend = () => {
             setError,
             setFriendsData,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
+            logout,
             setUserToBeAdded,
             showToast,
             userToBeAdded,

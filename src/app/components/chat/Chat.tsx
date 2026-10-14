@@ -3,6 +3,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { handleFetchInitialDataApi } from '@/api'
 import { EmptyWindow, Sidebar, Window } from '@/app/components/chat'
+import { useLogout } from '@/app/providers'
 import {
     ContextChatFriendData,
     ContextFriends,
@@ -40,6 +41,7 @@ const Chat = () => {
     }
     const [, setUserData] = contextUserData
 
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const [chatFriendData, setChatFriendData] = useState<
@@ -49,10 +51,9 @@ const Chat = () => {
 
     const fetchUser = useCallback(async () => {
         handleFetchInitialDataApi({
+            logout,
             setFriendsData,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
             setUserData,
             showToast,
         })

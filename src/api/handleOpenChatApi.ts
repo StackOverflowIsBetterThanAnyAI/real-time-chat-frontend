@@ -1,13 +1,9 @@
-import { handleLogoutApi } from '@/api'
 import { ConversationProps, handleOpenChatApiProps } from '@/types'
 
 export const handleOpenChatApi = async ({
     friend,
+    logout,
     setChatFriendData,
-    setFriendsData,
-    setIsLoggedIn,
-    setIsSettingsExpanded,
-    setUserData,
     showToast,
 }: handleOpenChatApiProps) => {
     try {
@@ -30,13 +26,7 @@ export const handleOpenChatApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 showToast({

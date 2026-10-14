@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import {
     ContextFriends,
     ContextIsEditingStatus,
@@ -10,10 +10,33 @@ import {
     ContextUserData,
     ToastProvider,
 } from '@/context'
-import { useLoadLoggedInStorageValue } from '@/hooks'
+import { useLoadLoggedInStorageValue, useToast } from '@/hooks'
 import { FriendType, UserDataProps } from '@/types'
+import { resetStorage } from '@/utils'
+
+const LogoutContext = createContext<{
+    logout: () => Promise<void>
+} | null>(null)
+
+export const useLogout = () => {
+    const context = useContext(LogoutContext)
+    if (!context)
+        throw new Error('useLogout must be used within a LogoutContextProvider')
+    return context
+}
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <ToastProvider>
+            <AppContent>{children}</AppContent>
+        </ToastProvider>
+    )
+}
+
+const AppContent = ({ children }: { children: React.ReactNode }) => {
+    const [friendsData, setFriendsData] = useState<FriendType[] | undefined>(
+        undefined
+    )
     const [isEditingStatus, setIsEditingStatus] = useState<boolean | undefined>(
         false
     )
@@ -24,13 +47,55 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
     const [isSettingsExpanded, setIsSettingsExpanded] = useState<
         boolean | undefined
     >(false)
-    const friendsState = useState<FriendType[] | undefined>(undefined)
-    const userState = useState<UserDataProps | undefined>(undefined)
+    const [userData, setUserData] = useState<UserDataProps | undefined>(
+        undefined
+    )
+
+    const { showToast } = useToast()
 
     useLoadLoggedInStorageValue({ setIsLoggedIn, setIsSettingsExpanded })
 
+    const logout = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/logout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            })
+
+            if (!response.ok) {
+                const error = await response.json()
+                if (response.status >= 400 && response.status < 500) {
+                    showToast({
+                        label: `Could not logout user. ${error.error}`,
+                    })
+                } else if (response.status >= 500) {
+                    showToast({
+                        label: 'Could not logout user. Please try again.',
+                    })
+                }
+                return
+            }
+
+            resetStorage({
+                setFriendsData,
+                setIsLoggedIn,
+                setIsSettingsExpanded,
+                setUserData,
+            })
+        } catch (error) {
+            console.error(
+                'An unexpected error occurred while trying to logout',
+                error
+            )
+            showToast({ label: 'Could not logout user. Please try again.' })
+        }
+    }
+
     return (
-        <ContextFriends.Provider value={friendsState}>
+        <ContextFriends.Provider value={[friendsData, setFriendsData]}>
             <ContextIsEditingStatus.Provider
                 value={[isEditingStatus, setIsEditingStatus]}
             >
@@ -43,8 +108,12 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
                         <ContextIsSettingsExpanded.Provider
                             value={[isSettingsExpanded, setIsSettingsExpanded]}
                         >
-                            <ContextUserData.Provider value={userState}>
-                                <ToastProvider>{children}</ToastProvider>
+                            <ContextUserData.Provider
+                                value={[userData, setUserData]}
+                            >
+                                <LogoutContext.Provider value={{ logout }}>
+                                    {children}
+                                </LogoutContext.Provider>
                             </ContextUserData.Provider>
                         </ContextIsSettingsExpanded.Provider>
                     </ContextIsLoggedIn.Provider>

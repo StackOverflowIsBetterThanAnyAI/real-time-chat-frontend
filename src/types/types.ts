@@ -185,16 +185,12 @@ export type UserDataProps = {
 }
 
 export type handleAddFriendApiProps = {
+    logout: () => Promise<void>
     setError: React.Dispatch<React.SetStateAction<string>>
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     setUserToBeAdded: React.Dispatch<React.SetStateAction<string>>
     showToast: (props: ToastProps) => void
     userToBeAdded: string
@@ -227,14 +223,11 @@ export type handleFetchFriendsApiProps = {
 }
 
 export type handleFetchInitialDataApiProps = {
+    logout: () => Promise<void>
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
@@ -261,17 +254,10 @@ export type handleLogoutApiProps = {
 
 export type handleOpenChatApiProps = {
     friend: string
+    logout: () => Promise<void>
     setChatFriendData: React.Dispatch<
         React.SetStateAction<ChatFriendType | undefined>
     >
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
@@ -307,15 +293,11 @@ export type handleRemoveProfilePictureApiProps = {
 
 export type handleRequestApiProps = {
     id: number
+    logout: () => Promise<void>
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 

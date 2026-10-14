@@ -1,14 +1,11 @@
-import { handleLogoutApi } from '@/api'
 import { FriendType, handleAddFriendApiProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
 export const handleAddFriendApi = async ({
+    logout,
     setError,
     setFriendsData,
     setIsLoading,
-    setIsLoggedIn,
-    setIsSettingsExpanded,
-    setUserData,
     setUserToBeAdded,
     showToast,
     userToBeAdded,
@@ -36,13 +33,7 @@ export const handleAddFriendApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 setError(`Could not send friend request. ${error.error}`)

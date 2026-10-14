@@ -6,13 +6,8 @@ import {
     FallbackProfilePicture,
     ProfilePicture,
 } from '@/app/components/settings'
-import {
-    ContextChatFriendData,
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    ContextUserData,
-} from '@/context'
+import { useLogout } from '@/app/providers'
+import { ContextChatFriendData } from '@/context'
 import { useToast } from '@/hooks'
 import { ChatButtonProps } from '@/types'
 
@@ -25,44 +20,14 @@ const Button = ({ friend }: ChatButtonProps) => {
     }
     const [chatFriendData, setChatFriendData] = contextChatFriendData
 
-    const contextFriends = useContext(ContextFriends)
-    if (!contextFriends) {
-        throw new Error('Button must be used within a ContextFriends.Provider')
-    }
-    const [, setFriendsData] = contextFriends
-
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'Button must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'Button must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
-    const contextUserData = useContext(ContextUserData)
-    if (!contextUserData) {
-        throw new Error('Button must be used within a ContextUserData.Provider')
-    }
-    const [, setUserData] = contextUserData
-
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const handleOpenChat = async (friend: string) => {
         await handleOpenChatApi({
             friend,
+            logout,
             setChatFriendData,
-            setFriendsData,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
             showToast,
         })
     }

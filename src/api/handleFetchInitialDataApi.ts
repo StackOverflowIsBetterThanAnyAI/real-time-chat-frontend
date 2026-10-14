@@ -1,4 +1,3 @@
-import { handleLogoutApi } from '@/api'
 import {
     FriendType,
     handleFetchInitialDataApiProps,
@@ -7,10 +6,9 @@ import {
 import { setItemInSessionStorage, setItemInStorage } from '@/utils'
 
 export const handleFetchInitialDataApi = async ({
+    logout,
     setFriendsData,
     setIsLoading,
-    setIsLoggedIn,
-    setIsSettingsExpanded,
     setUserData,
     showToast,
 }: handleFetchInitialDataApiProps) => {
@@ -41,13 +39,7 @@ export const handleFetchInitialDataApi = async ({
             )
             const error = await userResponse.json()
             if (userResponse.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (userResponse.status >= 400) {
                 showToast({
@@ -65,13 +57,7 @@ export const handleFetchInitialDataApi = async ({
             )
             const error = await friendsResponse.json()
             if (friendsResponse.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (
                 friendsResponse.status >= 400 &&
