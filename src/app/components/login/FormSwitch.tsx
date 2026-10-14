@@ -1,6 +1,10 @@
 import { LoginFormSwitchProps } from '@/types'
 
-const FormSwitch = ({ isSigningUp, handleClick }: LoginFormSwitchProps) => {
+const FormSwitch = ({
+    isLoading,
+    isSigningUp,
+    handleClick,
+}: LoginFormSwitchProps) => {
     const loginStyle = isSigningUp
         ? 'bg-zinc-500/30 hover:bg-zinc-400/40 active:bg-zinc-300'
         : 'bg-blue-800/80 text-zinc-100 hover:bg-blue-800/75 active:bg-blue-800/65'
@@ -15,8 +19,9 @@ const FormSwitch = ({ isSigningUp, handleClick }: LoginFormSwitchProps) => {
         <div className="flex justify-center text-normal py-2">
             <button
                 aria-pressed={isSigningUp}
-                className="flex outline-zinc-100 outline-2 rounded-lg focus-visible:outline-blue-800/80!"
+                className={`${isLoading ? 'cursor-not-allowed' : ''} flex outline-zinc-100 outline-2 rounded-lg focus-visible:outline-blue-800/80!`}
                 onClick={handleClick}
+                disabled={isLoading}
                 type="button"
             >
                 <span

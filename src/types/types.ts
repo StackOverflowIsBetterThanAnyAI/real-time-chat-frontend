@@ -85,6 +85,7 @@ export type LoginFormSubmitProps = {
 }
 
 export type LoginFormSwitchProps = {
+    isLoading: boolean
     isSigningUp: boolean
     handleClick: () => void
 }

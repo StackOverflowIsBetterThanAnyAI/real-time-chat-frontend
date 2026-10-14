@@ -124,6 +124,7 @@ const Form = () => {
         <>
             <FormHeader isSigningUp={isSigningUp} />
             <FormSwitch
+                isLoading={isLoading}
                 isSigningUp={isSigningUp}
                 handleClick={handleSwitchLogin}
             />
