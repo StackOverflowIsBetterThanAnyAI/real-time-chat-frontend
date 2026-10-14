@@ -12,5 +12,5 @@ export default function Home() {
     }
     const [isLoggedIn] = contextIsLoggedIn
 
-    return <>{isLoggedIn ? <Chat /> : <Login />}</>
+    return isLoggedIn ? <Chat /> : <Login />
 }
