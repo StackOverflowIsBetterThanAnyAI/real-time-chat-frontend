@@ -9,7 +9,12 @@ import {
     ContextUserData,
 } from '@/context'
 
-import { useLoadChatStorageValues, useLogout, useToast } from '@/hooks'
+import {
+    useLoadChatStorageValues,
+    useLoadFriendsStorageValues,
+    useLogout,
+    useToast,
+} from '@/hooks'
 import { ChatFriendType } from '@/types'
 
 const Chat = () => {
@@ -17,7 +22,7 @@ const Chat = () => {
     if (!contextFriends) {
         throw new Error('Chat must be used within a ContextFriends.Provider')
     }
-    const [, setFriendsData] = contextFriends
+    const [friendsData, setFriendsData] = contextFriends
 
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
@@ -44,6 +49,7 @@ const Chat = () => {
     }, [logout, setFriendsData, setUserData, showToast])
 
     useLoadChatStorageValues({ setChatFriendData })
+    useLoadFriendsStorageValues({ setFriendsData })
 
     useEffect(() => {
         fetchUser()
@@ -54,11 +60,18 @@ const Chat = () => {
             value={[chatFriendData, setChatFriendData]}
         >
             <main
-                className={`${isLoading ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
+                className={`${!friendsData && !chatFriendData ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
             >
-                {isLoading ? null : <Sidebar />}
-                {chatFriendData ? (
-                    <Window />
+                {chatFriendData && friendsData ? (
+                    <>
+                        <Sidebar />
+                        <Window />
+                    </>
+                ) : friendsData ? (
+                    <>
+                        <Sidebar />
+                        <EmptyWindow isLoading={isLoading} />
+                    </>
                 ) : (
                     <EmptyWindow isLoading={isLoading} />
                 )}
