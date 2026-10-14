@@ -3,13 +3,12 @@
 import { FetchLoading } from 'fetch-loading'
 import { useContext, useRef } from 'react'
 import { ProfilePicture } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import {
     handleRemoveProfilePictureApi,
     handleUploadProfilePictureApi,
 } from '@/api'
 import { ContextUserData } from '@/context'
-import { useClickOutsideProfileDetails, useToast } from '@/hooks'
+import { useClickOutsideProfileDetails, useLogout, useToast } from '@/hooks'
 import { SettingsProfileProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 

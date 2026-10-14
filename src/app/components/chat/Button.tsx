@@ -6,9 +6,8 @@ import {
     FallbackProfilePicture,
     ProfilePicture,
 } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import { ContextChatFriendData } from '@/context'
-import { useToast } from '@/hooks'
+import { useLogout, useToast } from '@/hooks'
 import { ChatButtonProps } from '@/types'
 
 const Button = ({ friend }: ChatButtonProps) => {

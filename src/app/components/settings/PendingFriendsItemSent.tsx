@@ -4,10 +4,9 @@ import { useContext, useState } from 'react'
 import { GrRevert } from 'react-icons/gr'
 import { handleDeclineRequestApi } from '@/api'
 import { FriendInfo } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import { SettingsPendingFriendsItemProps } from '@/types'
 import { ContextFriends } from '@/context'
-import { useToast } from '@/hooks'
+import { useLogout, useToast } from '@/hooks'
 
 const PendingFriendsItem = ({
     id,

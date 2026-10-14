@@ -6,9 +6,8 @@ import { FetchLoading } from 'fetch-loading'
 import { handleAddFriendApi } from '@/api'
 import { Message } from '@/app/components/error'
 import { FriendsDetails } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import { ContextFriends } from '@/context'
-import { useErrorUserName, useToast } from '@/hooks'
+import { useErrorUserName, useLogout, useToast } from '@/hooks'
 
 const AddFriend = () => {
     const contextFriends = useContext(ContextFriends)

@@ -1,29 +1,19 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
+import { useCallback, useState } from 'react'
 import {
     ContextFriends,
     ContextIsEditingStatus,
     ContextIsFriendsExpanded,
     ContextIsLoggedIn,
     ContextIsSettingsExpanded,
+    ContextLogout,
     ContextUserData,
     ToastProvider,
 } from '@/context'
 import { useLoadLoggedInStorageValue, useToast } from '@/hooks'
 import { FriendType, UserDataProps } from '@/types'
 import { resetStorage } from '@/utils'
-
-const LogoutContext = createContext<{
-    logout: () => Promise<void>
-} | null>(null)
-
-export const useLogout = () => {
-    const context = useContext(LogoutContext)
-    if (!context)
-        throw new Error('useLogout must be used within a LogoutContextProvider')
-    return context
-}
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -55,7 +45,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
 
     useLoadLoggedInStorageValue({ setIsLoggedIn, setIsSettingsExpanded })
 
-    const logout = async () => {
+    const logout = useCallback(async () => {
         try {
             const response = await fetch(`http://localhost:8000/api/logout`, {
                 method: 'POST',
@@ -92,7 +82,13 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
             )
             showToast({ label: 'Could not logout user. Please try again.' })
         }
-    }
+    }, [
+        setFriendsData,
+        setIsLoggedIn,
+        setIsSettingsExpanded,
+        setUserData,
+        showToast,
+    ])
 
     return (
         <ContextFriends.Provider value={[friendsData, setFriendsData]}>
@@ -105,17 +101,20 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
                     <ContextIsLoggedIn.Provider
                         value={[isLoggedIn, setIsLoggedIn]}
                     >
-                        <ContextIsSettingsExpanded.Provider
-                            value={[isSettingsExpanded, setIsSettingsExpanded]}
-                        >
-                            <ContextUserData.Provider
-                                value={[userData, setUserData]}
+                        <ContextLogout.Provider value={{ logout }}>
+                            <ContextIsSettingsExpanded.Provider
+                                value={[
+                                    isSettingsExpanded,
+                                    setIsSettingsExpanded,
+                                ]}
                             >
-                                <LogoutContext.Provider value={{ logout }}>
+                                <ContextUserData.Provider
+                                    value={[userData, setUserData]}
+                                >
                                     {children}
-                                </LogoutContext.Provider>
-                            </ContextUserData.Provider>
-                        </ContextIsSettingsExpanded.Provider>
+                                </ContextUserData.Provider>
+                            </ContextIsSettingsExpanded.Provider>
+                        </ContextLogout.Provider>
                     </ContextIsLoggedIn.Provider>
                 </ContextIsFriendsExpanded.Provider>
             </ContextIsEditingStatus.Provider>

@@ -5,7 +5,7 @@ import { FaUserFriends } from 'react-icons/fa'
 import { IoStatsChart } from 'react-icons/io5'
 import { IoMdArrowRoundBack, IoMdClose } from 'react-icons/io'
 import { MdModeEdit, MdDeleteForever, MdLogout } from 'react-icons/md'
-import { handleLogoutApi, handleDeleteAccountApi } from '@/api'
+import { handleDeleteAccountApi } from '@/api'
 import {
     Button,
     Friends,
@@ -13,7 +13,6 @@ import {
     Profile,
     Status,
 } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import {
     ContextFriends,
     ContextIsEditingStatus,
@@ -27,6 +26,7 @@ import {
     useFocusTrapSettings,
     useIsDeleteCountdown,
     useLoadSettingsStorageValues,
+    useLogout,
     useToast,
 } from '@/hooks'
 import { setItemInSessionStorage } from '@/utils'
@@ -139,13 +139,7 @@ const Settings = () => {
     }
     const handleLogout = async () => {
         setIsLoadingLogout(true)
-        await handleLogoutApi({
-            setFriendsData,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
-            showToast,
-        })
+        await logout()
     }
     const handleToggleIsSettingsExpanded = () => {
         setIsSettingsExpanded(() => {

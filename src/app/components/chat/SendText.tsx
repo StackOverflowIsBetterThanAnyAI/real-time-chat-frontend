@@ -2,10 +2,9 @@
 
 import { useContext } from 'react'
 import { IoMdSend } from 'react-icons/io'
-import { useLogout } from '@/app/providers'
 import { handleSendMessageApi } from '@/api'
 import { ContextChatFriendData, ContextUserData } from '@/context'
-import { useToast } from '@/hooks'
+import { useLogout, useToast } from '@/hooks'
 
 const SendText = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)

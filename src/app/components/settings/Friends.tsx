@@ -7,9 +7,8 @@ import {
     FriendsOverview,
     PendingFriends,
 } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import { ContextFriends } from '@/context'
-import { useLoadFriendsStorageValues, useToast } from '@/hooks'
+import { useLoadFriendsStorageValues, useLogout, useToast } from '@/hooks'
 
 const Friends = () => {
     const contextFriends = useContext(ContextFriends)

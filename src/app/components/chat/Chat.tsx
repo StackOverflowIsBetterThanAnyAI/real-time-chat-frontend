@@ -3,13 +3,13 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { handleFetchInitialDataApi } from '@/api'
 import { EmptyWindow, Sidebar, Window } from '@/app/components/chat'
-import { useLogout } from '@/app/providers'
 import {
     ContextChatFriendData,
     ContextFriends,
     ContextUserData,
 } from '@/context'
-import { useToast } from '@/hooks'
+
+import { useLogout, useToast } from '@/hooks'
 import { ChatFriendType } from '@/types'
 
 const Chat = () => {

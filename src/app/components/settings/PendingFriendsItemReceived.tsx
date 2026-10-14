@@ -5,9 +5,8 @@ import { MdCancel } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
 import { handleAcceptRequestApi, handleDeclineRequestApi } from '@/api'
 import { FriendInfo } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import { ContextFriends } from '@/context'
-import { useToast } from '@/hooks'
+import { useLogout, useToast } from '@/hooks'
 import { SettingsPendingFriendsItemProps } from '@/types'
 
 const PendingFriendsItem = ({

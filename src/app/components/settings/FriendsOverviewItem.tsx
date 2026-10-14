@@ -4,9 +4,8 @@ import { useContext, useState } from 'react'
 import { HiOutlineUserRemove } from 'react-icons/hi'
 import { handleDeclineRequestApi } from '@/api'
 import { FriendInfo } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import { ContextFriends } from '@/context'
-import { useToast } from '@/hooks'
+import { useLogout, useToast } from '@/hooks'
 import { SettingsFriendsOverviewItemProps } from '@/types'
 
 const FriendsOverviewItem = ({

@@ -7,9 +7,13 @@ import {
     FallbackProfilePicture,
     ProfilePicture,
 } from '@/app/components/settings'
-import { useLogout } from '@/app/providers'
 import { ContextChatFriendData, ContextUserData } from '@/context'
-import { useChatScrollToBottom, useToast, usePollMessage } from '@/hooks'
+import {
+    useChatScrollToBottom,
+    useLogout,
+    useToast,
+    usePollMessage,
+} from '@/hooks'
 
 const Window = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)
