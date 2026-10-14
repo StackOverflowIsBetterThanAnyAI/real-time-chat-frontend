@@ -5,7 +5,7 @@ import { Chat } from '@/app/components/chat'
 import { Login } from '@/app/components/login'
 import { ContextIsLoggedIn } from '@/context'
 
-export default function Home() {
+const Home = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error('Home must be used within a ContextIsLoggedIn.Provider')
@@ -14,3 +14,5 @@ export default function Home() {
 
     return isLoggedIn ? <Chat /> : <Login />
 }
+
+export default Home
