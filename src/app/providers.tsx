@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react'
 import {
+    ContextChatFriendData,
     ContextFriends,
     ContextIsEditingStatus,
     ContextIsFriendsExpanded,
@@ -12,7 +13,7 @@ import {
     ToastProvider,
 } from '@/context'
 import { useLoadLoggedInStorageValues, useToast } from '@/hooks'
-import { FriendType, UserDataProps } from '@/types'
+import { ChatFriendType, FriendType, UserDataProps } from '@/types'
 import { resetStorage } from '@/utils'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
@@ -24,6 +25,9 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 }
 
 const AppContent = ({ children }: { children: React.ReactNode }) => {
+    const [chatFriendData, setChatFriendData] = useState<
+        ChatFriendType | undefined
+    >(undefined)
     const [friendsData, setFriendsData] = useState<FriendType[] | undefined>(
         undefined
     )
@@ -91,33 +95,37 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
     ])
 
     return (
-        <ContextFriends.Provider value={[friendsData, setFriendsData]}>
-            <ContextIsEditingStatus.Provider
-                value={[isEditingStatus, setIsEditingStatus]}
-            >
-                <ContextIsFriendsExpanded.Provider
-                    value={[isFriendsExpanded, setIsFriendsExpanded]}
+        <ContextChatFriendData.Provider
+            value={[chatFriendData, setChatFriendData]}
+        >
+            <ContextFriends.Provider value={[friendsData, setFriendsData]}>
+                <ContextIsEditingStatus.Provider
+                    value={[isEditingStatus, setIsEditingStatus]}
                 >
-                    <ContextIsLoggedIn.Provider
-                        value={[isLoggedIn, setIsLoggedIn]}
+                    <ContextIsFriendsExpanded.Provider
+                        value={[isFriendsExpanded, setIsFriendsExpanded]}
                     >
-                        <ContextLogout.Provider value={{ logout }}>
-                            <ContextIsSettingsExpanded.Provider
-                                value={[
-                                    isSettingsExpanded,
-                                    setIsSettingsExpanded,
-                                ]}
-                            >
-                                <ContextUserData.Provider
-                                    value={[userData, setUserData]}
+                        <ContextIsLoggedIn.Provider
+                            value={[isLoggedIn, setIsLoggedIn]}
+                        >
+                            <ContextLogout.Provider value={{ logout }}>
+                                <ContextIsSettingsExpanded.Provider
+                                    value={[
+                                        isSettingsExpanded,
+                                        setIsSettingsExpanded,
+                                    ]}
                                 >
-                                    {children}
-                                </ContextUserData.Provider>
-                            </ContextIsSettingsExpanded.Provider>
-                        </ContextLogout.Provider>
-                    </ContextIsLoggedIn.Provider>
-                </ContextIsFriendsExpanded.Provider>
-            </ContextIsEditingStatus.Provider>
-        </ContextFriends.Provider>
+                                    <ContextUserData.Provider
+                                        value={[userData, setUserData]}
+                                    >
+                                        {children}
+                                    </ContextUserData.Provider>
+                                </ContextIsSettingsExpanded.Provider>
+                            </ContextLogout.Provider>
+                        </ContextIsLoggedIn.Provider>
+                    </ContextIsFriendsExpanded.Provider>
+                </ContextIsEditingStatus.Provider>
+            </ContextFriends.Provider>
+        </ContextChatFriendData.Provider>
     )
 }

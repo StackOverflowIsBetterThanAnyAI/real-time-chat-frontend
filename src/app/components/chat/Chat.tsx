@@ -18,6 +18,14 @@ import {
 import { ChatFriendType } from '@/types'
 
 const Chat = () => {
+    const contextChatFriendData = useContext(ContextChatFriendData)
+    if (!contextChatFriendData) {
+        throw new Error(
+            'Chat must be used within a ContextChatFriendData.Provider'
+        )
+    }
+    const [chatFriendData, setChatFriendData] = contextChatFriendData
+
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
         throw new Error('Chat must be used within a ContextFriends.Provider')
@@ -33,9 +41,6 @@ const Chat = () => {
     const { logout } = useLogout()
     const { showToast } = useToast()
 
-    const [chatFriendData, setChatFriendData] = useState<
-        ChatFriendType | undefined
-    >(undefined)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const fetchUser = useCallback(async () => {
@@ -56,27 +61,23 @@ const Chat = () => {
     }, [fetchUser])
 
     return (
-        <ContextChatFriendData.Provider
-            value={[chatFriendData, setChatFriendData]}
+        <main
+            className={`${!friendsData && !chatFriendData ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
         >
-            <main
-                className={`${!friendsData && !chatFriendData ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
-            >
-                {chatFriendData && friendsData ? (
-                    <>
-                        <Sidebar />
-                        <Window />
-                    </>
-                ) : friendsData ? (
-                    <>
-                        <Sidebar />
-                        <EmptyWindow isLoading={isLoading} />
-                    </>
-                ) : (
+            {chatFriendData && friendsData ? (
+                <>
+                    <Sidebar />
+                    <Window />
+                </>
+            ) : friendsData ? (
+                <>
+                    <Sidebar />
                     <EmptyWindow isLoading={isLoading} />
-                )}
-            </main>
-        </ContextChatFriendData.Provider>
+                </>
+            ) : (
+                <EmptyWindow isLoading={isLoading} />
+            )}
+        </main>
     )
 }
 
