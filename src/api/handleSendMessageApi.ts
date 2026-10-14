@@ -1,4 +1,5 @@
 import { handleSendMessageApiProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 let tempIdCounter = -1
 
@@ -84,11 +85,12 @@ export const handleSendMessageApi = async ({
 
             const updatedMessages = [...prev.messages]
             updatedMessages[index] = savedMessage
-
-            return {
+            const updatedChatFriendData = {
                 ...prev,
                 messages: updatedMessages,
             }
+            setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
+            return updatedChatFriendData
         })
     } catch (error) {
         setChatFriendData((prev) =>

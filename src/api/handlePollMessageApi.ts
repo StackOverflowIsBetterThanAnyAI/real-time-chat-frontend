@@ -1,4 +1,5 @@
 import { ConversationProps, handlePollMessageApiProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const handlePollMessageApi = async ({
     chatFriendData,
@@ -68,10 +69,12 @@ export const handlePollMessageApi = async ({
                     return prev
                 }
 
-                return {
+                const updatedChatFriendData = {
                     ...prev,
                     messages: [...prev.messages, ...uniqueNew],
                 }
+                setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
+                return updatedChatFriendData
             })
         }
     } catch (error) {

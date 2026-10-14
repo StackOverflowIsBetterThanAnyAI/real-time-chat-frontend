@@ -5,6 +5,7 @@ import { IoMdSend } from 'react-icons/io'
 import { handleSendMessageApi } from '@/api'
 import { ContextChatFriendData, ContextUserData } from '@/context'
 import { useLogout, useToast } from '@/hooks'
+import { setItemInSessionStorage } from '@/utils'
 
 const SendText = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)
@@ -30,9 +31,13 @@ const SendText = () => {
 
     const handleChangeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.currentTarget.value
-        setChatFriendData((prev) =>
-            prev ? { ...prev, draftedMessage: value } : prev
-        )
+        setChatFriendData((prev) => {
+            const updatedChatFriendData = prev
+                ? { ...prev, draftedMessage: value }
+                : prev
+            setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
+            return updatedChatFriendData
+        })
     }
     const handleKeyDownMessage = (
         e: React.KeyboardEvent<HTMLTextAreaElement>

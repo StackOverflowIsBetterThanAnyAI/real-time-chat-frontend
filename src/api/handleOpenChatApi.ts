@@ -1,4 +1,5 @@
 import { ConversationProps, handleOpenChatApiProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 export const handleOpenChatApi = async ({
     friend,
@@ -41,15 +42,17 @@ export const handleOpenChatApi = async ({
         }
 
         const data: ConversationProps = await response.json()
-        setChatFriendData((prev) =>
-            prev
+        setChatFriendData((prev) => {
+            const updatedChatFriendData = prev
                 ? {
                       ...prev,
                       conversationId: data.conversationId,
                       messages: data.messages,
                   }
                 : prev
-        )
+            setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
+            return updatedChatFriendData
+        })
     } catch (error) {
         console.error(
             'An unexpected error occurred while trying to open the chat',

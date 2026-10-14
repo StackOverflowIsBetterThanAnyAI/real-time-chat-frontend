@@ -9,6 +9,7 @@ import {
 import { ContextChatFriendData } from '@/context'
 import { useLogout, useToast } from '@/hooks'
 import { ChatButtonProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 const Button = ({ friend }: ChatButtonProps) => {
     const contextChatFriendData = useContext(ContextChatFriendData)
@@ -34,16 +35,20 @@ const Button = ({ friend }: ChatButtonProps) => {
         if (chatFriendData?.friend.userName === friend.friend.userName) {
             return
         }
-        setChatFriendData((prev) => ({
-            ...prev,
-            direction: friend.direction,
-            friend: friend.friend,
-            id: friend.id,
-            status: friend.status,
-            conversationId: -1,
-            messages: [],
-            draftedMessage: '',
-        }))
+        setChatFriendData((prev) => {
+            const updatedChatFriendData = {
+                ...prev,
+                direction: friend.direction,
+                friend: friend.friend,
+                id: friend.id,
+                status: friend.status,
+                conversationId: -1,
+                messages: [],
+                draftedMessage: '',
+            }
+            setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
+            return updatedChatFriendData
+        })
         handleOpenChat(friend.friend.userName)
     }
 
