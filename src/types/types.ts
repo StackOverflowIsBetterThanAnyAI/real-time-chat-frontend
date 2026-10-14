@@ -372,7 +372,7 @@ export type useLoadFriendsStorageValuesProps = {
     >
 }
 
-export type useLoadLoggedInStorageValueProps = {
+export type useLoadLoggedInStorageValuesProps = {
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>

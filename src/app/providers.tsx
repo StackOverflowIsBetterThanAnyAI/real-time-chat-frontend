@@ -11,7 +11,7 @@ import {
     ContextUserData,
     ToastProvider,
 } from '@/context'
-import { useLoadLoggedInStorageValue, useToast } from '@/hooks'
+import { useLoadLoggedInStorageValues, useToast } from '@/hooks'
 import { FriendType, UserDataProps } from '@/types'
 import { resetStorage } from '@/utils'
 
@@ -43,7 +43,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
 
     const { showToast } = useToast()
 
-    useLoadLoggedInStorageValue({ setIsLoggedIn, setIsSettingsExpanded })
+    useLoadLoggedInStorageValues({ setIsLoggedIn, setIsSettingsExpanded })
 
     const logout = useCallback(async () => {
         try {

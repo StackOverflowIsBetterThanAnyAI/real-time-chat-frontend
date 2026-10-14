@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useLoadLoggedInStorageValueProps } from '@/types'
+import { useLoadLoggedInStorageValuesProps } from '@/types'
 import {
     getStoredData,
     getStoredSessionData,
@@ -9,10 +9,10 @@ import {
     setItemInSessionStorage,
 } from '@/utils'
 
-export const useLoadLoggedInStorageValue = ({
+export const useLoadLoggedInStorageValues = ({
     setIsLoggedIn,
     setIsSettingsExpanded,
-}: useLoadLoggedInStorageValueProps) => {
+}: useLoadLoggedInStorageValuesProps) => {
     return useEffect(() => {
         const parsedStorageData = getStoredData()
         const dataIsLoggedIn = parsedStorageData?.isloggedin
