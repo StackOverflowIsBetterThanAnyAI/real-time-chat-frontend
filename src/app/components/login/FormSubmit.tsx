@@ -9,8 +9,8 @@ const FormSubmit = ({
 }: LoginFormSubmitProps) => {
     return isLoading ? (
         <button
-            className="flex items-center justify-center w-32 sm:w-40 sm:h-9 self-center text-large
-            bg-zinc-200 outline outline-zinc-500 text-zinc-600 px-2 py-1 mb-1 sm:mb-4 mt-4 rounded-xl"
+            className="flex items-center justify-center w-32 sm:w-40 sm:h-9 self-center
+            bg-zinc-200 px-2 py-1 mb-1 sm:mb-4 mt-4 rounded-xl"
             aria-label={`${value} disabled.`}
             disabled={true}
             title={`${value} disabled.`}
