@@ -11,7 +11,9 @@ export const useLoadFriendsStorageValues = ({
         const parsedSessionData = getStoredSessionData()
         if (parsedSessionData) {
             const isFriendType = (item: unknown): item is FriendType => {
-                if (typeof item !== 'object' || item === null) return false
+                if (typeof item !== 'object' || item === null) {
+                    return false
+                }
 
                 if (
                     !('id' in item) ||
