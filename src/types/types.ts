@@ -366,6 +366,12 @@ export type useIsDeleteCountdownProps = {
     setIsDeleteAccount: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+export type useLoadChatStorageValuesProps = {
+    setChatFriendData: React.Dispatch<
+        React.SetStateAction<ChatFriendType | undefined>
+    >
+}
+
 export type useLoadFriendsStorageValuesProps = {
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>

@@ -9,7 +9,7 @@ import {
     ContextUserData,
 } from '@/context'
 
-import { useLogout, useToast } from '@/hooks'
+import { useLoadChatStorageValues, useLogout, useToast } from '@/hooks'
 import { ChatFriendType } from '@/types'
 
 const Chat = () => {
@@ -42,6 +42,8 @@ const Chat = () => {
             showToast,
         })
     }, [logout, setFriendsData, setUserData, showToast])
+
+    useLoadChatStorageValues({ setChatFriendData })
 
     useEffect(() => {
         fetchUser()
