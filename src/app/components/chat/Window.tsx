@@ -7,7 +7,7 @@ import {
     FallbackProfilePicture,
     ProfilePicture,
 } from '@/app/components/settings'
-import { ContextChatFriendData, ContextUserData } from '@/context'
+import { ContextChatFriendData } from '@/context'
 import {
     useChatScrollToBottom,
     useLogout,
@@ -23,12 +23,6 @@ const Window = () => {
         )
     }
     const [chatFriendData, setChatFriendData] = contextChatFriendData
-
-    const contextUserData = useContext(ContextUserData)
-    if (!contextUserData) {
-        throw new Error('Window must be used within a ContextUserData.Provider')
-    }
-    const [userData] = contextUserData
 
     const { logout } = useLogout()
     const { showToast } = useToast()
@@ -99,7 +93,7 @@ const Window = () => {
                     {chatFriendData.messages.map((item) => (
                         <Message
                             content={item.content}
-                            isSent={item.sender.userName === userData?.userName}
+                            isSent={item.direction === 'sent'}
                             key={item.id}
                         />
                     ))}

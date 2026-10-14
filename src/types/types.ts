@@ -22,7 +22,7 @@ export type ConversationProps = {
         id: number
         content: string
         createdAt: string
-        sender: { userName: string }
+        direction: 'received' | 'sent'
     }[]
 }
 
@@ -282,7 +282,6 @@ export type handleSendMessageApiProps = {
         React.SetStateAction<ChatFriendType | undefined>
     >
     showToast: (props: ToastProps) => void
-    userData: UserDataProps | undefined
 }
 
 export type handleUpdateStatusApiProps = {

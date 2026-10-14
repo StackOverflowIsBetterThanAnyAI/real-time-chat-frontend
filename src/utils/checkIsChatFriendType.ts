@@ -33,21 +33,19 @@ export const checkIsChatFriendType = (
             !('id' in msg) ||
             !('content' in msg) ||
             !('createdAt' in msg) ||
-            !('sender' in msg)
+            !('direction' in msg)
         ) {
             return false
         }
 
-        const sender = (msg as { sender?: unknown }).sender
+        const direction = (msg as { direction?: unknown }).direction
 
         return (
             typeof (msg as { id?: unknown }).id === 'number' &&
             typeof (msg as { content?: unknown }).content === 'string' &&
             typeof (msg as { createdAt?: unknown }).createdAt === 'string' &&
-            typeof sender === 'object' &&
-            sender !== null &&
-            'userName' in sender &&
-            typeof (sender as { userName?: unknown }).userName === 'string'
+            typeof direction === 'string' &&
+            ['received', 'sent'].includes(direction)
         )
     }
 

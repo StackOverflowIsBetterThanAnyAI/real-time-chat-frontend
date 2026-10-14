@@ -3,7 +3,7 @@
 import { useContext } from 'react'
 import { IoMdSend } from 'react-icons/io'
 import { handleSendMessageApi } from '@/api'
-import { ContextChatFriendData, ContextUserData } from '@/context'
+import { ContextChatFriendData } from '@/context'
 import { useLogout, useToast } from '@/hooks'
 import { setItemInSessionStorage } from '@/utils'
 
@@ -15,14 +15,6 @@ const SendText = () => {
         )
     }
     const [chatFriendData, setChatFriendData] = contextChatFriendData
-
-    const contextUserData = useContext(ContextUserData)
-    if (!contextUserData) {
-        throw new Error(
-            'SendText must be used within a ContextUserData.Provider'
-        )
-    }
-    const [userData] = contextUserData
 
     const { logout } = useLogout()
     const { showToast } = useToast()
@@ -57,7 +49,6 @@ const SendText = () => {
             setChatFriendData,
             logout,
             showToast,
-            userData,
         })
     }
 

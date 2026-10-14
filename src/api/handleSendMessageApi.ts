@@ -9,16 +9,13 @@ export const handleSendMessageApi = async ({
     message,
     setChatFriendData,
     showToast,
-    userData,
 }: handleSendMessageApiProps) => {
     const tempId = tempIdCounter--
     const messageObject = {
         id: tempId,
         content: message,
         createdAt: new Date().toISOString(),
-        sender: {
-            userName: userData?.userName || '',
-        },
+        direction: 'sent' as const,
     }
     setChatFriendData((prev) =>
         prev
@@ -77,10 +74,12 @@ export const handleSendMessageApi = async ({
 
             const index = prev.messages.findIndex((item) => item.id === tempId)
             if (index === -1) {
-                return {
+                const updatedChatFriendData = {
                     ...prev,
                     messages: [...prev.messages, savedMessage],
                 }
+                setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
+                return updatedChatFriendData
             }
 
             const updatedMessages = [...prev.messages]
