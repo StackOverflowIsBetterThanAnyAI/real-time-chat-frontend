@@ -20,7 +20,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
     const [isFriendsExpanded, setIsFriendsExpanded] = useState<
         boolean | undefined
     >(false)
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(false)
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(undefined)
     const [isSettingsExpanded, setIsSettingsExpanded] = useState<
         boolean | undefined
     >(false)

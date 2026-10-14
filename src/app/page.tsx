@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-import { Chat } from '@/app/components/chat'
+import { Chat, EmptyWindow } from '@/app/components/chat'
 import { Login } from '@/app/components/login'
 import { ContextIsLoggedIn } from '@/context'
 
@@ -12,7 +12,13 @@ const Home = () => {
     }
     const [isLoggedIn] = contextIsLoggedIn
 
-    return isLoggedIn ? <Chat /> : <Login />
+    return isLoggedIn === undefined ? (
+        <EmptyWindow isLoading={false} />
+    ) : isLoggedIn ? (
+        <Chat />
+    ) : (
+        <Login />
+    )
 }
 
 export default Home
