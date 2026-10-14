@@ -1,8 +1,8 @@
-import { handleLogoutApi } from '@/api'
 import { handleDeleteAccountApiProps } from '@/types'
 import { resetStorage, setItemInStorage } from '@/utils'
 
 export const handleDeleteAccountApi = async ({
+    logout,
     setFriendsData,
     setIsLoading,
     setIsLoggedIn,
@@ -25,13 +25,7 @@ export const handleDeleteAccountApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 showToast({

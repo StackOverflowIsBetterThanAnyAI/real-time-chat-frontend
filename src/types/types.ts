@@ -197,6 +197,7 @@ export type handleAddFriendApiProps = {
 }
 
 export type handleDeleteAccountApiProps = {
+    logout: () => Promise<void>
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
@@ -210,15 +211,11 @@ export type handleDeleteAccountApiProps = {
 }
 
 export type handleFetchFriendsApiProps = {
+    logout: () => Promise<void>
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
@@ -264,29 +261,16 @@ export type handleOpenChatApiProps = {
 export type handlePollMessageApiProps = {
     chatFriendData: ChatFriendType | undefined
     conversationId: number
+    logout: () => Promise<void>
     setChatFriendData: React.Dispatch<
         React.SetStateAction<ChatFriendType | undefined>
     >
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleRemoveProfilePictureApiProps = {
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
+    logout: () => Promise<void>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
@@ -303,18 +287,11 @@ export type handleRequestApiProps = {
 
 export type handleSendMessageApiProps = {
     id: number
+    logout: () => Promise<void>
     message: string
     setChatFriendData: React.Dispatch<
         React.SetStateAction<ChatFriendType | undefined>
     >
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
     userData: UserDataProps | undefined
 }
@@ -322,33 +299,21 @@ export type handleSendMessageApiProps = {
 export type handleUpdateStatusApiProps = {
     currentStatus: string
     internalStatus: string
+    logout: () => Promise<void>
     setApiError: React.Dispatch<React.SetStateAction<string>>
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
     setIsEditingStatus: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
     setInternalStatus: React.Dispatch<React.SetStateAction<string>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleUploadProfilePictureApiProps = {
     e: React.ChangeEvent<HTMLInputElement>
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
+    logout: () => Promise<void>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
@@ -452,16 +417,9 @@ export type useLoginSubmitDisabledProps = {
 export type usePollMessageProps = {
     chatFriendData: ChatFriendType | undefined
     conversationId: number | undefined
+    logout: () => Promise<void>
     setChatFriendData: React.Dispatch<
         React.SetStateAction<ChatFriendType | undefined>
     >
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }

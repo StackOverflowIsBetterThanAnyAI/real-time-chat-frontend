@@ -7,12 +7,8 @@ import {
     FriendsOverview,
     PendingFriends,
 } from '@/app/components/settings'
-import {
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    ContextUserData,
-} from '@/context'
+import { useLogout } from '@/app/providers'
+import { ContextFriends } from '@/context'
 import { useLoadFriendsStorageValues, useToast } from '@/hooks'
 
 const Friends = () => {
@@ -22,30 +18,7 @@ const Friends = () => {
     }
     const [friendsData, setFriendsData] = contextFriends
 
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'Friends must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'Friends must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
-    const contextUserData = useContext(ContextUserData)
-    if (!contextUserData) {
-        throw new Error(
-            'Friends must be used within a ContextUserData.Provider'
-        )
-    }
-    const [, setUserData] = contextUserData
-
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -54,18 +27,10 @@ const Friends = () => {
         handleFetchFriendsApi({
             setFriendsData,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
+            logout,
             showToast,
         })
-    }, [
-        setFriendsData,
-        setIsLoggedIn,
-        setIsSettingsExpanded,
-        setUserData,
-        showToast,
-    ])
+    }, [setFriendsData, setIsLoading, logout, showToast])
 
     useLoadFriendsStorageValues({ setFriendsData })
 

@@ -5,11 +5,8 @@ import { usePollMessageProps } from '@/types'
 export const usePollMessage = ({
     chatFriendData,
     conversationId,
+    logout,
     setChatFriendData,
-    setFriendsData,
-    setIsLoggedIn,
-    setIsSettingsExpanded,
-    setUserData,
     showToast,
 }: usePollMessageProps) => {
     useEffect(() => {
@@ -25,11 +22,8 @@ export const usePollMessage = ({
                 (await handlePollMessageApi({
                     chatFriendData,
                     conversationId,
+                    logout,
                     setChatFriendData,
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
                     showToast,
                 })) || 0
 
@@ -49,11 +43,8 @@ export const usePollMessage = ({
         chatFriendData,
         conversationId,
         chatFriendData?.messages,
+        logout,
         setChatFriendData,
-        setFriendsData,
-        setIsLoggedIn,
-        setIsSettingsExpanded,
-        setUserData,
         showToast,
     ])
 }

@@ -1,17 +1,14 @@
-import { handleLogoutApi } from '@/api'
 import { handleUpdateStatusApiProps } from '@/types'
 import { setItemInSessionStorage, setItemInStorage } from '@/utils'
 
 export const handleUpdateStatusApi = async ({
     currentStatus,
     internalStatus,
+    logout,
     setApiError,
-    setFriendsData,
     setIsEditingStatus,
     setInternalStatus,
     setIsLoading,
-    setIsLoggedIn,
-    setIsSettingsExpanded,
     setUserData,
     showToast,
 }: handleUpdateStatusApiProps) => {
@@ -37,13 +34,7 @@ export const handleUpdateStatusApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 setApiError(`Could not update status. ${error.error}`)

@@ -1,14 +1,10 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import { handleUpdateStatusApi } from '@/api'
 import { Message } from '@/app/components/error'
-import {
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-} from '@/context'
+import { useLogout } from '@/app/providers'
 import { useToast } from '@/hooks'
 import { SettingsStatusProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
@@ -22,28 +18,7 @@ const Status = ({
     setIsEditingStatus,
     setUserData,
 }: SettingsStatusProps) => {
-    const contextFriends = useContext(ContextFriends)
-    if (!contextFriends) {
-        throw new Error('Status must be used within a ContextFriends.Provider')
-    }
-    const [, setFriendsData] = contextFriends
-
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'Status must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'Status must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const [apiError, setApiError] = useState<string>('')
@@ -92,13 +67,11 @@ const Status = ({
         await handleUpdateStatusApi({
             currentStatus,
             internalStatus,
+            logout,
             setApiError,
-            setFriendsData,
             setIsEditingStatus,
             setInternalStatus,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
             setUserData,
             showToast,
         })

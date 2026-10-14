@@ -1,16 +1,12 @@
-import { handleLogoutApi } from '@/api'
 import { handleSendMessageApiProps } from '@/types'
 
 let tempIdCounter = -1
 
 export const handleSendMessageApi = async ({
     id,
+    logout,
     message,
     setChatFriendData,
-    setFriendsData,
-    setIsLoggedIn,
-    setIsSettingsExpanded,
-    setUserData,
     showToast,
     userData,
 }: handleSendMessageApiProps) => {
@@ -58,13 +54,7 @@ export const handleSendMessageApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({ label: 'Session expired. Logging user out.' })
             } else if (response.status >= 400 && response.status < 500) {
                 showToast({

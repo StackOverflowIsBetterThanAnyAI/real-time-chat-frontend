@@ -7,8 +7,6 @@ import { useLogout } from '@/app/providers'
 import {
     ContextChatFriendData,
     ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
     ContextUserData,
 } from '@/context'
 import { useToast } from '@/hooks'
@@ -20,20 +18,6 @@ const Chat = () => {
         throw new Error('Chat must be used within a ContextFriends.Provider')
     }
     const [, setFriendsData] = contextFriends
-
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error('Chat must be used within a ContextIsLoggedIn.Provider')
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'Chat must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
@@ -57,13 +41,7 @@ const Chat = () => {
             setUserData,
             showToast,
         })
-    }, [
-        setFriendsData,
-        setIsLoggedIn,
-        setIsSettingsExpanded,
-        setUserData,
-        showToast,
-    ])
+    }, [logout, setFriendsData, setUserData, showToast])
 
     useEffect(() => {
         fetchUser()

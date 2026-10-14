@@ -13,6 +13,7 @@ import {
     Profile,
     Status,
 } from '@/app/components/settings'
+import { useLogout } from '@/app/providers'
 import {
     ContextFriends,
     ContextIsEditingStatus,
@@ -80,6 +81,7 @@ const Settings = () => {
     }
     const [userData, setUserData] = contextUserData
 
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const [deleteCountdown, setDeleteCountdown] = useState<number>(5)
@@ -118,6 +120,7 @@ const Settings = () => {
         if (isDeleteAccount) {
             setIsLoadingDelete(true)
             await handleDeleteAccountApi({
+                logout,
                 setFriendsData,
                 setIsLoading,
                 setIsLoggedIn,

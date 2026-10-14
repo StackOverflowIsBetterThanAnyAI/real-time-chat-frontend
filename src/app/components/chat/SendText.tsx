@@ -2,14 +2,9 @@
 
 import { useContext } from 'react'
 import { IoMdSend } from 'react-icons/io'
+import { useLogout } from '@/app/providers'
 import { handleSendMessageApi } from '@/api'
-import {
-    ContextChatFriendData,
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    ContextUserData,
-} from '@/context'
+import { ContextChatFriendData, ContextUserData } from '@/context'
 import { useToast } from '@/hooks'
 
 const SendText = () => {
@@ -21,38 +16,15 @@ const SendText = () => {
     }
     const [chatFriendData, setChatFriendData] = contextChatFriendData
 
-    const contextFriends = useContext(ContextFriends)
-    if (!contextFriends) {
-        throw new Error(
-            'SendText must be used within a ContextFriends.Provider'
-        )
-    }
-    const [, setFriendsData] = contextFriends
-
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'SendText must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'SendText must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
         throw new Error(
             'SendText must be used within a ContextUserData.Provider'
         )
     }
-    const [userData, setUserData] = contextUserData
+    const [userData] = contextUserData
 
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const currentMessage = chatFriendData?.draftedMessage || ''
@@ -79,10 +51,7 @@ const SendText = () => {
             id,
             message,
             setChatFriendData,
-            setFriendsData,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
-            setUserData,
+            logout,
             showToast,
             userData,
         })

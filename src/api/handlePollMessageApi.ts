@@ -1,14 +1,10 @@
-import { handleLogoutApi } from '@/api'
 import { ConversationProps, handlePollMessageApiProps } from '@/types'
 
 export const handlePollMessageApi = async ({
     chatFriendData,
     conversationId,
+    logout,
     setChatFriendData,
-    setFriendsData,
-    setIsLoggedIn,
-    setIsSettingsExpanded,
-    setUserData,
     showToast,
 }: handlePollMessageApiProps) => {
     const startTime = performance.now()
@@ -38,13 +34,7 @@ export const handlePollMessageApi = async ({
             )
             const error = await response.json()
             if (response.status === 401) {
-                handleLogoutApi({
-                    setFriendsData,
-                    setIsLoggedIn,
-                    setIsSettingsExpanded,
-                    setUserData,
-                    showToast,
-                })
+                await logout()
                 showToast({
                     label: 'Session expired. Logging user out.',
                 })

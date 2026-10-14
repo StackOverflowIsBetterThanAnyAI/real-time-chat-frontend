@@ -3,16 +3,12 @@
 import { FetchLoading } from 'fetch-loading'
 import { useContext, useRef } from 'react'
 import { ProfilePicture } from '@/app/components/settings'
+import { useLogout } from '@/app/providers'
 import {
     handleRemoveProfilePictureApi,
     handleUploadProfilePictureApi,
 } from '@/api'
-import {
-    ContextFriends,
-    ContextIsLoggedIn,
-    ContextIsSettingsExpanded,
-    ContextUserData,
-} from '@/context'
+import { ContextUserData } from '@/context'
 import { useClickOutsideProfileDetails, useToast } from '@/hooks'
 import { SettingsProfileProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
@@ -25,28 +21,6 @@ const Profile = ({
     setIsLoading,
     userName,
 }: SettingsProfileProps) => {
-    const contextFriends = useContext(ContextFriends)
-    if (!contextFriends) {
-        throw new Error('Profile must be used within a ContextFriends.Provider')
-    }
-    const [, setFriendsData] = contextFriends
-
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'Profile must be used within a ContextIsLoggedIn.Provider'
-        )
-    }
-    const [, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
-    if (!contextIsSettingsExpanded) {
-        throw new Error(
-            'Profile must be used within a ContextIsSettingsExpanded.Provider'
-        )
-    }
-    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
-
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
         throw new Error(
@@ -55,6 +29,7 @@ const Profile = ({
     }
     const [, setUserData] = contextUserData
 
+    const { logout } = useLogout()
     const { showToast } = useToast()
 
     const labelRef = useRef<HTMLLabelElement>(null)
@@ -79,10 +54,8 @@ const Profile = ({
         closeMenu()
         await handleUploadProfilePictureApi({
             e,
-            setFriendsData,
+            logout,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
             setUserData,
             showToast,
         })
@@ -90,10 +63,8 @@ const Profile = ({
     const handleRemoveProfilePicture = async () => {
         closeMenu()
         await handleRemoveProfilePictureApi({
-            setFriendsData,
+            logout,
             setIsLoading,
-            setIsLoggedIn,
-            setIsSettingsExpanded,
             setUserData,
             showToast,
         })
