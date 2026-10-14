@@ -34,8 +34,6 @@ export const usePollMessage = ({
                 })) || 0
 
             const interval = rtt < 1000 ? 2000 : rtt < 2000 ? 4000 : 8000
-            console.log(rtt, 'rtt')
-            console.log(interval, 'interval')
 
             if (isMounted) {
                 timeoutId = setTimeout(pollMessages, interval)
