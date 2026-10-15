@@ -15,23 +15,26 @@ export const useLoadLoggedInStorageValues = ({
 }: useLoadLoggedInStorageValuesProps) => {
     return useEffect(() => {
         const parsedStorageData = getStoredData()
-        const dataIsLoggedIn = parsedStorageData?.isloggedin
-
-        if (typeof dataIsLoggedIn === 'boolean') {
-            setIsLoggedIn(dataIsLoggedIn)
-        } else {
-            setItemInStorage('isloggedin', false)
-            setIsLoggedIn(false)
+        if (parsedStorageData) {
+            const savedIsLoggedIn = parsedStorageData?.isloggedin
+            if (typeof savedIsLoggedIn === 'boolean') {
+                setIsLoggedIn(savedIsLoggedIn)
+            } else {
+                setItemInStorage('isloggedin', false)
+                setIsLoggedIn(false)
+            }
         }
 
         const parsedSessionData = getStoredSessionData()
-        const dataIsSettingsExpanded = parsedSessionData?.issettingsexpanded
-
-        if (typeof dataIsSettingsExpanded === 'boolean') {
-            setIsSettingsExpanded(dataIsSettingsExpanded)
-        } else {
-            setItemInSessionStorage('issettingsexpanded', false)
-            setIsSettingsExpanded(false)
+        if (parsedSessionData) {
+            const savedIsSettingsExpanded =
+                parsedSessionData?.issettingsexpanded
+            if (typeof savedIsSettingsExpanded === 'boolean') {
+                setIsSettingsExpanded(savedIsSettingsExpanded)
+            } else {
+                setItemInSessionStorage('issettingsexpanded', false)
+                setIsSettingsExpanded(false)
+            }
         }
     }, [setIsLoggedIn, setIsSettingsExpanded])
 }

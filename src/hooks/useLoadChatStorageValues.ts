@@ -14,22 +14,25 @@ export const useLoadChatStorageValues = ({
 }: useLoadChatStorageValuesProps) => {
     return useEffect(() => {
         const parsedSessionData = getStoredSessionData()
-        const savedChatFriendData = parsedSessionData?.chatfrienddata
-        if (savedChatFriendData !== undefined && savedChatFriendData !== null) {
-            if (checkIsChatFriendType(savedChatFriendData)) {
-                setChatFriendData(savedChatFriendData)
-            } else {
-                setItemInSessionStorage('chatfrienddata', null)
+        if (parsedSessionData) {
+            const savedChatFriendData = parsedSessionData?.chatfrienddata
+            if (
+                savedChatFriendData !== undefined &&
+                savedChatFriendData !== null
+            ) {
+                if (checkIsChatFriendType(savedChatFriendData)) {
+                    setChatFriendData(savedChatFriendData)
+                } else {
+                    setItemInSessionStorage('chatfrienddata', null)
+                }
             }
-        }
-        const savedIsSidebarExpanded = parsedSessionData?.issidebarexpanded
-        if (
-            savedIsSidebarExpanded !== undefined &&
-            typeof savedIsSidebarExpanded === 'boolean'
-        ) {
-            setIsSidebarExpanded(savedIsSidebarExpanded)
-        } else {
-            setItemInSessionStorage('issidebarexpanded', false)
+
+            const savedIsSidebarExpanded = parsedSessionData?.issidebarexpanded
+            if (typeof savedIsSidebarExpanded === 'boolean') {
+                setIsSidebarExpanded(savedIsSidebarExpanded)
+            } else {
+                setItemInSessionStorage('issidebarexpanded', false)
+            }
         }
     }, [setChatFriendData, setIsSidebarExpanded])
 }

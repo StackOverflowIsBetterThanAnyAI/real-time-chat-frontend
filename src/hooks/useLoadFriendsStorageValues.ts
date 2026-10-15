@@ -18,7 +18,6 @@ export const useLoadFriendsStorageValues = ({
                 return Array.isArray(value) && value.every(checkIsFriendType)
             }
             const savedFriendsData = parsedSessionData?.friendsdata
-
             if (isFriendsArray(savedFriendsData)) {
                 setFriendsData(savedFriendsData)
             } else {

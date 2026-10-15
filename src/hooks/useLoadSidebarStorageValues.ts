@@ -9,10 +9,13 @@ export const useLoadSidebarStorageValues = ({
 }: useLoadSidebarStorageValuesProps) => {
     return useEffect(() => {
         const parsedSessionData = getStoredSessionData()
-
         if (parsedSessionData) {
             const savedFilteredText = parsedSessionData?.filteredtext
-            if (savedFilteredText && typeof savedFilteredText === 'string') {
+            if (
+                typeof savedFilteredText === 'string' &&
+                savedFilteredText.length &&
+                savedFilteredText.length <= 63
+            ) {
                 setFilter(savedFilteredText)
             } else {
                 setItemInSessionStorage('filteredtext', '')

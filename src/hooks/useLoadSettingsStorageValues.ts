@@ -21,6 +21,7 @@ export const useLoadSettingsStorageValues = ({
             const savedInternalStatus = parsedSessionData?.internalstatus
             if (
                 typeof savedInternalStatus === 'string' &&
+                savedInternalStatus.length &&
                 savedInternalStatus.length <= 255
             ) {
                 setInternalStatus(savedInternalStatus)
@@ -56,6 +57,7 @@ export const useLoadSettingsStorageValues = ({
             const savedProfilePicture = parsedStorageData?.profilepicture
             if (
                 typeof savedProfilePicture === 'string' &&
+                savedProfilePicture.length &&
                 savedProfilePicture.length <= 255
             ) {
                 internalUserData.profilePicture = savedProfilePicture
@@ -64,7 +66,11 @@ export const useLoadSettingsStorageValues = ({
                 internalUserData.profilePicture = null
             }
             const savedStatus = parsedStorageData?.status
-            if (typeof savedStatus === 'string' && savedStatus.length <= 255) {
+            if (
+                typeof savedStatus === 'string' &&
+                savedStatus.length &&
+                savedStatus.length <= 255
+            ) {
                 internalUserData.status = savedStatus
             } else {
                 setItemInStorage('status', '')

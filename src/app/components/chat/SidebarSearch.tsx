@@ -27,6 +27,8 @@ const SidebarSearch = ({ filter, setFilter }: ChatSidebarSearchProps) => {
                 onChange={handleFilterInput}
                 value={filter}
                 title="Filter Friends"
+                minLength={1}
+                maxLength={63}
             />
         </div>
     )

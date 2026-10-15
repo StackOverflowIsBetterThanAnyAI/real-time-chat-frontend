@@ -11,7 +11,6 @@ export const useLoadLoginStorageValues = ({
 }: useLoadLoginStorageValuesProps) => {
     return useEffect(() => {
         const parsedStorageData = getStoredData()
-
         if (parsedStorageData) {
             const savedUserName = parsedStorageData?.username
             if (
