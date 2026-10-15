@@ -48,6 +48,7 @@ const Sidebar = ({
 
     useEscapeFocusTrapSidebar({
         isSidebarExpanded,
+        setFilter,
         setIsSidebarExpanded,
         sidebarRef,
     })

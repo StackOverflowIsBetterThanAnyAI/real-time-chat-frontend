@@ -6,6 +6,7 @@ import { useEscapeFocusTrapSidebarProps } from '@/types'
 
 export const useEscapeFocusTrapSidebar = ({
     isSidebarExpanded,
+    setFilter,
     setIsSidebarExpanded,
     sidebarRef,
 }: useEscapeFocusTrapSidebarProps) => {
@@ -15,6 +16,8 @@ export const useEscapeFocusTrapSidebar = ({
                 return
             }
 
+            setFilter('')
+            setItemInSessionStorage('filteredtext', '')
             setIsSidebarExpanded(false)
             setItemInSessionStorage('issidebarexpanded', false)
         }
@@ -28,6 +31,8 @@ export const useEscapeFocusTrapSidebar = ({
                 sidebarRef.current &&
                 !sidebarRef.current.contains(e.target as Node)
             ) {
+                setFilter('')
+                setItemInSessionStorage('filteredtext', '')
                 setIsSidebarExpanded(false)
                 setItemInSessionStorage('issidebarexpanded', false)
             }
