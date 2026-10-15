@@ -2,12 +2,7 @@
 
 import { RefObject, useEffect } from 'react'
 import { setItemInSessionStorage } from '@/utils'
-
-export type useEscapeFocusTrapSidebarProps = {
-    isSidebarExpanded: boolean
-    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
-    sidebarRef: RefObject<HTMLDivElement | null>
-}
+import { useEscapeFocusTrapSidebarProps } from '@/types'
 
 export const useEscapeFocusTrapSidebar = ({
     isSidebarExpanded,

@@ -379,6 +379,12 @@ export type useEscapeFocusTrapSettingsProps = {
     settingsRef: React.RefObject<HTMLElement | null>
 }
 
+export type useEscapeFocusTrapSidebarProps = {
+    isSidebarExpanded: boolean
+    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
+    sidebarRef: React.RefObject<HTMLDivElement | null>
+}
+
 export type useFocusTrapSidebarProps = {
     isActive: boolean
 }
