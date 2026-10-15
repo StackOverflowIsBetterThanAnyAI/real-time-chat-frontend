@@ -1,12 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import { ScreenWidthType } from '@/types'
+import { ScreenWidthType, useLoadScreenWidthStorageValueProps } from '@/types'
 import { getStoredSessionData, setItemInSessionStorage } from '@/utils'
-
-export type useLoadScreenWidthStorageValueProps = {
-    setScreenWidth: React.Dispatch<React.SetStateAction<ScreenWidthType>>
-}
 
 export const useLoadScreenWidthStorageValue = ({
     setScreenWidth,
