@@ -1,6 +1,6 @@
 'use client'
 
-import { RefObject, useEffect } from 'react'
+import { useEffect } from 'react'
 import { setItemInSessionStorage } from '@/utils'
 import { useEscapeFocusTrapSidebarProps } from '@/types'
 
