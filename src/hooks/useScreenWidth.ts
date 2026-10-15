@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useLoadScreenWidthStorageValue } from '@/hooks'
 import { setItemInSessionStorage } from '@/utils'
-import { ScreenWidthType } from '@/types'
+import { ScreenWidthType, useScreenWidthProps } from '@/types'
 
-export const useScreenWidth = (): ScreenWidthType => {
+export const useScreenWidth = ({
+    setIsSidebarExpanded,
+}: useScreenWidthProps): ScreenWidthType => {
     const [screenWidth, setScreenWidth] = useState<ScreenWidthType>('MOBILE')
 
     useLoadScreenWidthStorageValue({ setScreenWidth })
@@ -16,6 +18,8 @@ export const useScreenWidth = (): ScreenWidthType => {
             } else {
                 setScreenWidth('NOT_MOBILE')
                 setItemInSessionStorage('screenwidth', 'NOT_MOBILE')
+                setIsSidebarExpanded(false)
+                setItemInSessionStorage('issidebarexpanded', false)
             }
         }
         window.addEventListener('resize', handleScreenWidth)
@@ -24,7 +28,7 @@ export const useScreenWidth = (): ScreenWidthType => {
         return () => {
             window.removeEventListener('resize', handleScreenWidth)
         }
-    }, [])
+    }, [setIsSidebarExpanded])
 
     return screenWidth
 }
