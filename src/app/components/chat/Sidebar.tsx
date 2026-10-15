@@ -56,6 +56,7 @@ const Sidebar = ({
 
     return (
         <div
+            id="chat-sidebar"
             className={`${isSidebarExpanded ? 'w-72 sm:w-64 md:w-80 lg:w-96' : ''} h-full bg-zinc-600 z-10`}
             ref={sidebarRef}
         >
@@ -67,6 +68,8 @@ const Sidebar = ({
                         <button
                             className="sidebar-button regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60 ml-1.5"
                             onClick={handleClickBurgerMenu}
+                            aria-expanded={isSidebarExpanded}
+                            aria-controls="chat-sidebar"
                             title={`${isSidebarExpanded ? 'Close' : 'Open'} Chats`}
                             aria-label={`${isSidebarExpanded ? 'Close' : 'Open'} Chats`}
                         >
