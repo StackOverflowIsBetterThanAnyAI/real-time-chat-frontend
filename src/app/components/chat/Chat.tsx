@@ -41,6 +41,7 @@ const Chat = () => {
     const { showToast } = useToast()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isSidebarExpanded, setIsSidebarExpanded] = useState<boolean>(false)
 
     const fetchUser = useCallback(async () => {
         handleFetchInitialDataApi({
@@ -52,7 +53,7 @@ const Chat = () => {
         })
     }, [logout, setFriendsData, setUserData, showToast])
 
-    useLoadChatStorageValues({ setChatFriendData })
+    useLoadChatStorageValues({ setChatFriendData, setIsSidebarExpanded })
     useLoadFriendsStorageValues({ setFriendsData })
 
     useEffect(() => {
@@ -61,16 +62,23 @@ const Chat = () => {
 
     return (
         <main
-            className={`${!friendsData && !chatFriendData ? '' : 'grid'} grid-cols-[1fr_1fr] md:grid-cols-[minmax(0,384px)_1fr] w-full h-full`}
+            className={`${!friendsData && !chatFriendData ? '' : 'grid'} grid-cols-[76px_1fr] sm:grid-cols-[256px_1fr]
+            md:grid-cols-[320px_1fr] lg:grid-cols-[384px_1fr] w-full h-full`}
         >
             {chatFriendData && friendsData ? (
                 <>
-                    <Sidebar />
+                    <Sidebar
+                        isSidebarExpanded={isSidebarExpanded}
+                        setIsSidebarExpanded={setIsSidebarExpanded}
+                    />
                     <Window />
                 </>
             ) : friendsData ? (
                 <>
-                    <Sidebar />
+                    <Sidebar
+                        isSidebarExpanded={isSidebarExpanded}
+                        setIsSidebarExpanded={setIsSidebarExpanded}
+                    />
                     <EmptyWindow isLoading={isLoading} />
                 </>
             ) : (
