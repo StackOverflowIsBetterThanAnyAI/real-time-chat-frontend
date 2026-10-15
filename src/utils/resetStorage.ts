@@ -8,6 +8,7 @@ import {
 
 export const resetStorage = ({
     isDeleteAccount = false,
+    setChatFriendData,
     setFriendsData,
     setIsLoggedIn,
     setIsSettingsExpanded,
@@ -27,6 +28,7 @@ export const resetStorage = ({
         setItemInStorage('username', dataUserName)
     }
 
+    setChatFriendData(undefined)
     setFriendsData(undefined)
     setIsLoggedIn(false)
     setIsSettingsExpanded(false)

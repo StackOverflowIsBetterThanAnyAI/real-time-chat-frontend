@@ -327,6 +327,9 @@ export type handleUploadProfilePictureApiProps = {
 
 export type resetStorageProps = {
     isDeleteAccount?: boolean
+    setChatFriendData: React.Dispatch<
+        React.SetStateAction<ChatFriendType | undefined>
+    >
     setFriendsData: React.Dispatch<
         React.SetStateAction<FriendType[] | undefined>
     >

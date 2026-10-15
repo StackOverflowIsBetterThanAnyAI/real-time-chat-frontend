@@ -74,6 +74,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
             }
 
             resetStorage({
+                setChatFriendData,
                 setFriendsData,
                 setIsLoggedIn,
                 setIsSettingsExpanded,
@@ -87,6 +88,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
             showToast({ label: 'Could not logout user. Please try again.' })
         }
     }, [
+        setChatFriendData,
         setFriendsData,
         setIsLoggedIn,
         setIsSettingsExpanded,
