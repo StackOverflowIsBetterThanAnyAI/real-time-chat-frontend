@@ -11,7 +11,7 @@ import { useLogout, useToast } from '@/hooks'
 import { ChatButtonProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
-const Button = ({ friend }: ChatButtonProps) => {
+const Button = ({ friend, isExpanded }: ChatButtonProps) => {
     const contextChatFriendData = useContext(ContextChatFriendData)
     if (!contextChatFriendData) {
         throw new Error(
@@ -54,8 +54,9 @@ const Button = ({ friend }: ChatButtonProps) => {
 
     return (
         <button
-            className="regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60 w-full"
+            className="sidebar-button regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60 w-full"
             onClick={hanldeSetChatUser}
+            title={friend.friend.userName}
         >
             {friend.friend.profilePicture ? (
                 <span className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden">
@@ -71,14 +72,16 @@ const Button = ({ friend }: ChatButtonProps) => {
                     size="large"
                 />
             )}
-            <div className="flex flex-col gap-1 mb-auto items-start min-w-0 flex-1">
-                <div className="text-normal truncate w-full text-left">
-                    {friend.friend.userName}
+            {isExpanded ? (
+                <div className="flex flex-col gap-1 mb-auto items-start min-w-0 flex-1">
+                    <div className="text-normal truncate w-full text-left">
+                        {friend.friend.userName}
+                    </div>
+                    <div className="text-small truncate w-full text-left">
+                        {friend.friend.status}
+                    </div>
                 </div>
-                <div className="text-small truncate w-full text-left">
-                    {friend.friend.status}
-                </div>
-            </div>
+            ) : null}
         </button>
     )
 }
