@@ -15,7 +15,6 @@ import {
     useLogout,
     useToast,
 } from '@/hooks'
-import { ChatFriendType } from '@/types'
 
 const Chat = () => {
     const contextChatFriendData = useContext(ContextChatFriendData)
