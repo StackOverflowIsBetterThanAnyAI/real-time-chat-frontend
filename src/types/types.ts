@@ -90,6 +90,8 @@ export type LoginFormSwitchProps = {
     handleClick: () => void
 }
 
+export type ScreenWidthType = 'MOBILE' | 'NOT_MOBILE'
+
 export type SettingsButtonProps = {
     icon: React.ReactNode
     handleClick: () => void
