@@ -438,6 +438,10 @@ export type useLoadSettingsStorageValuesProps = {
     setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
 }
 
+export type useLoadSidebarStorageValuesProps = {
+    setFilter: React.Dispatch<React.SetStateAction<string>>
+}
+
 export type useLoginSubmitDisabledProps = {
     confirmPassword: string
     isSigningUp: boolean

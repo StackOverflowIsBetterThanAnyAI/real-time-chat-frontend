@@ -9,6 +9,7 @@ import { ContextFriends } from '@/context'
 import {
     useEscapeFocusTrapSidebar,
     useFocusTrapSidebar,
+    useLoadSidebarStorageValues,
     useScreenWidth,
 } from '@/hooks'
 import { ChatSidebarProps } from '@/types'
@@ -53,6 +54,7 @@ const Sidebar = ({
     useFocusTrapSidebar({
         isActive: isSidebarExpanded && screenWidth === 'MOBILE',
     })
+    useLoadSidebarStorageValues({ setFilter })
 
     return (
         <div

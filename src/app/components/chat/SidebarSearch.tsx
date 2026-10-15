@@ -1,9 +1,12 @@
 import { MdOutlineSearch } from 'react-icons/md'
 import { ChatSidebarSearchProps } from '@/types'
+import { setItemInSessionStorage } from '@/utils'
 
 const SidebarSearch = ({ filter, setFilter }: ChatSidebarSearchProps) => {
     const handleFilterInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilter(e.currentTarget.value)
+        const filteredText = e.currentTarget.value
+        setFilter(filteredText)
+        setItemInSessionStorage('filteredtext', filteredText)
     }
 
     return (
