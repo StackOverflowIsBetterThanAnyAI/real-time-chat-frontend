@@ -92,6 +92,7 @@ const Settings = () => {
     const [isLoadingLogout, setIsLoadingLogout] = useState<boolean>(false)
 
     const profilePictureDetailsRef = useRef<HTMLDetailsElement>(null)
+    const settingsRef = useRef<HTMLElement>(null)
 
     const currentStatus = userData?.status || ''
 
@@ -108,6 +109,7 @@ const Settings = () => {
         setIsEditingStatus,
         setIsFriendsExpanded,
         setIsSettingsExpanded,
+        settingsRef,
     })
     useFocusTrapSettings()
     useIsDeleteCountdown({
@@ -157,7 +159,10 @@ const Settings = () => {
     }
 
     return (
-        <aside className="z-10 flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto">
+        <aside
+            className="z-20 flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto"
+            ref={settingsRef}
+        >
             {isFriendsExpanded ? (
                 <>
                     <Header header="Friends" />
