@@ -1,5 +1,6 @@
 export type ChatButtonProps = {
     friend: FriendType
+    isExpanded: boolean
 }
 
 export type ChatEmptyWindowProps = {
@@ -14,6 +15,22 @@ export type ChatFriendType = FriendType &
 export type ChatMessageProps = {
     content: string
     isSent?: boolean
+}
+
+export type ChatSidebarButtonsProps = {
+    filteredFriends: FriendType[]
+    isSidebarExpanded: boolean
+    screenWidth: ScreenWidthType
+}
+
+export type ChatSidebarProps = {
+    isSidebarExpanded: boolean
+    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type ChatSidebarSearchProps = {
+    filter: string
+    setFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
 export type ConversationProps = {
@@ -359,6 +376,11 @@ export type useEscapeFocusTrapSettingsProps = {
     setIsSettingsExpanded: React.Dispatch<
         React.SetStateAction<boolean | undefined>
     >
+    settingsRef: React.RefObject<HTMLElement | null>
+}
+
+export type useFocusTrapSidebarProps = {
+    isActive: boolean
 }
 
 export type useIsDeleteCountdownProps = {
@@ -371,6 +393,7 @@ export type useLoadChatStorageValuesProps = {
     setChatFriendData: React.Dispatch<
         React.SetStateAction<ChatFriendType | undefined>
     >
+    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type useLoadFriendsStorageValuesProps = {
@@ -389,6 +412,10 @@ export type useLoadLoggedInStorageValuesProps = {
 export type useLoadLoginStorageValuesProps = {
     setIsSigningUp: React.Dispatch<React.SetStateAction<boolean>>
     setUserName: React.Dispatch<React.SetStateAction<string>>
+}
+
+export type useLoadScreenWidthStorageValueProps = {
+    setScreenWidth: React.Dispatch<React.SetStateAction<ScreenWidthType>>
 }
 
 export type useLoadSettingsStorageValuesProps = {
@@ -418,4 +445,8 @@ export type usePollMessageProps = {
         React.SetStateAction<ChatFriendType | undefined>
     >
     showToast: (props: ToastProps) => void
+}
+
+export type useScreenWidthProps = {
+    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
 }
