@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { ChatFriendType, useLoadChatStorageValuesProps } from '@/types'
+import { useLoadChatStorageValuesProps } from '@/types'
 import {
     checkIsChatFriendType,
     getStoredSessionData,
@@ -10,11 +10,8 @@ import {
 
 export const useLoadChatStorageValues = ({
     setChatFriendData,
-}: useLoadChatStorageValuesProps & {
-    setChatFriendData: React.Dispatch<
-        React.SetStateAction<ChatFriendType | undefined>
-    >
-}) => {
+    setIsSidebarExpanded,
+}: useLoadChatStorageValuesProps) => {
     return useEffect(() => {
         const parsedSessionData = getStoredSessionData()
         const savedChatFriendData = parsedSessionData?.chatfrienddata
@@ -25,5 +22,14 @@ export const useLoadChatStorageValues = ({
                 setItemInSessionStorage('chatfrienddata', null)
             }
         }
-    }, [setChatFriendData])
+        const savedIsSidebarExpanded = parsedSessionData?.issidebarexpanded
+        if (
+            savedIsSidebarExpanded !== undefined &&
+            typeof savedIsSidebarExpanded === 'boolean'
+        ) {
+            setIsSidebarExpanded(savedIsSidebarExpanded)
+        } else {
+            setItemInSessionStorage('issidebarexpanded', false)
+        }
+    }, [setChatFriendData, setIsSidebarExpanded])
 }
