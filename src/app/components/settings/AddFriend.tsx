@@ -76,7 +76,7 @@ const AddFriend = () => {
                 {isLoading ? (
                     <div
                         className={`flex items-center justify-center w-32 sm:w-40 h-6 sm:h-7 mx-auto outline outline-zinc-100
-                            px-2 py-0.5 bg-blue-600 rounded-xl cursor-not-allowed ${error ? '' : 'mb-10 sm:mb-7'}`}
+                        px-2 py-0.5 bg-blue-600 rounded-xl cursor-not-allowed ${error ? '' : 'mb-6 sm:mb-7'}`}
                     >
                         <FetchLoading theme="#f4f4f5" />
                     </div>
