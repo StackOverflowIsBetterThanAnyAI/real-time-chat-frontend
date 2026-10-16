@@ -160,7 +160,8 @@ const Settings = () => {
 
     return (
         <aside
-            className="z-20 flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4 bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto"
+            className="z-20 flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4
+            bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto"
             ref={settingsRef}
         >
             {isFriendsExpanded ? (
@@ -206,7 +207,7 @@ const Settings = () => {
                         />
                     </div>
                     <hr className="my-2 border-zinc-100" />
-                    <div className="flex flex-col gap-2 justify-between h-full">
+                    <div className="flex flex-col flex-1 gap-2">
                         <div className="flex flex-col gap-2">
                             <Button
                                 handleClick={handleIsEditingStatus}
@@ -241,7 +242,7 @@ const Settings = () => {
                                 }
                             />
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-4 mt-auto">
                             <Button
                                 handleClick={handleLogout}
                                 label="Logout"
