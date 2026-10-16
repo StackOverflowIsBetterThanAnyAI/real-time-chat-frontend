@@ -45,5 +45,5 @@ export const useEscapeFocusTrapSidebar = ({
             document.removeEventListener('keydown', escapeFocusTrap)
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [isSidebarExpanded, setIsSidebarExpanded, sidebarRef])
+    }, [isSidebarExpanded, setFilter, setIsSidebarExpanded, sidebarRef])
 }
