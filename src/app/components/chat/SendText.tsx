@@ -91,8 +91,9 @@ const SendText = () => {
                     chatFriendData.conversationId < 0 ||
                     !currentMessage.trim().length
                 }
+                title="Send Message"
             >
-                <IoMdSend color="#f4f4f5" />
+                <IoMdSend color="#f4f4f5" className="w-5 h-5" />
             </button>
         </div>
     )
