@@ -13,7 +13,7 @@ const Button = ({
 }: SettingsButtonProps) => {
     return isLoading ? (
         <div
-            className={`settings-menu-button regular-button h-9 sm:h-10 lg:h-11 flex justify-center
+            className={`settings-menu-button regular-button h-8 sm:h-10 lg:h-11 flex justify-center
             ${isDelete ? 'outline-2 outline-red-500' : ''} cursor-not-allowed`}
         >
             <FetchLoading theme="#f4f4f5" />
@@ -25,7 +25,7 @@ const Button = ({
         </div>
     ) : (
         <button
-            className={`settings-menu-button regular-button relative active:bg-zinc-800/50
+            className={`settings-menu-button regular-button relative min-h-8 active:bg-zinc-800/50
             ${isDelete ? 'outline-2 outline-red-500 overflow-hidden' : ''} hover:bg-zinc-800/50 active:bg-zinc-800/50`}
             onClick={handleClick}
         >
