@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useContext, useEffect, useState } from 'react'
-import { handleFetchInitialDataApi } from '@/api'
+import { handleFetchInitialDataApi, handleSendHeartbeatApi } from '@/api'
 import { EmptyWindow, Sidebar, Window } from '@/app/components/chat'
 import {
     ContextChatFriendData,
@@ -52,6 +52,9 @@ const Chat = () => {
             showToast,
         })
     }, [logout, setFriendsData, setUserData, showToast])
+    const handleSendHeartbeat = useCallback(async () => {
+        handleSendHeartbeatApi({ logout, showToast })
+    }, [logout, showToast])
 
     useLoadChatStorageValues({ setChatFriendData, setIsSidebarExpanded })
     useLoadFriendsStorageValues({ setFriendsData })
@@ -59,6 +62,14 @@ const Chat = () => {
     useEffect(() => {
         fetchUser()
     }, [fetchUser])
+
+    useEffect(() => {
+        handleSendHeartbeat()
+        const interval = setInterval(() => {
+            handleSendHeartbeat()
+        }, 30000)
+        return () => clearInterval(interval)
+    }, [handleSendHeartbeat])
 
     return (
         <main
