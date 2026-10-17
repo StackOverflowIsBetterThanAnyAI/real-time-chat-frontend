@@ -7,6 +7,7 @@ import { setItemInSessionStorage } from '@/utils'
 export const useEscapeFocusTrapSettings = ({
     isEditingStatus,
     isFriendsExpanded,
+    profileButtonRef,
     profilePictureDetailsRef,
     setIsEditingStatus,
     setIsFriendsExpanded,
@@ -43,7 +44,8 @@ export const useEscapeFocusTrapSettings = ({
         const handleClickOutside = (e: MouseEvent) => {
             if (
                 settingsRef.current &&
-                !settingsRef.current.contains(e.target as Node)
+                !settingsRef.current.contains(e.target as Node) &&
+                !profileButtonRef?.current?.contains(e.target as Node)
             ) {
                 if (profilePictureDetailsRef?.current?.open) {
                     profilePictureDetailsRef.current.open = false
@@ -76,6 +78,7 @@ export const useEscapeFocusTrapSettings = ({
     }, [
         isEditingStatus,
         isFriendsExpanded,
+        profileButtonRef,
         profilePictureDetailsRef,
         setIsEditingStatus,
         setIsFriendsExpanded,

@@ -30,8 +30,9 @@ import {
     useToast,
 } from '@/hooks'
 import { setItemInSessionStorage } from '@/utils'
+import { SettingsProps } from '@/types'
 
-const Settings = () => {
+const Settings = ({ profileButtonRef }: SettingsProps) => {
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
         throw new Error(
@@ -105,6 +106,7 @@ const Settings = () => {
     useEscapeFocusTrapSettings({
         isEditingStatus,
         isFriendsExpanded,
+        profileButtonRef,
         profilePictureDetailsRef,
         setIsEditingStatus,
         setIsFriendsExpanded,

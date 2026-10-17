@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { ProfilePicture, Settings } from '@/app/components/settings'
 import logo from '@/assets/logo.png'
 import {
@@ -64,6 +64,8 @@ const Navigation = () => {
     }
     const [userData] = contextUserData
 
+    const profileButtonRef = useRef<HTMLButtonElement>(null)
+
     const handleClickLogo = () => {
         if (chatFriendData) {
             setChatFriendData(undefined)
@@ -106,6 +108,7 @@ const Navigation = () => {
                             className={`w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700
                             relative overflow-hidden ${userData === undefined ? ' animate-pulse' : ''}`}
                             title={`${isSettingsExpanded ? 'Close' : 'Open'} Settings`}
+                            ref={profileButtonRef}
                         >
                             <ProfilePicture
                                 profilePicture={userData?.profilePicture}
@@ -115,7 +118,9 @@ const Navigation = () => {
                     )}
                 </div>
             </nav>
-            {isSettingsExpanded && isLoggedIn && <Settings />}
+            {isSettingsExpanded && isLoggedIn && (
+                <Settings profileButtonRef={profileButtonRef} />
+            )}
         </>
     )
 }

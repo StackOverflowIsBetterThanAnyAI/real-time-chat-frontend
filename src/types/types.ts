@@ -1,3 +1,14 @@
+import {
+    ChangeEvent,
+    Dispatch,
+    InputEvent,
+    KeyboardEvent,
+    MouseEvent,
+    ReactNode,
+    RefObject,
+    SetStateAction,
+} from 'react'
+
 export type ChatButtonProps = {
     friend: FriendType
     isExpanded: boolean
@@ -26,12 +37,12 @@ export type ChatSidebarButtonsProps = {
 
 export type ChatSidebarProps = {
     isSidebarExpanded: boolean
-    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
+    setIsSidebarExpanded: Dispatch<SetStateAction<boolean>>
 }
 
 export type ChatSidebarSearchProps = {
     filter: string
-    setFilter: React.Dispatch<React.SetStateAction<string>>
+    setFilter: Dispatch<SetStateAction<string>>
 }
 
 export type ConversationProps = {
@@ -76,8 +87,8 @@ export type LoginFormInputProps = {
     id: string
     isLoading: boolean
     label: string
-    onInput: (e: React.InputEvent<HTMLInputElement>) => void
-    onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    onInput: (e: InputEvent<HTMLInputElement>) => void
+    onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void
     title: string
     value: string
 }
@@ -88,15 +99,15 @@ export type LoginFormPasswordProps = {
     isDisabled: boolean
     isPasswordHidden: boolean
     label: string
-    onInput: (e: React.InputEvent<HTMLInputElement>) => void
-    onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
-    setIsPasswordHidden: React.Dispatch<React.SetStateAction<boolean>>
+    onInput: (e: InputEvent<HTMLInputElement>) => void
+    onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void
+    setIsPasswordHidden: Dispatch<SetStateAction<boolean>>
     title: string
     value: string
 }
 
 export type LoginFormSubmitProps = {
-    handleClick: (e: React.MouseEvent<HTMLInputElement>) => void
+    handleClick: (e: MouseEvent<HTMLInputElement>) => void
     isDisabled: boolean
     isLoading: boolean
     value: string
@@ -116,7 +127,7 @@ export type PollingProps = {
 export type ScreenWidthType = 'MOBILE' | 'NOT_MOBILE'
 
 export type SettingsButtonProps = {
-    icon: React.ReactNode
+    icon: ReactNode
     handleClick: () => void
     isClicked?: boolean
     isClickedLabel?: string
@@ -141,7 +152,7 @@ export type SettingsFriendInfoProps = {
 }
 
 export type SettingsFriendsDetailsProps = {
-    content: React.ReactNode
+    content: ReactNode
     isExpanded?: boolean
     summary: string
 }
@@ -184,12 +195,14 @@ export type SettingsProfilePictureProps = {
 export type SettingsProfileProps = {
     isLoading: boolean
     profilePicture: string | null | undefined
-    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
-    setIsEditingStatus: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    profilePictureDetailsRef: RefObject<HTMLDetailsElement | null>
+    setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
     userName: string | undefined
+}
+
+export type SettingsProps = {
+    profileButtonRef: RefObject<HTMLButtonElement | null>
 }
 
 export type SettingsStatusProps = {
@@ -197,11 +210,9 @@ export type SettingsStatusProps = {
     handleIsEditingStatus: () => void
     internalStatus: string
     isEditingStatus: boolean | undefined
-    setInternalStatus: React.Dispatch<React.SetStateAction<string>>
-    setIsEditingStatus: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setInternalStatus: Dispatch<SetStateAction<string>>
+    setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
 }
 
 export type ToastProps = { label: string }
@@ -214,63 +225,51 @@ export type UserDataProps = {
 
 export type handleAddFriendApiProps = {
     logout: () => Promise<void>
-    setError: React.Dispatch<React.SetStateAction<string>>
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setUserToBeAdded: React.Dispatch<React.SetStateAction<string>>
+    setError: Dispatch<SetStateAction<string>>
+    setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setUserToBeAdded: Dispatch<SetStateAction<string>>
     showToast: (props: ToastProps) => void
     userToBeAdded: string
 }
 
 export type handleDeleteAccountApiProps = {
     logout: () => Promise<void>
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setIsLoggedIn: Dispatch<SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleFetchFriendsApiProps = {
     logout: () => Promise<void>
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleFetchInitialDataApiProps = {
     logout: () => Promise<void>
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleLoginApiProps = {
     password: string
-    setApiError: React.Dispatch<React.SetStateAction<string>>
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
+    setApiError: Dispatch<SetStateAction<string>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setIsLoggedIn: Dispatch<SetStateAction<boolean | undefined>>
     userName: string
 }
 
 export type handleOpenChatApiProps = {
     friend: string
     logout: () => Promise<void>
-    setChatFriendData: React.Dispatch<
-        React.SetStateAction<ChatFriendType | undefined>
-    >
+    setChatFriendData: Dispatch<SetStateAction<ChatFriendType | undefined>>
     showToast: (props: ToastProps) => void
 }
 
@@ -278,26 +277,22 @@ export type handlePollMessageApiProps = {
     chatFriendData: ChatFriendType | undefined
     conversationId: number
     logout: () => Promise<void>
-    setChatFriendData: React.Dispatch<
-        React.SetStateAction<ChatFriendType | undefined>
-    >
+    setChatFriendData: Dispatch<SetStateAction<ChatFriendType | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleRemoveProfilePictureApiProps = {
     logout: () => Promise<void>
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleRequestApiProps = {
     id: number
     logout: () => Promise<void>
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
     showToast: (props: ToastProps) => void
 }
 
@@ -310,9 +305,7 @@ export type handleSendMessageApiProps = {
     id: number
     logout: () => Promise<void>
     message: string
-    setChatFriendData: React.Dispatch<
-        React.SetStateAction<ChatFriendType | undefined>
-    >
+    setChatFriendData: Dispatch<SetStateAction<ChatFriendType | undefined>>
     showToast: (props: ToastProps) => void
 }
 
@@ -320,86 +313,73 @@ export type handleUpdateStatusApiProps = {
     currentStatus: string
     internalStatus: string
     logout: () => Promise<void>
-    setApiError: React.Dispatch<React.SetStateAction<string>>
-    setIsEditingStatus: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setInternalStatus: React.Dispatch<React.SetStateAction<string>>
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setApiError: Dispatch<SetStateAction<string>>
+    setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
+    setInternalStatus: Dispatch<SetStateAction<string>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type handleUploadProfilePictureApiProps = {
-    e: React.ChangeEvent<HTMLInputElement>
+    e: ChangeEvent<HTMLInputElement>
     logout: () => Promise<void>
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type resetStorageProps = {
     isDeleteAccount?: boolean
-    setChatFriendData: React.Dispatch<
-        React.SetStateAction<ChatFriendType | undefined>
-    >
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setChatFriendData: Dispatch<SetStateAction<ChatFriendType | undefined>>
+    setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
+    setIsLoggedIn: Dispatch<SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
 }
 
 export type useChatScrollToBottomProps = {
     chatFriendData: ChatFriendType | undefined
-    chatRef: React.RefObject<HTMLDivElement | null>
+    chatRef: RefObject<HTMLDivElement | null>
 }
 
 export type useClickOutsideProfileDetailsProps = {
-    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
+    profilePictureDetailsRef: RefObject<HTMLDetailsElement | null>
 }
 
 export type useErrorConfirmPasswordProps = {
     confirmPassword: string
     password: string
-    setErrorConfirmPassword: React.Dispatch<React.SetStateAction<string>>
+    setErrorConfirmPassword: Dispatch<SetStateAction<string>>
 }
 
 export type useErrorPasswordProps = {
     password: string
-    setConfirmPasswordDisabled: React.Dispatch<React.SetStateAction<boolean>>
-    setErrorPassword: React.Dispatch<React.SetStateAction<string>>
+    setConfirmPasswordDisabled: Dispatch<SetStateAction<boolean>>
+    setErrorPassword: Dispatch<SetStateAction<string>>
 }
 
 export type useErrorUserNameProps = {
-    setErrorUserName: React.Dispatch<React.SetStateAction<string>>
+    setErrorUserName: Dispatch<SetStateAction<string>>
     userName: string
 }
 
 export type useEscapeFocusTrapSettingsProps = {
     isEditingStatus: boolean | undefined
     isFriendsExpanded: boolean | undefined
-    profilePictureDetailsRef: React.RefObject<HTMLDetailsElement | null>
-    setIsFriendsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setIsEditingStatus: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    settingsRef: React.RefObject<HTMLElement | null>
+    profileButtonRef: RefObject<HTMLButtonElement | null>
+    profilePictureDetailsRef: RefObject<HTMLDetailsElement | null>
+    setIsFriendsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    settingsRef: RefObject<HTMLElement | null>
 }
 
 export type useEscapeFocusTrapSidebarProps = {
     isSidebarExpanded: boolean
-    setFilter: React.Dispatch<React.SetStateAction<string>>
-    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
-    sidebarRef: React.RefObject<HTMLDivElement | null>
+    setFilter: Dispatch<SetStateAction<string>>
+    setIsSidebarExpanded: Dispatch<SetStateAction<boolean>>
+    sidebarRef: RefObject<HTMLDivElement | null>
 }
 
 export type useFocusTrapSidebarProps = {
@@ -408,59 +388,49 @@ export type useFocusTrapSidebarProps = {
 
 export type useIsDeleteCountdownProps = {
     isDeleteAccount: boolean
-    setDeleteCountdown: React.Dispatch<React.SetStateAction<number>>
-    setIsDeleteAccount: React.Dispatch<React.SetStateAction<boolean>>
+    setDeleteCountdown: Dispatch<SetStateAction<number>>
+    setIsDeleteAccount: Dispatch<SetStateAction<boolean>>
 }
 
 export type useLoadChatStorageValuesProps = {
-    setChatFriendData: React.Dispatch<
-        React.SetStateAction<ChatFriendType | undefined>
-    >
-    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
+    setChatFriendData: Dispatch<SetStateAction<ChatFriendType | undefined>>
+    setIsSidebarExpanded: Dispatch<SetStateAction<boolean>>
 }
 
 export type useLoadFriendsStorageValuesProps = {
-    setFriendsData: React.Dispatch<
-        React.SetStateAction<FriendType[] | undefined>
-    >
+    setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
 }
 
 export type useLoadLoggedInStorageValuesProps = {
-    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean | undefined>>
-    setIsSettingsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
+    setIsLoggedIn: Dispatch<SetStateAction<boolean | undefined>>
+    setIsSettingsExpanded: Dispatch<SetStateAction<boolean | undefined>>
 }
 
 export type useLoadLoginStorageValuesProps = {
-    setIsSigningUp: React.Dispatch<React.SetStateAction<boolean>>
-    setUserName: React.Dispatch<React.SetStateAction<string>>
+    setIsSigningUp: Dispatch<SetStateAction<boolean>>
+    setUserName: Dispatch<SetStateAction<string>>
 }
 
 export type useLoadScreenWidthStorageValueProps = {
-    setScreenWidth: React.Dispatch<React.SetStateAction<ScreenWidthType>>
+    setScreenWidth: Dispatch<SetStateAction<ScreenWidthType>>
 }
 
 export type useLoadSettingsStorageValuesProps = {
-    setInternalStatus: React.Dispatch<React.SetStateAction<string>>
-    setIsEditingStatus: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setIsFriendsExpanded: React.Dispatch<
-        React.SetStateAction<boolean | undefined>
-    >
-    setUserData: React.Dispatch<React.SetStateAction<UserDataProps | undefined>>
+    setInternalStatus: Dispatch<SetStateAction<string>>
+    setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
+    setIsFriendsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
 }
 
 export type useLoadSidebarStorageValuesProps = {
-    setFilter: React.Dispatch<React.SetStateAction<string>>
+    setFilter: Dispatch<SetStateAction<string>>
 }
 
 export type useLoginSubmitDisabledProps = {
     confirmPassword: string
     isSigningUp: boolean
     password: string
-    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
+    setIsSubmitDisabled: Dispatch<SetStateAction<boolean>>
     userName: string
 }
 
@@ -468,12 +438,10 @@ export type usePollMessageProps = {
     chatFriendData: ChatFriendType | undefined
     conversationId: number | undefined
     logout: () => Promise<void>
-    setChatFriendData: React.Dispatch<
-        React.SetStateAction<ChatFriendType | undefined>
-    >
+    setChatFriendData: Dispatch<SetStateAction<ChatFriendType | undefined>>
     showToast: (props: ToastProps) => void
 }
 
 export type useScreenWidthProps = {
-    setIsSidebarExpanded: React.Dispatch<React.SetStateAction<boolean>>
+    setIsSidebarExpanded: Dispatch<SetStateAction<boolean>>
 }
