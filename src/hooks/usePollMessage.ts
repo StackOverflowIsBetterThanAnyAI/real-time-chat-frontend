@@ -27,7 +27,8 @@ export const usePollMessage = ({
                     showToast,
                 })) || 0
 
-            const interval = rtt < 1000 ? 2000 : rtt < 2000 ? 4000 : 8000
+            const interval =
+                rtt < 1000 ? 2000 : rtt < 2000 ? 4000 : Math.max(8000, 2 * rtt)
 
             if (isMounted) {
                 timeoutId = setTimeout(pollMessages, interval)
