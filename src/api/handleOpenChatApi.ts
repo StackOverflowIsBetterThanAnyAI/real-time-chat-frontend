@@ -41,13 +41,18 @@ export const handleOpenChatApi = async ({
             return
         }
 
-        const data: ConversationProps = await response.json()
+        const data: ConversationProps & { isPartnerOnline: boolean } =
+            await response.json()
         setChatFriendData((prev) => {
             const updatedChatFriendData = prev
                 ? {
                       ...prev,
                       conversationId: data.conversationId,
                       messages: data.messages,
+                      friend: {
+                          ...prev.friend,
+                          isPartnerOnline: data.isPartnerOnline,
+                      },
                   }
                 : prev
             setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
