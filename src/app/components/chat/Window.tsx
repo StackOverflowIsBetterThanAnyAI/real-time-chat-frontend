@@ -40,24 +40,35 @@ const Window = () => {
         showToast,
     })
 
+    const isUserOnline = chatFriendData?.friend.isPartnerOnline
+
     return (
         <div className="bg-zinc-700 flex flex-col h-full min-h-0 justify-between items-center overflow-hidden">
             {chatFriendData ? (
                 <div className="shrink-0 text-sm sm:text-base lg:text-lg flex gap-2 items-center px-4 py-2 bg-zinc-900/60 w-full border-b border-zinc-100">
                     {chatFriendData.friend.profilePicture ? (
-                        <span className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden">
+                        <span className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative">
                             <ProfilePicture
                                 profilePicture={
                                     chatFriendData.friend.profilePicture
                                 }
                                 size="small"
                             />
+                            {isUserOnline !== undefined ? (
+                                <span
+                                    className={`${isUserOnline ? 'bg-green-500' : 'bg-red-600'}
+                                    rounded-full w-3 h-3 absolute bottom-0 right-0 outline-1 outline-zinc-200`}
+                                    title={`${isUserOnline ? 'online' : 'offline'}`}
+                                ></span>
+                            ) : null}
                         </span>
                     ) : (
                         <FallbackProfilePicture
                             id={chatFriendData.id}
                             userName={chatFriendData.friend.userName}
                             size="large"
+                            showIsOnline
+                            isOnline={isUserOnline}
                         />
                     )}
                     <div className="flex flex-col gap-1 mb-auto items-start min-w-0 flex-1">

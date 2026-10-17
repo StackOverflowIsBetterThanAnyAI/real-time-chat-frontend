@@ -10,6 +10,7 @@ export type ChatEmptyWindowProps = {
 export type ChatFriendType = FriendType &
     ConversationProps & {
         draftedMessage: string
+        friend: { isPartnerOnline: boolean }
     }
 
 export type ChatMessageProps = {
@@ -107,6 +108,11 @@ export type LoginFormSwitchProps = {
     handleClick: () => void
 }
 
+export type PollingProps = {
+    isPartnerOnline: boolean
+    messages: ConversationProps['messages']
+}
+
 export type ScreenWidthType = 'MOBILE' | 'NOT_MOBILE'
 
 export type SettingsButtonProps = {
@@ -122,6 +128,8 @@ export type SettingsButtonProps = {
 
 export type SettingsFallbackProfilePictureProps = {
     id: number
+    isOnline?: boolean
+    showIsOnline?: boolean
     size: 'small' | 'large'
     userName: string
 }
@@ -290,6 +298,11 @@ export type handleRequestApiProps = {
         React.SetStateAction<FriendType[] | undefined>
     >
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    showToast: (props: ToastProps) => void
+}
+
+export type handleSendHeartbeatApiProps = {
+    logout: () => Promise<void>
     showToast: (props: ToastProps) => void
 }
 
