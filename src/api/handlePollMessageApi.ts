@@ -1,4 +1,4 @@
-import { ConversationProps, handlePollMessageApiProps } from '@/types'
+import { handlePollMessageApiProps, PollingProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
 export const handlePollMessageApi = async ({
@@ -39,21 +39,22 @@ export const handlePollMessageApi = async ({
                 showToast({
                     label: 'Session expired. Logging user out.',
                 })
-            } else if (response.status >= 400 && response.status < 500) {
+            } else if (response.status >= 400) {
                 showToast({
                     label: `Could not poll latest message. ${error.error}`,
-                })
-            } else if (response.status >= 500) {
-                showToast({
-                    label: 'Could not poll latest message. Please try again.',
                 })
             }
             return
         }
 
-        const data: ConversationProps['messages'] = await response.json()
+        const data: PollingProps = await response.json()
+        const oldIsPartnerOnline = chatFriendData?.friend.isPartnerOnline
 
-        if (data.length) {
+        const hasNewMessages = data.messages && data.messages.length
+        const hasOnlineStatusChanged =
+            oldIsPartnerOnline !== data.isPartnerOnline
+
+        if (hasNewMessages || hasOnlineStatusChanged) {
             setChatFriendData((prev) => {
                 if (!prev) {
                     return prev
@@ -62,16 +63,27 @@ export const handlePollMessageApi = async ({
                 const existingIds = new Set(
                     prev.messages.map((item) => item.id)
                 )
-                const uniqueNew = data.filter(
-                    (item) => !existingIds.has(item.id)
-                )
-                if (!uniqueNew.length) {
+                const uniqueNew =
+                    data?.messages.filter(
+                        (item) => !existingIds.has(item.id)
+                    ) || []
+
+                if (
+                    !uniqueNew.length &&
+                    prev.friend.isPartnerOnline === data.isPartnerOnline
+                ) {
                     return prev
                 }
 
                 const updatedChatFriendData = {
                     ...prev,
-                    messages: [...prev.messages, ...uniqueNew],
+                    messages: uniqueNew.length
+                        ? [...prev.messages, ...uniqueNew]
+                        : prev.messages,
+                    friend: {
+                        ...prev.friend,
+                        isPartnerOnline: data.isPartnerOnline,
+                    },
                 }
                 setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
                 return updatedChatFriendData
@@ -83,7 +95,7 @@ export const handlePollMessageApi = async ({
             error
         )
         showToast({
-            label: 'Could not poll latest message. Please try again.',
+            label: 'Could not poll latest message.',
         })
     } finally {
         return performance.now() - startTime
