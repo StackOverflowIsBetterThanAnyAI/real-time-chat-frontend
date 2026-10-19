@@ -8,7 +8,7 @@ import {
     FallbackText,
     ProfilePicture,
 } from '@/app/components/settings'
-import { useLogout, useToast } from '@/hooks'
+import { useLoadStatisticsStorageValues, useLogout, useToast } from '@/hooks'
 import { StatisticsType } from '@/types'
 import { FetchLoading } from 'fetch-loading'
 
@@ -34,17 +34,7 @@ const Statistics = () => {
         handleFetchStatistics()
     }, [handleFetchStatistics])
 
-    const ratioSentReceived = () => {
-        if (userStatistics) {
-            const total =
-                userStatistics.totalReceived + userStatistics.totalSent
-            const ratioSent = parseInt(
-                ((userStatistics.totalSent / total) * 100).toString()
-            )
-            const ratioReceived = 100 - ratioSent
-            return `${ratioSent}% / ${ratioReceived}%`
-        }
-    }
+    useLoadStatisticsStorageValues({ setUserStatistics })
 
     return userStatistics ? (
         <div className="flex flex-col gap-4 overflow-y-auto p-1">

@@ -480,6 +480,10 @@ export type useLoadSidebarStorageValuesProps = {
     setFilter: Dispatch<SetStateAction<string>>
 }
 
+export type useLoadStatisticsStorageValuesProps = {
+    setUserStatistics: Dispatch<SetStateAction<StatisticsType | undefined>>
+}
+
 export type useLoginSubmitDisabledProps = {
     confirmPassword: string
     isSigningUp: boolean

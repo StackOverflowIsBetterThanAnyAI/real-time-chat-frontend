@@ -1,5 +1,6 @@
 export { checkIsChatFriendType } from './checkIsChatFriendType'
 export { checkIsFriendType } from './checkIsFriendType'
+export { checkIsStatisticsType } from './checkIsStatisticsType'
 export { getStoredData } from './getStoredData'
 export { getStoredSessionData } from './getStoredSessionData'
 export { resetStorage } from './resetStorage'
