@@ -55,7 +55,6 @@ export const useEscapeFocusTrapSettings = ({
                 if (isFriendsExpanded) {
                     setIsFriendsExpanded(false)
                     setItemInSessionStorage('isfriendsexpanded', false)
-                    return
                 }
 
                 if (isEditingStatus) {
