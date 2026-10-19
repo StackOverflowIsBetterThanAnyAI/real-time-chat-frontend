@@ -9,6 +9,7 @@ import { SidebarButtons, SidebarSearch } from '@/app/components/chat'
 import {
     ContextAddFriendRef,
     ContextFriends,
+    ContextIsDetailsExpanded,
     ContextIsFriendsExpanded,
     ContextIsSettingsExpanded,
 } from '@/context'
@@ -38,6 +39,14 @@ const Sidebar = ({
         throw new Error('Sidebar must be used within a ContextFriends.Provider')
     }
     const [friendsData] = contextFriends
+
+    const contextIsDetailsExpanded = useContext(ContextIsDetailsExpanded)
+    if (!contextIsDetailsExpanded) {
+        throw new Error(
+            'Sidebar must be used within a ContextIsDetailsExpanded.Provider'
+        )
+    }
+    const [, setIsDetailsExpanded] = contextIsDetailsExpanded
 
     const contextIsFriendsExpanded = useContext(ContextIsFriendsExpanded)
     if (!contextIsFriendsExpanded) {
@@ -75,6 +84,19 @@ const Sidebar = ({
             return newValue
         })
     }
+    const handleOpenSettings = () => {
+        setIsFriendsExpanded(true)
+        setItemInSessionStorage('isfriendsexpanded', true)
+        setIsSettingsExpanded(true)
+        setItemInSessionStorage('issettingsexpanded', true)
+        const newIsDetailsExpanded = {
+            addFriend: true,
+            friendsOverview: false,
+            pendingFriends: false,
+        }
+        setIsDetailsExpanded(newIsDetailsExpanded)
+        setItemInSessionStorage('isdetailsexpanded', newIsDetailsExpanded)
+    }
 
     useEscapeFocusTrapSidebar({
         isSidebarExpanded,
@@ -86,13 +108,6 @@ const Sidebar = ({
         isActive: isSidebarExpanded && screenWidth === 'MOBILE',
     })
     useLoadSidebarStorageValues({ setFilter })
-
-    const handleOpenSettings = () => {
-        setIsFriendsExpanded(true)
-        setItemInSessionStorage('isfriendsexpanded', true)
-        setIsSettingsExpanded(true)
-        setItemInSessionStorage('issettingsexpanded', true)
-    }
 
     return (
         <div
