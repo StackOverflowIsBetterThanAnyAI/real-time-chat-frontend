@@ -1,3 +1,4 @@
+import { getAbortSignal } from '@/api'
 import { ConversationProps, handleOpenChatApiProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
@@ -12,6 +13,7 @@ export const handleOpenChatApi = async ({
             `http://localhost:8000/api/conversation/${friend}`,
             {
                 method: 'GET',
+                signal: getAbortSignal(),
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -58,7 +60,11 @@ export const handleOpenChatApi = async ({
             setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
             return updatedChatFriendData
         })
-    } catch (error) {
+    } catch (error: any) {
+        if (error.name === 'AbortError') {
+            console.log('Request was aborted by a newer action.')
+            return
+        }
         console.error(
             'An unexpected error occurred while trying to open the chat',
             error
