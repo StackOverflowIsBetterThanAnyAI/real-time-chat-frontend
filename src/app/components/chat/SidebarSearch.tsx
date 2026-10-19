@@ -10,7 +10,7 @@ const SidebarSearch = ({ filter, setFilter }: ChatSidebarSearchProps) => {
     }
 
     return (
-        <div className="flex shrink-0 flex-wrap items-center gap-2 px-2 sm:px-4 py-1 sm:py-2">
+        <div className="flex shrink-0 flex-wrap items-center gap-2 px-2 sm:px-4">
             <label htmlFor="search">
                 <span className="sr-only">Search</span>
                 <MdOutlineSearch
