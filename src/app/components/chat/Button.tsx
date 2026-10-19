@@ -39,7 +39,10 @@ const Button = ({ friend, isExpanded }: ChatButtonProps) => {
             const updatedChatFriendData = {
                 ...prev,
                 direction: friend.direction,
-                friend: friend.friend,
+                friend: {
+                    ...friend.friend,
+                    isPartnerOnline: false,
+                },
                 id: friend.id,
                 status: friend.status,
                 conversationId: -1,

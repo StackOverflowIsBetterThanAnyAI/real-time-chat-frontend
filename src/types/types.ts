@@ -18,11 +18,25 @@ export type ChatEmptyWindowProps = {
     isLoading: boolean
 }
 
-export type ChatFriendType = FriendType &
-    ConversationProps & {
-        draftedMessage: string
-        friend: { isPartnerOnline: boolean }
+export type ChatFriendType = {
+    direction: 'sent' | 'received'
+    friend: {
+        userName: string
+        profilePicture: string
+        status: string
+        isPartnerOnline: boolean
     }
+    id: number
+    status: 'pending' | 'accepted'
+    draftedMessage: string
+    conversationId: number
+    messages: {
+        id: number
+        content: string
+        createdAt: string
+        direction: 'sent' | 'received'
+    }[]
+}
 
 export type ChatMessageProps = {
     content: string
@@ -150,6 +164,10 @@ export type SettingsFallbackProfilePictureProps = {
     userName: string
 }
 
+export type SettingsFallbackTextProps = {
+    fallback: string
+}
+
 export type SettingsFriendInfoProps = {
     id: number
     profilePicture: string
@@ -161,10 +179,6 @@ export type SettingsFriendsDetailsProps = {
     isExpanded: boolean
     setIsExpanded: (val: boolean | ((prev: boolean) => boolean)) => void
     summary: string
-}
-
-export type SettingsFriendsFallbackProps = {
-    fallback: string
 }
 
 export type SettingsFriendsOverviewItemProps = {
@@ -225,6 +239,19 @@ export type SettingsStatusProps = {
     setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
 }
 
+export type StatisticsType = {
+    favoriteFriend: {
+        userName: string
+        messageCount: number
+        status: string
+        profilePicture: string
+    } | null
+    streak: number
+    timeline: { dateOfMessage: string; messageCount: number }[]
+    totalReceived: number
+    totalSent: number
+}
+
 export type ToastProps = { label: string }
 
 export type UserDataProps = {
@@ -245,6 +272,7 @@ export type handleAddFriendApiProps = {
 
 export type handleDeleteAccountApiProps = {
     logout: () => Promise<void>
+    setChatFriendData: Dispatch<SetStateAction<ChatFriendType | undefined>>
     setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
     setIsLoading: Dispatch<SetStateAction<boolean>>
     setIsLoggedIn: Dispatch<SetStateAction<boolean | undefined>>
@@ -265,6 +293,13 @@ export type handleFetchInitialDataApiProps = {
     setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
     setIsLoading: Dispatch<SetStateAction<boolean>>
     setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
+    showToast: (props: ToastProps) => void
+}
+
+export type handleFetchStatisticsApiProps = {
+    logout: () => Promise<void>
+    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setUserStatistics: Dispatch<SetStateAction<StatisticsType | undefined>>
     showToast: (props: ToastProps) => void
 }
 
