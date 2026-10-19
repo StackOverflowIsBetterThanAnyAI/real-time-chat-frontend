@@ -60,8 +60,13 @@ export const handleOpenChatApi = async ({
             setItemInSessionStorage('chatfrienddata', updatedChatFriendData)
             return updatedChatFriendData
         })
-    } catch (error: any) {
-        if (error.name === 'AbortError') {
+    } catch (error: unknown) {
+        if (
+            typeof error === 'object' &&
+            error !== null &&
+            'name' in error &&
+            error.name === 'AbortError'
+        ) {
             console.log('Request was aborted by a newer action.')
             return
         }
