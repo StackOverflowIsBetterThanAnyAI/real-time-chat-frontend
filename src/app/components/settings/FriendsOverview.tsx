@@ -1,6 +1,6 @@
 import {
+    FallbackText,
     FriendsDetails,
-    FriendsFallback,
     FriendsLoading,
     FriendsOverviewItem,
 } from '@/app/components/settings'
@@ -29,7 +29,7 @@ const FriendsOverview = ({
                 })}
             </div>
         ) : (
-            <FriendsFallback fallback="Currently, you don&#39;t have any friends." />
+            <FallbackText fallback="Currently, you don&#39;t have any friends." />
         )
     }
 

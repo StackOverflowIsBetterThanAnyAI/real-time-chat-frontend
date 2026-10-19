@@ -1,6 +1,6 @@
 import {
+    FallbackText,
     FriendsDetails,
-    FriendsFallback,
     FriendsLoading,
     PendingFriendsItemReceived,
     PendingFriendsItemSent,
@@ -81,7 +81,7 @@ const PendingFriends = ({
                 ) : null}
             </div>
         ) : (
-            <FriendsFallback fallback="Currently, you don&#39;t have any pending friend requests." />
+            <FallbackText fallback="Currently, you don&#39;t have any pending friend requests." />
         )
     }
 
