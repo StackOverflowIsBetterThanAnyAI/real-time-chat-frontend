@@ -237,7 +237,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
                     <Friends />
                 </div>
             ) : (
-                <>
+                <div className="flex flex-col flex-1 w-full gap-2">
                     <Header header="Settings" />
                     <Button
                         handleClick={handleToggleIsSettingsExpanded}
@@ -332,7 +332,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
                             />
                         </div>
                     </div>
-                </>
+                </div>
             )}
         </aside>
     )
