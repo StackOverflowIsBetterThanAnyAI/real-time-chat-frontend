@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { StatisticsType, useLoadStatisticsStorageValuesProps } from '@/types'
+import { useLoadStatisticsStorageValuesProps } from '@/types'
 import {
     checkIsStatisticsType,
     getStoredSessionData,
