@@ -3,9 +3,15 @@
 import { useContext, useRef, useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
 import { MdOutlineSearch } from 'react-icons/md'
+import { RiChatNewFill } from 'react-icons/ri'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { SidebarButtons, SidebarSearch } from '@/app/components/chat'
-import { ContextFriends } from '@/context'
+import {
+    ContextAddFriendRef,
+    ContextFriends,
+    ContextIsFriendsExpanded,
+    ContextIsSettingsExpanded,
+} from '@/context'
 import {
     useEscapeFocusTrapSidebar,
     useFocusTrapSidebar,
@@ -19,11 +25,35 @@ const Sidebar = ({
     isSidebarExpanded,
     setIsSidebarExpanded,
 }: ChatSidebarProps) => {
+    const contextAddFriendRef = useContext(ContextAddFriendRef)
+    if (!contextAddFriendRef) {
+        throw new Error(
+            'Sidebar must be used within a ContextAddFriendRef.Provider'
+        )
+    }
+    const addFriendRef = contextAddFriendRef
+
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
         throw new Error('Sidebar must be used within a ContextFriends.Provider')
     }
     const [friendsData] = contextFriends
+
+    const contextIsFriendsExpanded = useContext(ContextIsFriendsExpanded)
+    if (!contextIsFriendsExpanded) {
+        throw new Error(
+            'Sidebar must be used within a ContextIsFriendsExpanded.Provider'
+        )
+    }
+    const [, setIsFriendsExpanded] = contextIsFriendsExpanded
+
+    const contextIsSettingsExpanded = useContext(ContextIsSettingsExpanded)
+    if (!contextIsSettingsExpanded) {
+        throw new Error(
+            'Sidebar must be used within a ContextIsSettingsExpanded.Provider'
+        )
+    }
+    const [, setIsSettingsExpanded] = contextIsSettingsExpanded
 
     const screenWidth = useScreenWidth({ setIsSidebarExpanded })
 
@@ -57,10 +87,17 @@ const Sidebar = ({
     })
     useLoadSidebarStorageValues({ setFilter })
 
+    const handleOpenSettings = () => {
+        setIsFriendsExpanded(true)
+        setItemInSessionStorage('isfriendsexpanded', true)
+        setIsSettingsExpanded(true)
+        setItemInSessionStorage('issettingsexpanded', true)
+    }
+
     return (
         <div
             id="chat-sidebar"
-            className={`${isSidebarExpanded ? 'w-72 sm:w-64 md:w-80 lg:w-96' : ''} h-full bg-zinc-600 z-10`}
+            className={`${isSidebarExpanded ? 'w-72 sm:w-64 md:w-80 lg:w-96' : ''} h-full bg-zinc-600 overflow-y-auto z-10`}
             ref={sidebarRef}
         >
             {screenWidth === 'MOBILE' ? (
@@ -121,6 +158,14 @@ const Sidebar = ({
                 </div>
             ) : (
                 <div className="flex h-full min-h-0 flex-col gap-4 bg-zinc-800/80 p-2 sm:w-64 md:w-80 lg:w-96">
+                    <button
+                        className="regular-button shrink-0 bg-blue-600 hover:bg-blue-600/85 active:bg-blue-600/75 mx-4 my-2"
+                        onClick={handleOpenSettings}
+                        ref={addFriendRef}
+                    >
+                        <RiChatNewFill color="#f4f4f5" />
+                        <span className="text-large">Add Friend</span>
+                    </button>
                     <SidebarSearch filter={filter} setFilter={setFilter} />
                     <SidebarButtons
                         filteredFriends={filteredFriends}

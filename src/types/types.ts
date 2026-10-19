@@ -375,6 +375,7 @@ export type useErrorUserNameProps = {
 }
 
 export type useEscapeFocusTrapSettingsProps = {
+    addFriendRef: RefObject<HTMLButtonElement | null>
     isEditingStatus: boolean | undefined
     isFriendsExpanded: boolean | undefined
     profileButtonRef: RefObject<HTMLButtonElement | null>

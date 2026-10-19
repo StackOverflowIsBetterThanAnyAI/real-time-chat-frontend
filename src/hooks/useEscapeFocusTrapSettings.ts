@@ -5,6 +5,7 @@ import { useEscapeFocusTrapSettingsProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
 export const useEscapeFocusTrapSettings = ({
+    addFriendRef,
     isEditingStatus,
     isFriendsExpanded,
     profileButtonRef,
@@ -45,6 +46,7 @@ export const useEscapeFocusTrapSettings = ({
             if (
                 settingsRef.current &&
                 !settingsRef.current.contains(e.target as Node) &&
+                !addFriendRef?.current?.contains(e.target as Node) &&
                 !profileButtonRef?.current?.contains(e.target as Node)
             ) {
                 if (profilePictureDetailsRef?.current?.open) {
@@ -75,6 +77,7 @@ export const useEscapeFocusTrapSettings = ({
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [
+        addFriendRef,
         isEditingStatus,
         isFriendsExpanded,
         profileButtonRef,

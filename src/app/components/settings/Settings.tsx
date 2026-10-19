@@ -14,6 +14,7 @@ import {
     Status,
 } from '@/app/components/settings'
 import {
+    ContextAddFriendRef,
     ContextFriends,
     ContextIsEditingStatus,
     ContextIsFriendsExpanded,
@@ -33,6 +34,14 @@ import { setItemInSessionStorage } from '@/utils'
 import { SettingsProps } from '@/types'
 
 const Settings = ({ profileButtonRef }: SettingsProps) => {
+    const contextAddFriendRef = useContext(ContextAddFriendRef)
+    if (!contextAddFriendRef) {
+        throw new Error(
+            'Settings must be used within a ContextAddFriendRef.Provider'
+        )
+    }
+    const addFriendRef = contextAddFriendRef
+
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
         throw new Error(
@@ -104,6 +113,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
         setUserData,
     })
     useEscapeFocusTrapSettings({
+        addFriendRef,
         isEditingStatus,
         isFriendsExpanded,
         profileButtonRef,
