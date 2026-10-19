@@ -32,7 +32,7 @@ export const checkIsFriendType = (item: unknown): item is FriendType => {
         'userName' in friend &&
         typeof friend.userName === 'string' &&
         friend.userName.length >= 5 &&
-        friend.userName.length <= 63 &&
+        friend.userName.length <= 20 &&
         'status' in friend &&
         typeof friend.status === 'string' &&
         friend.status.length <= 255 &&

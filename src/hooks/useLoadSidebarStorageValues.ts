@@ -14,7 +14,7 @@ export const useLoadSidebarStorageValues = ({
             if (
                 typeof savedFilteredText === 'string' &&
                 savedFilteredText.length &&
-                savedFilteredText.length <= 63
+                savedFilteredText.length <= 20
             ) {
                 setFilter(savedFilteredText)
             } else {

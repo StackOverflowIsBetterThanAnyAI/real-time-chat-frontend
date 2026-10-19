@@ -80,7 +80,7 @@ export const useLoadSettingsStorageValues = ({
             if (
                 typeof savedUserName === 'string' &&
                 savedUserName.length >= 5 &&
-                savedUserName.length <= 63
+                savedUserName.length <= 20
             ) {
                 internalUserData.userName = savedUserName
             } else {
