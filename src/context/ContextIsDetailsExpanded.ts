@@ -1,5 +1,3 @@
-'use client'
-
 import { isDetailsExpandedType } from '@/types'
 import { createContext } from 'react'
 
