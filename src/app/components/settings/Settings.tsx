@@ -167,7 +167,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
             ref={settingsRef}
         >
             {isFriendsExpanded ? (
-                <>
+                <div className="flex flex-col gap-2">
                     <Header header="Friends" />
                     <Button
                         handleClick={handleToggleIsFriendsExpanded}
@@ -175,7 +175,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
                         icon={<IoMdArrowRoundBack color="#f4f4f5" />}
                     />
                     <Friends />
-                </>
+                </div>
             ) : (
                 <>
                     <Header header="Settings" />
