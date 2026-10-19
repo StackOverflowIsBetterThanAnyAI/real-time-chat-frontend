@@ -8,8 +8,9 @@ import { Message } from '@/app/components/error'
 import { FriendsDetails } from '@/app/components/settings'
 import { ContextFriends } from '@/context'
 import { useErrorUserName, useLogout, useToast } from '@/hooks'
+import { SettingsAddFriendProps } from '@/types'
 
-const AddFriend = () => {
+const AddFriend = ({ isExpanded, setIsExpanded }: SettingsAddFriendProps) => {
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
         throw new Error(
@@ -103,7 +104,14 @@ const AddFriend = () => {
         )
     }
 
-    return <FriendsDetails content={addFriendsContent()} summary="Add Friend" />
+    return (
+        <FriendsDetails
+            content={addFriendsContent()}
+            summary="Add Friend"
+            isExpanded={isExpanded}
+            setIsExpanded={setIsExpanded}
+        />
+    )
 }
 
 export default AddFriend

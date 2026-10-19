@@ -8,7 +8,9 @@ import { SettingsFriendsOverviewProps } from '@/types'
 
 const FriendsOverview = ({
     friends,
+    isExpanded,
     isLoading,
+    setIsExpanded,
 }: SettingsFriendsOverviewProps) => {
     const friendsContent = () => {
         return isLoading && !friends.length ? (
@@ -35,7 +37,8 @@ const FriendsOverview = ({
         <FriendsDetails
             content={friendsContent()}
             summary="Friends"
-            isExpanded
+            isExpanded={isExpanded}
+            setIsExpanded={setIsExpanded}
         />
     )
 }

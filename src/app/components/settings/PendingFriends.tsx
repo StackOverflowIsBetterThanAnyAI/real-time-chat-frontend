@@ -8,8 +8,10 @@ import {
 import { FriendType, SettingsPendingFriendsProps } from '@/types'
 
 const PendingFriends = ({
+    isExpanded,
     isLoading,
     pendingFriends,
+    setIsExpanded,
 }: SettingsPendingFriendsProps) => {
     const { pendingFriendsSent, pendingFriendsReceived } =
         pendingFriends.reduce<{
@@ -87,6 +89,8 @@ const PendingFriends = ({
         <FriendsDetails
             content={pendingFriendsContent()}
             summary="Pending Friend Requests"
+            isExpanded={isExpanded}
+            setIsExpanded={setIsExpanded}
         />
     )
 }

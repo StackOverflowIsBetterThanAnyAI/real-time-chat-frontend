@@ -126,6 +126,11 @@ export type PollingProps = {
 
 export type ScreenWidthType = 'MOBILE' | 'NOT_MOBILE'
 
+export type SettingsAddFriendProps = {
+    isExpanded: boolean
+    setIsExpanded: (val: boolean | ((prev: boolean) => boolean)) => void
+}
+
 export type SettingsButtonProps = {
     icon: ReactNode
     handleClick: () => void
@@ -153,7 +158,8 @@ export type SettingsFriendInfoProps = {
 
 export type SettingsFriendsDetailsProps = {
     content: ReactNode
-    isExpanded?: boolean
+    isExpanded: boolean
+    setIsExpanded: (val: boolean | ((prev: boolean) => boolean)) => void
     summary: string
 }
 
@@ -169,7 +175,9 @@ export type SettingsFriendsOverviewItemProps = {
 
 export type SettingsFriendsOverviewProps = {
     friends: FriendType[]
+    isExpanded: boolean
     isLoading: boolean
+    setIsExpanded: (val: boolean | ((prev: boolean) => boolean)) => void
 }
 
 export type SettingsHeaderProps = {
@@ -183,8 +191,10 @@ export type SettingsPendingFriendsItemProps = {
 }
 
 export type SettingsPendingFriendsProps = {
+    isExpanded: boolean
     isLoading: boolean
     pendingFriends: FriendType[]
+    setIsExpanded: (val: boolean | ((prev: boolean) => boolean)) => void
 }
 
 export type SettingsProfilePictureProps = {
@@ -397,8 +407,15 @@ export type useLoadChatStorageValuesProps = {
     setIsSidebarExpanded: Dispatch<SetStateAction<boolean>>
 }
 
+export type isDetailsExpandedType = {
+    friendsOverview: boolean
+    addFriend: boolean
+    pendingFriends: boolean
+}
+
 export type useLoadFriendsStorageValuesProps = {
     setFriendsData: Dispatch<SetStateAction<FriendType[] | undefined>>
+    setIsDetailsExpanded: Dispatch<SetStateAction<isDetailsExpandedType>>
 }
 
 export type useLoadLoggedInStorageValuesProps = {
