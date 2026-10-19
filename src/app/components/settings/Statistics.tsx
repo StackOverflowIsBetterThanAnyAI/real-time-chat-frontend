@@ -57,10 +57,12 @@ const Statistics = () => {
                 <div className="text-3xl flex gap-1 justify-center items-center">
                     {userStatistics.streak}{' '}
                     {`Day${userStatistics.streak !== 1 ? 's' : ''}`}
-                    <TbFlame
-                        color="#f4f4f5"
-                        className="h-6 sm:h-7 w-6 sm:w-7"
-                    />
+                    {userStatistics.streak ? (
+                        <TbFlame
+                            color="#f4f4f5"
+                            className="h-6 sm:h-7 w-6 sm:w-7"
+                        />
+                    ) : null}
                 </div>
             </div>
             {userStatistics?.favoriteFriend ? (
