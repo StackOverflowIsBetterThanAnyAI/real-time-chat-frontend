@@ -3,6 +3,7 @@ import { resetStorage, setItemInStorage } from '@/utils'
 
 export const handleDeleteAccountApi = async ({
     logout,
+    setChatFriendData,
     setFriendsData,
     setIsLoading,
     setIsLoggedIn,
@@ -41,6 +42,7 @@ export const handleDeleteAccountApi = async ({
 
         resetStorage({
             isDeleteAccount: true,
+            setChatFriendData,
             setFriendsData,
             setIsLoggedIn,
             setIsSettingsExpanded,

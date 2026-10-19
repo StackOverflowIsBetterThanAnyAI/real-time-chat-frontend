@@ -11,10 +11,12 @@ import {
     Friends,
     Header,
     Profile,
+    Statistics,
     Status,
 } from '@/app/components/settings'
 import {
     ContextAddFriendRef,
+    ContextChatFriendData,
     ContextFriends,
     ContextIsDetailsExpanded,
     ContextIsEditingStatus,
@@ -42,6 +44,14 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
         )
     }
     const addFriendRef = contextAddFriendRef
+
+    const contextChatFriendData = useContext(ContextChatFriendData)
+    if (!contextChatFriendData) {
+        throw new Error(
+            'Settings must be used within a ContextChatFriendData.Provider'
+        )
+    }
+    const [, setChatFriendData] = contextChatFriendData
 
     const contextFriends = useContext(ContextFriends)
     if (!contextFriends) {
@@ -109,6 +119,8 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false)
     const [isLoadingLogout, setIsLoadingLogout] = useState<boolean>(false)
+    const [isStatisticsExpanded, setIsStatisticsExpanded] =
+        useState<boolean>(false)
 
     const profilePictureDetailsRef = useRef<HTMLDetailsElement>(null)
     const settingsRef = useRef<HTMLElement>(null)
@@ -145,6 +157,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
             setIsLoadingDelete(true)
             await handleDeleteAccountApi({
                 logout,
+                setChatFriendData,
                 setFriendsData,
                 setIsLoading,
                 setIsLoggedIn,
@@ -165,6 +178,13 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
         setIsLoadingLogout(true)
         await logout()
     }
+    const handleToggleIsFriendsExpanded = () => {
+        setIsFriendsExpanded(() => {
+            const nextVal = !isFriendsExpanded
+            setItemInSessionStorage('isfriendsexpanded', nextVal)
+            return nextVal
+        })
+    }
     const handleToggleIsSettingsExpanded = () => {
         setIsSettingsExpanded(() => {
             const nextVal = !isSettingsExpanded
@@ -172,10 +192,10 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
             return nextVal
         })
     }
-    const handleToggleIsFriendsExpanded = () => {
-        setIsFriendsExpanded(() => {
-            const nextVal = !isFriendsExpanded
-            setItemInSessionStorage('isfriendsexpanded', nextVal)
+    const handleToggleIsStatisticsExpanded = () => {
+        setIsStatisticsExpanded(() => {
+            const nextVal = !isStatisticsExpanded
+            setItemInSessionStorage('isstatisticsexpanded', nextVal)
             return nextVal
         })
     }
@@ -186,13 +206,33 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
             bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto"
             ref={settingsRef}
         >
-            {isFriendsExpanded ? (
-                <div className="flex flex-col gap-2">
+            {isStatisticsExpanded ? (
+                <div className="flex flex-col flex-1 gap-2">
+                    <Header header="Statistics" />
+                    <Button
+                        handleClick={handleToggleIsStatisticsExpanded}
+                        label="Go back to Settings"
+                        icon={
+                            <IoMdArrowRoundBack
+                                color="#f4f4f5"
+                                className="h-4 sm:h-5 w-4 sm:w-5"
+                            />
+                        }
+                    />
+                    <Statistics />
+                </div>
+            ) : isFriendsExpanded ? (
+                <div className="flex flex-col flex-1 gap-2">
                     <Header header="Friends" />
                     <Button
                         handleClick={handleToggleIsFriendsExpanded}
                         label="Go back to Settings"
-                        icon={<IoMdArrowRoundBack color="#f4f4f5" />}
+                        icon={
+                            <IoMdArrowRoundBack
+                                color="#f4f4f5"
+                                className="h-4 sm:h-5 w-4 sm:w-5"
+                            />
+                        }
                     />
                     <Friends />
                 </div>
@@ -254,7 +294,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
                                 }
                             />
                             <Button
-                                handleClick={() => {}}
+                                handleClick={handleToggleIsStatisticsExpanded}
                                 label="Statistics"
                                 icon={
                                     <IoStatsChart
