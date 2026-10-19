@@ -10,6 +10,7 @@ export const useEscapeFocusTrapSettings = ({
     isFriendsExpanded,
     profileButtonRef,
     profilePictureDetailsRef,
+    setIsDetailsExpanded,
     setIsEditingStatus,
     setIsFriendsExpanded,
     setIsSettingsExpanded,
@@ -64,6 +65,16 @@ export const useEscapeFocusTrapSettings = ({
                     setItemInSessionStorage('iseditingstatus', false)
                 }
 
+                const fallbackIsDetailsExpanded = {
+                    addFriend: false,
+                    friendsOverview: true,
+                    pendingFriends: false,
+                }
+                setIsDetailsExpanded(fallbackIsDetailsExpanded)
+                setItemInSessionStorage(
+                    'isdetailsexpanded',
+                    fallbackIsDetailsExpanded
+                )
                 setIsSettingsExpanded(false)
                 setItemInSessionStorage('issettingsexpanded', false)
             }
@@ -82,6 +93,7 @@ export const useEscapeFocusTrapSettings = ({
         isFriendsExpanded,
         profileButtonRef,
         profilePictureDetailsRef,
+        setIsDetailsExpanded,
         setIsEditingStatus,
         setIsFriendsExpanded,
         setIsSettingsExpanded,

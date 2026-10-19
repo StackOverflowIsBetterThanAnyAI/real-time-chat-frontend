@@ -16,6 +16,7 @@ import {
 import {
     ContextAddFriendRef,
     ContextFriends,
+    ContextIsDetailsExpanded,
     ContextIsEditingStatus,
     ContextIsFriendsExpanded,
     ContextIsLoggedIn,
@@ -49,6 +50,14 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
         )
     }
     const [, setFriendsData] = contextFriends
+
+    const contextIsDetailsExpanded = useContext(ContextIsDetailsExpanded)
+    if (!contextIsDetailsExpanded) {
+        throw new Error(
+            'Settings must be used within a ContextIsDetailsExpanded.Provider'
+        )
+    }
+    const [, setIsDetailsExpanded] = contextIsDetailsExpanded
 
     const contextIsEditingStatus = useContext(ContextIsEditingStatus)
     if (!contextIsEditingStatus) {
@@ -118,6 +127,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
         isFriendsExpanded,
         profileButtonRef,
         profilePictureDetailsRef,
+        setIsDetailsExpanded,
         setIsEditingStatus,
         setIsFriendsExpanded,
         setIsSettingsExpanded,

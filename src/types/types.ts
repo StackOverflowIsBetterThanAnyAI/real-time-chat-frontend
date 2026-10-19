@@ -380,8 +380,9 @@ export type useEscapeFocusTrapSettingsProps = {
     isFriendsExpanded: boolean | undefined
     profileButtonRef: RefObject<HTMLButtonElement | null>
     profilePictureDetailsRef: RefObject<HTMLDetailsElement | null>
-    setIsFriendsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    setIsDetailsExpanded: Dispatch<SetStateAction<isDetailsExpandedType>>
     setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
+    setIsFriendsExpanded: Dispatch<SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: Dispatch<SetStateAction<boolean | undefined>>
     settingsRef: RefObject<HTMLElement | null>
 }
