@@ -1,6 +1,7 @@
 export { ContextIsLoggedIn } from './ContexIsLoggedIn'
 export { ContextChatFriendData } from './ContextChatFriendData'
 export { ContextFriends } from './ContextFriends'
+export { ContextIsDetailsExpanded } from './ContextIsDetailsExpanded'
 export { ContextIsEditingStatus } from './ContextIsEditingStatus'
 export { ContextIsFriendsExpanded } from './ContextIsFriendsExpanded'
 export { ContextIsSettingsExpanded } from './ContextIsSettingsExpanded'
