@@ -6,6 +6,7 @@ import { EmptyWindow, Sidebar, Window } from '@/app/components/chat'
 import {
     ContextChatFriendData,
     ContextFriends,
+    ContextIsDetailsExpanded,
     ContextUserData,
 } from '@/context'
 
@@ -30,6 +31,14 @@ const Chat = () => {
         throw new Error('Chat must be used within a ContextFriends.Provider')
     }
     const [friendsData, setFriendsData] = contextFriends
+
+    const contextIsDetailsExpanded = useContext(ContextIsDetailsExpanded)
+    if (!contextIsDetailsExpanded) {
+        throw new Error(
+            'Chat must be used within a ContextIsDetailsExpanded.Provider'
+        )
+    }
+    const [, setIsDetailsExpanded] = contextIsDetailsExpanded
 
     const contextUserData = useContext(ContextUserData)
     if (!contextUserData) {
@@ -57,7 +66,7 @@ const Chat = () => {
     }, [logout, showToast])
 
     useLoadChatStorageValues({ setChatFriendData, setIsSidebarExpanded })
-    useLoadFriendsStorageValues({ setFriendsData })
+    useLoadFriendsStorageValues({ setFriendsData, setIsDetailsExpanded })
 
     useEffect(() => {
         fetchUser()
