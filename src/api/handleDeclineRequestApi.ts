@@ -8,9 +8,12 @@ export const handleDeclineRequestApi = async ({
     setIsLoading,
     showToast,
 }: handleRequestApiProps) => {
+    const API_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
+
     setIsLoading(true)
     try {
-        const response = await fetch(`/api/friends/${id}`, {
+        const response = await fetch(`${API_URL}/api/friends/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

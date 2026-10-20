@@ -10,6 +10,9 @@ export const handleSendMessageApi = async ({
     setChatFriendData,
     showToast,
 }: handleSendMessageApiProps) => {
+    const API_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
+
     const tempId = tempIdCounter--
     const messageObject = {
         id: tempId,
@@ -27,14 +30,17 @@ export const handleSendMessageApi = async ({
             : prev
     )
     try {
-        const response = await fetch(`/api/conversation/${id}/message`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ content: message }),
-            credentials: 'include',
-        })
+        const response = await fetch(
+            `${API_URL}/api/conversation/${id}/message`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: message }),
+                credentials: 'include',
+            }
+        )
 
         if (!response.ok) {
             setChatFriendData((prev) =>

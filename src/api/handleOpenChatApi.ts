@@ -8,8 +8,10 @@ export const handleOpenChatApi = async ({
     setChatFriendData,
     showToast,
 }: handleOpenChatApiProps) => {
+    const API_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
     try {
-        const response = await fetch(`/api/conversation/${friend}`, {
+        const response = await fetch(`${API_URL}/api/conversation/${friend}`, {
             method: 'GET',
             signal: getAbortSignal(),
             headers: {
