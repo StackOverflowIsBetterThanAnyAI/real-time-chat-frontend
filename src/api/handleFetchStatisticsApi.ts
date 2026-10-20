@@ -42,7 +42,17 @@ export const handleFetchStatisticsApi = async ({
         const data: StatisticsType = await response.json()
         setUserStatistics(data)
         setItemInSessionStorage('userstatistics', data)
-    } catch (error) {
+    } catch (error: unknown) {
+        if (
+            (typeof error === 'object' &&
+                error !== null &&
+                'name' in error &&
+                error.name === 'AbortError') ||
+            (error instanceof TypeError &&
+                error.message.includes('NetworkError'))
+        ) {
+            return
+        }
         console.error(
             'An unexpected error occurred while trying to fetch your statistics',
             error

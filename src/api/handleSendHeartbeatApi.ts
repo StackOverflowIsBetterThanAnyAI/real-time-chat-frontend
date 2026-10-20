@@ -36,7 +36,6 @@ export const handleSendHeartbeatApi = async ({
             (error instanceof TypeError &&
                 error.message.includes('NetworkError'))
         ) {
-            console.log(error.name)
             return
         }
         console.error(

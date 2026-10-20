@@ -85,7 +85,17 @@ export const handleFetchInitialDataApi = async ({
         const friendsData: FriendType[] = await friendsResponse.json()
         setFriendsData(friendsData)
         setItemInSessionStorage('friendsdata', friendsData)
-    } catch (error) {
+    } catch (error: unknown) {
+        if (
+            (typeof error === 'object' &&
+                error !== null &&
+                'name' in error &&
+                error.name === 'AbortError') ||
+            (error instanceof TypeError &&
+                error.message.includes('NetworkError'))
+        ) {
+            return
+        }
         console.error(
             'An unexpected error occurred while trying to fetch user data',
             error
