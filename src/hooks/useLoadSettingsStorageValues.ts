@@ -67,8 +67,7 @@ export const useLoadSettingsStorageValues = ({
             const savedProfilePicture = parsedStorageData?.profilepicture
             if (
                 typeof savedProfilePicture === 'string' &&
-                savedProfilePicture.length &&
-                savedProfilePicture.length <= 255
+                savedProfilePicture.length
             ) {
                 internalUserData.profilePicture = savedProfilePicture
             } else {

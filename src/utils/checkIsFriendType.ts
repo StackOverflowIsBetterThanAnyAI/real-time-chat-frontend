@@ -37,7 +37,6 @@ export const checkIsFriendType = (item: unknown): item is FriendType => {
         typeof friend.status === 'string' &&
         friend.status.length <= 255 &&
         'profilePicture' in friend &&
-        typeof friend.profilePicture === 'string' &&
-        friend.profilePicture.length <= 255
+        typeof friend.profilePicture === 'string'
     )
 }
