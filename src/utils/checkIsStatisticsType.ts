@@ -32,8 +32,10 @@ export const checkIsStatisticsType = (
             t !== null &&
             'dateOfMessage' in t &&
             typeof t.dateOfMessage === 'string' &&
-            'messageCount' in t &&
-            typeof t.messageCount === 'number'
+            'sentCount' in t &&
+            typeof t.sentCount === 'number' &&
+            'receivedCount' in t &&
+            typeof t.receivedCount === 'number'
         )
     })
 
