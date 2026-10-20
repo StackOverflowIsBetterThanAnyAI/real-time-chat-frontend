@@ -10,13 +10,10 @@ export const handleAddFriendApi = async ({
     showToast,
     userToBeAdded,
 }: handleAddFriendApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
-
     setError('')
     setIsLoading(true)
     try {
-        const response = await fetch(`${API_URL}/api/friends/request`, {
+        const response = await fetch('/api/friends/request', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -8,9 +8,6 @@ export const handlePollMessageApi = async ({
     setChatFriendData,
     showToast,
 }: handlePollMessageApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
-
     const startTime = performance.now()
 
     const currentMessages = chatFriendData?.messages
@@ -20,7 +17,7 @@ export const handlePollMessageApi = async ({
 
     try {
         const response = await fetch(
-            `${API_URL}/api/conversation/${conversationId}/poll?after=${lastId}`,
+            `/api/conversation/${conversationId}/poll?after=${lastId}`,
             {
                 method: 'GET',
                 headers: {

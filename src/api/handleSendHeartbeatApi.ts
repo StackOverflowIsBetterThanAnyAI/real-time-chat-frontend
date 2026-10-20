@@ -4,10 +4,8 @@ export const handleSendHeartbeatApi = async ({
     logout,
     showToast,
 }: handleSendHeartbeatApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
     try {
-        const response = await fetch(`${API_URL}/api/heartbeat`, {
+        const response = await fetch('/api/heartbeat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
