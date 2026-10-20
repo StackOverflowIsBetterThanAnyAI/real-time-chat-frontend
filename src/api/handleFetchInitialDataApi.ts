@@ -23,13 +23,16 @@ export const handleFetchInitialDataApi = async ({
                 },
                 credentials: 'include',
             }),
-            fetch(`${SERVER_ADDRESS}/api/friends`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-            }),
+            fetch(
+                `https://real-time-chat-backend-nvb6.onrender.com/api/friends`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                }
+            ),
         ])
 
         if (!userResponse.ok) {
