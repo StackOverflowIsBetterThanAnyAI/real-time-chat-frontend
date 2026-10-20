@@ -23,7 +23,7 @@ export const handleFetchInitialDataApi = async ({
                 },
                 credentials: 'include',
             }),
-            fetch(`${SERVER_ADDRESS}/api/friends/`, {
+            fetch(`${SERVER_ADDRESS}/api/friends`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
