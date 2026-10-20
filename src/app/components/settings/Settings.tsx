@@ -322,7 +322,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
                             />
                             <Button
                                 handleClick={handleDeleteAccount}
-                                label={`${isDeleteAccount ? `Confirm Deletion (${deleteCountdown}s)` : 'Delete Account'}`}
+                                label={`${isDeleteAccount ? `Confirm Deletion (${deleteCountdown} seconds)` : 'Delete Account'}`}
                                 icon={
                                     <MdDeleteForever
                                         color="#f4f4f5"
