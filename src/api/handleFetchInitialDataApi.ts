@@ -16,7 +16,7 @@ export const handleFetchInitialDataApi = async ({
     setIsLoading(true)
     try {
         const [userResponse, friendsResponse] = await Promise.all([
-            fetch(`${SERVER_ADDRESS}/api/me`, {
+            fetch(`https://real-time-chat-backend-nvb6.onrender.com/api/me`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
