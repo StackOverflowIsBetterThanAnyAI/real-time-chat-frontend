@@ -7,19 +7,19 @@ export const handleRemoveProfilePictureApi = async ({
     setUserData,
     showToast,
 }: handleRemoveProfilePictureApiProps) => {
+    const API_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
+
     setIsLoading(true)
     try {
         const formData = new FormData()
         formData.append('remove', 'true')
 
-        const response = await fetch(
-            `http://localhost:8000/api/profile-picture`,
-            {
-                method: 'POST',
-                body: formData,
-                credentials: 'include',
-            }
-        )
+        const response = await fetch(`${API_URL}/api/profile-picture`, {
+            method: 'POST',
+            body: formData,
+            credentials: 'include',
+        })
 
         if (!response.ok) {
             console.log(

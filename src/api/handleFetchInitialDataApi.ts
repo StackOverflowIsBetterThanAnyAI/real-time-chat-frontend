@@ -12,17 +12,20 @@ export const handleFetchInitialDataApi = async ({
     setUserData,
     showToast,
 }: handleFetchInitialDataApiProps) => {
+    const API_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
+
     setIsLoading(true)
     try {
         const [userResponse, friendsResponse] = await Promise.all([
-            fetch(`http://localhost:8000/api/me`, {
+            fetch(`${API_URL}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
             }),
-            fetch(`http://localhost:8000/api/friends`, {
+            fetch(`${API_URL}/api/friends`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

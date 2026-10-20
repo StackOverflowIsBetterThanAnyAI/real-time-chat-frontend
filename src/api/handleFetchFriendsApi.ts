@@ -7,9 +7,12 @@ export const handleFetchFriendsApi = async ({
     setIsLoading,
     showToast,
 }: handleFetchFriendsApiProps) => {
+    const API_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
+
     setIsLoading(true)
     try {
-        const response = await fetch(`http://localhost:8000/api/friends`, {
+        const response = await fetch(`${API_URL}/api/friends`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

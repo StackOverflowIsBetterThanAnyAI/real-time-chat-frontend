@@ -8,18 +8,18 @@ export const handleAcceptRequestApi = async ({
     setIsLoading,
     showToast,
 }: handleRequestApiProps) => {
+    const API_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
+
     setIsLoading(true)
     try {
-        const response = await fetch(
-            `http://localhost:8000/api/friends/${id}/accept`,
-            {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-            }
-        )
+        const response = await fetch(`${API_URL}/api/friends/${id}/accept`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
 
         if (!response.ok) {
             console.log(
