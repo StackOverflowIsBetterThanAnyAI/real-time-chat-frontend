@@ -100,6 +100,10 @@ const Statistics = () => {
                                                 .profilePicture
                                         }
                                         size="small"
+                                        ariaLabel={
+                                            userStatistics.favoriteFriend
+                                                .userName
+                                        }
                                     />
                                 </span>
                             ) : (

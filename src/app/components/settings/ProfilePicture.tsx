@@ -2,13 +2,14 @@ import Image from 'next/image'
 import { SettingsProfilePictureProps } from '@/types'
 
 const ProfilePicture = ({
+    ariaLabel = '',
     profilePicture,
     size,
 }: SettingsProfilePictureProps) => {
     return size === 'large' ? (
         profilePicture ? (
             <Image
-                alt="profile picture"
+                alt={ariaLabel}
                 src={`http://localhost:8000${profilePicture}`}
                 height={128}
                 width={128}
@@ -30,7 +31,7 @@ const ProfilePicture = ({
         )
     ) : profilePicture ? (
         <Image
-            alt="profile picture"
+            alt={ariaLabel}
             src={`http://localhost:8000${profilePicture}`}
             height={48}
             width={48}

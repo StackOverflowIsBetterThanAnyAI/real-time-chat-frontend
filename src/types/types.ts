@@ -212,6 +212,7 @@ export type SettingsPendingFriendsProps = {
 }
 
 export type SettingsProfilePictureProps = {
+    ariaLabel?: string
     profilePicture: string | null | undefined
     size: 'small' | 'large'
 }

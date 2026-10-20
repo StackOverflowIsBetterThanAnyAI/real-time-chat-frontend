@@ -92,6 +92,7 @@ const Profile = ({
                         <ProfilePicture
                             profilePicture={profilePicture}
                             size="large"
+                            ariaLabel="Profile Picture"
                         />
                     )}
                 </summary>
@@ -114,6 +115,7 @@ const Profile = ({
                         accept="image/png, image/jpeg, image/webp"
                         onChange={handleFileChange}
                         className="sr-only"
+                        aria-label="Upload Profile Picture"
                     />
                     {profilePicture && (
                         <button
