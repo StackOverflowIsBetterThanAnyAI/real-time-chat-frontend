@@ -247,7 +247,11 @@ export type StatisticsType = {
         profilePicture: string
     } | null
     streak: number
-    timeline: { dateOfMessage: string; messageCount: number }[]
+    timeline: {
+        dateOfMessage: string
+        sentCount: number
+        receivedCount: number
+    }[]
     totalReceived: number
     totalSent: number
 }

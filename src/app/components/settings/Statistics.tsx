@@ -7,6 +7,7 @@ import {
     FallbackProfilePicture,
     FallbackText,
     ProfilePicture,
+    StatisticsChart,
 } from '@/app/components/settings'
 import { useLoadStatisticsStorageValues, useLogout, useToast } from '@/hooks'
 import { StatisticsType } from '@/types'
@@ -67,7 +68,7 @@ const Statistics = () => {
             </div>
             {userStatistics?.favoriteFriend ? (
                 <div className="flex flex-col gap-1 text-normal rounded-xl text-center">
-                    <div className="text-large">Favorite Chat Partner:</div>
+                    <h3 className="text-large">Favorite Chat Partner:</h3>
                     <div className="regular-button flex-col outline-2 outline-zinc-500 bg-zinc-800/25">
                         <div className="flex w-full gap-2">
                             {userStatistics.favoriteFriend.profilePicture ? (
@@ -98,6 +99,7 @@ const Statistics = () => {
                                 </div>
                             </div>
                         </div>
+                        <hr className="my-1 w-full border-zinc-500" />
                         <div className="flex flex-col">
                             <div>Messages exchanged</div>
                             <div className="text-3xl">
@@ -106,6 +108,9 @@ const Statistics = () => {
                         </div>
                     </div>
                 </div>
+            ) : null}
+            {userStatistics.timeline.length > 1 ? (
+                <StatisticsChart timeline={userStatistics.timeline} />
             ) : null}
         </div>
     ) : isLoading ? (
