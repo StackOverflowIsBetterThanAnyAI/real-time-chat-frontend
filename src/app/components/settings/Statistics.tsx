@@ -14,13 +14,15 @@ import { StatisticsType } from '@/types'
 import { FetchLoading } from 'fetch-loading'
 
 const Statistics = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(true)
     const [userStatistics, setUserStatistics] = useState<
         StatisticsType | undefined
     >(undefined)
 
     const { logout } = useLogout()
     const { showToast } = useToast()
+
+    useLoadStatisticsStorageValues({ setUserStatistics })
 
     const handleFetchStatistics = useCallback(async () => {
         await handleFetchStatisticsApi({
@@ -34,8 +36,6 @@ const Statistics = () => {
     useEffect(() => {
         handleFetchStatistics()
     }, [handleFetchStatistics])
-
-    useLoadStatisticsStorageValues({ setUserStatistics })
 
     return userStatistics ? (
         <div className="flex flex-col gap-4 overflow-y-auto p-1">
