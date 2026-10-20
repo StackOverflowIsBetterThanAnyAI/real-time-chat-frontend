@@ -44,18 +44,24 @@ const Statistics = () => {
                     className="flex flex-col justify-center gap-1 text-normal rounded-xl text-center
                     outline-2 outline-zinc-500 p-1 bg-zinc-800/25"
                 >
-                    <div>Messages Sent:</div>
-                    <div className="mx-auto text-extralarge">
+                    <div aria-hidden="true">Messages Sent:</div>
+                    <div aria-hidden="true" className="mx-auto text-extralarge">
                         {userStatistics.totalSent}
+                    </div>
+                    <div className="sr-only">
+                        {`Messages sent: ${userStatistics.totalSent}`}
                     </div>
                 </div>
                 <div
                     className="flex flex-col justify-center gap-1 text-normal rounded-xl text-center
                     outline-2 outline-zinc-500 p-1 bg-zinc-800/25"
                 >
-                    <div>Messages Received:</div>
-                    <div className="mx-auto text-extralarge">
+                    <div aria-hidden="true">Messages Received:</div>
+                    <div aria-hidden="true" className="mx-auto text-extralarge">
                         {userStatistics.totalReceived}
+                    </div>
+                    <div className="sr-only">
+                        {`Messages received: ${userStatistics.totalReceived}`}
                     </div>
                 </div>
             </div>
@@ -63,8 +69,11 @@ const Statistics = () => {
                 className="flex flex-col justify-center gap-1 text-normal rounded-xl text-center
                 outline-2 outline-zinc-500 p-1 bg-zinc-800/25"
             >
-                <div>Current Chatting Streak:</div>
-                <div className="text-extralarge flex gap-1 justify-center items-center">
+                <div aria-hidden="true">Current Chatting Streak:</div>
+                <div
+                    aria-hidden="true"
+                    className="text-extralarge flex gap-1 justify-center items-center"
+                >
                     {userStatistics.streak}{' '}
                     {`Day${userStatistics.streak !== 1 ? 's' : ''}`}
                     {userStatistics.streak ? (
@@ -73,6 +82,9 @@ const Statistics = () => {
                             className="h-6 sm:h-7 w-6 sm:w-7"
                         />
                     ) : null}
+                </div>
+                <div className="sr-only">
+                    {`Current chatting streak: ${userStatistics.streak} Day${userStatistics.streak !== 1 ? 's' : ''}`}
                 </div>
             </div>
             {userStatistics?.favoriteFriend ? (
@@ -110,9 +122,12 @@ const Statistics = () => {
                         </div>
                         <hr className="my-1 w-full border-zinc-500" />
                         <div className="flex flex-col">
-                            <div>Messages exchanged</div>
-                            <div className="text-extralarge">
+                            <div aria-hidden="true">Messages exchanged</div>
+                            <div aria-hidden="true" className="text-extralarge">
                                 {userStatistics.favoriteFriend.messageCount}
+                            </div>
+                            <div className="sr-only">
+                                {`Messages exchanged: ${userStatistics.favoriteFriend.messageCount}`}
                             </div>
                         </div>
                     </div>
