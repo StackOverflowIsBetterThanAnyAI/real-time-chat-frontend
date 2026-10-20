@@ -12,7 +12,7 @@ const FriendInfo = ({
             {profilePicture ? (
                 <Image
                     src={`http://localhost:8000${profilePicture}`}
-                    alt="profile picture"
+                    alt={userName}
                     height={24}
                     width={24}
                     unoptimized={true}
