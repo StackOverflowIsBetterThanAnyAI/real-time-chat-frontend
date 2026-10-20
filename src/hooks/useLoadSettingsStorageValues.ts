@@ -13,6 +13,7 @@ export const useLoadSettingsStorageValues = ({
     setInternalStatus,
     setIsEditingStatus,
     setIsFriendsExpanded,
+    setIsStatisticsExpanded,
     setUserData,
 }: useLoadSettingsStorageValuesProps) => {
     return useEffect(() => {
@@ -44,6 +45,15 @@ export const useLoadSettingsStorageValues = ({
             } else {
                 setItemInSessionStorage('isfriendsexpanded', false)
                 setIsFriendsExpanded(false)
+            }
+
+            const savedIsStatisticsExpanded =
+                parsedSessionData?.isstatisticsexpanded
+            if (typeof savedIsStatisticsExpanded === 'boolean') {
+                setIsStatisticsExpanded(savedIsStatisticsExpanded)
+            } else {
+                setItemInSessionStorage('isstatisticsexpanded', false)
+                setIsStatisticsExpanded(false)
             }
         }
 
@@ -93,6 +103,7 @@ export const useLoadSettingsStorageValues = ({
         setInternalStatus,
         setIsEditingStatus,
         setIsFriendsExpanded,
+        setIsStatisticsExpanded,
         setUserData,
     ])
 }

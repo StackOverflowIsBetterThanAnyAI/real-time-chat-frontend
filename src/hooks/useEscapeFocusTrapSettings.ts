@@ -8,12 +8,14 @@ export const useEscapeFocusTrapSettings = ({
     addFriendRef,
     isEditingStatus,
     isFriendsExpanded,
+    isStatisticsExpanded,
     profileButtonRef,
     profilePictureDetailsRef,
     setIsDetailsExpanded,
     setIsEditingStatus,
     setIsFriendsExpanded,
     setIsSettingsExpanded,
+    setIsStatisticsExpanded,
     settingsRef,
 }: useEscapeFocusTrapSettingsProps) => {
     useEffect(() => {
@@ -30,6 +32,12 @@ export const useEscapeFocusTrapSettings = ({
             if (isFriendsExpanded) {
                 setIsFriendsExpanded(false)
                 setItemInSessionStorage('isfriendsexpanded', false)
+                return
+            }
+
+            if (isStatisticsExpanded) {
+                setIsStatisticsExpanded(false)
+                setItemInSessionStorage('isstatisticsexpanded', false)
                 return
             }
 
@@ -70,6 +78,11 @@ export const useEscapeFocusTrapSettings = ({
                     setItemInSessionStorage('isfriendsexpanded', false)
                 }
 
+                if (isStatisticsExpanded) {
+                    setIsStatisticsExpanded(false)
+                    setItemInSessionStorage('isstatisticsexpanded', false)
+                }
+
                 if (isEditingStatus) {
                     setIsEditingStatus(false)
                     setItemInSessionStorage('iseditingstatus', false)
@@ -101,12 +114,14 @@ export const useEscapeFocusTrapSettings = ({
         addFriendRef,
         isEditingStatus,
         isFriendsExpanded,
+        isStatisticsExpanded,
         profileButtonRef,
         profilePictureDetailsRef,
         setIsDetailsExpanded,
         setIsEditingStatus,
         setIsFriendsExpanded,
         setIsSettingsExpanded,
+        setIsStatisticsExpanded,
         settingsRef,
     ])
 }

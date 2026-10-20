@@ -131,18 +131,21 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
         setInternalStatus,
         setIsEditingStatus,
         setIsFriendsExpanded,
+        setIsStatisticsExpanded,
         setUserData,
     })
     useEscapeFocusTrapSettings({
         addFriendRef,
         isEditingStatus,
         isFriendsExpanded,
+        isStatisticsExpanded,
         profileButtonRef,
         profilePictureDetailsRef,
         setIsDetailsExpanded,
         setIsEditingStatus,
         setIsFriendsExpanded,
         setIsSettingsExpanded,
+        setIsStatisticsExpanded,
         settingsRef,
     })
     useFocusTrapSettings()

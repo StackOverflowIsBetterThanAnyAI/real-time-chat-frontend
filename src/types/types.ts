@@ -425,12 +425,14 @@ export type useEscapeFocusTrapSettingsProps = {
     addFriendRef: RefObject<HTMLButtonElement | null>
     isEditingStatus: boolean | undefined
     isFriendsExpanded: boolean | undefined
+    isStatisticsExpanded: boolean
     profileButtonRef: RefObject<HTMLButtonElement | null>
     profilePictureDetailsRef: RefObject<HTMLDetailsElement | null>
     setIsDetailsExpanded: Dispatch<SetStateAction<isDetailsExpandedType>>
     setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
     setIsFriendsExpanded: Dispatch<SetStateAction<boolean | undefined>>
     setIsSettingsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    setIsStatisticsExpanded: Dispatch<SetStateAction<boolean>>
     settingsRef: RefObject<HTMLElement | null>
 }
 
@@ -485,6 +487,7 @@ export type useLoadSettingsStorageValuesProps = {
     setInternalStatus: Dispatch<SetStateAction<string>>
     setIsEditingStatus: Dispatch<SetStateAction<boolean | undefined>>
     setIsFriendsExpanded: Dispatch<SetStateAction<boolean | undefined>>
+    setIsStatisticsExpanded: Dispatch<SetStateAction<boolean>>
     setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
 }
 
