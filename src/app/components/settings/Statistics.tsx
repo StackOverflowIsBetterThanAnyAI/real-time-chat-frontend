@@ -79,7 +79,7 @@ const Statistics = () => {
                 <div className="flex flex-col gap-1 text-normal rounded-xl text-center">
                     <h3 className="text-large">Favorite Chat Partner:</h3>
                     <div className="regular-button flex-col outline-2 outline-zinc-500 bg-zinc-800/25">
-                        <div className="flex w-full gap-2">
+                        <div className="flex w-full gap-2 p-1">
                             {userStatistics.favoriteFriend.profilePicture ? (
                                 <span className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden">
                                     <ProfilePicture
