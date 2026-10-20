@@ -40,22 +40,31 @@ const Statistics = () => {
     return userStatistics ? (
         <div className="flex flex-col gap-4 overflow-y-auto p-1">
             <div className="grid grid-cols-2 gap-4 w-full">
-                <div className="flex flex-col gap-1 text-normal rounded-xl text-center outline-2 outline-zinc-500 p-1 bg-zinc-800/25">
+                <div
+                    className="flex flex-col justify-center gap-1 text-normal rounded-xl text-center
+                    outline-2 outline-zinc-500 p-1 bg-zinc-800/25"
+                >
                     <div>Messages Sent:</div>
-                    <div className="mx-auto text-3xl">
+                    <div className="mx-auto text-extralarge">
                         {userStatistics.totalSent}
                     </div>
                 </div>
-                <div className="flex flex-col gap-1 text-normal rounded-xl text-center outline-2 outline-zinc-500 p-1 bg-zinc-800/25">
+                <div
+                    className="flex flex-col justify-center gap-1 text-normal rounded-xl text-center
+                    outline-2 outline-zinc-500 p-1 bg-zinc-800/25"
+                >
                     <div>Messages Received:</div>
-                    <div className="mx-auto text-3xl">
+                    <div className="mx-auto text-extralarge">
                         {userStatistics.totalReceived}
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col gap-1 text-normal rounded-xl text-center outline-2 outline-zinc-500 p-1 bg-zinc-800/25">
+            <div
+                className="flex flex-col justify-center gap-1 text-normal rounded-xl text-center
+                outline-2 outline-zinc-500 p-1 bg-zinc-800/25"
+            >
                 <div>Current Chatting Streak:</div>
-                <div className="text-3xl flex gap-1 justify-center items-center">
+                <div className="text-extralarge flex gap-1 justify-center items-center">
                     {userStatistics.streak}{' '}
                     {`Day${userStatistics.streak !== 1 ? 's' : ''}`}
                     {userStatistics.streak ? (
@@ -102,7 +111,7 @@ const Statistics = () => {
                         <hr className="my-1 w-full border-zinc-500" />
                         <div className="flex flex-col">
                             <div>Messages exchanged</div>
-                            <div className="text-3xl">
+                            <div className="text-extralarge">
                                 {userStatistics.favoriteFriend.messageCount}
                             </div>
                         </div>
