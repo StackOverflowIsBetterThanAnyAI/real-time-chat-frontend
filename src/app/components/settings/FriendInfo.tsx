@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { FallbackProfilePicture } from '@/app/components/settings'
 import { SettingsFriendInfoProps } from '@/types'
+import { SERVER_ADDRESS } from '@/constants'
 
 const FriendInfo = ({
     id,
@@ -11,7 +12,7 @@ const FriendInfo = ({
         <span className="flex min-w-0 items-center gap-2">
             {profilePicture ? (
                 <Image
-                    src={`http://localhost:8000${profilePicture}`}
+                    src={`${SERVER_ADDRESS}${profilePicture}`}
                     alt={userName}
                     height={24}
                     width={24}

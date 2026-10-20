@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { SettingsProfilePictureProps } from '@/types'
+import { SERVER_ADDRESS } from '@/constants'
 
 const ProfilePicture = ({
     ariaLabel = '',
@@ -10,7 +11,7 @@ const ProfilePicture = ({
         profilePicture ? (
             <Image
                 alt={ariaLabel}
-                src={`http://localhost:8000${profilePicture}`}
+                src={`${SERVER_ADDRESS}${profilePicture}`}
                 height={128}
                 width={128}
                 unoptimized={true}
@@ -32,7 +33,7 @@ const ProfilePicture = ({
     ) : profilePicture ? (
         <Image
             alt={ariaLabel}
-            src={`http://localhost:8000${profilePicture}`}
+            src={`${SERVER_ADDRESS}${profilePicture}`}
             height={48}
             width={48}
             unoptimized={true}

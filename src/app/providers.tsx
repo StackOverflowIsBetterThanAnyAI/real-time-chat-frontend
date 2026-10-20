@@ -22,6 +22,7 @@ import {
     UserDataProps,
 } from '@/types'
 import { resetStorage } from '@/utils'
+import { SERVER_ADDRESS } from '@/constants'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -66,7 +67,7 @@ const AppContent = ({ children }: { children: React.ReactNode }) => {
 
     const logout = useCallback(async () => {
         try {
-            const response = await fetch(`http://localhost:8000/api/logout`, {
+            const response = await fetch(`${SERVER_ADDRESS}/api/logout`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
