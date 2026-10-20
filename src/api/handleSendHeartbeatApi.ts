@@ -27,7 +27,18 @@ export const handleSendHeartbeatApi = async ({
             }
             return
         }
-    } catch (error) {
+    } catch (error: unknown) {
+        if (
+            (typeof error === 'object' &&
+                error !== null &&
+                'name' in error &&
+                error.name === 'AbortError') ||
+            (error instanceof TypeError &&
+                error.message.includes('NetworkError'))
+        ) {
+            console.log(error.name)
+            return
+        }
         console.error(
             'An unexpected error occurred while trying to send your heartbeat',
             error
