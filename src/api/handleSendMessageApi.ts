@@ -1,3 +1,4 @@
+import { SERVER_ADDRESS } from '@/constants'
 import { handleSendMessageApiProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
@@ -10,9 +11,6 @@ export const handleSendMessageApi = async ({
     setChatFriendData,
     showToast,
 }: handleSendMessageApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
-
     const tempId = tempIdCounter--
     const messageObject = {
         id: tempId,
@@ -31,7 +29,7 @@ export const handleSendMessageApi = async ({
     )
     try {
         const response = await fetch(
-            `${API_URL}/api/conversation/${id}/message`,
+            `${SERVER_ADDRESS}/api/conversation/${id}/message`,
             {
                 method: 'POST',
                 headers: {

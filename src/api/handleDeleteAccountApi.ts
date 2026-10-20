@@ -1,3 +1,4 @@
+import { SERVER_ADDRESS } from '@/constants'
 import { handleDeleteAccountApiProps } from '@/types'
 import { resetStorage, setItemInStorage } from '@/utils'
 
@@ -11,12 +12,9 @@ export const handleDeleteAccountApi = async ({
     setUserData,
     showToast,
 }: handleDeleteAccountApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
-
     setIsLoading(true)
     try {
-        const response = await fetch(`${API_URL}/api/account`, {
+        const response = await fetch(`${SERVER_ADDRESS}/api/account`, {
             method: 'DELETE',
             credentials: 'include',
         })

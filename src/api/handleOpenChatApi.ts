@@ -1,4 +1,5 @@
 import { getAbortSignal } from '@/api'
+import { SERVER_ADDRESS } from '@/constants'
 import { ConversationProps, handleOpenChatApiProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
@@ -8,17 +9,18 @@ export const handleOpenChatApi = async ({
     setChatFriendData,
     showToast,
 }: handleOpenChatApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
     try {
-        const response = await fetch(`${API_URL}/api/conversation/${friend}`, {
-            method: 'GET',
-            signal: getAbortSignal(),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-        })
+        const response = await fetch(
+            `${SERVER_ADDRESS}/api/conversation/${friend}`,
+            {
+                method: 'GET',
+                signal: getAbortSignal(),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            }
+        )
 
         if (!response.ok) {
             console.log(

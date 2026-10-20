@@ -1,3 +1,4 @@
+import { SERVER_ADDRESS } from '@/constants'
 import {
     FriendType,
     handleFetchInitialDataApiProps,
@@ -12,20 +13,17 @@ export const handleFetchInitialDataApi = async ({
     setUserData,
     showToast,
 }: handleFetchInitialDataApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
-
     setIsLoading(true)
     try {
         const [userResponse, friendsResponse] = await Promise.all([
-            fetch(`${API_URL}/api/me`, {
+            fetch(`${SERVER_ADDRESS}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
             }),
-            fetch(`${API_URL}/api/friends`, {
+            fetch(`${SERVER_ADDRESS}/api/friends`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

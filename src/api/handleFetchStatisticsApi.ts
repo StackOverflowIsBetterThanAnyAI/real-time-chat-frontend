@@ -1,3 +1,4 @@
+import { SERVER_ADDRESS } from '@/constants'
 import { handleFetchStatisticsApiProps, StatisticsType } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
@@ -7,12 +8,9 @@ export const handleFetchStatisticsApi = async ({
     setUserStatistics,
     showToast,
 }: handleFetchStatisticsApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
-
     setIsLoading(true)
     try {
-        const response = await fetch(`${API_URL}/api/statistics`, {
+        const response = await fetch(`${SERVER_ADDRESS}/api/statistics`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

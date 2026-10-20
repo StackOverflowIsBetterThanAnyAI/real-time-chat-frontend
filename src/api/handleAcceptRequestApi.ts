@@ -1,3 +1,4 @@
+import { SERVER_ADDRESS } from '@/constants'
 import { FriendType, handleRequestApiProps } from '@/types'
 import { setItemInSessionStorage } from '@/utils'
 
@@ -8,18 +9,18 @@ export const handleAcceptRequestApi = async ({
     setIsLoading,
     showToast,
 }: handleRequestApiProps) => {
-    const API_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
-
     setIsLoading(true)
     try {
-        const response = await fetch(`${API_URL}/api/friends/${id}/accept`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-        })
+        const response = await fetch(
+            `${SERVER_ADDRESS}/api/friends/${id}/accept`,
+            {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            }
+        )
 
         if (!response.ok) {
             console.log(
