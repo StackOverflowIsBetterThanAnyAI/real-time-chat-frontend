@@ -1,3 +1,4 @@
+import { SERVER_ADDRESS } from '@/constants'
 import { handleLoginApiProps } from '@/types'
 import { setItemInStorage } from '@/utils'
 
@@ -11,17 +12,14 @@ export const handleLoginApi = async ({
     setIsLoading(true)
     setApiError('')
     try {
-        const response = await fetch(
-            `https://real-time-chat-backend-nvb6.onrender.com/api/login`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userName, password }),
-                credentials: 'include',
-            }
-        )
+        const response = await fetch(`${SERVER_ADDRESS}/api/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userName, password }),
+            credentials: 'include',
+        })
 
         if (!response.ok) {
             setIsLoggedIn(false)
