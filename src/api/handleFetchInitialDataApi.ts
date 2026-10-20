@@ -16,23 +16,20 @@ export const handleFetchInitialDataApi = async ({
     setIsLoading(true)
     try {
         const [userResponse, friendsResponse] = await Promise.all([
-            fetch(`https://real-time-chat-backend-nvb6.onrender.com/api/me`, {
+            fetch(`${SERVER_ADDRESS}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
             }),
-            fetch(
-                `https://real-time-chat-backend-nvb6.onrender.com/api/friends`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: 'include',
-                }
-            ),
+            fetch(`${SERVER_ADDRESS}/api/friends/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            }),
         ])
 
         if (!userResponse.ok) {
