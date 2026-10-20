@@ -239,6 +239,14 @@ export type SettingsStatusProps = {
     setUserData: Dispatch<SetStateAction<UserDataProps | undefined>>
 }
 
+export type SettingsStatisticsChartProps = {
+    timeline: {
+        dateOfMessage: string
+        sentCount: number
+        receivedCount: number
+    }[]
+}
+
 export type StatisticsType = {
     favoriteFriend: {
         userName: string

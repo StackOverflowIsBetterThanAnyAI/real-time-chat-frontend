@@ -7,14 +7,7 @@ import {
     ResponsiveContainer,
     Legend,
 } from 'recharts'
-
-export type SettingsStatisticsChartProps = {
-    timeline: {
-        dateOfMessage: string
-        sentCount: number
-        receivedCount: number
-    }[]
-}
+import { SettingsStatisticsChartProps } from '@/types'
 
 const StatisticsChart = ({ timeline }: SettingsStatisticsChartProps) => {
     return (
