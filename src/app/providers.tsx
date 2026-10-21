@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useRef, useState } from 'react'
+import { SERVER_ADDRESS } from '@/constants'
 import {
     ContextAddFriendRef,
     ContextChatFriendData,
@@ -22,7 +23,6 @@ import {
     UserDataProps,
 } from '@/types'
 import { resetStorage } from '@/utils'
-import { SERVER_ADDRESS } from '@/constants'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
     return (
