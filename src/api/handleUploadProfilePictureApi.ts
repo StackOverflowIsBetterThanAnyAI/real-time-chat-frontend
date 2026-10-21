@@ -2,6 +2,15 @@ import { SERVER_ADDRESS } from '@/constants'
 import { handleUploadProfilePictureApiProps } from '@/types'
 import { setItemInStorage } from '@/utils'
 
+const convertFileToBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result as string)
+        reader.onerror = (error) => reject(error)
+    })
+}
+
 export const handleUploadProfilePictureApi = async ({
     e,
     logout,
@@ -39,12 +48,14 @@ export const handleUploadProfilePictureApi = async ({
             return
         }
 
-        const formData = new FormData()
-        formData.append('profilePicture', file)
+        const base64String = await convertFileToBase64(file)
 
         const response = await fetch(`${SERVER_ADDRESS}/api/profile-picture`, {
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ profilePicture: base64String }),
             credentials: 'include',
         })
 
@@ -71,13 +82,9 @@ export const handleUploadProfilePictureApi = async ({
         }
 
         const data: { profilePicture: string } = await response.json()
-        const timeStamp = new Date().getTime()
-        const profilePictureTimeStamp = `${data.profilePicture}?t=${timeStamp}`
-        setItemInStorage('profilepicture', profilePictureTimeStamp)
+        setItemInStorage('profilepicture', data.profilePicture)
         setUserData((prev) =>
-            prev
-                ? { ...prev, profilePicture: profilePictureTimeStamp }
-                : undefined
+            prev ? { ...prev, profilePicture: data.profilePicture } : undefined
         )
     } catch (error) {
         console.error(

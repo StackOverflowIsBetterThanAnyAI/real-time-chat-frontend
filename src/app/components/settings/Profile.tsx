@@ -116,6 +116,7 @@ const Profile = ({
                         onChange={handleFileChange}
                         className="sr-only"
                         aria-label="Upload Profile Picture"
+                        maxLength={192}
                     />
                     {profilePicture && (
                         <button
