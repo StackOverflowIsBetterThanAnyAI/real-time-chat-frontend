@@ -59,8 +59,7 @@ export const checkIsStatisticsType = (
             typeof fav.status !== 'string' ||
             fav.status.length > 255 ||
             !('profilePicture' in fav) ||
-            typeof fav.profilePicture !== 'string' ||
-            fav.profilePicture.length > 255
+            typeof fav.profilePicture !== 'string'
         ) {
             return false
         }
