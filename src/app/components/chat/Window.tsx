@@ -72,9 +72,9 @@ const Window = () => {
                         />
                     )}
                     <div className="flex flex-col gap-1 mb-auto items-start min-w-0 flex-1">
-                        <div className="text-normal truncate w-full text-left">
+                        <h2 className="text-normal truncate w-full text-left">
                             {chatFriendData.friend.userName}
-                        </div>
+                        </h2>
                         <div className="text-small truncate w-full text-left">
                             {chatFriendData.friend.status}
                         </div>
@@ -98,7 +98,7 @@ const Window = () => {
                     role="log"
                     aria-live="polite"
                     aria-relevant="additions"
-                    aria-label="Chat History"
+                    aria-label={`Chat History with ${chatFriendData.friend.userName}`}
                     ref={chatRef}
                 >
                     {chatFriendData.messages.map((item) => (
@@ -106,6 +106,7 @@ const Window = () => {
                             content={item.content}
                             isSent={item.direction === 'sent'}
                             key={item.id}
+                            senderName={chatFriendData.friend.userName}
                         />
                     ))}
                 </div>

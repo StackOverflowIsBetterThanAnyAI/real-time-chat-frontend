@@ -41,6 +41,7 @@ export type ChatFriendType = {
 export type ChatMessageProps = {
     content: string
     isSent?: boolean
+    senderName: string
 }
 
 export type ChatSidebarButtonsProps = {
