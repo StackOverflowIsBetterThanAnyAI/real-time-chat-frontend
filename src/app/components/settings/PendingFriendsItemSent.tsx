@@ -51,8 +51,9 @@ const PendingFriendsItem = ({
                 hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
                 disabled={isLoading}
                 title="Cancel"
+                aria-label={`Cancel friend request to ${userName}`}
             >
-                <GrRevert color="#fb2c36" size={20} />
+                <GrRevert color="#fb2c36" size={20} aria-hidden="true" />
             </button>
         </div>
     )
