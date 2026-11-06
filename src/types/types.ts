@@ -77,6 +77,7 @@ export type ContextToastType = {
 
 export type ErrorMessageProps = {
     error: string
+    id: string
     theme?: 'red' | 'white'
 }
 

@@ -149,7 +149,7 @@ const Form = () => {
                     }
                     value={userName}
                 />
-                <Message error={errorUserName} />
+                <Message error={errorUserName} id="userNameError" />
                 <FormPassword
                     error={(!isSigningUp && apiError) || errorPassword}
                     id={`${isSigningUp ? 'signup' : 'login'}Password`}
@@ -166,11 +166,10 @@ const Form = () => {
                     }
                     value={password}
                 />
-                {!isSigningUp && apiError ? (
-                    <Message error={apiError} />
-                ) : (
-                    <Message error={errorPassword} />
-                )}
+                <Message
+                    error={(!isSigningUp && apiError) || errorPassword}
+                    id="passwordError"
+                />
                 {isSigningUp && (
                     <>
                         <FormPassword
@@ -189,11 +188,10 @@ const Form = () => {
                             }
                             value={confirmPassword}
                         />
-                        {apiError ? (
-                            <Message error={apiError} />
-                        ) : (
-                            <Message error={errorConfirmPassword} />
-                        )}
+                        <Message
+                            error={apiError || errorConfirmPassword}
+                            id="confirmPasswordError"
+                        />
                     </>
                 )}
                 <FormSubmit
