@@ -88,26 +88,38 @@ const Navigation = () => {
         <>
             <nav className="w-full bg-zinc-600 flex items-center justify-between px-2 sm:px-4 py-1">
                 <div className="flex justify-between items-center gap-2 md:gap-4 w-full h-12 sm:h-16">
-                    <button
-                        className="regular-button"
-                        onClick={handleClickLogo}
-                        title={`${chatFriendData ? 'Close Chat' : ''}`}
-                    >
-                        <Image
-                            src={logo}
-                            alt=""
-                            height={48}
-                            width={48}
-                            className="w-10 sm:w-12 h-10 sm:h-12"
-                        />
-                        <h1 className="text-large">Dieter-Chat</h1>
-                    </button>
+                    <h1 className="flex">
+                        <button
+                            className="regular-button"
+                            onClick={handleClickLogo}
+                            title={chatFriendData ? 'Close Chat' : undefined}
+                        >
+                            <Image
+                                src={logo}
+                                alt=""
+                                height={48}
+                                width={48}
+                                className="w-10 sm:w-12 h-10 sm:h-12"
+                            />
+                            <span className="text-large">Dieter-Chat</span>
+                            {chatFriendData ? (
+                                <span className="sr-only">(Close Chat)</span>
+                            ) : null}
+                        </button>
+                    </h1>
                     {isLoggedIn && (
                         <button
                             onClick={handleClickProfile}
                             className={`w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700
                             relative overflow-hidden ${userData === undefined ? ' animate-pulse' : ''}`}
                             title={`${isSettingsExpanded ? 'Close' : 'Open'} Settings`}
+                            aria-label="Settings"
+                            aria-expanded={!!isSettingsExpanded}
+                            aria-controls={
+                                isSettingsExpanded
+                                    ? 'settings-panel'
+                                    : undefined
+                            }
                             ref={profileButtonRef}
                         >
                             <ProfilePicture
