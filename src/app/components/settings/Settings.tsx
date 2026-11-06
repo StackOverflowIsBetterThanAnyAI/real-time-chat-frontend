@@ -205,13 +205,16 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
 
     return (
         <aside
+            id="settings-panel"
+            role="dialog"
+            aria-modal="true"
             className="z-20 flex flex-col gap-2 absolute max-w-96 w-full top-14 sm:top-18 right-0 bottom-4
             bg-zinc-700 p-4 border-2 border-zinc-800 rounded-b-xl overflow-y-auto"
             ref={settingsRef}
         >
             {isStatisticsExpanded ? (
                 <div className="flex flex-col flex-1 gap-2">
-                    <Header header="Statistics" />
+                    <Header header="Statistics" id="settings-heading" />
                     <Button
                         handleClick={handleToggleIsStatisticsExpanded}
                         label="Go back to Settings"

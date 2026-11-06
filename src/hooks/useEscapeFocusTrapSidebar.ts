@@ -16,10 +16,20 @@ export const useEscapeFocusTrapSidebar = ({
                 return
             }
 
+            const wasFocusInSidebar = sidebarRef.current?.contains(
+                document.activeElement
+            )
             setFilter('')
             setItemInSessionStorage('filteredtext', '')
             setIsSidebarExpanded(false)
             setItemInSessionStorage('issidebarexpanded', false)
+            if (wasFocusInSidebar) {
+                sidebarRef.current
+                    ?.querySelector<HTMLElement>(
+                        'button[aria-controls="chat-sidebar"]'
+                    )
+                    ?.focus()
+            }
         }
 
         const handleClickOutside = (e: MouseEvent) => {

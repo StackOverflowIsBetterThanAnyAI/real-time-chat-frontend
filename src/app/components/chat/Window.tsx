@@ -5,6 +5,7 @@ import { useContext, useRef } from 'react'
 import { Message, SendText } from '@/app/components/chat'
 import {
     FallbackProfilePicture,
+    OnlineIndicator,
     ProfilePicture,
 } from '@/app/components/settings'
 import { ContextChatFriendData } from '@/context'
@@ -55,11 +56,7 @@ const Window = () => {
                                 size="small"
                             />
                             {isUserOnline !== undefined ? (
-                                <span
-                                    className={`${isUserOnline ? 'bg-green-500' : 'bg-red-600'}
-                                    rounded-full w-3 h-3 absolute bottom-0 right-0 outline-1 outline-zinc-200`}
-                                    title={`${isUserOnline ? 'online' : 'offline'}`}
-                                ></span>
+                                <OnlineIndicator isOnline={isUserOnline} />
                             ) : null}
                         </span>
                     ) : (
@@ -72,9 +69,9 @@ const Window = () => {
                         />
                     )}
                     <div className="flex flex-col gap-1 mb-auto items-start min-w-0 flex-1">
-                        <div className="text-normal truncate w-full text-left">
+                        <h2 className="text-normal truncate w-full text-left">
                             {chatFriendData.friend.userName}
-                        </div>
+                        </h2>
                         <div className="text-small truncate w-full text-left">
                             {chatFriendData.friend.status}
                         </div>
@@ -98,7 +95,7 @@ const Window = () => {
                     role="log"
                     aria-live="polite"
                     aria-relevant="additions"
-                    aria-label="Chat History"
+                    aria-label={`Chat History with ${chatFriendData.friend.userName}`}
                     ref={chatRef}
                 >
                     {chatFriendData.messages.map((item) => (
@@ -106,6 +103,7 @@ const Window = () => {
                             content={item.content}
                             isSent={item.direction === 'sent'}
                             key={item.id}
+                            senderName={chatFriendData.friend.userName}
                         />
                     ))}
                 </div>
