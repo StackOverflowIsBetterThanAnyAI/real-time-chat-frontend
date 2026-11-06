@@ -16,7 +16,11 @@ const FormSwitch = ({
     const switchStyle = 'w-18 md:w-20 transition duration-500 ease-in-out py-1'
 
     return (
-        <div className="flex justify-center text-normal py-2">
+        <div
+            className="flex justify-center text-normal py-2"
+            role="group"
+            aria-label="Choose between Login and Signup"
+        >
             <button
                 aria-pressed={isSigningUp}
                 className={`${isLoading ? 'cursor-not-allowed' : ''} flex outline-zinc-100 outline-2 rounded-lg focus-visible:outline-blue-800/80!`}
