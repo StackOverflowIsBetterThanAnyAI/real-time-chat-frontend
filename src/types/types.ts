@@ -197,16 +197,17 @@ export type SettingsFriendsOverviewProps = {
 
 export type SettingsHeaderProps = {
     header: string
+    id: string
+}
+
+export type SettingsOnlineIndicatorProps = {
+    isOnline: boolean
 }
 
 export type SettingsPendingFriendsItemProps = {
     id: number
     profilePicture: string
     userName: string
-}
-
-export type SettingsOnlineIndicatorProps = {
-    isOnline: boolean
 }
 
 export type SettingsPendingFriendsProps = {

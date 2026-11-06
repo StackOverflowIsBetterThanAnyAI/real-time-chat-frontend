@@ -214,7 +214,7 @@ const Settings = ({ profileButtonRef }: SettingsProps) => {
         >
             {isStatisticsExpanded ? (
                 <div className="flex flex-col flex-1 gap-2">
-                    <Header header="Statistics" />
+                    <Header header="Statistics" id="settings-heading" />
                     <Button
                         handleClick={handleToggleIsStatisticsExpanded}
                         label="Go back to Settings"
