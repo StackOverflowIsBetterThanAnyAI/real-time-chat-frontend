@@ -205,6 +205,10 @@ export type SettingsPendingFriendsItemProps = {
     userName: string
 }
 
+export type SettingsOnlineIndicatorProps = {
+    isOnline: boolean
+}
+
 export type SettingsPendingFriendsProps = {
     isExpanded: boolean
     isLoading: boolean

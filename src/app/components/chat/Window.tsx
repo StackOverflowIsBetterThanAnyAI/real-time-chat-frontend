@@ -5,6 +5,7 @@ import { useContext, useRef } from 'react'
 import { Message, SendText } from '@/app/components/chat'
 import {
     FallbackProfilePicture,
+    OnlineIndicator,
     ProfilePicture,
 } from '@/app/components/settings'
 import { ContextChatFriendData } from '@/context'
@@ -55,11 +56,7 @@ const Window = () => {
                                 size="small"
                             />
                             {isUserOnline !== undefined ? (
-                                <span
-                                    className={`${isUserOnline ? 'bg-green-500' : 'bg-red-600'}
-                                    rounded-full w-3 h-3 absolute bottom-0 right-0 outline-1 outline-zinc-200`}
-                                    title={`${isUserOnline ? 'online' : 'offline'}`}
-                                ></span>
+                                <OnlineIndicator isOnline={isUserOnline} />
                             ) : null}
                         </span>
                     ) : (
