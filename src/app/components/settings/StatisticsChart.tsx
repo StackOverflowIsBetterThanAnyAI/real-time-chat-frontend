@@ -15,7 +15,26 @@ const StatisticsChart = ({ timeline }: SettingsStatisticsChartProps) => {
             <h4 className="text-small text-center">
                 Activity over time (past 14 days)
             </h4>
-            <div className="w-full h-64">
+            <table className="sr-only">
+                <caption>Messages per day over the past 14 days</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Sent</th>
+                        <th scope="col">Received</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {timeline.map((item) => (
+                        <tr key={item.dateOfMessage}>
+                            <th scope="row">{item.dateOfMessage}</th>
+                            <td>{item.sentCount}</td>
+                            <td>{item.receivedCount}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <div className="w-full h-64" aria-hidden="true">
                 <ResponsiveContainer className="w-full h-full">
                     <LineChart
                         data={timeline}
@@ -67,6 +86,7 @@ const StatisticsChart = ({ timeline }: SettingsStatisticsChartProps) => {
                             dataKey="receivedCount"
                             name="Received"
                             stroke="#f4f4f5"
+                            strokeDasharray="5 3"
                             strokeWidth={2}
                             dot={{ r: 3, fill: '#f4f4f5' }}
                             activeDot={{ r: 4 }}
