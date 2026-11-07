@@ -1,4 +1,4 @@
-import { SERVER_ADDRESS } from '@/constants'
+import { AUTH_REQUEST_TIMEOUT_MS, SERVER_ADDRESS } from '@/constants'
 import { handleLoginApiProps } from '@/types'
 import { setItemInStorage } from '@/utils'
 
@@ -19,6 +19,7 @@ export const handleLoginApi = async ({
             },
             body: JSON.stringify({ userName, password }),
             credentials: 'include',
+            signal: AbortSignal.timeout(AUTH_REQUEST_TIMEOUT_MS),
         })
 
         if (!response.ok) {
@@ -44,6 +45,13 @@ export const handleLoginApi = async ({
     } catch (error) {
         setIsLoggedIn(false)
         setItemInStorage('isloggedin', false)
+        if (error instanceof DOMException && error.name === 'TimeoutError') {
+            console.error('Login request timed out')
+            setApiError(
+                'The server is currently experiencing problems. Please try again later.'
+            )
+            return
+        }
         console.error(
             'An unexpected error occurred while trying to login',
             error
