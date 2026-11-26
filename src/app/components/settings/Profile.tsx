@@ -86,6 +86,9 @@ const Profile = ({
                 >
                     {isLoading ? (
                         <span className="flex justify-center items-center h-full">
+                            <span className="sr-only">
+                                Updating profile picture
+                            </span>
                             <FetchLoading theme="#f4f4f5" />
                         </span>
                     ) : (
@@ -102,6 +105,7 @@ const Profile = ({
                 >
                     <label
                         htmlFor="uploadProfilePicture"
+                        role="button"
                         tabIndex={0}
                         className="settings-menu-button regular-button cursor-pointer hover:bg-zinc-700/60 active:bg-zinc-700 focus-visible:outline-2 outline-zinc-100"
                         onKeyDown={handleKeyDown}

@@ -83,11 +83,17 @@ const Status = ({
             ></div>
             {isLoading ? (
                 <div className="bg-zinc-800 max-w-full w-fit h-7 sm:h-8 lg:h-9 px-4 py-1 rounded-xl mx-auto">
+                    <span className="sr-only">Updating status</span>
                     <FetchLoading theme="#f4f4f5" />
                 </div>
             ) : isEditingStatus ? (
                 <>
+                    <label htmlFor="status" className="sr-only">
+                        Status
+                    </label>
                     <input
+                        aria-describedby="statusError"
+                        aria-invalid={!!apiError}
                         className="text-normal bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto mb-1"
                         value={internalStatus}
                         onInput={handleChangeStatus}
@@ -98,14 +104,11 @@ const Status = ({
                         title="The updated status must contain between 1 and 255 characters."
                         type="text"
                     />
-                    <label htmlFor="status" className="sr-only">
-                        Status
-                    </label>
-                    <Message error={apiError} />
+                    <Message error={apiError} id="statusError" />
                     <div className="flex gap-4 text-normal pt-2">
                         <button
                             onClick={handleCancelStatus}
-                            className="settings-menu-button not-disabled:outline-2 outline-red-500 small-button w-24 flex justify-center
+                            className="settings-menu-button not-disabled:outline-2 outline-red-400 small-button w-24 flex justify-center
                             hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
                             disabled={isLoading}
                         >
@@ -113,7 +116,7 @@ const Status = ({
                         </button>
                         <button
                             onClick={handleConfirmStatus}
-                            className="settings-menu-button not-disabled:outline-2 outline-blue-600 small-button w-24 flex justify-center
+                            className="settings-menu-button not-disabled:outline-2 outline-blue-400 small-button w-24 flex justify-center
                             hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600 disabled:text-zinc-300"
                             disabled={isLoading}
                         >
@@ -122,12 +125,13 @@ const Status = ({
                     </div>
                 </>
             ) : currentStatus ? (
-                <h3
+                <p
                     className="text-normal text-center bg-zinc-800 max-w-full w-fit px-4 py-1 rounded-xl mx-auto"
                     onDoubleClick={handleIsEditingStatus}
                 >
+                    <span className="sr-only">Status: </span>
                     {currentStatus}
-                </h3>
+                </p>
             ) : (
                 <span className="animate-pulse bg-zinc-800 h-7 sm:h-8 lg:h-9 w-40 px-4 py-1 rounded-xl"></span>
             )}

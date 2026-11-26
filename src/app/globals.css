@@ -18,6 +18,7 @@ textarea:focus-visible {
 a,
 button:not(:disabled),
 input[type='button']:not(:disabled),
+input[type='submit']:not(:disabled),
 input[type='checkbox']:not(:disabled),
 summary {
     @apply hover:cursor-pointer;
@@ -89,6 +90,17 @@ input:focus-visible {
     }
     to {
         transform: scaleX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 

@@ -49,8 +49,13 @@ const FriendsOverviewItem = ({
                 disabled={isLoading}
                 onClick={() => handleRemoveFriend(id)}
                 title="Remove Friend"
+                aria-label={`Remove ${userName} from friends`}
             >
-                <HiOutlineUserRemove size={20} color="#fb2c36" />
+                <HiOutlineUserRemove
+                    size={20}
+                    color="#fb2c36"
+                    aria-hidden="true"
+                />
             </button>
         </div>
     )

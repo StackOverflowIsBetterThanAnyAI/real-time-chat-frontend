@@ -41,6 +41,7 @@ export type ChatFriendType = {
 export type ChatMessageProps = {
     content: string
     isSent?: boolean
+    senderName: string
 }
 
 export type ChatSidebarButtonsProps = {
@@ -76,6 +77,7 @@ export type ContextToastType = {
 
 export type ErrorMessageProps = {
     error: string
+    id: string
     theme?: 'red' | 'white'
 }
 
@@ -196,6 +198,11 @@ export type SettingsFriendsOverviewProps = {
 
 export type SettingsHeaderProps = {
     header: string
+    id: string
+}
+
+export type SettingsOnlineIndicatorProps = {
+    isOnline: boolean
 }
 
 export type SettingsPendingFriendsItemProps = {

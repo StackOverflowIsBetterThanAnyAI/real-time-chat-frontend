@@ -130,11 +130,13 @@ const Sidebar = ({
                         >
                             {isSidebarExpanded ? (
                                 <IoMdClose
+                                    aria-hidden="true"
                                     color="#f4f4f5"
                                     className="w-8 h-8"
                                 />
                             ) : (
                                 <RxHamburgerMenu
+                                    aria-hidden="true"
                                     color="#f4f4f5"
                                     className="w-8 h-8"
                                 />
@@ -178,7 +180,7 @@ const Sidebar = ({
                         onClick={handleOpenSettings}
                         ref={addFriendRef}
                     >
-                        <RiChatNewFill color="#f4f4f5" />
+                        <RiChatNewFill color="#f4f4f5" aria-hidden="true" />
                         <span className="text-large">Add Friend</span>
                     </button>
                     <SidebarSearch filter={filter} setFilter={setFilter} />

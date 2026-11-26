@@ -6,10 +6,13 @@ const FormHeader = ({ isSigningUp }: LoginFormHeaderProps) => {
             <h2 className="text-center text-large px-1 lg:py-1">
                 {isSigningUp ? 'Signup' : 'Login'}
             </h2>
-            <h3 className="text-center text-normal px-1 lg:py-1">
-                All fields marked with <span className="text-red-800">*</span>{' '}
-                are required.
-            </h3>
+            <p className="text-center text-normal px-1 lg:py-1">
+                All fields marked with{' '}
+                <span className="text-red-800" aria-hidden="true">
+                    *
+                </span>
+                <span className="sr-only">an asterisk</span> are required.
+            </p>
         </>
     )
 }

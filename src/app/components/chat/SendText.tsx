@@ -63,7 +63,16 @@ const SendText = () => {
 
     return (
         <div className="flex w-full gap-1.5 justify-between bg-zinc-800 p-1.5">
+            <span id="send-text-hint" className="sr-only">
+                Press Enter to send, Shift and Enter for a new line.
+            </span>
             <textarea
+                aria-label={
+                    chatFriendData?.friend.userName
+                        ? `Message to ${chatFriendData.friend.userName}`
+                        : 'Message'
+                }
+                aria-describedby="send-text-hint"
                 value={currentMessage}
                 onChange={handleChangeMessage}
                 placeholder="Your message ..."
@@ -92,8 +101,13 @@ const SendText = () => {
                     !currentMessage.trim().length
                 }
                 title="Send Message"
+                aria-label="Send Message"
             >
-                <IoMdSend color="#f4f4f5" className="w-5 h-5" />
+                <IoMdSend
+                    color="#f4f4f5"
+                    className="w-5 h-5"
+                    aria-hidden="true"
+                />
             </button>
         </div>
     )

@@ -62,8 +62,9 @@ const PendingFriendsItem = ({
                     hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
                     disabled={isLoading}
                     title="Decline"
+                    aria-label={`Decline friend request from ${userName}`}
                 >
-                    <MdCancel color="#fb2c36" size={20} />
+                    <MdCancel color="#fb2c36" size={20} aria-hidden="true" />
                 </button>
                 <button
                     onClick={() => handleAcceptRequest(id)}
@@ -71,8 +72,9 @@ const PendingFriendsItem = ({
                     hover:bg-zinc-800/50 active:bg-zinc-800/50 disabled:bg-zinc-600"
                     disabled={isLoading}
                     title="Accept"
+                    aria-label={`Accept friend request from ${userName}`}
                 >
-                    <TiTick color="#155dfc" size={20} />
+                    <TiTick color="#155dfc" size={20} aria-hidden="true" />
                 </button>
             </span>
         </div>

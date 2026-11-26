@@ -1,16 +1,14 @@
 import { ErrorMessageProps } from '@/types'
 
-const Message = ({ error, theme = 'red' }: ErrorMessageProps) => {
+const Message = ({ error, id, theme = 'red' }: ErrorMessageProps) => {
     return (
-        <>
-            {error ? (
-                <div
-                    className={`${theme === 'red' ? 'text-red-800' : 'text-zinc-100'} text-small text-pretty`}
-                >
-                    {error}
-                </div>
-            ) : undefined}
-        </>
+        <div
+            id={id}
+            aria-live="polite"
+            className={`${theme === 'red' ? 'text-red-800' : 'text-zinc-100'} text-small text-pretty`}
+        >
+            {error || null}
+        </div>
     )
 }
 

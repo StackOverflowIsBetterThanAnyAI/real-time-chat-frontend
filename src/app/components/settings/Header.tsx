@@ -1,9 +1,11 @@
 import { SettingsHeaderProps } from '@/types'
 
-const Header = ({ header }: SettingsHeaderProps) => {
+const Header = ({ header, id }: SettingsHeaderProps) => {
     return (
         <>
-            <h2 className="text-large">{header}</h2>
+            <h2 className="text-large" id={id}>
+                {header}
+            </h2>
             <hr className="my-1 border-zinc-100" />
         </>
     )

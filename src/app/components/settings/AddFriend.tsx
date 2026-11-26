@@ -54,7 +54,7 @@ const AddFriend = ({ isExpanded, setIsExpanded }: SettingsAddFriendProps) => {
             <div className="px-4 py-2 text-small flex flex-col gap-4">
                 <div className="flex gap-1 items-center">
                     <label htmlFor="addFriend">
-                        <span className="sr-only">Search for Users</span>
+                        <span className="sr-only">User name to add</span>
                         <MdOutlineSearch
                             className="w-6 h-6"
                             aria-hidden="true"
@@ -67,6 +67,8 @@ const AddFriend = ({ isExpanded, setIsExpanded }: SettingsAddFriendProps) => {
                         onInput={handleChange}
                         onKeyDown={handleKeyDown}
                         id="addFriend"
+                        aria-describedby="addFriendHint addFriendError"
+                        aria-invalid={!!error}
                         maxLength={20}
                         minLength={5}
                         title="Search for a user to add as friend."
@@ -74,11 +76,16 @@ const AddFriend = ({ isExpanded, setIsExpanded }: SettingsAddFriendProps) => {
                         disabled={isLoading}
                     />
                 </div>
+                <span id="addFriendHint" className="sr-only">
+                    A valid user name contains between 5 and 20 Latin letters or
+                    numbers.
+                </span>
                 {isLoading ? (
                     <div
                         className={`flex items-center justify-center w-32 sm:w-40 h-6 sm:h-7 mx-auto outline outline-zinc-100
                         px-2 py-0.5 bg-blue-600 rounded-xl cursor-not-allowed ${error ? '' : 'mb-6 sm:mb-7'}`}
                     >
+                        <span className="sr-only">Adding user</span>
                         <FetchLoading theme="#f4f4f5" />
                     </div>
                 ) : (
@@ -87,17 +94,20 @@ const AddFriend = ({ isExpanded, setIsExpanded }: SettingsAddFriendProps) => {
                             type="button"
                             className={`settings-menu-button w-32 sm:w-40 self-center bg-blue-600 disabled:bg-blue-300 rounded-xl ${error ? '' : 'mb-10 sm:mb-7'}
                             disabled:text-zinc-600 p-1 focus-visible:outline-zinc-100! enabled:hover:bg-blue-500 enabled:active:bg-blue-400`}
-                            aria-label="A valid user name consists between 5 and 63 characters"
                             onClick={handleAddFriend}
                             disabled={
                                 userToBeAdded.length < 5 ||
                                 userToBeAdded.length > 20 ||
                                 isLoading
                             }
-                            title="A valid user name consists between 5 and 63 characters"
+                            title="A valid user name contains between 5 and 20 characters"
                             value="Add User"
                         />
-                        <Message error={error} theme="white" />
+                        <Message
+                            error={error}
+                            id="addFriendError"
+                            theme="white"
+                        />
                     </div>
                 )}
             </div>

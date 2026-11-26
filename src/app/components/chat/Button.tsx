@@ -55,11 +55,16 @@ const Button = ({ friend, isExpanded }: ChatButtonProps) => {
         handleOpenChat(friend.friend.userName)
     }
 
+    const isActive = chatFriendData?.friend.userName === friend.friend.userName
+
     return (
         <button
-            className="sidebar-button regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60 w-full"
+            className={`sidebar-button regular-button hover:bg-zinc-900/60 active:bg-zinc-900/60 w-full
+            ${isActive ? 'bg-zinc-900/60 outline-2 outline-zinc-500' : ''}`}
             onClick={hanldeSetChatUser}
             title={friend.friend.userName}
+            aria-current={isActive ? 'true' : undefined}
+            aria-label={isExpanded ? undefined : friend.friend.userName}
         >
             {friend.friend.profilePicture ? (
                 <span className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-linear-180 from-blue-500 to-blue-700 relative overflow-hidden">
